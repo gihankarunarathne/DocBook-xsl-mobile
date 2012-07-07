@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+
+<book>
+<title> Mobile docBook Help </title>
+<bookinfo>
+	<title> Mobile docBook Help - Book info </title>
+	<author>
+		<firstname>Gihan</firstname>
+		<surname>Karunarathne</surname>
+		<email>gckarunarathne@gmail.com</email>
+	<copyright>
+		<year>2012</year>
+		<holder>Gihan Karunarathne</holder>
+	</copyright>
+	</author>
+</bookinfo>
+<preface>
+	<title>Foreword</title>
+	This is a project which is developing under GSoC-2012 and it is targeting on 
+deploy DocBook content over mobile interfaces.
+</preface>
+
+<chapter>	<title>Introduction</title>
+	<para os="win">this is a paragraph for windows </para>
+	<para os="linux">this is a paragraph for Linux</para>
+	<section>	<title>title of section.</title>
+		<para>para inside section</para>
+		<example> example</example>
+	</section>
+</chapter>
+
+</book>

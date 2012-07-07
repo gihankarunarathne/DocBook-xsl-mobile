@@ -1,0 +1,60 @@
+<project default="help" name="DocBookMobileBuild">
+
+	<dirname property="ant.file.dir" file="${ant.file.DocBookMobileBuild}"/>
+	<loadproperties srcFile="${ant.file.dir}/build.properties"/>
+
+	<include file="${ant.file.dir}/android/build.xml" as="nested"/>
+	
+	<property name="extensions.dir" value="${ant.file.dir}/../extensions"/>
+
+    <path id="classpath">
+        <pathelement location="${extensions.dir}/webhelpindexer.jar"/>
+		<pathelement location="${extensions.dir}/lucene-analyzers-3.0.0.jar"/>
+		<pathelement location="${extensions.dir}/lucene-core-3.0.0.jar"/>
+    </path>	
+	
+  <target name="chunk" depends="clean">
+	
+	<mkdir dir="${output-dir}"/>
+	<xslt
+	  in="${input-xml}"
+	  out="${output-dir}/dummy.html"
+	  style="${stylesheet-path}"
+	  scanincludeddirectories="false"
+	  classpath="${xslt-processor-classpath}">
+	  	  
+	  <param name="mobile.base.dir" expression="${output-dir}"/>
+	</xslt>
+	
+	<delete file="${output-dir}/dummy.html"/>
+	
+  </target>
+
+	<target name="add_resources" description="copy js and css">
+		<copy todir="${output-dir}">
+   			 <fileset dir="./template_mobile"/>
+		</copy>
+	</target>
+
+	<target name="mobile" depends="chunk,add_resources"/>
+	<target name="release_unsigned_apk" depends="nested.release_unsigned_apk" />
+	<target name="release_debug_apk" depends="nested.release_debug_apk" />
+
+
+  <target name="clean">
+	<delete dir="${output-dir}" />
+	
+	<delete file="${prof-file}" />
+	<delete dir="${prof-dir}" />
+
+  </target>
+
+  <target name="help">
+	<echo>
+	Android application build help.
+	help      : to view help options
+	profiling : to get profiled .xml output from the input .xml file
+	
+	</echo>
+  </target>
+</project>
