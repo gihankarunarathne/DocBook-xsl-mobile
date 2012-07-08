@@ -19,18 +19,18 @@
 		<xsl:call-template name="get.doc.title"/>
 	</xsl:param>
 
-	<!-- webhelp-specific params! -->
+	<!-- mobile-specific params! -->
     <!-- To be added to normal params file someday -->
-    <xsl:param name="webhelp.include.search.tab">true</xsl:param>
-    <xsl:param name="webhelp.start.filename">index.html</xsl:param>
+    <xsl:param name="mobile.include.search.tab">true</xsl:param>
+    <xsl:param name="mobile.start.filename">index.html</xsl:param>
     <xsl:param name="mobile.base.dir">www</xsl:param>
-    <xsl:param name="webhelp.tree.cookie.id" select="concat( 'treeview-', count(//node()) )"/>
-    <xsl:param name="webhelp.indexer.language">en</xsl:param>
-    <xsl:param name="webhelp.default.topic"/>
-    <xsl:param name="webhelp.autolabel">0</xsl:param>
-    <!-- webhelp-specific params! -->
+    <xsl:param name="mobile.tree.cookie.id" select="concat( 'treeview-', count(//node()) )"/>
+    <xsl:param name="mobile.indexer.language">en</xsl:param>
+    <xsl:param name="mobile.default.topic"/>
+    <xsl:param name="mobile.autolabel">0</xsl:param>
+    <!-- mobile-specific params! -->
 
-    <!-- Set some reasonable defaults for webhelp output -->
+    <!-- Set some reasonable defaults for mobile output -->
     <xsl:param name="chunker.output.indent">no</xsl:param>
     <xsl:param name="navig.showtitles">0</xsl:param>
     <xsl:param name="manifest.in.base.dir" select="0"/>
@@ -132,129 +132,135 @@ These problems go away when you add this IE=7 mode meta tag.
 </xsl:text>
   </xsl:template>
 
-
-    <xsl:template name="user.head.content">
-  	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <!--  <xsl:message>
-            webhelp.tree.cookie.id = <xsl:value-of select="$webhelp.tree.cookie.id"/> +++ <xsl:value-of select="count(//node())"/>
-            $webhelp.indexer.language = <xsl:value-of select="$webhelp.indexer.language"/> +++ <xsl:value-of select="count(//node())"/>
-        </xsl:message>-->
-        <script type="text/javascript">
-            //The id for tree cookie
-            var treeCookieId = "<xsl:value-of select="$webhelp.tree.cookie.id"/>";
-            var language = "<xsl:value-of select="$webhelp.indexer.language"/>";
-            var w = new Object();
-            //Localization
-            txt_filesfound = '<xsl:call-template name="gentext">
-                <xsl:with-param name="key" select="'txt_filesfound'"/>
-                </xsl:call-template>';
-            txt_enter_at_least_1_char = "<xsl:call-template name="gentext">
-                <xsl:with-param name="key" select="'txt_enter_at_least_1_char'"/>
-                </xsl:call-template>";
-            txt_browser_not_supported = "<xsl:call-template name="gentext">
-                <xsl:with-param name="key" select="'txt_browser_not_supported'"/>
-                </xsl:call-template>";
-            txt_please_wait = "<xsl:call-template name="gentext">
-                <xsl:with-param name="key" select="'txt_please_wait'"/>
-                </xsl:call-template>";
-            txt_results_for = "<xsl:call-template name="gentext">
-                <xsl:with-param name="key" select="'txt_results_for'"/>
-                </xsl:call-template>";
-        </script>
-        <style type="text/css">
-            input {
-            margin-bottom: 5px;
-            margin-top: 2px;
-            }
-
-            .folder {
-            display: block;
-            height: 22px;
-            padding-left: 20px;
-            background: transparent url(../common/jquery/treeview/images/folder.gif) 0 0px no-repeat;
-            }
-            <!--[if IE]>
-            input {
-                margin-bottom: 5px;
-                margin-top: 2px;
-            }
-            <![endif]-->
-        </style>
-	<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon"/>
-        <link rel="stylesheet" type="text/css" href="../common/css/positioning.css"/>
-        <link rel="stylesheet" type="text/css" href="../common/jquery/theme-redmond/jquery-ui-1.8.2.custom.css"/>
-        <link rel="stylesheet" type="text/css" href="../common/jquery/treeview/jquery.treeview.css"/>
-
-        <script type="text/javascript" src="../common/jquery/jquery-1.4.2.min.js">
-            <xsl:comment> </xsl:comment>
-        </script>
-        <script type="text/javascript" src="../common/jquery/jquery-ui-1.8.2.custom.min.js">
-            <xsl:comment> </xsl:comment>
-        </script>
-        <script type="text/javascript" src="../common/jquery/jquery.cookie.js">
-            <xsl:comment> </xsl:comment>
-        </script>
-        <script type="text/javascript" src="../common/jquery/treeview/jquery.treeview.min.js">
-            <xsl:comment> </xsl:comment>
-        </script>
-        <!--Scripts/css stylesheets for Search-->
-        <script type="text/javascript" src="search/htmlFileList.js">
-            <xsl:comment> </xsl:comment>
-        </script>
-        <script type="text/javascript" src="search/htmlFileInfoList.js">
-            <xsl:comment> </xsl:comment>
-        </script>
-        <script type="text/javascript" src="search/nwSearchFnt.js">
-            <xsl:comment> </xsl:comment>
-        </script>
-        
-        <!--<script type="text/javascript" src="search/addition.js">
-            <xsl:comment></xsl:comment>
-        </script>
-        <script type="text/javascript" src="search/indexLoader.js">
-            <xsl:comment></xsl:comment>
-        </script> -->
-
-
-        <!--
-           NOTE: Stemmer javascript files should be in format <language>_stemmer.js.
-           For example, for English(en), source should be: "search/stemmers/en_stemmer.js"
-           For country codes, see: http://www.uspto.gov/patft/help/helpctry.htm
-        -->
-        <!--<xsl:message><xsl:value-of select="concat('search/stemmers/',$webhelp.indexer.language,'_stemmer.js')"/></xsl:message>-->
-        <script type="text/javascript" src="{concat('search/stemmers/',$webhelp.indexer.language,'_stemmer.js')}">
-            <xsl:comment>//make this scalable to other languages as well.</xsl:comment>
-        </script>
-
-        <!--Index Files:
-            Index is broken in to three equal sized(number of index items) files. This is to help parallel downloading
-            of files to make it faster.-->
-        <script type="text/javascript" src="search/index-1.js">
-            <xsl:comment> </xsl:comment>
-        </script>
-        <script type="text/javascript" src="search/index-2.js">
-            <xsl:comment> </xsl:comment>
-        </script>
-        <script type="text/javascript" src="search/index-3.js">
-            <xsl:comment> </xsl:comment>
-        </script>
-        <!--End of index files -->
-    </xsl:template>
+	<!-- =================================================================================================== -->	
+	<!-- =			"user.head.content" called from "chunk-element-content									 -->
+	<!-- =================================================================================================== -->	
+	<xsl:template name="user.head.content">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		
+		<!-- <xsl:message> mobile.tree.cookie.id = <xsl:value-of select="$mobile.tree.cookie.id"/> 
+			+++ <xsl:value-of select="count(//node())"/> $mobile.indexer.language = 
+			<xsl:value-of select="$mobile.indexer.language"/> +++ <xsl:value-of select="count(//node())"/> 
+			</xsl:message> -->
+		
+		<script type="text/javascript">
+			//The id for tree cookie
+			var treeCookieId = "
+			<xsl:value-of select="$mobile.tree.cookie.id" />
+			";
+			var language = "
+			<xsl:value-of select="$mobile.indexer.language" />
+			";
+			var w = new Object();
+			//Localization
+			txt_filesfound = '
+			<xsl:call-template name="gentext">
+				<xsl:with-param name="key" select="'txt_filesfound'" />
+			</xsl:call-template>
+			';
+			txt_enter_at_least_1_char = "
+			<xsl:call-template name="gentext">
+				<xsl:with-param name="key" select="'txt_enter_at_least_1_char'" />
+			</xsl:call-template>
+			";
+			txt_browser_not_supported = "
+			<xsl:call-template name="gentext">
+				<xsl:with-param name="key" select="'txt_browser_not_supported'" />
+			</xsl:call-template>
+			";
+			txt_please_wait = "
+			<xsl:call-template name="gentext">
+				<xsl:with-param name="key" select="'txt_please_wait'" />
+			</xsl:call-template>
+			";
+			txt_results_for = "
+			<xsl:call-template name="gentext">
+				<xsl:with-param name="key" select="'txt_results_for'" />
+			</xsl:call-template>
+			";
+		</script>
+		
+		<link rel="stylesheet" type="text/css" href="css/themes/default/jquery.mobile-1.1.0.css" />
+		
+		<script type="text/javascript" charset="utf-8" src="js/cordova-1.8.1.js">
+			<xsl:comment>
+			</xsl:comment>
+		</script>
+		<script type="text/javascript" src="js/jquery-1.7.2.js">
+			<xsl:comment>
+			</xsl:comment>
+		</script>
+		<script type="text/javascript" src="js/jquery.mobile-1.1.0.js">
+			<xsl:comment>
+			</xsl:comment>
+		</script>
+		<script type="text/javascript" src="js/swipeupdown.js">
+			<xsl:comment>
+			</xsl:comment>
+		</script>
+		
+		<!--Scripts/css stylesheets for Search -->
+		<script type="text/javascript" src="search/htmlFileList.js">
+			<xsl:comment>
+			</xsl:comment>
+		</script>
+		<script type="text/javascript" src="search/htmlFileInfoList.js">
+			<xsl:comment>
+			</xsl:comment>
+		</script>
+		<script type="text/javascript" src="search/nwSearchFnt.js">
+			<xsl:comment>
+			</xsl:comment>
+		</script>
+		
+		<!--<script type="text/javascript" src="search/addition.js"> <xsl:comment></xsl:comment> 
+			</script> <script type="text/javascript" src="search/indexLoader.js"> <xsl:comment></xsl:comment> 
+			</script> -->
+		
+		
+		<!-- NOTE: Stemmer javascript files should be in format <language>_stemmer.js. 
+			For example, for English(en), source should be: "search/stemmers/en_stemmer.js" 
+			For country codes, see: http://www.uspto.gov/patft/help/helpctry.htm -->
+		<!--<xsl:message><xsl:value-of select="concat('search/stemmers/',$mobile.indexer.language,'_stemmer.js')"/></xsl:message> -->
+		<script type="text/javascript"
+			src="{concat('search/stemmers/',$mobile.indexer.language,'_stemmer.js')}">
+			<xsl:comment>
+				//make this scalable to other languages as well.
+			</xsl:comment>
+		</script>
+		
+		<!--Index Files: Index is broken in to three equal sized(number of index 
+			items) files. This is to help parallel downloading of files to make it faster. -->
+		<script type="text/javascript" src="search/index-1.js">
+			<xsl:comment>
+			</xsl:comment>
+		</script>
+		<script type="text/javascript" src="search/index-2.js">
+			<xsl:comment>
+			</xsl:comment>
+		</script>
+		<script type="text/javascript" src="search/index-3.js">
+			<xsl:comment>
+			</xsl:comment>
+		</script>
+		<!--End of index files -->
+	</xsl:template>
 
     <xsl:template name="user.header.navigation">
         <xsl:param name="prev"/>
         <xsl:param name="next"/>
         <xsl:param name="nav.context"/>
-        <xsl:call-template name="webhelpheader">
+        <xsl:call-template name="mobileheader">
             <xsl:with-param name="prev" select="$prev"/>
             <xsl:with-param name="next" select="$next"/>
             <xsl:with-param name="nav.context" select="$nav.context"/>
         </xsl:call-template>
-        <!--xsl:call-template name="webhelptoc"/-->
+        <!--xsl:call-template name="mobiletoc"/-->
 
         <!--testing toc in the content page>
-        <xsl:call-template name="webhelptoctoc"/>
-        <xsl:if test="$webhelp.include.search.tab != 'false'">
+        <xsl:call-template name="mobiletoctoc"/>
+        <xsl:if test="$mobile.include.search.tab != 'false'">
             <xsl:call-template name="search"/>
         </xsl:if-->
     </xsl:template>
@@ -264,13 +270,13 @@ These problems go away when you add this IE=7 mode meta tag.
     </xsl:template>
 
     <xsl:template name="user.footer.navigation">
-    	<xsl:call-template name="webhelptoc">
+    	<xsl:call-template name="mobiletoc">
 		  <xsl:with-param name="currentid" select="generate-id(.)"/>
 	     </xsl:call-template>
     </xsl:template>
 
   <xsl:template match="/">
-	<xsl:message>language: <xsl:value-of select="$webhelp.indexer.language"/> </xsl:message>
+	<xsl:message>language: <xsl:value-of select="$mobile.indexer.language"/> </xsl:message>
 	<!-- * Get a title for current doc so that we let the user -->
 	<!-- * know what document we are processing at this point. -->
 	<xsl:variable name="doc.title">
@@ -415,7 +421,7 @@ These problems go away when you add this IE=7 mode meta tag.
     </xsl:template>
 
     <!-- The Header with the company logo -->
-    <xsl:template name="webhelpheader">
+    <xsl:template name="mobileheader">
         <xsl:param name="prev"/>
         <xsl:param name="next"/>
         <xsl:param name="nav.context"/>
@@ -530,12 +536,12 @@ These problems go away when you add this IE=7 mode meta tag.
         </div>
     </xsl:template>
 
-    <xsl:template name="webhelptoc">
+    <xsl:template name="mobiletoc">
         <xsl:param name="currentid"/>
         <xsl:choose>
             <xsl:when test="$rootid != ''">
                 <xsl:variable name="title">
-                    <xsl:if test="$webhelp.autolabel=1">
+                    <xsl:if test="$mobile.autolabel=1">
                         <xsl:variable name="label.markup">
                             <xsl:apply-templates select="key('id',$rootid)" mode="label.markup"/>
                         </xsl:variable>
@@ -563,7 +569,7 @@ These problems go away when you add this IE=7 mode meta tag.
 
             <xsl:otherwise>
                 <xsl:variable name="title">
-                    <xsl:if test="$webhelp.autolabel=1">
+                    <xsl:if test="$mobile.autolabel=1">
                         <xsl:variable name="label.markup">
                             <xsl:apply-templates select="/*" mode="label.markup"/>
                         </xsl:variable>
@@ -601,7 +607,7 @@ These problems go away when you add this IE=7 mode meta tag.
                                         </em>
                                     </a>
                                 </li>
-                                <xsl:if test="$webhelp.include.search.tab != 'false'">
+                                <xsl:if test="$mobile.include.search.tab != 'false'">
                                     <li>
                                         <a href="#searchDiv">
                                             <em>
@@ -618,14 +624,14 @@ These problems go away when you add this IE=7 mode meta tag.
                                      id="tocLoading" style="display:block;"/>
                                 <div id="ulTreeDiv" style="display:none">
                                     <ul id="tree" class="filetree">
-                                        <xsl:apply-templates select="/*/*" mode="webhelptoc">
+                                        <xsl:apply-templates select="/*/*" mode="mobiletoc">
                                             <xsl:with-param name="currentid" select="$currentid"/>
                                         </xsl:apply-templates>
                                     </ul>
                                 </div>
 
                             </div>
-                            <xsl:if test="$webhelp.include.search.tab != 'false'">
+                            <xsl:if test="$mobile.include.search.tab != 'false'">
                                 <div id="searchDiv">
                                     <div id="search">
                                         <form onsubmit="Verifie(ditaSearch_Form);return false"
@@ -663,10 +669,10 @@ These problems go away when you add this IE=7 mode meta tag.
 
     <xsl:template
             match="book|part|reference|preface|chapter|bibliography|appendix|article|glossary|section|simplesect|sect1|sect2|sect3|sect4|sect5|refentry|colophon|bibliodiv|index"
-            mode="webhelptoc">
+            mode="mobiletoc">
         <xsl:param name="currentid"/>
         <xsl:variable name="title">
-            <xsl:if test="$webhelp.autolabel=1">
+            <xsl:if test="$mobile.autolabel=1">
                 <xsl:variable name="label.markup">
                     <xsl:apply-templates select="." mode="label.markup"/>
                 </xsl:variable>
@@ -697,7 +703,7 @@ These problems go away when you add this IE=7 mode meta tag.
             <!--li style="white-space: pre; line-height: 0em;"-->
             <li>
                 <xsl:if test="$id = $currentid">
-                    <xsl:attribute name="id">webhelp-currentid</xsl:attribute>
+                    <xsl:attribute name="id">mobile-currentid</xsl:attribute>
                 </xsl:if>
                 <span class="file">
                     <a href="{substring-after($href,concat($mobile.base.dir,'/content/'))}">
@@ -708,7 +714,7 @@ These problems go away when you add this IE=7 mode meta tag.
                     <ul>
                         <xsl:apply-templates
                                 select="part|reference|preface|chapter|bibliography|appendix|article|glossary|section|simplesect|sect1|sect2|sect3|sect4|sect5|refentry|colophon|bibliodiv"
-                                mode="webhelptoc">
+                                mode="mobiletoc">
                             <xsl:with-param name="currentid" select="$currentid"/>
                         </xsl:apply-templates>
                     </ul>
@@ -717,7 +723,7 @@ These problems go away when you add this IE=7 mode meta tag.
         </xsl:if>
     </xsl:template>
 
-    <xsl:template match="text()" mode="webhelptoc"/>
+    <xsl:template match="text()" mode="mobiletoc"/>
 
     <xsl:template name="user.footer.content">
         <script type="text/javascript" src="../common/main.js">
@@ -728,7 +734,7 @@ These problems go away when you add this IE=7 mode meta tag.
     <xsl:template name="index.html">
         <xsl:variable name="default.topic">
             <xsl:choose>
-                <xsl:when test="$webhelp.default.topic != ''">
+                <xsl:when test="$mobile.default.topic != ''">
                     <xsl:value-of select="$htmlhelp.default.topic"/>
                 </xsl:when>
                 <xsl:when test="$htmlhelp.default.topic != ''">
@@ -759,8 +765,8 @@ These problems go away when you add this IE=7 mode meta tag.
                 <!--         <xsl:value-of select="$base.dir"/> -->
                 <!--       </xsl:if> -->
                 <xsl:choose>
-                    <xsl:when test="$webhelp.start.filename">
-                        <xsl:value-of select="concat($mobile.base.dir,'/',$webhelp.start.filename)"/>
+                    <xsl:when test="$mobile.start.filename">
+                        <xsl:value-of select="concat($mobile.base.dir,'/',$mobile.start.filename)"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:value-of select="'index.html'"/>
