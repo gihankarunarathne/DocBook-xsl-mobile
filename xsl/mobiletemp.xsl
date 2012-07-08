@@ -373,52 +373,60 @@ These problems go away when you add this IE=7 mode meta tag.
 
     </xsl:template>
 
-    <xsl:template name="chunk-element-content">
-        <xsl:param name="prev"/>
-        <xsl:param name="next"/>
-        <xsl:param name="nav.context"/>
-        <xsl:param name="content">
-            <xsl:apply-imports/>
-        </xsl:param>
+	<xsl:template name="chunk-element-content">
+		<xsl:param name="prev"/>
+		<xsl:param name="next"/>
+		<xsl:param name="nav.context"/>
+		<xsl:param name="content">
+			<xsl:apply-imports/>
+		</xsl:param>
 
-        <xsl:call-template name="user.preroot"/>
+		<xsl:call-template name="user.preroot"/>
 
-        <html>
-            <xsl:call-template name="html.head">
-                <xsl:with-param name="prev" select="$prev"/>
-                <xsl:with-param name="next" select="$next"/>
-            </xsl:call-template>
+		<html>
+			<xsl:call-template name="html.head">
+				<xsl:with-param name="prev" select="$prev"/>
+				<xsl:with-param name="next" select="$next"/>
+			</xsl:call-template>
 
-            <body>
-                <xsl:call-template name="body.attributes"/>
+			<body>
+				<div data-role="page" id="one">
+					<div data-role="header">
+						<xsl:call-template name="body.attributes"/>
 
-                <xsl:call-template name="user.header.navigation">
-                    <xsl:with-param name="prev" select="$prev"/>
-                    <xsl:with-param name="next" select="$next"/>
-                    <xsl:with-param name="nav.context" select="$nav.context"/>
-                </xsl:call-template>
+						<xsl:call-template name="user.header.navigation">
+							<xsl:with-param name="prev" select="$prev"/>
+							<xsl:with-param name="next" select="$next"/>
+							<xsl:with-param name="nav.context" select="$nav.context"/>
+						</xsl:call-template>
+					</div>
+					<div data-role="content" id="bodyone">
+						<div id="content">
 
+							<xsl:call-template name="user.header.content"/>
 
-                <div id="content">
+							<xsl:copy-of select="$content"/>
 
-                    <xsl:call-template name="user.header.content"/>
+							<xsl:call-template name="user.footer.content"/>
 
-                    <xsl:copy-of select="$content"/>
-
-                    <xsl:call-template name="user.footer.content"/>
-
-                    <xsl:call-template name="footer.navigation">
-                        <xsl:with-param name="prev" select="$prev"/>
-                        <xsl:with-param name="next" select="$next"/>
-                        <xsl:with-param name="nav.context" select="$nav.context"/>
-                    </xsl:call-template>
-                </div>
-
-                <xsl:call-template name="user.footer.navigation"/>
-            </body>
-        </html>
-        <xsl:value-of select="$chunk.append"/>
-    </xsl:template>
+							<xsl:call-template name="footer.navigation">
+								<xsl:with-param name="prev" select="$prev"/>
+								<xsl:with-param name="next" select="$next"/>
+								<xsl:with-param name="nav.context" select="$nav.context"/>
+							</xsl:call-template>
+						</div>
+					</div>
+				</div>
+				<div data-role="page" id="two" data-theme="a">
+					<div data-role="header"> </div>
+					<div data-role="content" id="bodytwo" data-theme="a">
+						<xsl:call-template name="user.footer.navigation"/>
+					</div>
+				</div>
+			</body>
+		</html>
+		<xsl:value-of select="$chunk.append"/>
+	</xsl:template>
 
     <!-- The Header with the company logo -->
     <xsl:template name="mobileheader">
