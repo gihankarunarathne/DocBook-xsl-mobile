@@ -241,8 +241,7 @@
 			</xsl:otherwise>
 		</xsl:choose>
 
-		<!--<xsl:call-template name="index.html" />-->
-		<!--		<xsl:call-template name="menubar.html"/>-->
+		<xsl:call-template name="mobile-munubar.html"/>
 		<xsl:call-template name="mobiletoc.html"/>
 
 	</xsl:template>
@@ -286,7 +285,7 @@
 
 						<xsl:call-template name="user.header.content"/>
 
-<!--						<xsl:copy-of select="$content"/>-->
+						<xsl:copy-of select="$content"/>
 
 						<xsl:call-template name="user.footer.content"/>
 
@@ -296,7 +295,7 @@
 							<xsl:with-param name="nav.context" select="$nav.context"/>
 						</xsl:call-template>
 					</div>
-<!--					<xsl:call-template name="user.footer.navigation"/>-->
+					<xsl:call-template name="user.footer.navigation"/>
 				</div>
 			</body>
 		</html>
@@ -651,266 +650,14 @@
 	
 <!-- ====== "mobile-toc" : newly created =============================================================== -->
 	<xsl:template name="mobiletoc">
-		<xsl:param name="currentid" />
-		<xsl:choose>
-			<xsl:when test="$rootid != ''">
-				<xsl:variable name="title">
-					<xsl:if test="$mobile.autolabel=1">
-						<xsl:variable name="label.markup">
-							<xsl:apply-templates select="key('id',$rootid)"
-								mode="label.markup" />
-						</xsl:variable>
-						<xsl:if test="normalize-space($label.markup)">
-							<xsl:value-of select="concat($label.markup,$autotoc.label.separator)" />
-						</xsl:if>
-					</xsl:if>
-					<xsl:apply-templates select="key('id',$rootid)"
-						mode="title.markup" />
-				</xsl:variable>
-				<xsl:variable name="href">
-					<xsl:choose>
-						<xsl:when test="$manifest.in.base.dir != 0">
-							<xsl:call-template name="href.target">
-								<xsl:with-param name="object" select="key('id',$rootid)" />
-							</xsl:call-template>
-						</xsl:when>
-						<xsl:otherwise>
-							<xsl:call-template name="href.target.with.base.dir">
-								<xsl:with-param name="object" select="key('id',$rootid)" />
-							</xsl:call-template>
-						</xsl:otherwise>
-					</xsl:choose>
-				</xsl:variable>
-			</xsl:when>
-			
-			<xsl:otherwise>
-				<xsl:variable name="title">
-					<xsl:if test="$mobile.autolabel=1">
-						<xsl:variable name="label.markup">
-							<xsl:apply-templates select="/*" mode="label.markup" />
-						</xsl:variable>
-						<xsl:if test="normalize-space($label.markup)">
-							<xsl:value-of select="concat($label.markup,$autotoc.label.separator)" />
-						</xsl:if>
-					</xsl:if>
-					<xsl:apply-templates select="/*" mode="title.markup" />
-				</xsl:variable>
-				<xsl:variable name="href">
-					<xsl:choose>
-						<xsl:when test="$manifest.in.base.dir != 0">
-							<xsl:call-template name="href.target">
-								<xsl:with-param name="object" select="/" />
-							</xsl:call-template>
-						</xsl:when>
-						<xsl:otherwise>
-							<xsl:call-template name="href.target.with.base.dir">
-								<xsl:with-param name="object" select="/" />
-							</xsl:call-template>
-						</xsl:otherwise>
-					</xsl:choose>
-				</xsl:variable>
-				
-				<div>
-					<div id="leftnavigation" style="padding-top:3px; background-color:white;">
-						<div id="tabs">
-							<ul>
-								<li>
-									<a href="#treeDiv">
-										<em>
-											<xsl:call-template name="gentext">
-												<xsl:with-param name="key" select="'TableofContents'" />
-											</xsl:call-template>
-										</em>
-									</a>
-								</li>
-								<xsl:if test="$mobile.include.search.tab != 'false'">
-									<li>
-										<a href="#searchDiv">
-											<em>
-												<xsl:call-template name="gentext">
-													<xsl:with-param name="key" select="'Search'" />
-												</xsl:call-template>
-											</em>
-										</a>
-									</li>
-								</xsl:if>
-							</ul>
-							<div id="treeDiv">
-								<img src="../common/images/loading.gif" alt="loading table of contents..."
-									id="tocLoading" style="display:block;" />
-								<div id="ulTreeDiv" style="display:none">
-									<ul id="tree" class="filetree">
-										<xsl:apply-templates select="/*/*" mode="mobiletoc">
-											<xsl:with-param name="currentid" select="$currentid" />
-										</xsl:apply-templates>
-									</ul>
-								</div>
-								
-							</div>
-							<xsl:if test="$mobile.include.search.tab != 'false'">
-								<div id="searchDiv">
-									<div id="search">
-										<form onsubmit="Verifie(ditaSearch_Form);return false"
-											name="ditaSearch_Form" class="searchForm">
-											<fieldset class="searchFieldSet">
-												<legend>
-													<xsl:call-template name="gentext">
-														<xsl:with-param name="key" select="'Search'" />
-													</xsl:call-template>
-												</legend>
-												<center>
-													<input id="textToSearch" name="textToSearch" type="text"
-														class="searchText" />
-													<xsl:text disable-output-escaping="yes"> <![CDATA[&nbsp;]]> 
-                                                    </xsl:text>
-													<input onclick="Verifie(ditaSearch_Form)" type="button"
-														class="searchButton" value="Go" id="doSearch" />
-												</center>
-											</fieldset>
-										</form>
-									</div>
-									<div id="searchResults">
-										<center>
-										</center>
-									</div>
-								</div>
-							</xsl:if>
-							
-						</div>
-					</div>
-				</div>
-			</xsl:otherwise>
-		</xsl:choose>
+		
 	</xsl:template>
-	
+<!-- ====== "mobile-toc.html" ========================================================================== -->	
 	<xsl:template name="mobiletoc.html">
-		<xsl:variable name="default.topic">
-			<xsl:choose>
-				<xsl:when test="$mobile.default.topic != ''">
-					<xsl:value-of select="$htmlhelp.default.topic"/>
-				</xsl:when>
-				<xsl:when test="$htmlhelp.default.topic != ''">
-					<xsl:value-of select="$htmlhelp.default.topic"/>
-				</xsl:when>
-				<xsl:otherwise>
-					<xsl:call-template name="make-relative-filename">
-						<xsl:with-param name="base.dir"/>
-						<xsl:with-param name="base.name">
-							<xsl:choose>
-								<xsl:when test="$rootid != ''">
-									<xsl:apply-templates select="key('id',$rootid)"
-										mode="chunk-filename"/>
-								</xsl:when>
-								<xsl:otherwise>
-									<xsl:apply-templates
-										select="*/*[self::preface|self::chapter|self::appendix|self::part][1]"
-										mode="chunk-filename"/>
-								</xsl:otherwise>
-							</xsl:choose>
-						</xsl:with-param>
-					</xsl:call-template>
-				</xsl:otherwise>
-			</xsl:choose>
-		</xsl:variable>
-		<xsl:call-template name="write.chunk">
-			<xsl:with-param name="filename">
-				<!-- <xsl:if test="$manifest.in.base.dir != 0"> -->
-				<!-- <xsl:value-of select="$base.dir"/> -->
-				<!-- </xsl:if> -->
-				<xsl:choose>
-					<xsl:when test="$mobile.toc.filename">
-						<xsl:value-of select="concat($mobile.base.dir,'/',$mobile.toc.filename)"/>
-					</xsl:when>
-					<xsl:otherwise>
-						<xsl:value-of select="'mobiletoc.html'"/>
-					</xsl:otherwise>
-				</xsl:choose>
-			</xsl:with-param>
-			<xsl:with-param name="method" select="'xml'"/>
-			<xsl:with-param name="encoding" select="'utf-8'"/>
-			<xsl:with-param name="indent" select="'yes'"/>
-			<xsl:with-param name="content">
-				<html>
-					<head>
-
-						<title>
-							<xsl:value-of select="$mobile.toc.filename"/> &#160; </title>
-					</head>
-					<body>
-						<div data-role="page" id="current_page">
-							<xsl:call-template name="body.attributes"/>
-							
-							<xsl:call-template name="user.head.content"/>
-
-							<div data-role="content" id="content">
-								
-								
-
-								<xsl:call-template name="user.footer.content"/>
-							</div>
-						</div>
-					</body>
-				</html>
-			</xsl:with-param>
-		</xsl:call-template>
+		
 	</xsl:template>
-	
-	
 <!-- ====== when match one of following ->execute ====================================================== -->
-	<xsl:template  match= "book|part|reference|preface|chapter|bibliography|appendix|article|glossary|section|simplesect|sect1|sect2|sect3|sect4|sect5|refentry|colophon|bibliodiv|index"
-		mode="mobiletoc">
-		<xsl:param name="currentid" />
-		<xsl:variable name="title">
-			<xsl:if test="$mobile.autolabel=1">
-				<xsl:variable name="label.markup">
-					<xsl:apply-templates select="." mode="label.markup" />
-				</xsl:variable>
-				<xsl:if test="normalize-space($label.markup)">
-					<xsl:value-of select="concat($label.markup,$autotoc.label.separator)" />
-				</xsl:if>
-			</xsl:if>
-			<xsl:apply-templates select="." mode="title.markup" />
-		</xsl:variable>
-		
-		<xsl:variable name="href">
-			<xsl:choose>
-				<xsl:when test="$manifest.in.base.dir != 0">
-					<xsl:call-template name="href.target" />
-				</xsl:when>
-				<xsl:otherwise>
-					<xsl:call-template name="href.target.with.base.dir" />
-				</xsl:otherwise>
-			</xsl:choose>
-		</xsl:variable>
-		
-		<xsl:variable name="id" select="generate-id(.)" />
-		<!--<xsl:message> <xsl: select="name(ancestor-or-self::*) "/> </xsl:message> -->
-		
-		<xsl:if
-			test="not(self::index) or (self::index and not($generate.index = 0))">
-			<!--li style="white-space: pre; line-height: 0em;" -->
-			<li>
-				<xsl:if test="$id = $currentid">
-					<xsl:attribute name="id">mobile-currentid</xsl:attribute>
-				</xsl:if>
-				<span class="file">
-					<a href="{substring-after($href,concat($mobile.base.dir,'/content/'))}">
-						<xsl:value-of select="$title" />
-					</a>
-				</span>
-				<xsl:if
-					test="part|reference|preface|chapter|bibliography|appendix|article|glossary|section|simplesect|sect1|sect2|sect3|sect4|sect5|refentry|colophon|bibliodiv">
-					<ul>
-						<xsl:apply-templates
-							select="part|reference|preface|chapter|bibliography|appendix|article|glossary|section|simplesect|sect1|sect2|sect3|sect4|sect5|refentry|colophon|bibliodiv"
-							mode="mobiletoc">
-							<xsl:with-param name="currentid" select="$currentid" />
-						</xsl:apply-templates>
-					</ul>
-				</xsl:if>
-			</li>
-		</xsl:if>
-	</xsl:template>
+	
 	
 <!-- =================================================================================================== -->	
 <!-- 			Menu Bar content																		 -->
