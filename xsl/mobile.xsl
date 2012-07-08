@@ -16,12 +16,12 @@
 <!-- =			some configurations for mobile xsl sheets											   = -->
 <!-- =================================================================================================== -->		
 	<xsl:param name="mobile.base.dir">application</xsl:param>
-	<xsl:param name="webhelp.include.search.tab">true</xsl:param>
-	<xsl:param name="webhelp.start.filename">index.html</xsl:param>
-	<xsl:param name="webhelp.tree.cookie.id" select="concat( 'treeview-', count(//node()) )" />
-	<xsl:param name="webhelp.indexer.language">en	</xsl:param>
-	<xsl:param name="webhelp.default.topic" />
-	<xsl:param name="webhelp.autolabel">0</xsl:param>
+	<xsl:param name="mobile.include.search.tab">true</xsl:param>
+	<xsl:param name="mobile.start.filename">index.html</xsl:param>
+	<xsl:param name="mobile.tree.cookie.id" select="concat( 'treeview-', count(//node()) )" />
+	<xsl:param name="mobile.indexer.language">en	</xsl:param>
+	<xsl:param name="mobile.default.topic" />
+	<xsl:param name="mobile.autolabel">0</xsl:param>
 	
 <!-- =================================================================================================== -->	
 <!-- =			default configuration for build mobile out put										   = -->
@@ -74,9 +74,80 @@
 	#																													   #
 	########################################################################################################################-->
 	
+	<i18n xmlns="http://docbook.sourceforge.net/xmlns/l10n/1.0">
+		<l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="en">
+			<l:gentext key="Search" text="Search"/>
+			<l:gentext key="Enter_a_term_and_click" text="Enter a term and click "/>
+			<l:gentext key="Go" text="Go"/>
+			<l:gentext key="to_perform_a_search" text=" to perform a search."/>
+			<l:gentext key="txt_filesfound" text="Results"/>
+			<l:gentext key="txt_enter_at_least_1_char" text="You must enter at least one character."/>
+			<l:gentext key="txt_browser_not_supported"
+				text="Your browser is not supported. Use of Mozilla Firefox is recommended."/>
+			<l:gentext key="txt_please_wait" text="Please wait. Search in progress..."/>
+			<l:gentext key="txt_results_for" text="Results for: "/>
+			<l:gentext key="TableofContents" text="Contents"/>
+			<l:gentext key="HighlightButton" text="Toggle search result highlighting"/>
+		</l10n>
+		<!-- The fallback mechansim doesn't seem to work for local l10n stuff -->
+		<l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="ja">
+			<l:gentext key="Search" text="Search"/>
+			<l:gentext key="Enter_a_term_and_click" text="Enter a term and click "/>
+			<l:gentext key="Go" text="Go"/>
+			<l:gentext key="to_perform_a_search" text=" to perform a search."/>
+			<l:gentext key="txt_filesfound" text="Results"/>
+			<l:gentext key="txt_enter_at_least_1_char" text="You must enter at least one character."/>
+			<l:gentext key="txt_browser_not_supported"
+				text="Your browser is not supported. Use of Mozilla Firefox is recommended."/>
+			<l:gentext key="txt_please_wait" text="Please wait. Search in progress..."/>
+			<l:gentext key="txt_results_for" text="Results for: "/>
+			<l:gentext key="HighlightButton" text="Toggle search result highlighting"/>
+		</l10n>
+		<l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="de">
+			<l:gentext key="Search" text="Search"/>
+			<l:gentext key="Enter_a_term_and_click" text="Enter a term and click "/>
+			<l:gentext key="Go" text="Go"/>
+			<l:gentext key="to_perform_a_search" text=" to perform a search."/>
+			<l:gentext key="txt_filesfound" text="Results"/>
+			<l:gentext key="txt_enter_at_least_1_char" text="You must enter at least one character."/>
+			<l:gentext key="txt_browser_not_supported"
+				text="Your browser is not supported. Use of Mozilla Firefox is recommended."/>
+			<l:gentext key="txt_please_wait" text="Please wait. Search in progress..."/>
+			<l:gentext key="txt_results_for" text="Results for: "/>
+			<l:gentext key="HighlightButton" text="Toggle search result highlighting"/>
+		</l10n>
+		<l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="fr">
+			<l:gentext key="Search" text="Search"/>
+			<l:gentext key="Enter_a_term_and_click" text="Enter a term and click "/>
+			<l:gentext key="Go" text="Go"/>
+			<l:gentext key="to_perform_a_search" text=" to perform a search."/>
+			<l:gentext key="txt_filesfound" text="Results"/>
+			<l:gentext key="txt_enter_at_least_1_char" text="You must enter at least one character."/>
+			<l:gentext key="txt_browser_not_supported"
+				text="Your browser is not supported. Use of Mozilla Firefox is recommended."/>
+			<l:gentext key="txt_please_wait" text="Please wait. Search in progress..."/>
+			<l:gentext key="txt_results_for" text="Results for: "/>
+			<l:gentext key="HighlightButton" text="Toggle search result highlighting"/>
+		</l10n>
+		<l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="zh">
+			<l:gentext key="Search" text="Search"/>
+			<l:gentext key="Enter_a_term_and_click" text="Enter a term and click "/>
+			<l:gentext key="Go" text="Go"/>
+			<l:gentext key="to_perform_a_search" text=" to perform a search."/>
+			<l:gentext key="txt_filesfound" text="Results"/>
+			<l:gentext key="txt_enter_at_least_1_char" text="You must enter at least one character."/>
+			<l:gentext key="txt_browser_not_supported"
+				text="Your browser is not supported. Use of Mozilla Firefox is recommended."/>
+			<l:gentext key="txt_please_wait" text="Please wait. Search in progress..."/>
+			<l:gentext key="txt_results_for" text="Results for: "/>
+			<l:gentext key="HighlightButton" text="Toggle search result highlighting"/>
+		</l10n>
+
+	</i18n>
+	
 <!-- ========== elementary template which is located in "docbook.xsl" of xhtml style sheets in xsl repo. =================== -->	
 	<xsl:template match="/">
-		<xsl:message> language: <xsl:value-of select="$webhelp.indexer.language"/>
+		<xsl:message> language: <xsl:value-of select="$mobile.indexer.language"/>
 		</xsl:message>
 		<!-- * Get a title for current doc so that we let the user -->
 		<!-- * know what document we are processing at this point. -->
@@ -170,43 +241,47 @@
 		</xsl:choose>
 
 		<!--<xsl:call-template name="index.html" />-->
-		<!--		<xsl:call-template name="mobile-munubar.html"/>-->
+		<!--		<xsl:call-template name="menubar.html"/>-->
+		<xsl:call-template name="mobiletoc.html"/>
 
 	</xsl:template>
 
 <!-- ========== elementary template which is located in chunk-common.xsl of xhtml style sheets in xsl repo.=================== -->
 	
 	<xsl:template name="chunk-element-content">
-		<xsl:param name="prev" />
-		<xsl:param name="next" />
-		<xsl:param name="nav.context" />
+		<xsl:param name="prev"/>
+		<xsl:param name="next"/>
+		<xsl:param name="nav.context"/>
 		<xsl:param name="content">
-			<xsl:apply-imports />
+			<xsl:apply-imports/>
 		</xsl:param>
-		
-		<xsl:call-template name="user.preroot" />
-		
+
+		<xsl:call-template name="user.preroot"/>
+
 		<html>
-			<xsl:call-template name="html.head"> <!-- from 1026:chunk-common.xsl : also add "head" tag -->
-				<xsl:with-param name="prev" select="$prev" />
-				<xsl:with-param name="next" select="$next" />
+			<xsl:call-template name="html.head">
+				<!-- from 1026:chunk-common.xsl : also add "head" tag -->
+				<xsl:with-param name="prev" select="$prev"/>
+				<xsl:with-param name="next" select="$next"/>
 			</xsl:call-template>
-			
+
 			<body>
 				<!--<xsl:variable name="doc.title">
 					<xsl:call-template name="chapter.titlepage"/>
 				</xsl:variable>-->
 				<!-- have to put page id as chunked htmls -->
 				<div data-role="page" id="current_page">
-					<xsl:call-template name="body.attributes"/> 	<!-- from 117:docbook.xsl -->
+					<xsl:call-template name="body.attributes"/>
+					<!-- from 117:docbook.xsl -->
 
-					<xsl:call-template name="user.header.navigation">	<!-- from 322 docbook.xsl -->
+					<xsl:call-template name="user.header.navigation">
+						<!-- from 322 docbook.xsl -->
 						<xsl:with-param name="prev" select="$prev"/>
 						<xsl:with-param name="next" select="$next"/>
 						<xsl:with-param name="nav.context" select="$nav.context"/>
 					</xsl:call-template>
 
-					<div id="content">
+					<div data-role="content">
 
 						<xsl:call-template name="user.header.content"/>
 
@@ -220,12 +295,11 @@
 							<xsl:with-param name="nav.context" select="$nav.context"/>
 						</xsl:call-template>
 					</div>
-
-					<xsl:call-template name="user.footer.navigation"/>
+<!--					<xsl:call-template name="user.footer.navigation"/>-->
 				</div>
 			</body>
 		</html>
-		<xsl:value-of select="$chunk.append" />
+		<xsl:value-of select="$chunk.append"/>
 	</xsl:template>
 	
 <!-- =================================================================================================== -->	
@@ -238,18 +312,18 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		
-		<!-- <xsl:message> webhelp.tree.cookie.id = <xsl:value-of select="$webhelp.tree.cookie.id"/> 
-			+++ <xsl:value-of select="count(//node())"/> $webhelp.indexer.language = 
-			<xsl:value-of select="$webhelp.indexer.language"/> +++ <xsl:value-of select="count(//node())"/> 
+		<!-- <xsl:message> mobile.tree.cookie.id = <xsl:value-of select="$mobile.tree.cookie.id"/> 
+			+++ <xsl:value-of select="count(//node())"/> $mobile.indexer.language = 
+			<xsl:value-of select="$mobile.indexer.language"/> +++ <xsl:value-of select="count(//node())"/> 
 			</xsl:message> -->
 		
 		<script type="text/javascript">
 			//The id for tree cookie
 			var treeCookieId = "
-			<xsl:value-of select="$webhelp.tree.cookie.id" />
+			<xsl:value-of select="$mobile.tree.cookie.id" />
 			";
 			var language = "
-			<xsl:value-of select="$webhelp.indexer.language" />
+			<xsl:value-of select="$mobile.indexer.language" />
 			";
 			var w = new Object();
 			//Localization
@@ -343,9 +417,9 @@
 		<!-- NOTE: Stemmer javascript files should be in format <language>_stemmer.js. 
 			For example, for English(en), source should be: "search/stemmers/en_stemmer.js" 
 			For country codes, see: http://www.uspto.gov/patft/help/helpctry.htm -->
-		<!--<xsl:message><xsl:value-of select="concat('search/stemmers/',$webhelp.indexer.language,'_stemmer.js')"/></xsl:message> -->
+		<!--<xsl:message><xsl:value-of select="concat('search/stemmers/',$mobile.indexer.language,'_stemmer.js')"/></xsl:message> -->
 		<script type="text/javascript"
-			src="{concat('search/stemmers/',$webhelp.indexer.language,'_stemmer.js')}">
+			src="{concat('search/stemmers/',$mobile.indexer.language,'_stemmer.js')}">
 			<xsl:comment>
 				//make this scalable to other languages as well.
 			</xsl:comment>
@@ -399,10 +473,10 @@
 			<xsl:with-param name="next" select="$next" />
 			<xsl:with-param name="nav.context" select="$nav.context" />
 		</xsl:call-template>
-		<!-- <xsl:call-template name="webhelptoc"/> -->
+		<!-- <xsl:call-template name="mobiletoc"/> -->
 		
-		<!-- <testing toc in the content page> <xsl:call-template name="webhelptoctoc"/> 
-			<xsl:if test="$webhelp.include.search.tab != 'false'"> <xsl:call-template 
+		<!-- <testing toc in the content page> <xsl:call-template name="mobiletoctoc"/> 
+			<xsl:if test="$mobile.include.search.tab != 'false'"> <xsl:call-template 
 			name="search"/> </xsl:if> -->
 	</xsl:template>
 	
@@ -427,55 +501,57 @@
 				align="right" src="../common/images/logo.png" alt="Company Logo"/>-->
 
 			<!-- Display the page title and the main heading(parent) of it -->
-			<h6 align="center">
-				<xsl:apply-templates select="." mode="object.title.markup"/>
+			<h6>			
 				<xsl:choose>
-					<xsl:when test="count($up)&gt; 0 and generate-id($up) != generate-id($home)">
+					<xsl:when
+						test="count($up)&gt; 0 and generate-id($up) != generate-id($home)">
 						<!-- test="count($up)&gt; 0 and generate-id($up) != generate-id($home)"> -->
-						<xsl:apply-templates select="$up" mode="object.title.markup"/>
+						<xsl:apply-templates select="$up"
+							mode="object.title.markup" />
 					</xsl:when>
-					<xsl:otherwise> &#160; </xsl:otherwise>
+					<xsl:otherwise>
+						&#160;
+					</xsl:otherwise>
 				</xsl:choose>
 			</h6>
 
 			<!-- Prev and Next links generation -->
-			<div id="navheader">
-				<xsl:comment>
+
+			<xsl:comment>
 					<!-- KEEP this code. In case of neither prev nor next links are available, 
 						this will help to keep the integrity of the DOM tree -->
 				</xsl:comment>
-				<!--<xsl:with-param name="prev" select="$prev"/> <xsl:with-param name="next" 
+			<!--<xsl:with-param name="prev" select="$prev"/> <xsl:with-param name="next" 
 					select="$next"/> <xsl:with-param name="nav.context" select="$nav.context"/> -->
 
-				<!--<a href="ch02_02_01.html" data-role="button" data-icon="arrow-l"
+			<!--<a href="ch02_02_01.html" data-role="button" data-icon="arrow-l"
 					data-iconpos="notext" data-theme="a">PREV</a>
 				<h6>Introduction</h6>
 				<a href="ch01.html" data-role="button" data-icon="arrow-r" data-iconpos="notext"
 					data-theme="a">NEXT</a>-->
 
-				<xsl:if
-					test="count($prev) &gt; 0
+			<xsl:if
+				test="count($prev) &gt; 0
 							or (count($up) &gt; 0
 							and generate-id($up) != generate-id($home)
 							and $navig.showtitles != 0)
 							or count($next) &gt; 0">
 
-					<xsl:if test="count($prev)>0">
-						<a data-role="button" data-icon="arrow-l" data-iconpos="notext"
-							data-theme="a">
-							<xsl:attribute name="href">
-								<xsl:call-template name="href.target">
-									<xsl:with-param name="object" select="$prev"/>
-								</xsl:call-template>
-							</xsl:attribute>
-							<xsl:call-template name="navig.content">
-								<xsl:with-param name="direction" select="'prev'"/>
+				<xsl:if test="count($prev)>0">
+					<a data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="a">
+						<xsl:attribute name="href">
+							<xsl:call-template name="href.target">
+								<xsl:with-param name="object" select="$prev"/>
 							</xsl:call-template>
-						</a>
-					</xsl:if>
+						</xsl:attribute>
+						<xsl:call-template name="navig.content">
+							<xsl:with-param name="direction" select="'prev'"/>
+						</xsl:call-template>
+					</a>
+				</xsl:if>
 
-					<!-- "Up" link -->
-					<!--<xsl:choose>
+				<!-- "Up" link -->
+				<!--<xsl:choose>
 						<xsl:when
 							test="count($up)&gt;0
 										and generate-id($up) != generate-id($home)"
@@ -493,21 +569,56 @@
 						<xsl:otherwise> &#160; </xsl:otherwise>
 					</xsl:choose>-->
 
-					<xsl:if test="count($next)>0"> <a data-role="button" data-icon="arrow-r"
-							data-iconpos="notext" data-theme="a">
-							<xsl:attribute name="href">
-								<xsl:call-template name="href.target">
-									<xsl:with-param name="object" select="$next"/>
-								</xsl:call-template>
-							</xsl:attribute>
-							<xsl:call-template name="navig.content">
-								<xsl:with-param name="direction" select="'next'"/>
+				<xsl:if test="count($next)>0">
+					<a data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="a">
+						<xsl:attribute name="href">
+							<xsl:call-template name="href.target">
+								<xsl:with-param name="object" select="$next"/>
 							</xsl:call-template>
-						</a>
-					</xsl:if>
-
+						</xsl:attribute>
+						<xsl:call-template name="navig.content">
+							<xsl:with-param name="direction" select="'next'"/>
+						</xsl:call-template>
+					</a>
 				</xsl:if>
-			</div>
+				
+				<!-- add swipe scripts to navigate -->
+				<xsl:variable name="nav_prev">
+					<xsl:call-template name="href.target">
+						<xsl:with-param name="object" select="$prev"/>
+					</xsl:call-template>
+				</xsl:variable>
+				<xsl:variable name="nav_next">
+					<xsl:call-template name="href.target">
+						<xsl:with-param name="object" select="$next"/>
+					</xsl:call-template>
+				</xsl:variable>
+				<script type="text/javascript">
+					$(function() {
+						$("#current_page").live('swipedown', function(event) {
+							$.mobile.changePage("bk01-toc.html");
+						});
+					});
+				
+					$(function() {
+						$("#current_page").live('swipeup', function(event) {
+							$.mobile.changePage("menubar.html");
+						});
+					});
+					
+				 	$(function() {
+				 		$("#current_page").live('swipeleft', function(event) {
+				 			$.mobile.changePage("<xsl:value-of select="$nav_prev"/>");
+				 		});
+				 	});
+					
+					$(function() {
+						$("#current_page").live('swiperight', function(event) {
+							$.mobile.changePage("<xsl:value-of select="$nav_next"/>");
+						});
+					});
+				</script>
+			</xsl:if>
 		</div>
 	</xsl:template>
 	
@@ -524,7 +635,7 @@
 	
 <!-- ====== "user.footer.navigation" called from "                         " ======================= -->
 	<xsl:template name="user.footer.navigation">
-		<xsl:call-template name="webhelptoc">
+		<xsl:call-template name="mobiletoc">
 			<xsl:with-param name="currentid" select="generate-id(.)" />
 		</xsl:call-template>
 	</xsl:template>
@@ -533,17 +644,17 @@
 <!-- =			Table of content																	   = -->
 <!-- =================================================================================================== -->	
 		
-	<xsl:template match="text()" mode="webhelptoc" />
+	<xsl:template match="text()" mode="mobiletoc" />
 	
-	<!-- DEFINITION : both xsl:template and xsl:apply-templates have an optional mode attribute. If xsl:template does not have a match attribute, it must not have a mode attribute. If an xsl:apply-templates element has a mode attribute, then it applies only to those template rules from xsl:template elements that have a mode attribute with the same value; if an xsl:apply-templates element does not have a mode attribute, then it applies only to those template rules from xsl:template elements that do not have a mode attribute -->
+	<!-- DEFINITION : both xsl:template and xsl:apply-templates have an optional mode attribute. If xsl:template does not have a match attribute, it 		must not have a mode attribute. If an xsl:apply-templates element has a mode attribute, then it applies only to those template rules from 				xsl:template elements that have a mode attribute with the same value; if an xsl:apply-templates element does not have a mode attribute, then it 		applies only to those template rules from xsl:template elements that do not have a mode attribute -->
 	
-<!-- ====== "mobile-toc" : newly created -->
-	<xsl:template name="webhelptoc">
+<!-- ====== "mobile-toc" : newly created =============================================================== -->
+	<xsl:template name="mobiletoc">
 		<xsl:param name="currentid" />
 		<xsl:choose>
 			<xsl:when test="$rootid != ''">
 				<xsl:variable name="title">
-					<xsl:if test="$webhelp.autolabel=1">
+					<xsl:if test="$mobile.autolabel=1">
 						<xsl:variable name="label.markup">
 							<xsl:apply-templates select="key('id',$rootid)"
 								mode="label.markup" />
@@ -573,7 +684,7 @@
 			
 			<xsl:otherwise>
 				<xsl:variable name="title">
-					<xsl:if test="$webhelp.autolabel=1">
+					<xsl:if test="$mobile.autolabel=1">
 						<xsl:variable name="label.markup">
 							<xsl:apply-templates select="/*" mode="label.markup" />
 						</xsl:variable>
@@ -611,7 +722,7 @@
 										</em>
 									</a>
 								</li>
-								<xsl:if test="$webhelp.include.search.tab != 'false'">
+								<xsl:if test="$mobile.include.search.tab != 'false'">
 									<li>
 										<a href="#searchDiv">
 											<em>
@@ -628,14 +739,14 @@
 									id="tocLoading" style="display:block;" />
 								<div id="ulTreeDiv" style="display:none">
 									<ul id="tree" class="filetree">
-										<xsl:apply-templates select="/*/*" mode="webhelptoc">
+										<xsl:apply-templates select="/*/*" mode="mobiletoc">
 											<xsl:with-param name="currentid" select="$currentid" />
 										</xsl:apply-templates>
 									</ul>
 								</div>
 								
 							</div>
-							<xsl:if test="$webhelp.include.search.tab != 'false'">
+							<xsl:if test="$mobile.include.search.tab != 'false'">
 								<div id="searchDiv">
 									<div id="search">
 										<form onsubmit="Verifie(ditaSearch_Form);return false"
@@ -671,13 +782,79 @@
 		</xsl:choose>
 	</xsl:template>
 	
+	<xsl:template name="mobiletoc.html">
+			<xsl:variable name="default.topic">
+				<xsl:choose>
+					<xsl:when test="$mobile.default.topic != ''">
+						<xsl:value-of select="$htmlhelp.default.topic" />
+					</xsl:when>
+					<xsl:when test="$htmlhelp.default.topic != ''">
+						<xsl:value-of select="$htmlhelp.default.topic" />
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:call-template name="make-relative-filename">
+							<xsl:with-param name="base.dir" />
+							<xsl:with-param name="base.name">
+								<xsl:choose>
+									<xsl:when test="$rootid != ''">
+										<xsl:apply-templates select="key('id',$rootid)"
+											mode="chunk-filename" />
+									</xsl:when>
+									<xsl:otherwise>
+										<xsl:apply-templates
+											select="*/*[self::preface|self::chapter|self::appendix|self::part][1]"
+											mode="chunk-filename" />
+									</xsl:otherwise>
+								</xsl:choose>
+							</xsl:with-param>
+						</xsl:call-template>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:variable>
+			<xsl:call-template name="write.chunk">
+				<xsl:with-param name="filename">
+					<!-- <xsl:if test="$manifest.in.base.dir != 0"> -->
+					<!-- <xsl:value-of select="$base.dir"/> -->
+					<!-- </xsl:if> -->
+					<xsl:choose>
+						<xsl:when test="$mobile.start.filename">
+							<xsl:value-of
+								select="concat($mobile.base.dir,'/',$mobile.start.filename)" />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="'index.html'" />
+						</xsl:otherwise>
+					</xsl:choose>
+				</xsl:with-param>
+				<xsl:with-param name="method" select="'xml'" />
+				<xsl:with-param name="encoding" select="'utf-8'" />
+				<xsl:with-param name="indent" select="'yes'" />
+				<xsl:with-param name="content">
+					<html>
+						<head>
+							<link rel="shortcut icon" href="favicon.ico" />
+							<meta http-equiv="Refresh" content="1; URL=content/{$default.topic}" />
+							<title>
+								<xsl:value-of select="//title[1]" />
+								&#160;
+							</title>
+						</head>
+						<body>
+							If not automatically redirected, click here:
+							<a href="content/ch01.html">content/ch01.html</a>
+						</body>
+					</html>
+				</xsl:with-param>
+			</xsl:call-template>
+	</xsl:template>
+	
 	
 <!-- ====== when match one of following ->execute ====================================================== -->
 	<xsl:template  match= "book|part|reference|preface|chapter|bibliography|appendix|article|glossary|section|simplesect|sect1|sect2|sect3|sect4|sect5|refentry|colophon|bibliodiv|index"
-		mode="webhelptoc">
+		mode="mobiletoc">
 		<xsl:param name="currentid" />
 		<xsl:variable name="title">
-			<xsl:if test="$webhelp.autolabel=1">
+			<xsl:if test="$mobile.autolabel=1">
 				<xsl:variable name="label.markup">
 					<xsl:apply-templates select="." mode="label.markup" />
 				</xsl:variable>
@@ -707,10 +884,10 @@
 			<!--li style="white-space: pre; line-height: 0em;" -->
 			<li>
 				<xsl:if test="$id = $currentid">
-					<xsl:attribute name="id">webhelp-currentid</xsl:attribute>
+					<xsl:attribute name="id">mobile-currentid</xsl:attribute>
 				</xsl:if>
 				<span class="file">
-					<a href="{substring-after($href,concat($webhelp.base.dir,'/content/'))}">
+					<a href="{substring-after($href,concat($mobile.base.dir,'/content/'))}">
 						<xsl:value-of select="$title" />
 					</a>
 				</span>
@@ -719,7 +896,7 @@
 					<ul>
 						<xsl:apply-templates
 							select="part|reference|preface|chapter|bibliography|appendix|article|glossary|section|simplesect|sect1|sect2|sect3|sect4|sect5|refentry|colophon|bibliodiv"
-							mode="webhelptoc">
+							mode="mobiletoc">
 							<xsl:with-param name="currentid" select="$currentid" />
 						</xsl:apply-templates>
 					</ul>
