@@ -18,6 +18,7 @@
 	<xsl:param name="mobile.base.dir">application</xsl:param>
 	<xsl:param name="mobile.include.search.tab">true</xsl:param>
 	<xsl:param name="mobile.start.filename">index.html</xsl:param>
+	<xsl:param name="mobile.toc.filename">mobiletoc.html</xsl:param>
 	<xsl:param name="mobile.tree.cookie.id" select="concat( 'treeview-', count(//node()) )" />
 	<xsl:param name="mobile.indexer.language">en	</xsl:param>
 	<xsl:param name="mobile.default.topic" />
@@ -281,11 +282,11 @@
 						<xsl:with-param name="nav.context" select="$nav.context"/>
 					</xsl:call-template>
 
-					<div data-role="content">
+					<div data-role="content" id="content">
 
 						<xsl:call-template name="user.header.content"/>
 
-						<xsl:copy-of select="$content"/>
+<!--						<xsl:copy-of select="$content"/>-->
 
 						<xsl:call-template name="user.footer.content"/>
 
@@ -596,7 +597,7 @@
 				<script type="text/javascript">
 					$(function() {
 						$("#current_page").live('swipedown', function(event) {
-							$.mobile.changePage("bk01-toc.html");
+							$.mobile.changePage("mobiletoc.html");
 						});
 					});
 				
@@ -783,69 +784,75 @@
 	</xsl:template>
 	
 	<xsl:template name="mobiletoc.html">
-			<xsl:variable name="default.topic">
+		<xsl:variable name="default.topic">
+			<xsl:choose>
+				<xsl:when test="$mobile.default.topic != ''">
+					<xsl:value-of select="$htmlhelp.default.topic"/>
+				</xsl:when>
+				<xsl:when test="$htmlhelp.default.topic != ''">
+					<xsl:value-of select="$htmlhelp.default.topic"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:call-template name="make-relative-filename">
+						<xsl:with-param name="base.dir"/>
+						<xsl:with-param name="base.name">
+							<xsl:choose>
+								<xsl:when test="$rootid != ''">
+									<xsl:apply-templates select="key('id',$rootid)"
+										mode="chunk-filename"/>
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:apply-templates
+										select="*/*[self::preface|self::chapter|self::appendix|self::part][1]"
+										mode="chunk-filename"/>
+								</xsl:otherwise>
+							</xsl:choose>
+						</xsl:with-param>
+					</xsl:call-template>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+		<xsl:call-template name="write.chunk">
+			<xsl:with-param name="filename">
+				<!-- <xsl:if test="$manifest.in.base.dir != 0"> -->
+				<!-- <xsl:value-of select="$base.dir"/> -->
+				<!-- </xsl:if> -->
 				<xsl:choose>
-					<xsl:when test="$mobile.default.topic != ''">
-						<xsl:value-of select="$htmlhelp.default.topic" />
-					</xsl:when>
-					<xsl:when test="$htmlhelp.default.topic != ''">
-						<xsl:value-of select="$htmlhelp.default.topic" />
+					<xsl:when test="$mobile.toc.filename">
+						<xsl:value-of select="concat($mobile.base.dir,'/',$mobile.toc.filename)"/>
 					</xsl:when>
 					<xsl:otherwise>
-						<xsl:call-template name="make-relative-filename">
-							<xsl:with-param name="base.dir" />
-							<xsl:with-param name="base.name">
-								<xsl:choose>
-									<xsl:when test="$rootid != ''">
-										<xsl:apply-templates select="key('id',$rootid)"
-											mode="chunk-filename" />
-									</xsl:when>
-									<xsl:otherwise>
-										<xsl:apply-templates
-											select="*/*[self::preface|self::chapter|self::appendix|self::part][1]"
-											mode="chunk-filename" />
-									</xsl:otherwise>
-								</xsl:choose>
-							</xsl:with-param>
-						</xsl:call-template>
+						<xsl:value-of select="'mobiletoc.html'"/>
 					</xsl:otherwise>
 				</xsl:choose>
-			</xsl:variable>
-			<xsl:call-template name="write.chunk">
-				<xsl:with-param name="filename">
-					<!-- <xsl:if test="$manifest.in.base.dir != 0"> -->
-					<!-- <xsl:value-of select="$base.dir"/> -->
-					<!-- </xsl:if> -->
-					<xsl:choose>
-						<xsl:when test="$mobile.start.filename">
-							<xsl:value-of
-								select="concat($mobile.base.dir,'/',$mobile.start.filename)" />
-						</xsl:when>
-						<xsl:otherwise>
-							<xsl:value-of select="'index.html'" />
-						</xsl:otherwise>
-					</xsl:choose>
-				</xsl:with-param>
-				<xsl:with-param name="method" select="'xml'" />
-				<xsl:with-param name="encoding" select="'utf-8'" />
-				<xsl:with-param name="indent" select="'yes'" />
-				<xsl:with-param name="content">
-					<html>
-						<head>
-							<link rel="shortcut icon" href="favicon.ico" />
-							<meta http-equiv="Refresh" content="1; URL=content/{$default.topic}" />
-							<title>
-								<xsl:value-of select="//title[1]" />
-								&#160;
-							</title>
-						</head>
-						<body>
-							If not automatically redirected, click here:
-							<a href="content/ch01.html">content/ch01.html</a>
-						</body>
-					</html>
-				</xsl:with-param>
-			</xsl:call-template>
+			</xsl:with-param>
+			<xsl:with-param name="method" select="'xml'"/>
+			<xsl:with-param name="encoding" select="'utf-8'"/>
+			<xsl:with-param name="indent" select="'yes'"/>
+			<xsl:with-param name="content">
+				<html>
+					<head>
+
+						<title>
+							<xsl:value-of select="$mobile.toc.filename"/> &#160; </title>
+					</head>
+					<body>
+						<div data-role="page" id="current_page">
+							<xsl:call-template name="body.attributes"/>
+							
+							<xsl:call-template name="user.head.content"/>
+
+							<div data-role="content" id="content">
+								
+								
+
+								<xsl:call-template name="user.footer.content"/>
+							</div>
+						</div>
+					</body>
+				</html>
+			</xsl:with-param>
+		</xsl:call-template>
 	</xsl:template>
 	
 	
