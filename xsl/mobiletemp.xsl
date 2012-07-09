@@ -181,21 +181,21 @@ These problems go away when you add this IE=7 mode meta tag.
 			";
 		</script>
 		
-		<link rel="stylesheet" type="text/css" href="css/themes/default/jquery.mobile-1.1.0.css" />
+		<link rel="stylesheet" type="text/css" href="../css/themes/default/jquery.mobile-1.1.0.css" />
 		
-		<script type="text/javascript" charset="utf-8" src="js/cordova-1.8.1.js">
+		<script type="text/javascript" charset="utf-8" src="../js/cordova-1.8.1.js">
 			<xsl:comment>
 			</xsl:comment>
 		</script>
-		<script type="text/javascript" src="js/jquery-1.7.2.js">
+		<script type="text/javascript" src="../js/jquery-1.7.2.js">
 			<xsl:comment>
 			</xsl:comment>
 		</script>
-		<script type="text/javascript" src="js/jquery.mobile-1.1.0.js">
+		<script type="text/javascript" src="../js/jquery.mobile-1.1.0.js">
 			<xsl:comment>
 			</xsl:comment>
 		</script>
-		<script type="text/javascript" src="js/swipeupdown.js">
+		<script type="text/javascript" src="../js/swipeupdown.js">
 			<xsl:comment>
 			</xsl:comment>
 		</script>
@@ -390,8 +390,8 @@ These problems go away when you add this IE=7 mode meta tag.
 			</xsl:call-template>
 
 			<body>
-				<div data-role="page" id="one">
-					<div data-role="header">
+				<div data-role="page" id="current_page">
+					<div data-role="header" data-theme="b">
 						<xsl:call-template name="body.attributes"/>
 
 						<xsl:call-template name="user.header.navigation">
@@ -417,8 +417,8 @@ These problems go away when you add this IE=7 mode meta tag.
 						</div>
 					</div>
 				</div>
-				<div data-role="page" id="two" data-theme="a">
-					<div data-role="header"> </div>
+				<div data-role="page" id="toc" data-theme="a">
+					<div data-role="header" data-theme="b"> </div>
 					<div data-role="content" id="bodytwo" data-theme="a">
 						<xsl:call-template name="user.footer.navigation"/>
 					</div>
@@ -429,48 +429,34 @@ These problems go away when you add this IE=7 mode meta tag.
 	</xsl:template>
 
     <!-- The Header with the company logo -->
-    <xsl:template name="mobileheader">
-        <xsl:param name="prev"/>
-        <xsl:param name="next"/>
-        <xsl:param name="nav.context"/>
+	<xsl:template name="mobileheader">
+		<xsl:param name="prev"/>
+		<xsl:param name="next"/>
+		<xsl:param name="nav.context"/>
 
-        <xsl:variable name="home" select="/*[1]"/>
-        <xsl:variable name="up" select="parent::*"/>
+		<xsl:variable name="home" select="/*[1]"/>
+		<xsl:variable name="up" select="parent::*"/>
 
-        <div id="header">
-            <img style='margin-right: 2px; height: 59px; padding-right: 25px; padding-top: 8px' align="right"
-                 src='../common/images/logo.png' alt="Company Logo"/>
+		<!-- Display the page title and the main heading(parent) of it-->
+		<h4>
+			<xsl:apply-templates select="." mode="object.title.markup"/>
 
-            <!-- Display the page title and the main heading(parent) of it-->
-            <h1 align="center">
-                <xsl:apply-templates select="." mode="object.title.markup"/>
-                <br/>
-                <xsl:choose>
-                    <xsl:when
-                            test="count($up) &gt; 0 and generate-id($up) != generate-id($home)">
-                        <xsl:apply-templates select="$up" mode="object.title.markup"/>
-                    </xsl:when>
-                    <xsl:otherwise>&#160;</xsl:otherwise>
-                </xsl:choose>
-            </h1>
+			<xsl:choose>
+				<xsl:when test="count($up) &gt; 0 and generate-id($up) != generate-id($home)">
+					<xsl:apply-templates select="$up" mode="object.title.markup"/>
+				</xsl:when>
+				<xsl:otherwise>&#160;</xsl:otherwise>
+			</xsl:choose>
+		</h4>
 
-            <!-- Prev and Next links generation-->
-            <div id="navheader" align="right">
-                <xsl:comment>
+		<!-- Prev and Next links generation-->
+
+		<xsl:comment>
                     <!-- KEEP this code. In case of neither prev nor next links are available, this will help to
                     keep the integrity of the DOM tree-->
                 </xsl:comment>
-                <!--xsl:with-param name="prev" select="$prev"/>
-                <xsl:with-param name="next" select="$next"/>
-                <xsl:with-param name="nav.context" select="$nav.context"/-->
-                <table>
-                    <tr>
-                        <td style="height: 28px; width: 16px;">
-                            <a id="showHideButton" onclick="showHideToc();"
-                               class="pointLeft" title="Hide TOC tree">.
-                            </a>
-                        </td>
-                        <td>
+
+		<!--<td>
                             <img src="../common/images/highlight-blue.gif" alt="H" height="25px"
                                  onclick="toggleHighlight()" id="showHideHighlight" style="cursor:pointer">
 				<xsl:attribute name="title">
@@ -479,70 +465,102 @@ These problems go away when you add this IE=7 mode meta tag.
 				  </xsl:call-template>				  
 				</xsl:attribute>
 			  </img>
-                        </td>
-                        <xsl:if test="count($prev) &gt; 0
+                        </td>-->
+		<xsl:if
+			test="count($prev) &gt; 0
                                         or (count($up) &gt; 0
                                         and generate-id($up) != generate-id($home)
                                         and $navig.showtitles != 0)
                                         or count($next) &gt; 0">
-                            <td>
-                                <xsl:if test="count($prev)>0">
-                                    <a accesskey="p">
-                                        <xsl:attribute name="href">
-                                            <xsl:call-template name="href.target">
-                                                <xsl:with-param name="object" select="$prev"/>
-                                            </xsl:call-template>
-                                        </xsl:attribute>
-                                        <xsl:call-template name="navig.content">
-                                            <xsl:with-param name="direction" select="'prev'"/>
-                                        </xsl:call-template>
-                                    </a>
-                                </xsl:if>
 
-                                <!-- "Up" link-->
-                                <xsl:choose>
-                                    <xsl:when test="count($up)&gt;0
+			<xsl:if test="count($prev)>0">
+				<a accesskey="p" data-role="button" data-icon="arrow-l" data-iconpos="notext"
+					data-theme="a">
+					<xsl:attribute name="href">
+						<xsl:call-template name="href.target">
+							<xsl:with-param name="object" select="$prev"/>
+						</xsl:call-template>
+					</xsl:attribute>
+					<xsl:call-template name="navig.content">
+						<xsl:with-param name="direction" select="'prev'"/>
+					</xsl:call-template>
+				</a>
+			</xsl:if>
+
+			<!-- "Up" link-->
+			<xsl:choose>
+				<xsl:when
+					test="count($up)&gt;0
                                               and generate-id($up) != generate-id($home)">
-                                        |
-                                        <a accesskey="u">
-                                            <xsl:attribute name="href">
-                                                <xsl:call-template name="href.target">
-                                                    <xsl:with-param name="object" select="$up"/>
-                                                </xsl:call-template>
-                                            </xsl:attribute>
-                                            <xsl:call-template name="navig.content">
-                                                <xsl:with-param name="direction" select="'up'"/>
-                                            </xsl:call-template>
-                                        </a>
-                                    </xsl:when>
-                                    <xsl:otherwise>&#160;</xsl:otherwise>
-                                </xsl:choose>
-                                
-                                <xsl:if test="count($next)>0">
-                                    |
-                                    <a accesskey="n">
-                                        <xsl:attribute name="href">
-                                            <xsl:call-template name="href.target">
-                                                <xsl:with-param name="object" select="$next"/>
-                                            </xsl:call-template>
-                                        </xsl:attribute>
-                                        <xsl:call-template name="navig.content">
-                                            <xsl:with-param name="direction" select="'next'"/>
-                                        </xsl:call-template>
-                                    </a>
-                                </xsl:if>
-                            </td>
-                        </xsl:if>
 
-                    </tr>
-                </table>
+					<a accesskey="u" data-role="button" data-icon="arrow-u" data-iconpos="notext"
+						data-theme="a">
+						<xsl:attribute name="href">
+							<xsl:call-template name="href.target">
+								<xsl:with-param name="object" select="$up"/>
+							</xsl:call-template>
+						</xsl:attribute>
+						<xsl:call-template name="navig.content">
+							<xsl:with-param name="direction" select="'up'"/>
+						</xsl:call-template>
+					</a>
+				</xsl:when>
+				<xsl:otherwise>&#160;</xsl:otherwise>
+			</xsl:choose>
 
+			<xsl:if test="count($next)>0">
 
+				<a accesskey="n" data-role="button" data-icon="arrow-r" data-iconpos="notext"
+					data-theme="a">
+					<xsl:attribute name="href">
+						<xsl:call-template name="href.target">
+							<xsl:with-param name="object" select="$next"/>
+						</xsl:call-template>
+					</xsl:attribute>
+					<xsl:call-template name="navig.content">
+						<xsl:with-param name="direction" select="'next'"/>
+					</xsl:call-template>
+				</a>
+			</xsl:if>
+			<!-- add swipe scripts to navigate -->
+			<xsl:variable name="nav_prev">
+				<xsl:call-template name="href.target">
+					<xsl:with-param name="object" select="$prev"/>
+				</xsl:call-template>
+			</xsl:variable>
+			<xsl:variable name="nav_next">
+				<xsl:call-template name="href.target">
+					<xsl:with-param name="object" select="$next"/>
+				</xsl:call-template>
+			</xsl:variable>
+			<script type="text/javascript">
+					$(function() {
+						$("#current_page").live('swipedown', function(event) {
+							$.mobile.changePage("#toc");
+						});
+					});
+				
+					$(function() {
+						$("#current_page").live('swipeup', function(event) {
+							$.mobile.changePage("menubar.html");
+						});
+					});
+					
+				 	$(function() {
+				 		$("#current_page").live('swipeleft', function(event) {
+				 			$.mobile.changePage("<xsl:value-of select="$nav_prev"/>");
+				 		});
+				 	});
+					
+					$(function() {
+						$("#current_page").live('swiperight', function(event) {
+							$.mobile.changePage("<xsl:value-of select="$nav_next"/>");
+						});
+					});
+				</script>
+		</xsl:if>
 
-            </div>
-
-        </div>
-    </xsl:template>
+	</xsl:template>
 
     <xsl:template name="mobiletoc">
         <xsl:param name="currentid"/>
