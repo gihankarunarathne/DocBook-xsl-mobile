@@ -542,7 +542,7 @@ These problems go away when you add this IE=7 mode meta tag.
 				
 					$(function() {
 						$("#current_page").live('swipeup', function(event) {
-							$.mobile.changePage("menubar.html");
+							$.mobile.changePage("#toc");
 						});
 					});
 					
@@ -562,136 +562,88 @@ These problems go away when you add this IE=7 mode meta tag.
 
 	</xsl:template>
 
-    <xsl:template name="mobiletoc">
-        <xsl:param name="currentid"/>
-        <xsl:choose>
-            <xsl:when test="$rootid != ''">
-                <xsl:variable name="title">
-                    <xsl:if test="$mobile.autolabel=1">
-                        <xsl:variable name="label.markup">
-                            <xsl:apply-templates select="key('id',$rootid)" mode="label.markup"/>
-                        </xsl:variable>
-                        <xsl:if test="normalize-space($label.markup)">
-                            <xsl:value-of select="concat($label.markup,$autotoc.label.separator)"/>
-                        </xsl:if>
-                    </xsl:if>
-                    <xsl:apply-templates select="key('id',$rootid)" mode="title.markup"/>
-                </xsl:variable>
-                <xsl:variable name="href">
-                    <xsl:choose>
-                        <xsl:when test="$manifest.in.base.dir != 0">
-                            <xsl:call-template name="href.target">
-                                <xsl:with-param name="object" select="key('id',$rootid)"/>
-                            </xsl:call-template>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:call-template name="href.target.with.base.dir">
-                                <xsl:with-param name="object" select="key('id',$rootid)"/>
-                            </xsl:call-template>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:variable>
-            </xsl:when>
+	<xsl:template name="mobiletoc">
+		<xsl:param name="currentid"/>
+		<xsl:choose>
+			<xsl:when test="$rootid != ''">
+				<xsl:variable name="title">
+					<xsl:if test="$mobile.autolabel=1">
+						<xsl:variable name="label.markup">
+							<xsl:apply-templates select="key('id',$rootid)" mode="label.markup"/>
+						</xsl:variable>
+						<xsl:if test="normalize-space($label.markup)">
+							<xsl:value-of select="concat($label.markup,$autotoc.label.separator)"/>
+						</xsl:if>
+					</xsl:if>
+					<xsl:apply-templates select="key('id',$rootid)" mode="title.markup"/>
+				</xsl:variable>
+				<xsl:variable name="href">
+					<xsl:choose>
+						<xsl:when test="$manifest.in.base.dir != 0">
+							<xsl:call-template name="href.target">
+								<xsl:with-param name="object" select="key('id',$rootid)"/>
+							</xsl:call-template>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:call-template name="href.target.with.base.dir">
+								<xsl:with-param name="object" select="key('id',$rootid)"/>
+							</xsl:call-template>
+						</xsl:otherwise>
+					</xsl:choose>
+				</xsl:variable>
+			</xsl:when>
 
-            <xsl:otherwise>
-                <xsl:variable name="title">
-                    <xsl:if test="$mobile.autolabel=1">
-                        <xsl:variable name="label.markup">
-                            <xsl:apply-templates select="/*" mode="label.markup"/>
-                        </xsl:variable>
-                        <xsl:if test="normalize-space($label.markup)">
-                            <xsl:value-of select="concat($label.markup,$autotoc.label.separator)"/>
-                        </xsl:if>
-                    </xsl:if>
-                    <xsl:apply-templates select="/*" mode="title.markup"/>
-                </xsl:variable>
-                <xsl:variable name="href">
-                    <xsl:choose>
-                        <xsl:when test="$manifest.in.base.dir != 0">
-                            <xsl:call-template name="href.target">
-                                <xsl:with-param name="object" select="/"/>
-                            </xsl:call-template>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:call-template name="href.target.with.base.dir">
-                                <xsl:with-param name="object" select="/"/>
-                            </xsl:call-template>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:variable>
+			<xsl:otherwise>
+				<xsl:variable name="title">
+					<xsl:if test="$mobile.autolabel=1">
+						<xsl:variable name="label.markup">
+							<xsl:apply-templates select="/*" mode="label.markup"/>
+						</xsl:variable>
+						<xsl:if test="normalize-space($label.markup)">
+							<xsl:value-of select="concat($label.markup,$autotoc.label.separator)"/>
+						</xsl:if>
+					</xsl:if>
+					<xsl:apply-templates select="/*" mode="title.markup"/>
+				</xsl:variable>
+				<xsl:variable name="href">
+					<xsl:choose>
+						<xsl:when test="$manifest.in.base.dir != 0">
+							<xsl:call-template name="href.target">
+								<xsl:with-param name="object" select="/"/>
+							</xsl:call-template>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:call-template name="href.target.with.base.dir">
+								<xsl:with-param name="object" select="/"/>
+							</xsl:call-template>
+						</xsl:otherwise>
+					</xsl:choose>
+				</xsl:variable>
 
-                <div>
-                    <div id="leftnavigation" style="padding-top:3px; background-color:white;">
-                        <div id="tabs">
-                            <ul>
-                                <li>
-                                    <a href="#treeDiv">
-                                        <em>
-                                            <xsl:call-template name="gentext">
-                                                <xsl:with-param name="key" select="'TableofContents'"/>
-                                            </xsl:call-template>
-                                        </em>
-                                    </a>
-                                </li>
-                                <xsl:if test="$mobile.include.search.tab != 'false'">
-                                    <li>
-                                        <a href="#searchDiv">
-                                            <em>
-                                                <xsl:call-template name="gentext">
-                                                    <xsl:with-param name="key" select="'Search'"/>
-                                                </xsl:call-template>
-                                            </em>
-                                        </a>
-                                    </li>
-                                </xsl:if>
-                            </ul>
-                            <div id="treeDiv">
-                                <img src="../common/images/loading.gif" alt="loading table of contents..."
-                                     id="tocLoading" style="display:block;"/>
-                                <div id="ulTreeDiv" style="display:none">
-                                    <ul id="tree" class="filetree">
-                                        <xsl:apply-templates select="/*/*" mode="mobiletoc">
-                                            <xsl:with-param name="currentid" select="$currentid"/>
-                                        </xsl:apply-templates>
-                                    </ul>
-                                </div>
+				<div id="tabs">					
+						<h3>
+							<a href="#treeDiv">
+								<em>
+									<xsl:call-template name="gentext">
+										<xsl:with-param name="key" select="'TableofContents'"/>
+									</xsl:call-template>
+								</em>
+							</a>
+						</h3>					
+					<div id="treeDiv">
+						<!--<img src="../common/images/loading.gif" alt="loading table of contents..."
+							id="tocLoading" style="display:block;"/>-->
 
-                            </div>
-                            <xsl:if test="$mobile.include.search.tab != 'false'">
-                                <div id="searchDiv">
-                                    <div id="search">
-                                        <form onsubmit="Verifie(ditaSearch_Form);return false"
-                                              name="ditaSearch_Form"
-                                              class="searchForm">
-                                            <fieldset class="searchFieldSet">
-                                                <legend>
-                                                    <xsl:call-template name="gentext">
-                                                        <xsl:with-param name="key" select="'Search'"/>
-                                                    </xsl:call-template>
-                                                </legend>
-                                                <center>
-                                                    <input id="textToSearch" name="textToSearch" type="text"
-                                                           class="searchText"/>
-                                                    <xsl:text disable-output-escaping="yes"> <![CDATA[&nbsp;]]> </xsl:text>
-                                                    <input onclick="Verifie(ditaSearch_Form)" type="button"
-                                                           class="searchButton"
-                                                           value="Go" id="doSearch"/>
-                                                </center>
-                                            </fieldset>
-                                        </form>
-                                    </div>
-                                    <div id="searchResults">
-                                           <center> </center>
-                                    </div>
-                                </div>
-                            </xsl:if>
-
-                        </div>
-                    </div>
-                </div>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
+						<div id="tree" class="filetree">
+							<xsl:apply-templates select="/*/*" mode="mobiletoc">
+								<xsl:with-param name="currentid" select="$currentid"/>
+							</xsl:apply-templates>
+						</div>
+					</div>
+				</div>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
 
     <xsl:template
             match="book|part|reference|preface|chapter|bibliography|appendix|article|glossary|section|simplesect|sect1|sect2|sect3|sect4|sect5|refentry|colophon|bibliodiv|index"
@@ -727,25 +679,25 @@ These problems go away when you add this IE=7 mode meta tag.
 
         <xsl:if test="not(self::index) or (self::index and not($generate.index = 0))">
             <!--li style="white-space: pre; line-height: 0em;"-->
-            <li>
+        	<div data-role="collapsible" data-content-theme="c">
                 <xsl:if test="$id = $currentid">
                     <xsl:attribute name="id">mobile-currentid</xsl:attribute>
                 </xsl:if>
-                <span class="file">
+                <h5>
                     <a href="{substring-after($href,concat($mobile.base.dir,'/content/'))}">
                         <xsl:value-of select="$title"/>
                     </a>
-                </span>
+                </h5>
                 <xsl:if test="part|reference|preface|chapter|bibliography|appendix|article|glossary|section|simplesect|sect1|sect2|sect3|sect4|sect5|refentry|colophon|bibliodiv">
-                    <ul>
+                	<div data-content-theme="b">
                         <xsl:apply-templates
                                 select="part|reference|preface|chapter|bibliography|appendix|article|glossary|section|simplesect|sect1|sect2|sect3|sect4|sect5|refentry|colophon|bibliodiv"
                                 mode="mobiletoc">
                             <xsl:with-param name="currentid" select="$currentid"/>
                         </xsl:apply-templates>
-                    </ul>
+                    </div>
                 </xsl:if>
-            </li>
+            </div>
         </xsl:if>
     </xsl:template>
 
