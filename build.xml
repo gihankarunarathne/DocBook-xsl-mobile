@@ -36,10 +36,51 @@
 		</copy>
 	</target>
 
-	<target name="mobile" depends="chunk,add_resources"/>
-	<target name="release_unsigned_apk" depends="nested.release_unsigned_apk" />
-	<target name="release_debug_apk" depends="nested.release_debug_apk" />
+	<target name="index" >
 
+		<copy todir="${output-dir}">
+	  		<fileset dir="${ant.file.dir}/template_mobile">
+				<include name="**/*"/>
+				<exclude name="**/content/search/*.props"/>
+				<exclude name="**/content/search/stemmers/*"/>
+	  		</fileset>
+		</copy>
+
+	<!-- We separate this out so we only copy the stopwords list and stemmer for the indexer language -->
+		<copy todir="${output-dir}">
+	  		<fileset dir="${ant.file.dir}/template_mobile">
+				<include name="**/content/search/default.props"/>
+				<include name="**/content/search/punctuation.props"/>
+				<include name="**/content/search/${webhelp.indexer.language}*.props"/>
+				<include name="**/content/search/stemmers/${webhelp.indexer.language}_stemmer.js"/>
+			</fileset>
+		</copy>
+ 
+		<taskdef name="indexertask" classname="com.nexwave.nquindexer.IndexerTask">
+	  		<classpath refid="classpath"/>
+		</taskdef>
+
+		<echo>Indexing html files in ${output-dir}/content</echo>
+
+		<indexertask htmldir="${output-dir}/content" indexerLanguage="${webhelp.indexer.language}"/>
+
+		<delete>
+	  		<fileset dir="${output-dir}/content/search" includes="*.props"/>
+		</delete>
+
+	</target>
+
+	<target name="mobile" depends="chunk,add_resources"/>
+
+	<!-- Android  -->
+	<target name="mobile_android_unsigned_apk" depends="mobile ,index ,  nested.release_unsigned_apk" />
+	<target name="mobile_android_debug_apk" depends="mobile , index ,  nested.release_debug_apk" />
+	
+	<!-- iOS -->
+	<target name="mobile_iOS_" depends="mobile , index" />
+	
+	<!-- windows phone -->
+	<target name="mobile_windows_phone_" depends="mobile , index" />
 
   <target name="clean">
 	<delete dir="${output-dir}" />
@@ -51,10 +92,28 @@
 
   <target name="help">
 	<echo>
-	Android application build help.
 	help      : to view help options
-	profiling : to get profiled .xml output from the input .xml file
-	
+	* === List of Available mobile platforms ===
+	|
+	|_Android		:$ant android-help *
+	|__Apple iOS		:$ant iOS-help
+	|___Blackberry		:$ant blackberry-help
+	|____Palm webOS
+	|_____Samsung Bada
+	|______Windows Phone	:$ant windows-phone-help
 	</echo>
   </target>
+	<target name="android-help">
+		<echo>
+	Available methods :
+		1. mobile_android_unsigned_apk : this can't be installed into a device until, it signed by 'Andriod Private Key'
+
+		2. mobile_android_debug_apk : this can't be used to debug purposes. This can't distribute to the end-users until, it signed by 'Android Private Key'.
+
+		To gain an key : http://developer.android.com/distribute/googleplay/publish/register.html
+
+		To sign app with the key : http://developer.android.com/tools/publishing/app-signing.html
+
+		</echo>
+	</target>
 </project>
