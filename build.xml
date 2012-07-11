@@ -13,6 +13,17 @@
 		<pathelement location="${extensions.dir}/lucene-core-3.0.0.jar"/>
     </path>	
 	
+	<condition property="perform-validation-dtd">
+		<equals arg1="${validate-against-dtd}" arg2="true"/>
+  	</condition>
+  	<condition property="do-search-indexing">
+		<equals arg1="${webhelp.include.search.tab}" arg2="true"/>
+  	</condition>
+
+  	<target name="validate" if="perform-validation-dtd">
+    	<xmlvalidate file="${input-xml}" classname="org.apache.xerces.parsers.SAXParser"/>
+  	</target>
+		
   <target name="chunk" depends="clean">
 	
 	<mkdir dir="${output-dir}"/>
@@ -36,7 +47,7 @@
 		</copy>
 	</target>
 
-	<target name="index" >
+	<target name="index" if="do-search-indexing" >
 
 		<copy todir="${output-dir}">
 	  		<fileset dir="${ant.file.dir}/template_mobile">
@@ -69,8 +80,9 @@
 		</delete>
 
 	</target>
-
-	<target name="mobile" depends="chunk,add_resources"/>
+	
+	<!-- Output of chunked htmls for all platforms  -->
+	<target name="mobile" depends="validate , chunk , add_resources , index"/>
 
 	<!-- Android  -->
 	<target name="mobile_android_unsigned_apk" depends="mobile ,index ,  nested.release_unsigned_apk" />
