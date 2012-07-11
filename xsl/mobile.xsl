@@ -505,7 +505,7 @@
 
 					<!--<div accesskey="u" data-role="button" data-icon="arrow-u" data-iconpos="notext"
 						data-theme="a">-->
-					<div>
+					<!--<div>
 						<xsl:attribute name="href">
 							<xsl:call-template name="href.target">
 								<xsl:with-param name="object" select="$up"/>
@@ -514,7 +514,8 @@
 						<xsl:call-template name="navig.content">
 							<xsl:with-param name="direction" select="'up'"/>
 						</xsl:call-template>
-					</div>
+					</div>-->
+					&#160;
 				</xsl:when>
 				<xsl:otherwise>&#160;</xsl:otherwise>
 			</xsl:choose>

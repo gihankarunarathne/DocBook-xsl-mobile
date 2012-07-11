@@ -21,13 +21,13 @@
 		</copy>
     </target>
 
-	<target name="release_unsigned_apk" depends="create-android-project , copy_mobile_output">
+	<target name="android_unsigned_apk" depends="create-android-project , copy_mobile_output">
 		<exec executable="ant" dir="${android.file.dir}/${app_output_dir}" >
 			<arg value="release" />
 		</exec>
 	</target>
 
-	<target name="release_debug_apk" depends="create-android-project , copy_mobile_output">
+	<target name="android_debug_apk" depends="create-android-project , copy_mobile_output">
 		<exec executable="ant" dir="${android.file.dir}/${app_output_dir}" >
 			<arg value="debug" />
 		</exec>
@@ -36,10 +36,13 @@
 
 	<target name="help" description="User help for Android build.">
 		<echo>
-			android-build 			: To 
-			create-android-project 	: Create an android project and copy necessary packages form PhoneGap
+	android_unsigned_apk	: To create an unsigned .apk, it can't  distribute to end-users. 
+
+	android_debug_apk	: To create an debug .apk by using debug key. 
+
+	create-android-project 	: Create an android project and copy necessary packages form PhoneGap
 			
-			clean					: Clean the output directory
+	clean					: Clean the output directory
 		</echo>
 	</target>
 
