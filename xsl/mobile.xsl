@@ -147,39 +147,25 @@
 		
 		<script type="text/javascript">
 			//The id for tree cookie
-			var treeCookieId = "
-			<xsl:value-of select="$mobile.tree.cookie.id" />
-			";
-			var language = "
-			<xsl:value-of select="$mobile.indexer.language" />
-			";
+			var treeCookieId = "<xsl:value-of select="$mobile.tree.cookie.id" />";
+			var language = "<xsl:value-of select="$mobile.indexer.language" />";
 			var w = new Object();
 			//Localization
-			txt_filesfound = '
-			<xsl:call-template name="gentext">
+			txt_filesfound = '<xsl:call-template name="gentext">
 				<xsl:with-param name="key" select="'txt_filesfound'" />
-			</xsl:call-template>
-			';
-			txt_enter_at_least_1_char = "
-			<xsl:call-template name="gentext">
+			</xsl:call-template>';
+			txt_enter_at_least_1_char = "<xsl:call-template name="gentext">
 				<xsl:with-param name="key" select="'txt_enter_at_least_1_char'" />
-			</xsl:call-template>
-			";
-			txt_browser_not_supported = "
-			<xsl:call-template name="gentext">
+			</xsl:call-template>";
+			txt_browser_not_supported = "<xsl:call-template name="gentext">
 				<xsl:with-param name="key" select="'txt_browser_not_supported'" />
-			</xsl:call-template>
-			";
-			txt_please_wait = "
-			<xsl:call-template name="gentext">
+			</xsl:call-template>";
+			txt_please_wait = "<xsl:call-template name="gentext">
 				<xsl:with-param name="key" select="'txt_please_wait'" />
-			</xsl:call-template>
-			";
-			txt_results_for = "
-			<xsl:call-template name="gentext">
+			</xsl:call-template>";
+			txt_results_for = "<xsl:call-template name="gentext">
 				<xsl:with-param name="key" select="'txt_results_for'" />
-			</xsl:call-template>
-			";
+			</xsl:call-template>";
 		</script>
 		
 		<link rel="stylesheet" type="text/css" href="../css/themes/default/jquery.mobile-1.1.0.css" />
@@ -224,8 +210,7 @@
 			For example, for English(en), source should be: "search/stemmers/en_stemmer.js" 
 			For country codes, see: http://www.uspto.gov/patft/help/helpctry.htm -->
 		<!--<xsl:message><xsl:value-of select="concat('search/stemmers/',$mobile.indexer.language,'_stemmer.js')"/></xsl:message> -->
-		<script type="text/javascript"
-			src="{concat('search/stemmers/',$mobile.indexer.language,'_stemmer.js')}">
+		<script type="text/javascript" src="{concat('search/stemmers/',$mobile.indexer.language,'_stemmer.js')}">
 			<xsl:comment>
 				//make this scalable to other languages as well.
 			</xsl:comment>

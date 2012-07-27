@@ -33,8 +33,9 @@
 	  style="${stylesheet-path}"
 	  scanincludeddirectories="false"
 	  classpath="${xslt-processor-classpath}">
-	  	  
-	  <param name="mobile.base.dir" expression="${output-dir}"/>
+
+		<param name="output_file_name" expression="${output_file_name}"/>
+		<param name="webhelp.base.dir" expression="${output-dir}" if="output-dir"/>
 	</xslt>
 	
 	<delete file="${output-dir}/dummy.html"/>
