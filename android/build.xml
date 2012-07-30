@@ -1,49 +1,43 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <project name="AndroidBuild" basedir="." default="help">
 
-	<dirname property="android.file.dir" file="${ant.file.AndroidBuild}"/>
-	<loadproperties srcFile="${android.file.dir}/build.properties"/>
-	
-    <target name="clean" description="Delete all generated files">
-        <delete dir="${android.file.dir}/${app_output_dir}"/>
-    </target>
+  <dirname property="android.file.dir" file="${ant.file.AndroidBuild}"/>
+  <loadproperties srcFile="${android.file.dir}/build.properties"/>
 
-    <target name="create-android-project" depends="clean" description="Create an Android project">
-     	<!-- <mkdir dir="${app_output_dir}" /> -->
-		<exec executable="bash" newenvironment="false" dir="${android.file.dir}">
-   			 <arg value="create"/>
- 		 </exec>
-    </target>
+  <target name="clean" description="Delete all generated files">
+    <delete dir="${android.file.dir}/${app_output_dir}"/>
+  </target>
 
-    <target name="copy_mobile_output" description="JARs the Task">
-       	<copy todir="${android.file.dir}/${app_output_dir}/assets/www">
-   			 <fileset dir="${android.file.dir}/../www" />
-		</copy>
-    </target>
+  <target name="create-android-project" depends="clean" description="Create an Android project">
+    <!-- <mkdir dir="${app_output_dir}" /> -->
+    <exec executable="bash" newenvironment="false" dir="${android.file.dir}">
+      <arg value="create"/>
+    </exec>
+  </target>
 
-	<target name="android_unsigned_apk" depends="create-android-project , copy_mobile_output">
-		<exec executable="ant" dir="${android.file.dir}/${app_output_dir}" >
-			<arg value="release" />
-		</exec>
-	</target>
+  <target name="copy_mobile_output" description="JARs the Task">
+    <copy todir="${android.file.dir}/${app_output_dir}/assets/www">
+      <fileset dir="${android.file.dir}/../www"/>
+    </copy>
+  </target>
 
-	<target name="android_debug_apk" depends="create-android-project , copy_mobile_output">
-		<exec executable="ant" dir="${android.file.dir}/${app_output_dir}" >
-			<arg value="debug" />
-		</exec>
-	</target>
+  <target name="android_unsigned_apk" depends="create-android-project , copy_mobile_output">
+    <exec executable="ant" dir="${android.file.dir}/${app_output_dir}">
+      <arg value="release"/>
+    </exec>
+  </target>
 
+  <target name="android_debug_apk" depends="create-android-project , copy_mobile_output">
+    <exec executable="ant" dir="${android.file.dir}/${app_output_dir}">
+      <arg value="debug"/>
+    </exec>
+  </target>
 
-	<target name="help" description="User help for Android build.">
-		<echo>
-	android_unsigned_apk	: To create an unsigned .apk, it can't  distribute to end-users. 
-
-	android_debug_apk	: To create an debug .apk by using debug key. 
-
-	create-android-project 	: Create an android project and copy necessary packages form PhoneGap
-			
-	clean					: Clean the output directory
-		</echo>
-	</target>
+  <target name="help" description="User help for Android build.">
+    <echo> android_unsigned_apk : To create an unsigned .apk, it can't distribute to end-users.
+      android_debug_apk : To create an debug .apk by using debug key. create-android-project :
+      Create an android project and copy necessary packages form PhoneGap clean : Clean the output
+      directory </echo>
+  </target>
 
 </project>
