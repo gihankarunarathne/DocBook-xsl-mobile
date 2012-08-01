@@ -380,7 +380,20 @@
       </xsl:call-template>
 
       <body>
-        <div data-role="page" id="current_page">
+        <!--Page should have identical id to identify itselt. It is logical to use html file name as id -->
+        <xsl:variable name="currentPage">
+          <xsl:call-template name="href.target">
+            <xsl:with-param name="context" select="."/>
+          </xsl:call-template>
+        </xsl:variable>
+        <!-- cuncact the file name with "#" symbol to identify in DOM -->
+        <xsl:variable name="id_current" select="translate(concat('id_',$currentPage),'.','_')"/>
+        
+        <div data-role="page" >
+          <xsl:attribute name="id">
+            <xsl:value-of select="$id_current"/>
+          </xsl:attribute>
+          
           <div data-role="header" data-theme="b">
             <xsl:call-template name="body.attributes"/>
 
@@ -425,14 +438,15 @@
 
     <!-- Display the page title and the main heading(parent) of it-->
     <h4>
-      <xsl:apply-templates select="." mode="object.title.markup"/>
-
       <xsl:choose>
         <xsl:when test="count($up) &gt; 0 and generate-id($up) != generate-id($home)">
           <xsl:apply-templates select="$up" mode="object.title.markup"/>
+          <br/>
         </xsl:when>
         <xsl:otherwise>&#160;</xsl:otherwise>
       </xsl:choose>
+      
+      <xsl:apply-templates select="." mode="object.title.markup"/>
     </h4>
 
     <!-- Prev links generation-->
@@ -459,6 +473,7 @@
       and $navig.showtitles != 0)
       or count($next) &gt; 0">
 
+      <!-- "Previous" navigator genarate -->
       <xsl:if test="count($prev)>0">
         <a accesskey="p" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="a">
           <xsl:attribute name="href">
@@ -516,28 +531,35 @@
           <xsl:with-param name="object" select="$next"/>
         </xsl:call-template>
       </xsl:variable>
+      <!--Page should have identical id to identify itselt. It is logical to use html file name as id -->
+      <xsl:variable name="nav_current">
+        <xsl:call-template name="href.target.uri">
+          <xsl:with-param name="object" select="."/>
+        </xsl:call-template>
+      </xsl:variable>
+      <!-- cuncact the file name with "#" symbol to identify in DOM -->
+      <xsl:variable name="id_current" select="translate(concat('#id_',$nav_current),'.','_')"/>
 
       <!-- actions for the events happening on the phone/device -->
       <script type="text/javascript">
-        /*$(function() {
-          $("#current_page").live('swipedown', function(event) {
+        $(function() {
+          $("<xsl:value-of select="$id_current"/>").live('swipedown', function(event) {
             $.mobile.changePage("<xsl:value-of select="$mobile.toc.filename"/>");
           });
         });
 				
         $(function() {
-          $("#current_page").live('swipeup', function(event) {
+          $("<xsl:value-of select="$id_current"/>").live('swipeup', function(event) {
             $.mobile.changePage("<xsl:value-of select="$mobile.menubar.filename"/>");
           });
-        });*/
+        });
 					
         $(function() {
-          $("#current_page").off('swipeleft').live('swipeleft', function(event) {
-            console.log();
+          $("<xsl:value-of select="$id_current"/>").live('swipeleft', function(event) {
             $.mobile.changePage("<xsl:value-of select="$nav_prev"/>");
           });
 				 		
-          $("#current_page").off('swiperight').live('swiperight', function(event) {
+          $("<xsl:value-of select="$id_current"/>").live('swiperight', function(event) {
             $.mobile.changePage("<xsl:value-of select="$nav_next"/>");
           });
         });
