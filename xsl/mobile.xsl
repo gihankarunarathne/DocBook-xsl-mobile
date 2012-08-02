@@ -140,34 +140,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <!-- <xsl:message> mobile.tree.cookie.id = <xsl:value-of select="$mobile.tree.cookie.id"/> 
-			+++ <xsl:value-of select="count(//node())"/> $mobile.indexer.language = 
-			<xsl:value-of select="$mobile.indexer.language"/> +++ <xsl:value-of select="count(//node())"/> 
-			</xsl:message> -->
-
-    <script type="text/javascript">
-      //The id for tree cookie
-      var treeCookieId = "<xsl:value-of select="$mobile.tree.cookie.id"/>";
-      var language = "<xsl:value-of select="$mobile.indexer.language"/>";
-      var w = new Object();
-      //Localization
-      txt_filesfound = '<xsl:call-template name="gentext">
-        <xsl:with-param name="key" select="'txt_filesfound'"/>
-      </xsl:call-template>';
-      txt_enter_at_least_1_char = "<xsl:call-template name="gentext">
-        <xsl:with-param name="key" select="'txt_enter_at_least_1_char'"/>
-      </xsl:call-template>";
-      txt_browser_not_supported = "<xsl:call-template name="gentext">
-        <xsl:with-param name="key" select="'txt_browser_not_supported'"/>
-      </xsl:call-template>";
-      txt_please_wait = "<xsl:call-template name="gentext">
-        <xsl:with-param name="key" select="'txt_please_wait'"/>
-      </xsl:call-template>";
-      txt_results_for = "<xsl:call-template name="gentext">
-        <xsl:with-param name="key" select="'txt_results_for'"/>
-      </xsl:call-template>";
-		</script>
-
     <link rel="stylesheet" type="text/css" href="../css/themes/default/jquery.mobile-1.1.0.min.css"/>
 
     <!--<script type="text/javascript" charset="utf-8" src="../js/cordova-1.8.1.js">
@@ -186,42 +158,6 @@
 			<xsl:comment>
 			</xsl:comment>
 		</script>
-
-    <!--Scripts/css stylesheets for Search -->
-    <script type="text/javascript" src="search/htmlFileInfoList.js">
-			<xsl:comment>
-			</xsl:comment>
-		</script>
-    <script type="text/javascript" src="search/nwSearchFnt.js">
-			<xsl:comment>
-			</xsl:comment>
-		</script>
-
-    <!-- NOTE: Stemmer javascript files should be in format <language>_stemmer.js. 
-			For example, for English(en), source should be: "search/stemmers/en_stemmer.js" 
-			For country codes, see: http://www.uspto.gov/patft/help/helpctry.htm -->
-    <!--<xsl:message><xsl:value-of select="concat('search/stemmers/',$mobile.indexer.language,'_stemmer.js')"/></xsl:message> -->
-    <script type="text/javascript" src="{concat('search/stemmers/',$mobile.indexer.language,'_stemmer.js')}">
-			<xsl:comment>
-				//make this scalable to other languages as well.
-			</xsl:comment>
-		</script>
-
-    <!--Index Files: Index is broken in to three equal sized(number of index 
-			items) files. This is to help parallel downloading of files to make it faster. -->
-    <script type="text/javascript" src="search/index-1.js">
-			<xsl:comment>
-			</xsl:comment>
-		</script>
-    <script type="text/javascript" src="search/index-2.js">
-			<xsl:comment>
-			</xsl:comment>
-		</script>
-    <script type="text/javascript" src="search/index-3.js">
-			<xsl:comment>
-			</xsl:comment>
-		</script>
-    <!--End of index files -->
   </xsl:template>
 
   <!-- ============================================================ -->
@@ -1072,21 +1008,27 @@
                 padding:0 0 !important;
               }</style>
             <!-- Adding js -->
-            <script type="text/javascript" src="../js/browserDetect.js">// browserDetect</script>
-            <script type="text/javascript" src="../js/jquery.min.js">// jquery </script>
-            <script type="text/javascript" src="../js/jquery.cookie.min.js">// cookies </script>
-            <script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js">// jquery mobile </script>
-            <script type="text/javascript" src="../js/swipeupdown.js">//swipe</script>
-            <script type="text/javascript" src="../js/mobile-settings.js">//mobile-settings</script>
+            <script type="text/javascript" src="../js/browserDetect.js"><xsl:comment>browserDetect</xsl:comment></script>
+            <script type="text/javascript" src="../js/jquery.min.js"><xsl:comment>jquery</xsl:comment></script>
+            <script type="text/javascript" src="../js/jquery.cookie.min.js"><xsl:comment>cookies</xsl:comment></script>
+            <script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><xsl:comment>jquerymobile</xsl:comment></script>
+            <script type="text/javascript" src="../js/swipeupdown.js"><xsl:comment>swipe</xsl:comment></script>
+            <script type="text/javascript" src="../js/mobile-settings.js"><xsl:comment>mobile-settings</xsl:comment></script>
             
-            <script type="text/javascript" src="search/l10n.js">// l10n</script>
-            <script type="text/javascript" src="search/htmlFileInfoList.js">// htmlFileInfoList</script>
-            <script type="text/javascript" src="search/nwSearchFnt.js">// nwSearchFnt</script>
-            <script type="text/javascript" src="search/stemmers/en_stemmer.js">
-            //make this scalable to other languages as well.</script>
-            <script type="text/javascript" src="search/index-1.js">// index-1</script>
-            <script type="text/javascript" src="search/index-2.js">// index-2</script>
-            <script type="text/javascript" src="search/index-3.js">// index-3</script>
+            <script type="text/javascript" src="search/l10n.js"><xsl:comment>l10n</xsl:comment></script>
+            <script type="text/javascript" src="search/htmlFileInfoList.js"><xsl:comment>htmlFileInfoList</xsl:comment></script>
+            <script type="text/javascript" src="search/nwSearchFnt.js"><xsl:comment>nwSearchFnt</xsl:comment></script>
+            <script type="text/javascript" src="{concat('search/stemmers/',$mobile.indexer.language,'_stemmer.js')}">
+              <xsl:comment>
+                //make this scalable to other languages as well.
+              </xsl:comment>
+            </script>
+            <!--Index Files: Index is broken in to three equal sized(number of index
+                items) files. This is to help parallel downloading of files to make it faster. -->
+            <script type="text/javascript" src="search/index-1.js"><xsl:comment>index-1</xsl:comment></script>
+            <script type="text/javascript" src="search/index-2.js"><xsl:comment>index-2</xsl:comment></script>
+            <script type="text/javascript" src="search/index-3.js"><xsl:comment>index-3</xsl:comment></script>
+            <!-- End of index js -->
           </head>
           <body>
             <!-- Set id for menubar.html as its name -->
