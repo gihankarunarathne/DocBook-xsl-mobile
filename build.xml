@@ -112,11 +112,11 @@
         <path refid="classpath"/>
         <pathelement location="${xercesImpl.jar}"/>
         <pathelement location="${xml-apis.jar}"/>
-        <!-- <pathelement location="/usr/share/java/xercesImpl.jar"/>  	 -->
-        <!-- <pathelement location="/usr/share/java/xml-apis.jar"/>  	  -->
+        <pathelement location="/usr/share/java/xercesImpl.jar"/>
+        <pathelement location="/usr/share/java/xml-apis.jar"/>
         <!-- Gentoo Linux friendly default classpath-->
-        <pathelement location="/usr/share/xerces-2/lib/xercesImpl.jar"/>
-        <pathelement location="/usr/share/xml-commons/lib/xml-apis.jar"/>
+        <!-- <pathelement location="/usr/share/xerces-2/lib/xercesImpl.jar"/>-->
+        <!-- <pathelement location="/usr/share/xml-commons/lib/xml-apis.jar"/>-->
       </classpath>
     </java>
 

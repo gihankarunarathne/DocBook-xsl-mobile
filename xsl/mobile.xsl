@@ -357,6 +357,8 @@
     <xsl:call-template name="settings.html"/>
 
     <xsl:call-template name="menubar.html"/>
+    
+    <xsl:call-template name="l10n.js"></xsl:call-template>
 
   </xsl:template>
 
@@ -846,7 +848,13 @@
           </head>
           <body>
 
-            <div data-role="page" id="current_page">
+            <!-- Set id for settings.html as its name -->
+            <xsl:variable name="id_settings"
+              select="translate(concat('id_',$mobile.setting.filename),'.','_')"/>
+            <div data-role="page">
+              <xsl:attribute name="id">
+                <xsl:value-of select="$id_settings"/>
+              </xsl:attribute>
 
               <div data-role="header">
                 <script type="text/javascript">
@@ -1041,31 +1049,87 @@
           <head>
             <meta name="viewport" content="width=device-width, initial-scale=1"/>
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<!--            <script type="text/javascript" charset="utf-8" src="../js/cordova-1.8.1.js">//cordova</script>-->
+            <!-- <script type="text/javascript" charset="utf-8" src="../js/cordova-1.8.1.js">//cordova</script>-->
+            <script type="text/javascript">
+              //The id for tree cookie
+              var treeCookieId = "treeview-1055";
+              var language = "en";
+              var w = new Object();
+              //Localization
+              txt_filesfound = 'Results';
+              txt_enter_at_least_1_char = "You must enter at least one character.";
+              txt_browser_not_supported = "JavaScript is disabled on your browser. Please enable JavaScript to enjoy all the features of this site.";
+              txt_please_wait = "Please wait. Search in progress...";
+              txt_results_for = "Results for: ";
+            </script>
             <link rel="stylesheet" type="text/css"
               href="../css/themes/default/jquery.mobile-1.1.0.min.css"/>
+            <style type="text/css">
+              a{
+                width:99%;
+              }
+              form.err div a span{
+                padding:0 0 !important;
+              }</style>
+            <!-- Adding js -->
+            <script type="text/javascript" src="../js/browserDetect.js">// browserDetect</script>
             <script type="text/javascript" src="../js/jquery.min.js">// jquery </script>
             <script type="text/javascript" src="../js/jquery.cookie.min.js">// cookies </script>
             <script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js">// jquery mobile </script>
             <script type="text/javascript" src="../js/swipeupdown.js">//swipe</script>
             <script type="text/javascript" src="../js/mobile-settings.js">//mobile-settings</script>
+            
+            <script type="text/javascript" src="search/l10n.js">// l10n</script>
+            <script type="text/javascript" src="search/htmlFileInfoList.js">// htmlFileInfoList</script>
+            <script type="text/javascript" src="search/nwSearchFnt.js">// nwSearchFnt</script>
+            <script type="text/javascript" src="search/stemmers/en_stemmer.js">
+            //make this scalable to other languages as well.</script>
+            <script type="text/javascript" src="search/index-1.js">// index-1</script>
+            <script type="text/javascript" src="search/index-2.js">// index-2</script>
+            <script type="text/javascript" src="search/index-3.js">// index-3</script>
           </head>
           <body>
-            <div data-role="page" id="current_page">
+            <!-- Set id for menubar.html as its name -->
+            <xsl:variable name="id_menubar"
+              select="translate(concat('id_',$mobile.menubar.filename),'.','_')"/>
+            <div data-role="page">
+              <xsl:attribute name="id">
+                <xsl:value-of select="$id_menubar"/>
+              </xsl:attribute>
+
               <div data-role="header">
                 <h1>Menu Bar</h1>
+                <script type="text/javascript">
+                  function goBack(){
+                    history.back();
+                    return false;
+                  }
+                  $(function() {
+                    $("#textToSearch").live('keyup', function(event) {
+                    var searchTextField = trim(document.searchForm.textToSearch.value);
+                    //searchTextField = searchTextField.replace(/['"]/g, '');
+
+                      if (searchTextField.length != 0) {
+                        if(searchTextField.indexOf(" ") == -1 ) {
+                          $("#searchResults").empty();
+                          $("#doSearch").click();
+                        }
+                      }
+                    });
+                  });
+                </script>
               </div>
               <div data-role="content">
-
+                <!-- First row -->
                 <div data-role="footer" data-theme="b" class="ui-bar ui-grid-b">
                   <div class="ui-block-a">
                     <div style="margin: 8px 0 0 10px;">
-                      <a href="index.html" data-role="button" data-icon="back" data-theme="a"
+                      <a onclick="goBack()" data-role="button" data-icon="back" data-theme="a"
                         >Back</a>
                     </div>
                   </div>
                   <div class="ui-block-b">
-                    <input id="value" value="page no"/>
+                    <input id="value" placeholder="page no..." data-theme="b"/>
                   </div>
                   <div class="ui-block-c">
                     <div style="margin: 8px 0 0 10px;">
@@ -1074,9 +1138,9 @@
                     </div>
                   </div>
                 </div>
+                <!-- Second row -->
                 <div data-role="footer" data-theme="b" class="ui-bar ui-grid-a">
                   <div class="ui-block-a">
-
                     <select name="select-choice-min" id="select-choice-1" data-theme="e"
                       data-native-menu="false">
                       <option value="8">Front size-8</option>
@@ -1086,9 +1150,24 @@
                     </select>
                   </div>
                   <div class="ui-block-b">
-                    <div style="margin: 5px 5px 5px 5px;">
-                      <input type="search" name="search" id="searc-basic"/>
-                    </div>
+                    <select name="select-choice-min" id="select-choice-1" data-theme="e"
+                      data-native-menu="false">
+                      <option value="Arial">Font Arial</option>
+                      <option value="Helvetica">Font Helvetica</option>
+                      <option value="Sans-Serif">Font Sans-Serif</option>
+                    </select>
+                  </div>  
+                </div>
+                <!-- Third row -->
+                <div id="searchDiv" data-theme="b">
+                  <div data-role="header" data-theme="b">
+                    <form name="searchForm" onsubmit="Verifie(searchForm);return false" class="err">
+                      <input type="search" name="textToSearch" id="textToSearch" data-theme="b" placeholder="Search..."/>
+                      <a id="doSearch" onclick="Verifie(searchForm)" data-theme="b"/>
+                    </form>
+                  </div>
+                  <div id="searchResults">
+                    <!-- Show the results -->
                   </div>
                 </div>
               </div>
@@ -1134,7 +1213,12 @@
             <script type="text/javascript" src="../js/mobile-settings.js">//mobile-settings</script>
           </head>
           <body>
-            <div data-role="page" id="current_page">
+            <!-- Set id for toc.html as its name -->
+            <xsl:variable name="id_toc" select="translate(concat('id_',$mobile.toc.filename),'.','_')"/>
+            <div data-role="page" >
+              <xsl:attribute name="id">
+                <xsl:value-of select="$id_toc"/>
+              </xsl:attribute>
               <div data-role="header">
                 <h1>Table of Content</h1>
               </div>
@@ -1148,6 +1232,27 @@
         </html>
       </xsl:with-param>
     </xsl:call-template>
+  </xsl:template>
+  <!-- ============================================================ -->
+  <!-- = l10n.js                                                  = -->
+  <!-- ============================================================ -->
+  <xsl:template name="l10n.js">
+    <xsl:call-template name="write.chunk">
+      <xsl:with-param name="filename">
+        <xsl:value-of select="concat($base.dir,'search/l10n.js')"/>
+      </xsl:with-param>
+      <xsl:with-param name="method" select="'text'"/>
+      <xsl:with-param name="encoding" select="'utf-8'"/>
+      <xsl:with-param name="indent" select="'no'"/>
+      <xsl:with-param name="content">
+        //Resource strings for localization
+        var localeresource = new Object;
+        localeresource["search_no_results"]="<xsl:call-template name="gentext.template">
+          <xsl:with-param name="name" select="'Your_search_returned_no_results'"/>
+          <xsl:with-param name="context" select="'webhelp'"/>
+        </xsl:call-template>";
+      </xsl:with-param>
+    </xsl:call-template>    
   </xsl:template>
 
 </xsl:stylesheet>
