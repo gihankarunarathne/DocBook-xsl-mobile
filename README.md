@@ -1,21 +1,22 @@
-
 		* === List of Available mobile platforms ===
       	|
-      	|_Android		:$ant android-help *
-      	|__Apple iOS		:$ant iOS-help
-      	|___Blackberry		:$ant blackberry-help
+      	|_Android             :$ant android-help *
+      	|__Apple iOS          :$ant iOS-help
+      	|___Blackberry        :$ant blackberry-help
       	|____Palm webOS
       	|_____Samsung Bada
       	|______Windows Phone	:$ant windows-phone-help
+    
+    key: " * " - currently implemented
 
-========== HTMLs for all platforms ===================================
+=== HTMLs for all platforms ===================================
 
-To create chunked htmls which can be used to copy into "www" folder :
+To create chunked htmls which can be used in "www" folder of PhoneGap:
 
 	$ ant mobile
 
 
-==========  Android  ==================================================
+=== Android  ==================================================
 
 Go and Edit  xsl/mobile/android/android.config with your data.
 
