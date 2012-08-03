@@ -29,7 +29,7 @@ Then execute to create a .apk which is signed by debug key :
 How to test output ? ----------------------------------------------------
 
 
-wing command and make an Emulator :
+Execute following command and make an Emulator :
 
 	$ android avd
 
