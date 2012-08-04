@@ -164,6 +164,19 @@
       <xsl:comment>
       </xsl:comment>
     </script>
+    
+    <!-- pop up the settings panel when click on menu button of the phone/device -->
+    <script type="text/javascript" charset="utf-8">
+        document.addEventListener("deviceready", onDeviceReady, false);
+
+        function onDeviceReady() {
+          document.addEventListener("menubutton", onMenuKeyDown, false);
+        }
+
+        function onMenuKeyDown() {
+          $.mobile.changePage("<xsl:value-of select="$mobile.setting.filename"/>");
+        }
+			</script>
   </xsl:template>
 
   <!-- ============================================================ -->
@@ -486,7 +499,7 @@
 
       <!-- actions for the events happening on the phone/device -->
       <script type="text/javascript">
-        $(function() {
+        /*$(function() {
           $("<xsl:value-of select="$id_current"/>").live('swipedown', function(event) {
             $.mobile.changePage("<xsl:value-of select="$mobile.toc.filename"/>");
           });
@@ -496,7 +509,7 @@
           $("<xsl:value-of select="$id_current"/>").live('swipeup', function(event) {
             $.mobile.changePage("<xsl:value-of select="$mobile.menubar.filename"/>");
           });
-        });
+        });*/
 					
         $(function() {
           $("<xsl:value-of select="$id_current"/>").live('swipeleft', function(event) {
@@ -507,19 +520,6 @@
             $.mobile.changePage("<xsl:value-of select="$nav_next"/>");
           });
         });
-			</script>
-
-      <!-- pop up the settings panel when click on menu button of the phone/device -->
-      <script type="text/javascript" charset="utf-8">
-        document.addEventListener("deviceready", onDeviceReady, false);
-
-        function onDeviceReady() {
-          document.addEventListener("menubutton", onMenuKeyDown, false);
-        }
-
-        function onMenuKeyDown() {
-          $.mobile.changePage("<xsl:value-of select="$mobile.setting.filename"/>");
-        }
 			</script>
     </xsl:if>
 
@@ -1178,7 +1178,7 @@
             <script type="text/javascript" src="../js/jquery.min.js">// jquery </script>
             <script type="text/javascript" src="../js/jquery.cookie.min.js">// cookies </script>
             <script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js">// jquery mobile </script>
-            <script type="text/javascript" src="../js/swipeupdown.js">//swipe</script>
+            <!-- <script type="text/javascript" src="../js/swipeupdown.js">//swipe</script>-->
             <script type="text/javascript" src="../js/mobile-settings.js">//mobile-settings</script>
           </head>
           <body>

@@ -28,7 +28,7 @@
 
   <target name="chunk" depends="clean">
     <mkdir dir="${output-dir}"/>
-		
+    
 
     <xslt in="${input-xml}" out="${output-dir}/dummy.html" style="${stylesheet-path}"
       scanincludeddirectories="false" classpath="${xslt-processor-classpath}">
@@ -40,7 +40,7 @@
       <param name="mobile.menubar.filename" expression="${mobile.menubar.filename}" if="mobile.menubar.filename"/>
       <param name="mobile.settings.filename" expression="${mobile.settings.filename}" if="mobile.settings.filename"/>
       <param name="mobile.indexer.language" expression="${mobile.indexer.language}" if="mobile.indexer.language"/>
-			<param name="mobile.device.platform" expression="${mobile.device.platform}" if="mobile.device.platform"/>
+      <param name="mobile.device.platform" expression="${mobile.device.platform}" if="mobile.device.platform"/>
       <param name="branding" expression="${branding}" if="branding"/>
       <param name="brandname" expression="${brandname}" if="brandname"/>
       <param name="admon.graphics" expression="${admon.graphics}" if="admon.graphics"/>
@@ -84,9 +84,9 @@
     </copy>
 
     <!--taskdef name="indexertask"
-	  classname="com.nexwave.nquindexer.IndexerMain">
-	  <classpath refid="classpath"/>
-	</taskdef-->
+    classname="com.nexwave.nquindexer.IndexerMain">
+    <classpath refid="classpath"/>
+  </taskdef-->
 
     <echo>Indexing html files in ${output-dir}/content</echo>
 
@@ -99,14 +99,14 @@
       <sysproperty key="test" value="${indexer-excluded-files}"/>
 
       <!--TagSoup SAX Parser for parsing even the bad html contents. see 
-	      http://sourceforge.net/tracker/?func=detail&aid=3401185&group_id=21935&atid=373750-->
+        http://sourceforge.net/tracker/?func=detail&aid=3401185&group_id=21935&atid=373750-->
       <sysproperty key="org.xml.sax.driver" value="org.ccil.cowan.tagsoup.Parser"/>
       <sysproperty key="javax.xml.parsers.SAXParserFactory"
         value="org.ccil.cowan.tagsoup.jaxp.SAXFactoryImpl"/>
 
       <!-- Uncomment the following if Xerces is your preference as the SAX XML Parser. Note that the indexing will fail with Xerces
-	      if the html files are not XML-conformance -->
-      <!--sysproperty key="org.xml.sax.driver" value="org.apache.xerces.parsers.SAXParser"/>	      
+        if the html files are not XML-conformance -->
+      <!--sysproperty key="org.xml.sax.driver" value="org.apache.xerces.parsers.SAXParser"/>        
          <sysproperty key="javax.xml.parsers.SAXParserFactory" value="org.apache.xerces.jaxp.SAXParserFactoryImpl"/-->
 
       <!-- Debug the indexer on port 5005 via remote-debug -->
@@ -132,30 +132,30 @@
   <!-- Output of chunked htmls for all platforms  -->
   <target name="mobile" depends="validate , chunk , add_resources , index"/>
 
-	<!-- Android -->
-	<target name="mobile.android.unsigned.apk">
-		<property name="mobile.device.platform" value="android"/>
-		<antcall>
-			<target name="mobile"/>
-			<target name="nested.android_unsigned_apk"/>
-		</antcall>
-	</target>
+  <!-- Android -->
+  <target name="mobile.android.unsigned.apk">
+    <property name="mobile.device.platform" value="android"/>
+    <antcall>
+      <target name="mobile"/>
+      <target name="nested.android_unsigned_apk"/>
+    </antcall>
+  </target>
 
   <target name="mobile.android.debug.apk">
-		<property name="mobile.device.platform" value="android"/>
-		<antcall>
-			<target name="mobile"/>
-			<target name="nested.android_debug_apk"/>
-		</antcall>
-	</target>
+    <property name="mobile.device.platform" value="android"/>
+    <antcall>
+      <target name="mobile"/>
+      <target name="nested.android_debug_apk"/>
+    </antcall>
+  </target>
 
   <!-- iOS -->
   <target name="mobile.iOS">
-		<property name="mobile.device.platform" value="iOS"/>
-		<antcall>
-			<target name="mobile"/>
-		</antcall>
-	</target>
+    <property name="mobile.device.platform" value="iOS"/>
+    <antcall>
+      <target name="mobile"/>
+    </antcall>
+  </target>
 
   <!-- windows phone -->
   <target name="mobile_windows_phone_" depends="mobile , index"/>
