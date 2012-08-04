@@ -21,13 +21,11 @@
   <!-- =========================================================== -->
   <!-- =	some configurations for mobile xsl sheets	             = -->
   <!-- =========================================================== -->
-  <xsl:param name="mobile.include.search.tab">true</xsl:param>
   <xsl:param name="mobile.start.filename">index.html</xsl:param>
   <xsl:param name="mobile.toc.filename">toc.html</xsl:param>
   <xsl:param name="mobile.setting.filename">settings.html</xsl:param>
   <xsl:param name="mobile.menubar.filename">menubar.html</xsl:param>
   <xsl:param name="mobile.base.dir">www</xsl:param>
-  <xsl:param name="mobile.tree.cookie.id" select="concat( 'treeview-', count(//node()) )"/>
   <xsl:param name="mobile.indexer.language">en</xsl:param>
   <xsl:param name="mobile.default.topic"/>
   <xsl:param name="mobile.autolabel">0</xsl:param>
@@ -47,7 +45,11 @@
   <xsl:param name="para.propagates.style" select="1"/>
   <xsl:param name="phrase.propagates.style" select="1"/>
   <xsl:param name="chunk.first.sections" select="1"/>
-  <xsl:param name="chapter.autolabel" select="1"/>
+  <xsl:param name="chunk.section.depth" select="5"/>
+  <xsl:param name="branding">not set</xsl:param>
+  <xsl:param name="brandname"> </xsl:param>
+  
+  <xsl:param name="chapter.autolabel" select="0"/>
   <xsl:param name="section.autolabel" select="0"/>
 
   <i18n xmlns="http://docbook.sourceforge.net/xmlns/l10n/1.0">
@@ -142,6 +144,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     <link rel="stylesheet" type="text/css" href="../css/themes/default/jquery.mobile-1.1.0.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/mobile.positioning.css"/>
 
     <xsl:choose>
       <xsl:when test="'android'=$mobile.device.platform">
@@ -192,12 +195,7 @@
       <xsl:with-param name="nav.context" select="$nav.context"/>
     </xsl:call-template>
     <!--xsl:call-template name="mobiletoc"/-->
-
-    <!--testing toc in the content page>
-        <xsl:call-template name="mobiletoctoc"/>
-        <xsl:if test="$mobile.include.search.tab != 'false'">
-            <xsl:call-template name="search"/>
-        </xsl:if-->
+    
   </xsl:template>
 
   <!-- ============================================================ -->
