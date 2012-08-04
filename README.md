@@ -37,17 +37,17 @@ NOTE: When You are creating an Emulator, make sure the its platform version is c
 After create an Emulator, then run it.
 To install created Android app, go to the output directory of app and then also for 'bin' directory inside it.
 
-	$ android install path/to/.apk
+	$ adb install path/to/.apk
 
 Ex: If you are in xsl/mobile directory,
 
-	$ android install andriod/output/bin/DocBookMobileAppActivity-debug.apk
+	$ adb install andriod/output/bin/DocBookMobileAppActivity-debug.apk
 
 If you already installed current app that you want to install, then you can reinstall it by:
 
-	$ android install [-r] path/to/.apk
+	$ adb install [-r] path/to/.apk
 
 Ex: If you are in xsl/mobile directory,
 
-	$ android install -r andriod/output/bin/DocBookMobileAppActivity-debug.apk
+	$ adb install -r andriod/output/bin/DocBookMobileAppActivity-debug.apk
 

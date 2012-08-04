@@ -28,6 +28,8 @@
 
   <target name="chunk" depends="clean">
     <mkdir dir="${output-dir}"/>
+		
+
     <xslt in="${input-xml}" out="${output-dir}/dummy.html" style="${stylesheet-path}"
       scanincludeddirectories="false" classpath="${xslt-processor-classpath}">
       <param name="mobile.include.search.tab" expression="${mobile.include.search.tab}"
@@ -38,6 +40,7 @@
       <param name="mobile.menubar.filename" expression="${mobile.menubar.filename}" if="mobile.menubar.filename"/>
       <param name="mobile.settings.filename" expression="${mobile.settings.filename}" if="mobile.settings.filename"/>
       <param name="mobile.indexer.language" expression="${mobile.indexer.language}" if="mobile.indexer.language"/>
+			<param name="mobile.device.platform" expression="${mobile.device.platform}" if="mobile.device.platform"/>
       <param name="branding" expression="${branding}" if="branding"/>
       <param name="brandname" expression="${brandname}" if="brandname"/>
       <param name="admon.graphics" expression="${admon.graphics}" if="admon.graphics"/>
@@ -129,12 +132,30 @@
   <!-- Output of chunked htmls for all platforms  -->
   <target name="mobile" depends="validate , chunk , add_resources , index"/>
 
-  <!-- Android  -->
-  <target name="mobile_android_unsigned_apk" depends="mobile ,index ,  nested.android_unsigned_apk"/>
-  <target name="mobile_android_debug_apk" depends="mobile , index ,  nested.android_debug_apk"/>
+	<!-- Android -->
+	<target name="mobile.android.unsigned.apk">
+		<property name="mobile.device.platform" value="android"/>
+		<antcall>
+			<target name="mobile"/>
+			<target name="nested.android_unsigned_apk"/>
+		</antcall>
+	</target>
+
+  <target name="mobile.android.debug.apk">
+		<property name="mobile.device.platform" value="android"/>
+		<antcall>
+			<target name="mobile"/>
+			<target name="nested.android_debug_apk"/>
+		</antcall>
+	</target>
 
   <!-- iOS -->
-  <target name="mobile_iOS_" depends="mobile , index"/>
+  <target name="mobile.iOS">
+		<property name="mobile.device.platform" value="iOS"/>
+		<antcall>
+			<target name="mobile"/>
+		</antcall>
+	</target>
 
   <!-- windows phone -->
   <target name="mobile_windows_phone_" depends="mobile , index"/>

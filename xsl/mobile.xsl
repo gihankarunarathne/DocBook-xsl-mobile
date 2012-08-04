@@ -31,9 +31,10 @@
   <xsl:param name="mobile.indexer.language">en</xsl:param>
   <xsl:param name="mobile.default.topic"/>
   <xsl:param name="mobile.autolabel">0</xsl:param>
+  <xsl:param name="mobile.device.platform">none</xsl:param>
 
   <!-- ============================================================ -->
-  <!-- =	default configuration for build mobile out put	    = -->
+  <!-- =	default configuration for build mobile out put	        = -->
   <!-- ============================================================ -->
   <xsl:param name="chunker.output.indent">no</xsl:param>
   <xsl:param name="navig.showtitles">0</xsl:param>
@@ -142,22 +143,27 @@
 
     <link rel="stylesheet" type="text/css" href="../css/themes/default/jquery.mobile-1.1.0.min.css"/>
 
-    <!--<script type="text/javascript" charset="utf-8" src="../js/cordova-1.8.1.js">
-			<xsl:comment>
-			</xsl:comment>
-		</script>-->
+    <xsl:choose>
+      <xsl:when test="'android'=$mobile.device.platform">
+        <script type="text/javascript" charset="utf-8" src="../js/cordova-1.8.1.js">
+          <xsl:comment>
+          </xsl:comment>
+          </script>
+      </xsl:when>
+    </xsl:choose>
+    
     <script type="text/javascript" src="../js/jquery.min.js">
-			<xsl:comment>
-			</xsl:comment>
-		</script>
+      <xsl:comment>
+      </xsl:comment>
+    </script>
     <script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js">
-			<xsl:comment>
-			</xsl:comment>
-		</script>
+      <xsl:comment>
+      </xsl:comment>
+    </script>
     <script type="text/javascript" src="../js/swipeupdown.js">
-			<xsl:comment>
-			</xsl:comment>
-		</script>
+      <xsl:comment>
+      </xsl:comment>
+    </script>
   </xsl:template>
 
   <!-- ============================================================ -->
@@ -769,7 +775,14 @@
             <meta name="viewport" content="width=device-width, initial-scale=1"/>
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-<!--            <script type="text/javascript" charset="utf-8" src="../js/cordova-1.8.1.js">//cordova</script>-->
+            <xsl:choose>
+              <xsl:when test="'android'=$mobile.device.platform">
+                <script type="text/javascript" charset="utf-8" src="../js/cordova-1.8.1.js">
+                  <xsl:comment>
+                  </xsl:comment>
+                </script>
+              </xsl:when>
+            </xsl:choose>
 
             <link rel="stylesheet" type="text/css"
               href="../css/themes/default/jquery.mobile-1.1.0.min.css"/>
@@ -793,18 +806,18 @@
               </xsl:attribute>
 
               <div data-role="header">
+                <h1>Settings</h1>
                 <script type="text/javascript">
                   $(function(){
-                    $("#viewtoc").live('vclick',function(event ,ui){
+                    $("#viewtoc").live('tap',function(event ,ui){
                       $.mobile.changePage("<xsl:value-of select="$mobile.toc.filename"/>");
                     });
                     
-                    $("#viewmenubar").live('vclick', function(){
+                    $("#viewmenubar").live('tap', function(){
                       $.mobile.changePage("<xsl:value-of select="$mobile.menubar.filename"/>");
                     });
                   });
                 </script>
-                <h1>Settings</h1>
               </div>
 
               <div data-role="content">
@@ -985,7 +998,14 @@
           <head>
             <meta name="viewport" content="width=device-width, initial-scale=1"/>
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-            <!-- <script type="text/javascript" charset="utf-8" src="../js/cordova-1.8.1.js">//cordova</script>-->
+            <xsl:choose>
+              <xsl:when test="'android'=$mobile.device.platform">
+                <script type="text/javascript" charset="utf-8" src="../js/cordova-1.8.1.js">
+                  <xsl:comment>
+                  </xsl:comment>
+                </script>
+              </xsl:when>
+            </xsl:choose>
             <script type="text/javascript">
               //The id for tree cookie
               var treeCookieId = "treeview-1055";
@@ -1014,7 +1034,7 @@
             <script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><xsl:comment>jquerymobile</xsl:comment></script>
             <script type="text/javascript" src="../js/swipeupdown.js"><xsl:comment>swipe</xsl:comment></script>
             <script type="text/javascript" src="../js/mobile-settings.js"><xsl:comment>mobile-settings</xsl:comment></script>
-            
+
             <script type="text/javascript" src="search/l10n.js"><xsl:comment>l10n</xsl:comment></script>
             <script type="text/javascript" src="search/htmlFileInfoList.js"><xsl:comment>htmlFileInfoList</xsl:comment></script>
             <script type="text/javascript" src="search/nwSearchFnt.js"><xsl:comment>nwSearchFnt</xsl:comment></script>
@@ -1145,7 +1165,14 @@
           <head>
             <meta name="viewport" content="width=device-width, initial-scale=1"/>
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<!--            <script type="text/javascript" charset="utf-8" src="../js/cordova-1.8.1.js">//cordova</script>-->
+            <xsl:choose>
+              <xsl:when test="'android'=$mobile.device.platform">
+                <script type="text/javascript" charset="utf-8" src="../js/cordova-1.8.1.js">
+                  <xsl:comment>
+                  </xsl:comment>
+                </script>
+              </xsl:when>
+            </xsl:choose>
             <link rel="stylesheet" type="text/css"
               href="../css/themes/default/jquery.mobile-1.1.0.min.css"/>
             <script type="text/javascript" src="../js/jquery.min.js">// jquery </script>
