@@ -4,10 +4,10 @@
  *** Email : gckarunarathne@gmail.com                    ***
  *** Last Modified Date : 10 July 2012                   ***
  ***********************************************************/
-/*
-	Description : 
-	
-	MORE DETAILS : https://github.com/carhartl/jquery-cookie/
+/**
+*	Description :
+*
+*	MORE DETAILS : https://github.com/carhartl/jquery-cookie/
 */
 // set the expire days for cookies (in days)
 var expireDays = 7;
@@ -22,7 +22,7 @@ $(function () {
         $.cookie('menubarposition', $("#select-menu-bar-position").val(), {
           expires: expireDays,
           path: domainPath
-        });
+        });mo
         //alert(String.concat("cookie is created with ",$("#select-menu-bar-position").val()," and now cookie is " ,$.cookie('menubarposition')));
       } else {
         $.cookie('menubarposition', $("#select-menu-bar-position").val());
@@ -157,7 +157,7 @@ $(function () {
           path: domainPath
         });
         //alert(String.concat("cookie is created with ",$("#remember-page").val()," and now cookie is " ,$.cookie('rememberpage')));
-        document.getElementById("btest").innerHTML = $.cookie('rememberpage');
+        //document.getElementById("btest").innerHTML = $.cookie('rememberpage');
       } else {
         $.cookie('rememberpage', $("#remember-page").val());
         //alert(String.concat("cookie is updated with ",$.cookie('rememberpage')));
@@ -180,7 +180,7 @@ $(function () {
           path: domainPath
         });
         //alert(String.concat("cookie is created with ",$("#voice-search").val()," and now cookie is " ,$.cookie('voicesearch')));
-        document.getElementById("btest").innerHTML = $.cookie('voicesearch');
+        //document.getElementById("btest").innerHTML = $.cookie('voicesearch');
       } else {
         $.cookie('voicesearch', $("#voice-search").val());
         //alert(String.concat("cookie is updated with ",$.cookie('voicesearch')));

@@ -141,7 +141,7 @@
   <!-- ============================================================ -->
   <xsl:template name="user.head.content">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <link rel="stylesheet" type="text/css" href="../css/themes/default/jquery.mobile-1.1.0.min.css"/>
     <link rel="stylesheet" type="text/css" href="../css/mobile.positioning.css"/>
@@ -769,10 +769,9 @@
         <html>
           <head>
             <title>Settings</title>
-
-            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-
+            <!-- add resources to Android device -->
             <xsl:choose>
               <xsl:when test="'android'=$mobile.device.platform">
                 <script type="text/javascript" charset="utf-8" src="../js/cordova-1.8.1.js">
@@ -784,14 +783,14 @@
 
             <link rel="stylesheet" type="text/css"
               href="../css/themes/default/jquery.mobile-1.1.0.min.css"/>
+            <style type="text/css">
+              .containing-element .ui-slider-switch { width: 100% }
+            </style>
             <script type="text/javascript" src="../js/jquery.min.js">// jquery </script>
-
             <script type="text/javascript" src="../js/jquery.cookie.min.js">// cookies </script>
-
             <script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js">// jquery mobile </script>
             <script type="text/javascript" src="../js/swipeupdown.js">//swipe</script>
             <script type="text/javascript" src="../js/mobile-settings.js">//mobile-settings</script>
-
           </head>
           <body>
 
@@ -822,8 +821,10 @@
 
                 <form>
                   <ul data-role="listview" data-inset="true" data-theme="b">
-                    <li data-role="list-divider" data-mini="true">Edit</li>
-
+                    <li data-role="list-divider">Edit</li>
+                    <!-- ======================================= -->
+                    <!-- =  Go to ToC / Menubar                = -->
+                    <!-- ======================================= -->
                     <li>
                       <a id="viewtoc">ToC</a>
                     </li>
@@ -831,7 +832,7 @@
                       <a id="viewmenubar"> Menu Bar</a>
                     </li>
 
-                    <li>
+                    <!--<li>
                       <label for="view-bars" class="select" data-mini="true">
                         <strong>
                           <em>View</em>
@@ -842,8 +843,11 @@
                         <option value="viewToC">View ToC</option>
                         <option value="viewMenuBar">View Menu Bar</option>
                       </select>
-                    </li>
+                    </li>-->
 
+                    <!-- ======================================= -->
+                    <!-- =  Positioning ToC / Menubar          = -->
+                    <!-- ======================================= -->
                     <li>
                       <label for="select-menu-bar-position" class="select" data-mini="true">
                         <strong>
@@ -854,7 +858,6 @@
                         data-theme="e" data-icon="arrow-d" data-native-menu="false">
                         <option value="tapUpper">Tap Upper Screen</option>
                         <option value="tapLower">Tap Lower Screen</option>
-
                       </select>
                     </li>
 
@@ -871,6 +874,39 @@
                       </select>
                     </li>
 
+                    <!-- ======================================= -->
+                    <!-- =  Set popup or not ToC / Menubar     = -->
+                    <!-- ======================================= -->
+                    <li>
+                      <label for="select-pop-up-menu-bar" class="select" data-mini="true">
+                        <strong>
+                          <em>Pop Up Menu Bar</em>
+                        </strong>
+                      </label>
+                      <select name="select-pop-up-menu-bar" id="select-pop-up-menu-bar"
+                        data-theme="e" data-icon="arrow-d" data-native-menu="false">
+                        <option value="showMenuBar">Show Menu Bar</option>
+                        <option value="hideMenuBar">Hide Menu Bar</option>
+
+                      </select>
+                    </li>
+
+                    <li>
+                      <label for="select-pop-up-toc" class="select" data-mini="true">
+                        <strong>
+                          <em>Pop Up ToC </em>
+                        </strong>
+                      </label>
+                      <select name="select-pop-up-toc" id="select-pop-up-toc" data-theme="e"
+                        data-icon="arrow-d" data-native-menu="false">
+                        <option value="showtoc">Show ToC</option>
+                        <option value="hidetoc">Hide ToC</option>
+                      </select>
+                    </li>
+
+                    <!-- ======================================= -->
+                    <!-- =  Page Navigation directions         = -->
+                    <!-- ======================================= -->
                     <li data-theme="a">
                       <label for="select-prev-page-direction" class="select" data-mini="true">
                         <strong>
@@ -897,72 +933,75 @@
                       </select>
                     </li>
 
-                    <li data-theme="a">
-                      <label for="select-pop-up-menu-bar" class="select" data-mini="true">
-                        <strong>
-                          <em>Pop Up Menu Bar</em>
-                        </strong>
-                      </label>
-                      <select name="select-pop-up-menu-bar" id="select-pop-up-menu-bar"
-                        data-theme="e" data-icon="arrow-d" data-native-menu="false">
-                        <option value="showMenuBar">Show Menu Bar</option>
-                        <option value="hideMenuBar">Hide Menu Bar</option>
-
-                      </select>
-                    </li>
-
-                    <li data-theme="a">
-                      <label for="select-pop-up-toc" class="select" data-mini="true">
-                        <strong>
-                          <em>Pop Up ToC </em>
-                        </strong>
-                      </label>
-                      <select name="select-pop-up-toc" id="select-pop-up-toc" data-theme="e"
-                        data-icon="arrow-d" data-native-menu="false">
-                        <option value="showtoc">Show ToC</option>
-                        <option value="hidetoc">Hide ToC</option>
-                      </select>
-                    </li>
                   </ul>
                 </form>
 
-                <ul data-role="listview" data-inset="true" data-theme="b">
-                  <li data-role="list-divider" data-mini="true">Advance Settings</li>
-                  <li>
-                    <div class="ui-grid-a">
-                      <div class="ui-block-a">
-                        <label for="remember-page" data-mini="true">Remember Page</label>
-                      </div>
-                      <div class="ui-block-b">
-                        <div class="ui-block-a"/>
+                <!-- ============================================ -->
+                <!-- = Advance Settings                         = -->
+                <!-- ============================================ -->
+                <form>
+                  <ul data-role="listview" data-inset="true" data-theme="b">
+                    <li data-role="list-divider">Advance Settings</li>
+                    <!-- SETTING FOR FLIP SWITCH <li>
+                      <div class="ui-grid-a">
+                        <div class="ui-block-a">
+                          <label for="remember-page" data-mini="true">Remember Page</label>
+                        </div>
                         <div class="ui-block-b">
-                          <select name="remember-page" id="remember-page" data-role="slider"
-                            data-mini="true" data-pos="right">
-                            <option value="off">Off</option>
-                            <option value="on">On</option>
-                          </select>
+                          <div class="ui-block-a"/>
+                          <div class="ui-block-b">
+                            <select name="remember-page" id="remember-page" data-role="slider"
+                              data-mini="true" data-pos="right">
+                              <option value="off">Off</option>
+                              <option value="on">On</option>
+                            </select>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="ui-grid-a">
-                      <div class="ui-block-a">
-                        <label for="voice-search" data-mini="true">Voice Search</label>
-                      </div>
-                      <div class="ui-block-b">
-                        <div class="ui-block-a"/>
-                        <div class="ui-block-b">
-                          <select name="voice-search" id="voice-search" data-role="slider"
-                            data-mini="true" data-pos="right">
-                            <option value="off">Off</option>
-                            <option value="on">On</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
+                    </li>-->
+
+                    <li>
+                      <label for="remember-page" data-mini="true" class="select">
+                        <strong>
+                          <em>Remember Page</em>
+                        </strong>
+                      </label>
+                      <select name="remember-page" id="remember-page" data-icon="arrow-d"
+                        data-native-menu="false">
+                        <option value="off">Off</option>
+                        <option value="on">On</option>
+                      </select>
+                    </li>
+                    <li>
+                      <label for="voice-search" data-mini="true" class="select">
+                        <strong>
+                          <em>Voice Search </em>
+                        </strong>
+                      </label>
+                      <select name="voice-search" id="voice-search" data-icon="arrow-d"
+                        data-native-menu="false">
+                        <option value="off">Off</option>
+                        <option value="on">On</option>
+                      </select>
+                    </li>
+                    <!-- ======================================= -->
+                    <!-- =  Reset Settings                     = -->
+                    <!-- ======================================= -->
+                    <li data-theme="a">
+                      <label for="reset-settings" class="select" data-mini="true">
+                        <strong>
+                          <em>Reset Settings </em>
+                        </strong>
+                      </label>
+                      <select name="reset-settings" id="reset-settings"
+                        data-theme="e" data-icon="arrow-d" data-native-menu="false" data-mini="true">
+                        <option value="reset">Reset </option>
+                        <option value="cancel">Cancel </option>
+                      </select>
+                    </li>
+
+                  </ul>
+                </form>
               </div>
             </div>
           </body>
@@ -994,7 +1033,7 @@
       <xsl:with-param name="content">
         <html>
           <head>
-            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
             <xsl:choose>
               <xsl:when test="'android'=$mobile.device.platform">
@@ -1019,9 +1058,9 @@
             <link rel="stylesheet" type="text/css"
               href="../css/themes/default/jquery.mobile-1.1.0.min.css"/>
             <style type="text/css">
-              a{
+              /** a{
                 width:99%;
-              }
+              }*/
               form.err div a span{
                 padding:0 0 !important;
               }</style>
@@ -1064,7 +1103,22 @@
                     history.back();
                     return false;
                   }
-                  $(function() {
+                 
+                  function ass() {
+                    
+                    var searchTextField = trim(document.searchForm.textToSearch.value);
+                    //searchTextField = searchTextField.replace(/['"]/g, '');
+
+                      if (searchTextField.length != 0) {
+                        if(searchTextField.indexOf(" ") == -1 ) {
+                          $("#searchResults").empty();
+                          $("#doSearch").click();
+                        }
+                      }
+                   
+                  }
+                  
+                  /*$(function() {
                     $("#textToSearch").live('keyup', function(event) {
                     var searchTextField = trim(document.searchForm.textToSearch.value);
                     //searchTextField = searchTextField.replace(/['"]/g, '');
@@ -1076,7 +1130,7 @@
                         }
                       }
                     });
-                  });
+                  });*/
                 </script>
               </div>
               <div data-role="content">
@@ -1093,7 +1147,7 @@
                   </div>
                   <div class="ui-block-c">
                     <div style="margin: 8px 0 0 10px;">
-                      <a href="index.html" data-role="button" data-icon="arrow-r" data-theme="a"
+                      <a onclick="ass()" data-role="button" data-icon="arrow-r" data-theme="a"
                         >Go</a>
                     </div>
                   </div>
@@ -1101,7 +1155,7 @@
                 <!-- Second row -->
                 <div data-role="footer" data-theme="b" class="ui-bar ui-grid-a">
                   <div class="ui-block-a">
-                    <select name="select-choice-min" id="select-choice-1" data-theme="e"
+                    <select name="font-size" id="font-size" data-theme="e"
                       data-native-menu="false">
                       <option value="8">Front size-8</option>
                       <option value="9">Front size-9</option>
@@ -1110,7 +1164,7 @@
                     </select>
                   </div>
                   <div class="ui-block-b">
-                    <select name="select-choice-min" id="select-choice-1" data-theme="e"
+                    <select name="font-family" id="font-family" data-theme="e"
                       data-native-menu="false">
                       <option value="Arial">Font Arial</option>
                       <option value="Helvetica">Font Helvetica</option>
@@ -1161,7 +1215,7 @@
       <xsl:with-param name="content">
         <html>
           <head>
-            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
             <xsl:choose>
               <xsl:when test="'android'=$mobile.device.platform">
