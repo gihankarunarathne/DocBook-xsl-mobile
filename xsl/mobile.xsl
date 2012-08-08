@@ -1068,7 +1068,8 @@
             <script type="text/javascript" src="../js/browserDetect.js"><xsl:comment>browserDetect</xsl:comment></script>
             <script type="text/javascript" src="../js/jquery.min.js"><xsl:comment>jquery</xsl:comment></script>
             <script type="text/javascript" src="../js/jquery.cookie.min.js"><xsl:comment>cookies</xsl:comment></script>
-            <script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><xsl:comment>jquerymobile</xsl:comment></script>
+            <script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js">
+              <xsl:comment>jquerymobile</xsl:comment></script>
             <script type="text/javascript" src="../js/swipeupdown.js"><xsl:comment>swipe</xsl:comment></script>
             <script type="text/javascript" src="../js/mobile-settings.js"><xsl:comment>mobile-settings</xsl:comment></script>
 
@@ -1096,28 +1097,87 @@
                 <xsl:value-of select="$id_menubar"/>
               </xsl:attribute>
 
-              <div data-role="header">
+              <div data-role="header" data-theme="b">
                 <h1>Menu Bar</h1>
+                <a href="settings.html" data-icon="gear" class="ui-btn-right">Settings</a>
+                <hr/>
+                <!-- First Raw -->
+                <div data-role="navbar" data-theme="b">
+                  <ul>
+                    <li>
+                      <div style="margin: 8px 10px;">
+                        <input id="value" placeholder="Page No..." data-theme="b"/>
+                      </div>
+                    </li>
+                    <li>
+                      <a onclick="" data-role="button" data-icon="arrow-r" data-theme="b">Go</a>
+                    </li>
+                  </ul>
+                </div>
+                <!-- Second row -->
+                <div data-role="navbar" data-theme="b">
+                  <ul>
+                    <li>
+                      <div style="margin: 10px 15px;">
+                        <select name="font-size" id="font-size" data-theme="e"
+                          data-native-menu="false" data-mini="true">
+                          <option value="8">Front size-8</option>
+                          <option value="9">Front size-9</option>
+                          <option value="10">Front size-10</option>
+                          <option value="12">Front size-12</option>
+                        </select>
+                      </div>
+                    </li>
+                    <li>
+                      <div style="margin: 10px 15px;">
+                        <select name="font-family" id="font-family" data-theme="e"
+                          data-native-menu="false" data-mini="true">
+                          <option value="Arial">Font Arial</option>
+                          <option value="Helvetica">Font Helvetica</option>
+                          <option value="Sans-Serif">Font Sans-Serif</option>
+                        </select>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <!-- Third Raw -->
+                <div id="searchDiv">
+                  <div data-role="navbar" data-theme="b">
+                    <ul>
+                      <li>
+                        <form name="searchForm" onsubmit="Verifie(searchForm);return false"
+                          class="err">
+                          <div style="margin: 10px 10px;">
+                            <input type="text" name="textToSearch" id="textToSearch" data-theme="b"
+                              placeholder="Search..." data-inset="true"/>
+                            <div id="doSearch" onclick="Verifie(searchForm)" data-theme="b"/>
+                          </div>
+                        </form>
+                      </li>
+                      <li>
+                        <ul>
+                          <li>
+                            <a onclick="searchWord()" data-icon="search" data-theme="b">Search</a>
+                          </li>
+                          <li>
+                            <a onclick="goBack()" data-role="button" data-icon="back" data-theme="a"
+                              >Back</a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
                 <script type="text/javascript">
                   function goBack(){
                     history.back();
                     return false;
                   }
-                 
-                  function ass() {
-                    
-                    var searchTextField = trim(document.searchForm.textToSearch.value);
-                    //searchTextField = searchTextField.replace(/['"]/g, '');
-
-                      if (searchTextField.length != 0) {
-                        if(searchTextField.indexOf(" ") == -1 ) {
-                          $("#searchResults").empty();
-                          $("#doSearch").click();
-                        }
-                      }
-                   
+          
+                  function searchWord(){
+                    $("#searchResults").empty();
+                    $("#doSearch").click();
                   }
-                  
                   /*$(function() {
                     $("#textToSearch").live('keyup', function(event) {
                     var searchTextField = trim(document.searchForm.textToSearch.value);
@@ -1134,8 +1194,11 @@
                 </script>
               </div>
               <div data-role="content">
+                <div id="searchResults">
+                  <xsl:comment>Show search results</xsl:comment>
+                </div>
                 <!-- First row -->
-                <div data-role="footer" data-theme="b" class="ui-bar ui-grid-b">
+                <!--<div data-role="footer" data-theme="b" class="ui-bar ui-grid-b">
                   <div class="ui-block-a">
                     <div style="margin: 8px 0 0 10px;">
                       <a onclick="goBack()" data-role="button" data-icon="back" data-theme="a"
@@ -1151,12 +1214,11 @@
                         >Go</a>
                     </div>
                   </div>
-                </div>
+                </div>-->
                 <!-- Second row -->
-                <div data-role="footer" data-theme="b" class="ui-bar ui-grid-a">
+                <!--<div data-role="footer" data-theme="b" class="ui-bar ui-grid-a">
                   <div class="ui-block-a">
-                    <select name="font-size" id="font-size" data-theme="e"
-                      data-native-menu="false">
+                    <select name="font-size" id="font-size" data-theme="e" data-native-menu="false">
                       <option value="8">Front size-8</option>
                       <option value="9">Front size-9</option>
                       <option value="10">Front size-10</option>
@@ -1170,20 +1232,21 @@
                       <option value="Helvetica">Font Helvetica</option>
                       <option value="Sans-Serif">Font Sans-Serif</option>
                     </select>
-                  </div>  
-                </div>
+                  </div>
+                </div>-->
                 <!-- Third row -->
-                <div id="searchDiv" data-theme="b">
+                <!--<div id="searchDiv" data-theme="b">
                   <div data-role="header" data-theme="b">
                     <form name="searchForm" onsubmit="Verifie(searchForm);return false" class="err">
-                      <input type="search" name="textToSearch" id="textToSearch" data-theme="b" placeholder="Search..."/>
+                      <input type="search" name="textToSearch" id="textToSearch" data-theme="b"
+                        placeholder="Search..."/>
                       <a id="doSearch" onclick="Verifie(searchForm)" data-theme="b"/>
                     </form>
                   </div>
                   <div id="searchResults">
-                    <!-- Show the results -->
+                    <!-\- Show the results -\->
                   </div>
-                </div>
+                </div>-->
               </div>
             </div>
           </body>
