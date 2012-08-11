@@ -2,13 +2,34 @@
 /**********************************************************
  *** Author : Gihan Karunarathne                         ***
  *** Email : gckarunarathne@gmail.com                    ***
- *** Last Modified Date : 10 July 2012                   ***
+ *** Last Modified Date : 11 August 2012                   ***
  ***********************************************************/
 /**
 *	Description :
-*
 *	MORE DETAILS : https://github.com/carhartl/jquery-cookie/
 */
+
+/**
+ * When a page is loading apply the mobile-settings
+ */
+$(function(){
+  //apply font-size to page
+  if ($.cookie('font-size') === null) {
+    setDefFontSize();
+    $("html").css('font-size', $.cookie('font-size'));
+  }else{
+    $("html").css('font-size', $.cookie('font-size'));
+  }
+  //apply font-family to page
+  if ($.cookie('font-family') === null) {
+    setDefFontSize();
+    $("html").css('font-family', $.cookie('font-family'));
+  }else{
+    $("html").css('font-family', $.cookie('font-family'));
+  }
+
+});
+
 // set the expire days for cookies (in days)
 var expireDays = 7;
 // set domain/path name for access cookies
@@ -18,21 +39,15 @@ $(function () {
 
   $("#select-menu-bar-position").bind("change", function (event, ui) {
     try {
-      if ($.cookie('menubarposition') === null) {
-        $.cookie('menubarposition', $("#select-menu-bar-position").val(), {
-          expires: expireDays,
-          path: domainPath
-        });mo
+      setCookie('menubarposition', $("#select-menu-bar-position").val() );
         //alert(String.concat("cookie is created with ",$("#select-menu-bar-position").val()," and now cookie is " ,$.cookie('menubarposition')));
-      } else {
-        $.cookie('menubarposition', $("#select-menu-bar-position").val());
-        //alert(String.concat("cookie is updated with ",$.cookie('menubarposition')));
-      }
     } catch (err) {
       txt = "There was an error on this page.\n\n";
       txt += "Error description: " + err.message + "\n\n";
       txt += "Click OK to continue.\n\n";
-      alert(txt);
+      //alert(txt);
+      $('#warningMSG').html(txt);
+      $('#showDialog').click();
     }
 
   });
@@ -40,21 +55,15 @@ $(function () {
 
   $("#select-toc-position").bind("change", function (event, ui) {
     try {
-      if ($.cookie('tocposition') === null) {
-        $.cookie('tocposition', $("#select-toc-position").val(), {
-          expires: expireDays,
-          path: domainPath
-        });
+        setCookie('tocposition', $("#select-toc-position").val());
         //alert(String.concat("cookie is created with ",$("#select-toc-position").val()," and now cookie is " ,$.cookie('tocposition')));
-      } else {
-        $.cookie('tocposition', $("#select-toc-position").val());
-        //alert(String.concat("cookie is updated with ",$.cookie('tocposition')));
-      }
     } catch (err) {
       txt = "There was an error on this page.\n\n";
       txt += "Error description: " + err.message + "\n\n";
       txt += "Click OK to continue.\n\n";
-      alert(txt);
+      //alert(txt);
+      $('#warningMSG').html(txt);
+      $('#showDialog').click();
     }
   });
 
@@ -62,42 +71,30 @@ $(function () {
 
   $("#select-prev-page-direction").bind("change", function (event, ui) {
     try {
-      if ($.cookie('prevpage') === null) {
-        $.cookie('prevpage', $("#select-prev-page-direction").val(), {
-          expires: expireDays,
-          path: domainPath
-        });
+        setCookie('prevpage', $("#select-prev-page-direction").val());
         //alert(String.concat("cookie is created with ",$("#select-prev-page-direction").val()," and now cookie is " ,$.cookie('prevpage')));
-      } else {
-        $.cookie('prevpage', $("#select-prev-page-direction").val());
-        //alert(String.concat("cookie is updated with ",$.cookie('prevpage')));
-      }
     } catch (err) {
       txt = "There was an error on this page.\n\n";
       txt += "Error description: " + err.message + "\n\n";
       txt += "Click OK to continue.\n\n";
-      alert(txt);
+      //alert(txt);
+      $('#warningMSG').html(txt);
+      $('#showDialog').click();
     }
   });
 
 
   $("#select-next-page-direction").bind("change", function (event, ui) {
     try {
-      if ($.cookie('nextpage') === null) {
-        $.cookie('nextpage', $("#select-next-page-direction").val(), {
-          expires: expireDays,
-          path: domainPath
-        });
-        //alert(String.concat("cookie is created with ",$("#select-next-page-direction").val()," and now cookie is " ,$.cookie('nextpage')));
-      } else {
-        $.cookie('nextpage', $("#select-next-page-direction").val());
-        //alert(String.concat("cookie is updated with ",$.cookie('nextpage')));
-      }
+      setCookie('nextpage', $("#select-next-page-direction").val());
+      //alert(String.concat("cookie is created with ",$("#select-next-page-direction").val()," and now cookie is " ,$.cookie('nextpage')));
     } catch (err) {
       txt = "There was an error on this page.\n\n";
       txt += "Error description: " + err.message + "\n\n";
       txt += "Click OK to continue.\n\n";
-      alert(txt);
+      //alert(txt);
+      $('#warningMSG').html(txt);
+      $('#showDialog').click();
     }
   });
 
@@ -105,95 +102,79 @@ $(function () {
   //pop up menus
   $("#select-pop-up-menu-bar").bind("change", function (event, ui) {
     try {
-      if ($.cookie('popupmenubar') === null) {
-        $.cookie('popupmenubar', $("#select-pop-up-menu-bar").val(), {
-          expires: expireDays,
-          path: domainPath
-        });
-        //alert(String.concat("cookie is created with ",$("#select-pop-up-menu-bar").val()," and now cookie is " ,$.cookie('popupmenubar')));
-      } else {
-        $.cookie('popupmenubar', $("#select-pop-up-menu-bar").val());
-        //alert(String.concat("cookie is updated with ",$.cookie('popupmenubar')));
-      }
+      setCookie('popupmenubar', $("#select-pop-up-menu-bar").val());
+      //alert(String.concat("cookie is created with ",$("#select-pop-up-menu-bar").val()," and now cookie is " ,$.cookie('popupmenubar')));
     } catch (err) {
       txt = "There was an error on this page.\n\n";
       txt += "Error description: " + err.message + "\n\n";
       txt += "Click OK to continue.\n\n";
-      alert(txt);
+      //alert(txt);
+      $('#warningMSG').html(txt);
+      $('#showDialog').click();
     }
   });
 
 
   $("#select-pop-up-toc").bind("change", function (event, ui) {
     try {
-      if ($.cookie('popuptoc') === null) {
-        $.cookie('popuptoc', $("#select-pop-up-toc").val(), {
-          expires: expireDays,
-          path: domainPath
-        });
-        //alert(String.concat("cookie is created with ",$("#select-pop-up-toc").val()," and now cookie is " ,$.cookie('popuptoc')));
-      } else {
-        $.cookie('popuptoc', $("#select-pop-up-toc").val());
-        //alert(String.concat("cookie is updated with ",$.cookie('popuptoc')));
-      }
+      setCookie('popuptoc', $("#select-pop-up-toc").val());
+      //alert(String.concat("cookie is created with ",$("#select-pop-up-toc").val()," and now cookie is " ,$.cookie('popuptoc')));
     } catch (err) {
       txt = "There was an error on this page.\n\n";
       txt += "Error description: " + err.message + "\n\n";
       txt += "Click OK to continue.\n\n";
-      alert(txt);
+      //alert(txt);
+      $('#warningMSG').html(txt);
+      $('#showDialog').click();
     }
   });
 
   /*************************************************************************************
-   **       Advance Settings                                                           **
+   **       Advance Settings                                                          **
    *************************************************************************************/
 
   $("#remember-page").bind("change", function (event, ui) {
     //alert("lets rem page");
     try {
-      if ($.cookie('rememberpage') === null) {
-        $.cookie('rememberpage', $("#remember-page").val(), {
-          expires: expireDays,
-          path: domainPath
-        });
-        //alert(String.concat("cookie is created with ",$("#remember-page").val()," and now cookie is " ,$.cookie('rememberpage')));
-        //document.getElementById("btest").innerHTML = $.cookie('rememberpage');
-      } else {
-        $.cookie('rememberpage', $("#remember-page").val());
-        //alert(String.concat("cookie is updated with ",$.cookie('rememberpage')));
-        //document.getElementById("btest").innerHTML = String.concat("update rem page : " , $.cookie('rememberpage'));
-      }
+      setCookie('rememberpage', $("#remember-page").val());
+      //alert(String.concat("cookie is created with ",$("#remember-page").val()," and now cookie is " ,$.cookie('rememberpage')));
+      //document.getElementById("btest").innerHTML = $.cookie('rememberpage');
     } catch (err) {
       txt = "There was an error on this page.\n\n";
       txt += "Error description: " + err.message + "\n\n";
       txt += "Click OK to continue.\n\n";
-      alert(txt);
+      //alert(txt);
+      $('#warningMSG').html(txt);
+      $('#showDialog').click();
     }
   });
 
   $("#voice-search").bind("change", function (event, ui) {
     //alert("lets do voice search");
     try {
-      if ($.cookie('voicesearch') === null) {
-        $.cookie('voicesearch', $("#voice-search").val(), {
-          expires: expireDays,
-          path: domainPath
-        });
-        //alert(String.concat("cookie is created with ",$("#voice-search").val()," and now cookie is " ,$.cookie('voicesearch')));
-        //document.getElementById("btest").innerHTML = $.cookie('voicesearch');
-      } else {
-        $.cookie('voicesearch', $("#voice-search").val());
-        //alert(String.concat("cookie is updated with ",$.cookie('voicesearch')));
-        //document.getElementById("btest").innerHTML = $.cookie('voicesearch');
-      }
+      setCookie('voicesearch', $("#voice-search").val());
+      //alert(String.concat("cookie is created with ",$("#voice-search").val()," and now cookie is " ,$.cookie('voicesearch')));
+      //document.getElementById("btest").innerHTML = $.cookie('voicesearch');
     } catch (err) {
       txt = "There was an error on this page.\n\n";
       txt += "Error description: " + err.message + "\n\n";
       txt += "Click OK to continue.\n\n";
-      alert(txt);
+      //alert(txt);
+      $('#warningMSG').html(txt);
+      $('#showDialog').click();
     }
   });
 });
+/**
+ * Recurring methods
+ */
+function setCookie($name,$value){
+  $.cookie( $name , $value , {
+    expires: expireDays,
+    path: domainPath
+  });
+}
+
 
 // for testing purposes of cookies
 /*function getcookie(){
@@ -202,5 +183,41 @@ $(function () {
 	$("find").innerHTML=nameVal;
 	$("test").innerHTML=$.cookie(nameVal);
 } */
+
+/********************************************************************************
+ * Default settings for cookies.                                               **
+ * When cookie value is not set,these will be called and set there value.      **
+ * Also,user can set them later                                                **.
+ ********************************************************************************/
+// set the default expire days for cookies (in days)
+var defExpireDays = 7;
+// set default domain/path name for access cookies
+var defDomainPath = '/';
+// set default font-size
+var defFontSize = '12px';
+// set default font-family
+var defFontFamily = 'Helvetica';
+
+/**
+ * Default value for font-size
+ */
+function setDefFontSize(){
+  setDefCookie('font-size',defFontSize);
+}
+/**
+ * Default value for font-family
+ */
+function setDefFontFamily(){
+  setDefCookie('font-family' , defFontFamily);
+}
+/**
+ * Recurring method for set default values
+ */
+function setDefCookie($name,$value){
+  $.cookie($name , $value , {
+    expires: defExpireDays,
+    path: defDomainPath
+  });
+}
 
 //-->

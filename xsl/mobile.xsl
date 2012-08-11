@@ -159,6 +159,9 @@
       <xsl:comment>
       </xsl:comment>
     </script>
+    <script type="text/javascript" src="../js/jquery.cookie.min.js">
+      <xsl:comment>include mobile menubar js</xsl:comment>
+    </script>
     <script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js">
       <xsl:comment>
       </xsl:comment>
@@ -166,6 +169,9 @@
     <script type="text/javascript" src="../js/swipeupdown.js">
       <xsl:comment>
       </xsl:comment>
+    </script>
+    <script type="text/javascript" src="../js/mobile-settings.js">
+      <xsl:comment>include mobile settings js</xsl:comment>
     </script>
     
     <!-- pop up the settings panel when click on menu button of the phone/device -->
@@ -813,6 +819,8 @@
                     $("#viewmenubar").live('tap', function(){
                       $.mobile.changePage("<xsl:value-of select="$mobile.menubar.filename"/>");
                     });
+                    //hide the link for open Warning Dialog Box
+                    $("#showDialog").hide();
                   });
                 </script>
               </div>
@@ -1002,6 +1010,19 @@
 
                   </ul>
                 </form>
+                <a href="menubar.html#settings_alert" id="showDialog" data-role="button" data-inline="true" data-rel="dialog" data-transition="pop">
+                  <xsl:comment>link:Dialog Box for show Warnings</xsl:comment>
+                </a>
+              </div>
+            </div>
+            <!-- Warning Dialog Box -->
+            <div data-role="page" id="settings_alert" data-url="settings_alert" data-overlay-theme="e">
+              <div data-role="header" data-theme="b">
+                <h1>Warning Alert</h1>
+              </div>
+              <div data-role="content" data-theme="a">
+                <p style="color:orange;text-align:center;" id="warningMSG">Warning Message</p>
+                <a href="meubar.html" data-role="button" data-rel="back" data-theme="b" data-inline="true">OK</a>
               </div>
             </div>
           </body>
@@ -1057,35 +1078,51 @@
             </script>
             <link rel="stylesheet" type="text/css"
               href="../css/themes/default/jquery.mobile-1.1.0.min.css"/>
-            <style type="text/css">
-              /** a{
-                width:99%;
-              }*/
-              form.err div a span{
-                padding:0 0 !important;
-              }</style>
-            <!-- Adding js -->
-            <script type="text/javascript" src="../js/browserDetect.js"><xsl:comment>browserDetect</xsl:comment></script>
-            <script type="text/javascript" src="../js/jquery.min.js"><xsl:comment>jquery</xsl:comment></script>
-            <script type="text/javascript" src="../js/jquery.cookie.min.js"><xsl:comment>cookies</xsl:comment></script>
+            <script type="text/javascript" src="../js/browserDetect.js">
+              <xsl:comment>browserDetect</xsl:comment>
+            </script>
+            <script type="text/javascript" src="../js/jquery.min.js">
+              <xsl:comment>jquery</xsl:comment>
+            </script>
+            <script type="text/javascript" src="../js/jquery.cookie.min.js">
+              <xsl:comment>cookies</xsl:comment>
+            </script>
             <script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js">
-              <xsl:comment>jquerymobile</xsl:comment></script>
-            <script type="text/javascript" src="../js/swipeupdown.js"><xsl:comment>swipe</xsl:comment></script>
-            <script type="text/javascript" src="../js/mobile-settings.js"><xsl:comment>mobile-settings</xsl:comment></script>
+              <xsl:comment>jquerymobile</xsl:comment>
+            </script>
+            <script type="text/javascript" src="../js/swipeupdown.js">
+              <xsl:comment>swipe</xsl:comment>
+            </script>
+            <script type="text/javascript" src="../js/mobile-settings.js">
+              <xsl:comment>mobile-settings</xsl:comment>
+            </script>
+            <script type="text/javascript" src="../js/mobile-menubar.js">
+              <xsl:comment>mobile-menubar</xsl:comment>
+            </script>
 
-            <script type="text/javascript" src="search/l10n.js"><xsl:comment>l10n</xsl:comment></script>
-            <script type="text/javascript" src="search/htmlFileInfoList.js"><xsl:comment>htmlFileInfoList</xsl:comment></script>
-            <script type="text/javascript" src="search/nwSearchFnt.js"><xsl:comment>nwSearchFnt</xsl:comment></script>
+            <script type="text/javascript" src="search/l10n.js">
+              <xsl:comment>l10n</xsl:comment>
+            </script>
+            <script type="text/javascript" src="search/htmlFileInfoList.js">
+              <xsl:comment>htmlFileInfoList</xsl:comment>
+            </script>
+            <script type="text/javascript" src="search/nwSearchFnt.js">
+              <xsl:comment>nwSearchFnt</xsl:comment>
+            </script>
             <script type="text/javascript" src="{concat('search/stemmers/',$mobile.indexer.language,'_stemmer.js')}">
-              <xsl:comment>
-                //make this scalable to other languages as well.
-              </xsl:comment>
+              <xsl:comment>make scalable to other languages as well.</xsl:comment>
             </script>
             <!--Index Files: Index is broken in to three equal sized(number of index
                 items) files. This is to help parallel downloading of files to make it faster. -->
-            <script type="text/javascript" src="search/index-1.js"><xsl:comment>index-1</xsl:comment></script>
-            <script type="text/javascript" src="search/index-2.js"><xsl:comment>index-2</xsl:comment></script>
-            <script type="text/javascript" src="search/index-3.js"><xsl:comment>index-3</xsl:comment></script>
+            <script type="text/javascript" src="search/index-1.js">
+              <xsl:comment>index-1</xsl:comment>
+            </script>
+            <script type="text/javascript" src="search/index-2.js">
+              <xsl:comment>index-2</xsl:comment>
+            </script>
+            <script type="text/javascript" src="search/index-3.js">
+              <xsl:comment>index-3</xsl:comment>
+            </script>
             <!-- End of index js -->
           </head>
           <body>
@@ -1102,7 +1139,7 @@
                 <a href="settings.html" data-icon="gear" class="ui-btn-right">Settings</a>
                 <hr/>
                 <!-- First Raw -->
-                <div data-role="navbar" data-theme="b">
+                <!--<div data-role="navbar" data-theme="b">
                   <ul>
                     <li>
                       <div style="margin: 8px 10px;">
@@ -1113,7 +1150,7 @@
                       <a onclick="" data-role="button" data-icon="arrow-r" data-theme="b">Go</a>
                     </li>
                   </ul>
-                </div>
+                </div>-->
                 <!-- Second row -->
                 <div data-role="navbar" data-theme="b">
                   <ul>
@@ -1121,10 +1158,12 @@
                       <div style="margin: 10px 15px;">
                         <select name="font-size" id="font-size" data-theme="e"
                           data-native-menu="false" data-mini="true">
-                          <option value="8">Front size-8</option>
-                          <option value="9">Front size-9</option>
-                          <option value="10">Front size-10</option>
-                          <option value="12">Front size-12</option>
+                          <option value="8px">Front size-8</option>
+                          <option value="9px">Front size-9</option>
+                          <option value="10px">Front size-10</option>
+                          <option value="12px">Front size-12</option>
+                          <option value="14px">Front size-14</option>
+                          <option value="16px">Front size-16</option>
                         </select>
                       </div>
                     </li>
@@ -1173,80 +1212,34 @@
                     history.back();
                     return false;
                   }
-          
                   function searchWord(){
                     $("#searchResults").empty();
                     $("#doSearch").click();
                   }
-                  /*$(function() {
-                    $("#textToSearch").live('keyup', function(event) {
-                    var searchTextField = trim(document.searchForm.textToSearch.value);
-                    //searchTextField = searchTextField.replace(/['"]/g, '');
-
-                      if (searchTextField.length != 0) {
-                        if(searchTextField.indexOf(" ") == -1 ) {
-                          $("#searchResults").empty();
-                          $("#doSearch").click();
-                        }
-                      }
-                    });
-                  });*/
+                  //hide the link for open the Dialog
+                  $(function(){
+                    $("#showDialogMenu").hide();
+                  });
                 </script>
               </div>
               <div data-role="content">
                 <div id="searchResults">
                   <xsl:comment>Show search results</xsl:comment>
                 </div>
-                <!-- First row -->
-                <!--<div data-role="footer" data-theme="b" class="ui-bar ui-grid-b">
-                  <div class="ui-block-a">
-                    <div style="margin: 8px 0 0 10px;">
-                      <a onclick="goBack()" data-role="button" data-icon="back" data-theme="a"
-                        >Back</a>
-                    </div>
-                  </div>
-                  <div class="ui-block-b">
-                    <input id="value" placeholder="page no..." data-theme="b"/>
-                  </div>
-                  <div class="ui-block-c">
-                    <div style="margin: 8px 0 0 10px;">
-                      <a onclick="ass()" data-role="button" data-icon="arrow-r" data-theme="a"
-                        >Go</a>
-                    </div>
-                  </div>
-                </div>-->
-                <!-- Second row -->
-                <!--<div data-role="footer" data-theme="b" class="ui-bar ui-grid-a">
-                  <div class="ui-block-a">
-                    <select name="font-size" id="font-size" data-theme="e" data-native-menu="false">
-                      <option value="8">Front size-8</option>
-                      <option value="9">Front size-9</option>
-                      <option value="10">Front size-10</option>
-                      <option value="12">Front size-12</option>
-                    </select>
-                  </div>
-                  <div class="ui-block-b">
-                    <select name="font-family" id="font-family" data-theme="e"
-                      data-native-menu="false">
-                      <option value="Arial">Font Arial</option>
-                      <option value="Helvetica">Font Helvetica</option>
-                      <option value="Sans-Serif">Font Sans-Serif</option>
-                    </select>
-                  </div>
-                </div>-->
-                <!-- Third row -->
-                <!--<div id="searchDiv" data-theme="b">
-                  <div data-role="header" data-theme="b">
-                    <form name="searchForm" onsubmit="Verifie(searchForm);return false" class="err">
-                      <input type="search" name="textToSearch" id="textToSearch" data-theme="b"
-                        placeholder="Search..."/>
-                      <a id="doSearch" onclick="Verifie(searchForm)" data-theme="b"/>
-                    </form>
-                  </div>
-                  <div id="searchResults">
-                    <!-\- Show the results -\->
-                  </div>
-                </div>-->
+                <xsl:comment>Show up warning message though Dialog box by redirecting to this link</xsl:comment>
+                <a href="menubar.html#menubar_alert" id="showDialogMenu" data-role="button" data-inline="true" data-rel="dialog" data-transition="pop">
+                  <xsl:comment>link:Dialog Box for Show Warnings</xsl:comment>
+                </a>
+              </div>
+            </div>
+            <!-- Warning Dialog Box -->
+            <div data-role="page" id="menubar_alert" data-url="menubar_alert" data-overlay-theme="e">
+              <div data-role="header" data-theme="b">
+                <h1>Warning Alert</h1>
+              </div>
+              <div data-role="content" data-theme="a">
+                <p style="color:orange;text-align:center;" id="warningMSGMenu">Warning Message</p>
+                <a href="meubar.html" data-role="button" data-rel="back" data-theme="b" data-inline="true">OK</a>
               </div>
             </div>
           </body>
