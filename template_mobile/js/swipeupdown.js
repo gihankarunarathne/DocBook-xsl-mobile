@@ -34,7 +34,7 @@
           };
 
           // prevent scrolling
-          if (Math.abs(start.coords[1] - stop.coords[1]) > 10) {
+          if (Math.abs(start.coords[1] - stop.coords[1]) > 80) {
             event.preventDefault();
           }
         }
@@ -42,7 +42,7 @@
         $this.bind(touchMoveEvent, moveHandler).one(touchStopEvent, function (event) {
           $this.unbind(touchMoveEvent, moveHandler);
           if (start && stop) {
-            if (stop.time - start.time < 1000 && Math.abs(start.coords[1] - stop.coords[1]) > 30 && Math.abs(start.coords[0] - stop.coords[0]) < 75) {
+            if (stop.time - start.time < 1200 && Math.abs(start.coords[1] - stop.coords[1]) > 150 && Math.abs(start.coords[0] - stop.coords[0]) < 75) {
               start.origin.trigger("swipeupdown").trigger(start.coords[1] > stop.coords[1] ? "swipeup" : "swipedown");
             }
           }

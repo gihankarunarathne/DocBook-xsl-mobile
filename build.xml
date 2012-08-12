@@ -60,6 +60,12 @@
         <exclude name="**/content/search/**"/>
       </fileset>
     </copy>
+    <!-- Very simple-minded copy to handle the source document's images -->
+    <!-- Customize mobile.xsl to produce ant file to copy images actually used? -->
+    <dirname property="input-images-basedir" file="${input-xml}"/>
+    <copy todir="${output-dir}/content" failonerror="false">
+      <fileset dir="${input-images-basedir}" includes="${input-images-dirs}" />
+    </copy>
   </target>
 
   <target name="index" if="do-search-indexing">

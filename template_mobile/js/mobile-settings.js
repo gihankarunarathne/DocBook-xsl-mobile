@@ -16,13 +16,15 @@ $("div[data-role*='page']").live('pageinit',function(){
   //apply font-size to page
   if ($.cookie('font-size') === null) {
     //console.log($.cookie('font-size'));
-    alert("init cookie");
+    //alert("init cookie");
     setDefFontSize();
     $("html").css('font-size', $.cookie('font-size'));
-    alert(String.concat("ccccccccccc now cookie is " ,$.cookie('font-size')));
+    $(".ui-header .ui-title, .ui-footer .ui-title").css('font-size',$.cookie('font-size'));
+    //alert(String.concat("ccccccccccc now cookie is " ,$.cookie('font-size')));
   }else{
     $("html").css('font-size', $.cookie('font-size'));
-    alert(String.concat("dddddddddddddddddddd now cookie is " ,$.cookie('font-size')));
+    $(".ui-header .ui-title, .ui-footer .ui-title").css('font-size',$.cookie('font-size'));
+    //alert(String.concat("dddddddddddddddddddd now cookie is " ,$.cookie('font-size')));
   }
   //apply font-family to page
   if ($.cookie('font-family') === null) {
@@ -33,6 +35,7 @@ $("div[data-role*='page']").live('pageinit',function(){
   }
 
 });
+
 /********************************************************************************
  * Default settings for cookies.                                               **
  * When cookie value is not set,these will be called and set there value.      **
@@ -69,6 +72,10 @@ function setDefCookie($name,$value){
   });
 }
 
+/************************************************************************
+ * Set the User defined values to the Cookies                         ***
+ ***********************************************************************/
+ 
 // set the expire days for cookies (in days)
 var expireDays = 7;
 // set domain/path name for access cookies
@@ -205,7 +212,7 @@ $(function () {
   });
 });
 /**
- * Recurring methods
+ * Recurring methods for user settings
  */
 function setCookie($name,$value){
   $.cookie( $name , $value , {
@@ -222,7 +229,5 @@ function setCookie($name,$value){
 	$("find").innerHTML=nameVal;
 	$("test").innerHTML=$.cookie(nameVal);
 } */
-
-
 
 //-->

@@ -46,6 +46,9 @@
   <xsl:param name="phrase.propagates.style" select="1"/>
   <xsl:param name="chunk.first.sections" select="1"/>
   <xsl:param name="chunk.section.depth" select="5"/>
+  <xsl:param name="toc.max.depth">5</xsl:param>
+  <xsl:param name="toc.section.depth">4</xsl:param>
+  <xsl:param name="generate.section.toc.level" select="3"></xsl:param>
   <xsl:param name="branding">not set</xsl:param>
   <xsl:param name="brandname"> </xsl:param>
   
@@ -441,13 +444,13 @@
 
     <!-- Display the page title and the main heading(parent) of it-->
     <h4>
-      <xsl:choose>
+      <!--<xsl:choose>
         <xsl:when test="count($up) &gt; 0 and generate-id($up) != generate-id($home)">
           <xsl:apply-templates select="$up" mode="object.title.markup"/>
           <br/>
         </xsl:when>
         <xsl:otherwise>&#160;</xsl:otherwise>
-      </xsl:choose>
+      </xsl:choose>-->
       
       <xsl:apply-templates select="." mode="object.title.markup"/>
     </h4>
@@ -545,7 +548,7 @@
 
       <!-- actions for the events happening on the phone/device -->
       <script type="text/javascript">
-        /*$(function() {
+        $(function() {
           $("<xsl:value-of select="$id_current"/>").live('swipedown', function(event) {
             $.mobile.changePage("<xsl:value-of select="$mobile.toc.filename"/>");
           });
@@ -555,7 +558,7 @@
           $("<xsl:value-of select="$id_current"/>").live('swipeup', function(event) {
             $.mobile.changePage("<xsl:value-of select="$mobile.menubar.filename"/>");
           });
-        });*/
+        });
 					
         $(function() {
           $("<xsl:value-of select="$id_current"/>").live('swipeleft', function(event) {
@@ -1340,9 +1343,9 @@
               href="../css/themes/default/jquery.mobile-1.1.0.min.css"/>
             <script type="text/javascript" src="../js/jquery.min.js">// jquery </script>
             <script type="text/javascript" src="../js/jquery.cookie.min.js">// cookies </script>
-            <!--<script type="text/javascript" src="../js/mobile-menubar.js">
+            <script type="text/javascript" src="../js/mobile-menubar.js">
               <xsl:comment>mobile menubar</xsl:comment>
-            </script>-->
+            </script>
             <script type="text/javascript" src="../js/mobile-settings.js">
                 <xsl:comment>mobile settings</xsl:comment>
               </script>
@@ -1357,10 +1360,12 @@
                 <xsl:value-of select="$id_toc"/>
               </xsl:attribute>
               
-              <script type="text/javascript" src="../js/mobile-menubar.js">
-               <xsl:comment>mobile menubar</xsl:comment>
-              </script>
-              
+              <xsl:variable name="id_toc_ref" select="concat('#',$id_toc)"/>
+              <script type="text/javascript">
+                $( "<xsl:value-of select="$id_toc_ref"/>").bind('pageshow',function(){
+                  $(".ui-collapsible-heading").css('font-size', '13px');
+                });
+            </script>
               <div data-role="header">
                 <h1>Table of Content</h1>
               </div>
