@@ -11,12 +11,13 @@
 * Basic settings for menubar.html
 */
 
+
 // set the expire days for cookies (in days)
 var expireDaysMenu = 7;
 // set domain/path name for access cookies
 var domainPathMenu = '/';
 
-$(function () {
+$(document).bind('pageinit',function () {
 
   $("#font-size").bind("change", function (event, ui) {
   //alert("yy");
@@ -58,3 +59,4 @@ $(function () {
   });
 
 });
+//-->

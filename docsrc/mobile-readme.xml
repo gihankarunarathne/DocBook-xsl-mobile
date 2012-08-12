@@ -3,32 +3,223 @@
 "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
 
 <book>
-<title> Mobile docBook Help </title>
-<bookinfo>
-	<title> Mobile docBook Help - Book info </title>
-	<author>
-		<firstname>Gihan</firstname>
-		<surname>Karunarathne</surname>
-		<email>gckarunarathne@gmail.com</email>
-	<copyright>
-		<year>2012</year>
-		<holder>Gihan Karunarathne</holder>
-	</copyright>
-	</author>
-</bookinfo>
-<preface>
-	<title>Foreword</title>
-	This is a project which is developing under GSoC-2012 and it is targeting on 
-deploy DocBook content over mobile interfaces.
-</preface>
+  <title> Mobile docBook Help </title>
+  <bookinfo>
+    <legalnotice>
+      <para>Permission is hereby granted, free of charge, to any person obtaining a copy of this
+        software and associated documentation files (the <quote>Software</quote>), to deal in the
+        Software without restriction, including without limitation the rights to use, copy, modify,
+        merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
+        persons to whom the Software is furnished to do so, subject to the following conditions:
+        <itemizedlist>
+          <listitem>
+            <para>The above copyright notice and this permission notice shall be included in all
+              copies or substantial portions of the Software.</para>
+          </listitem>
+          <listitem>
+            <para>Except as contained in this notice, the names of individuals credited with
+              contribution to this software shall not be used in advertising or otherwise to promote
+              the sale, use or other dealings in this Software without prior written authorization
+              from the individuals in question.</para>
+          </listitem>
+          <listitem>
+            <para>Any stylesheet derived from this Software that is publicly distributed will be
+              identified with a different name and the version strings in any derived Software will
+              be changed so that no possibility of confusion between the derived package and this
+              Software will exist.</para>
+          </listitem>
+        </itemizedlist>
+      </para>
+      <formalpara>
+        <title>Warranty:</title>
+        <para>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+        INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+        PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL DAVID CRAMER, KASUN GAJASINGHE, OR ANY
+        OTHER CONTRIBUTOR BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+        ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+        SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</para>
+      </formalpara>
+      <para>This package is maintained by Gihan Karunarathne, <email>gckarunarathne AT gmail DOT com</email>
+      and Jirka Kosek, <email>jirka AT kosek DOT cz</email>.
+      </para>
+      <para>This package also includes the following software written and copyrighted by others:
+        <itemizedlist>
+          <listitem>
+            <para>Files in <filename class="directory">template/common/jquery</filename> are
+              copyrighted by <ulink url="http://jquery.com/">JQuery</ulink> under the MIT License.
+              The file <filename>jquery.cookie.js</filename> Copyright (c) 2006 Klaus Hartl under
+              the MIT license.
+            </para>
+            <indexterm>
+              <primary>jquery</primary>
+            </indexterm>
+          </listitem>
+          <listitem>
+            <para>Some files in the <filename class="directory">template/content/search</filename>
+              and <filename class="directory">indexer</filename> directories were originally part of
+              N. Quaine's htmlsearch DITA plugin. The htmlsearch DITA plugin is available from the
+              <ulink url="http://tech.groups.yahoo.com/group/dita-users/files/Demos/">files
+              page</ulink> of the DITA-users yahoogroup. The htmlsearch plugin was released under
+              a BSD-style license. See <filename>indexer/license.txt</filename> for details.
+              <indexterm>
+                <primary>htmlsearch</primary>
+              </indexterm>
+              <indexterm>
+                <primary>DITA</primary>
+                <secondary>htmlsearch plugin</secondary>
+              </indexterm>
+            </para>
+          </listitem>
+          <listitem>
+            <para>Stemmers from the <ulink
+              url="http://snowball.tartarus.org/texts/stemmersoverview.html">Snowball
+              project</ulink> released under a BSD license.
+            </para>
+          </listitem>
+          <listitem>
+            <para>Code from the <ulink url="http://lucene.apache.org/">Apache Lucene</ulink> search
+              engine provides support for tokenizing Chinese, Japanese, and Korean content released
+              under the Apache 2.0 license.
+            </para>
+          </listitem>
+          <listitem>
+            <para>Code that provides weighted search results and some
+              other improvements was graciously donated by <ulink
+              url="http://www.oxygenxml.com">SyncRO Soft
+              Ltd.</ulink>, the publishers of the oXygen XML
+              Editor.
+            </para>
+          </listitem>
+          <listitem>
+            <para>Cosmetic improvements provided by <ulink
+              url="http://docs.openstack.org"
+              >OpenStack</ulink>.
+            </para>
+          </listitem>
+        </itemizedlist> Mobile for DocBook was first developed as a <ulink
+          url="http://code.google.com/soc/">Google Summer of Code</ulink> project.
+      </para>
+    </legalnotice>
+    <copyright>
+      <year>2012</year>
+      <holder>Gihan Karunarathne</holder>
+      <holder>Jirka Kosek</holder>
+    </copyright>
+    <author>
+      <firstname>Jirka</firstname>
+      <surname>Kosek</surname>
+      <email>jirka AT kosek DOT cz</email>
+    </author>
+    <author>
+      <firstname>Gihan</firstname>
+      <surname>Karunarathne</surname>
+      <email>gckarunarathne AT gmail DOT com</email>
+    </author>
+    <pubdate>August 2012</pubdate>
+  </bookinfo>
+  <preface>
+    <title>Foreword</title>
+      This is a project which is developing under GSoC-2012 and it is targeting on
+      deploy DocBook content over mobile interfaces.
+  </preface>
 
-<chapter>	<title>Introduction</title>
-	<para os="win">this is a paragraph for windows </para>
-	<para os="linux">this is a paragraph for Linux</para>
-	<section>	<title>title of section.</title>
-		<para>para inside section</para>
-		<example> example</example>
-	</section>
-</chapter>
+  <chapter>
+    <chapterinfo>
+      <abstract>
+        <!-- This becomes the brief description that appears in search results UNLESS there's a para or phrase with role="summary". If there is, then the role="summary" text wins. -->
+        <para>Overview of the package.</para>
+      </abstract>
+    </chapterinfo>
+    <title>Introduction</title>
+    <para>A common requirement for technical publications groups is to produce a Web-based help
+      format that includes a table of contents pane, a search feature, and an index similar to what
+      you get from the Microsoft HTML Help (.chm) format or Eclipse help. If the content is help for
+      a Web application that is not exposed to the Internet or requires that the user be logged in,
+      then it is impossible to use services like Google to add search.
+      <indexterm class="singular">
+        <primary>features</primary>
+      </indexterm>
+      <itemizedlist>
+        <title>Features</title>
+        <listitem>
+          <para>Sophisticated CSS-based page layout</para>
+        </listitem>
+        <listitem>
+          <para>Client-side search.<indexterm class="singular">
+            <primary>search</primary>
+            <secondary>features</secondary>
+          </indexterm>
+        </para>
+        <itemizedlist>
+          <listitem>
+            <para>Provides full content search of the documentation. Shows the search results with
+              links to chunked pages, and a small description.
+            </para>
+          </listitem>
+          <!--<listitem>
+            <para>Search results scoring/rating - The results are weighted according to how many
+              times the words in search query appears in it, is it bold or not, is in index terms
+              etc. The score out of 5 is shown by small colored boxes after each
+              search-result.
+            </para>
+          </listitem>-->
+          <listitem>
+            <para>Search results can include brief descriptions of the target.
+              <indexterm class="singular">
+                <primary>search</primary>
+                <secondary>description</secondary>
+              </indexterm>
+            </para>
+          </listitem>
+          <listitem>
+            <para>Stemming support for English, French, and German. Stemming support can be added
+              for other languages by implementing a stemmer.
+                <indexterm class="singular">
+                  <primary>search</primary>
+                  <secondary>stemming</secondary>
+                </indexterm>
+              </para>
+            </listitem>
+            <listitem>
+              <para>Support for Chinese, Japanese, and Korean languages using code from the Lucene search engine.
+              </para>
+            </listitem>
+            <listitem>
+              <para>Search highlighting shows where the searched term appears in the results.
+                <indexterm class="singular">
+                  <primary>search</primary>
+                  <secondary>highlighting</secondary>
+                </indexterm>
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+        <listitem>
+          <para>Table of contents (TOC) pane with collapsible toc tree.</para>
+        </listitem>
+        <listitem>
+          <para>Auto-synchronization of content pane and TOC.</para>
+        </listitem>
+        <listitem>
+          <para>Nicely placed small forward, backward, top links</para>
+        </listitem>
+        <listitem>
+          <para>TOC and search pane implemented without the use of a frameset.</para>
+        </listitem>
+        <listitem>
+          <para>An Ant script to generate output. You can use this
+            build file by importing it into your own or use it as a
+            model for integrating this output format into your own
+            build system. Alternatively, you can use this Ant script
+            as a template for creating your own build script or you
+            can use the
+              <ulink url="http://docbkx-tools.sourceforge.net/docbkx-samples/manual.html">
+                Docbkx Maven plugin
+              </ulink>.
+            </para>
+        </listitem>
+      </itemizedlist>
+    </para>
+  </chapter>
 
 </book>

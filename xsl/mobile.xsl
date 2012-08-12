@@ -162,13 +162,8 @@
     <script type="text/javascript" src="../js/jquery.cookie.min.js">
       <xsl:comment>include mobile menubar js</xsl:comment>
     </script>
-    <script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js">
-      <xsl:comment>
-      </xsl:comment>
-    </script>
-    <script type="text/javascript" src="../js/swipeupdown.js">
-      <xsl:comment>
-      </xsl:comment>
+    <script type="text/javascript" src="../js/mobile-menubar.js">
+      <xsl:comment>mobile-menubar</xsl:comment>
     </script>
     <script type="text/javascript" src="../js/mobile-settings.js">
       <xsl:comment>include mobile settings js</xsl:comment>
@@ -185,7 +180,15 @@
         function onMenuKeyDown() {
           $.mobile.changePage("<xsl:value-of select="$mobile.setting.filename"/>");
         }
-			</script>
+		</script>
+    <script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js">
+      <xsl:comment>
+      </xsl:comment>
+    </script>
+    <script type="text/javascript" src="../js/swipeupdown.js">
+      <xsl:comment>
+      </xsl:comment>
+    </script>
   </xsl:template>
 
   <!-- ============================================================ -->
@@ -208,7 +211,9 @@
   <!-- =	user.header.content								                      = -->
   <!-- ============================================================ -->
   <xsl:template name="user.header.content">
-    <xsl:comment> <!-- KEEP this code. --> </xsl:comment>
+    <script type="text/javascript" src="../js/mobile-menubar.js">
+               <xsl:comment>mobile menubar</xsl:comment>
+              </script>
   </xsl:template>
 
   <!-- ============================================================ -->
@@ -354,6 +359,8 @@
           <xsl:attribute name="id">
             <xsl:value-of select="$id_current"/>
           </xsl:attribute>
+          
+          <xsl:call-template name="user.header.content"></xsl:call-template>
           
           <div data-role="header" data-theme="b">
             <xsl:call-template name="body.attributes"/>
@@ -794,9 +801,14 @@
             </style>
             <script type="text/javascript" src="../js/jquery.min.js">// jquery </script>
             <script type="text/javascript" src="../js/jquery.cookie.min.js">// cookies </script>
+            <!--<script type="text/javascript" src="../js/mobile-menubar.js">
+              <xsl:comment>mobile menubar</xsl:comment>
+            </script>-->
+            <script type="text/javascript" src="../js/mobile-settings.js">
+                <xsl:comment>mobile settings</xsl:comment>
+              </script>
             <script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js">// jquery mobile </script>
             <script type="text/javascript" src="../js/swipeupdown.js">//swipe</script>
-            <script type="text/javascript" src="../js/mobile-settings.js">//mobile-settings</script>
           </head>
           <body>
 
@@ -807,6 +819,10 @@
               <xsl:attribute name="id">
                 <xsl:value-of select="$id_settings"/>
               </xsl:attribute>
+              
+              <script type="text/javascript" src="../js/mobile-menubar.js">
+               <xsl:comment>mobile menubar</xsl:comment>
+              </script>
 
               <div data-role="header">
                 <h1>Settings</h1>
@@ -1087,19 +1103,13 @@
             <script type="text/javascript" src="../js/jquery.cookie.min.js">
               <xsl:comment>cookies</xsl:comment>
             </script>
-            <script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js">
-              <xsl:comment>jquerymobile</xsl:comment>
-            </script>
-            <script type="text/javascript" src="../js/swipeupdown.js">
-              <xsl:comment>swipe</xsl:comment>
-            </script>
+            <!--<script type="text/javascript" src="../js/mobile-menubar.js">
+               <xsl:comment>mobile menubar</xsl:comment>
+              </script>-->
             <script type="text/javascript" src="../js/mobile-settings.js">
-              <xsl:comment>mobile-settings</xsl:comment>
-            </script>
-            <script type="text/javascript" src="../js/mobile-menubar.js">
-              <xsl:comment>mobile-menubar</xsl:comment>
-            </script>
-
+                <xsl:comment>mobile settings</xsl:comment>
+              </script>
+            
             <script type="text/javascript" src="search/l10n.js">
               <xsl:comment>l10n</xsl:comment>
             </script>
@@ -1124,6 +1134,12 @@
               <xsl:comment>index-3</xsl:comment>
             </script>
             <!-- End of index js -->
+            <script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js">
+              <xsl:comment>jquerymobile</xsl:comment>
+            </script>
+            <script type="text/javascript" src="../js/swipeupdown.js">
+              <xsl:comment>swipe</xsl:comment>
+            </script>
           </head>
           <body>
             <!-- Set id for menubar.html as its name -->
@@ -1133,6 +1149,10 @@
               <xsl:attribute name="id">
                 <xsl:value-of select="$id_menubar"/>
               </xsl:attribute>
+              
+              <script type="text/javascript" src="../js/mobile-menubar.js">
+               <xsl:comment>mobile menubar</xsl:comment>
+              </script>
 
               <div data-role="header" data-theme="b">
                 <h1>Menu Bar</h1>
@@ -1285,9 +1305,14 @@
               href="../css/themes/default/jquery.mobile-1.1.0.min.css"/>
             <script type="text/javascript" src="../js/jquery.min.js">// jquery </script>
             <script type="text/javascript" src="../js/jquery.cookie.min.js">// cookies </script>
+            <!--<script type="text/javascript" src="../js/mobile-menubar.js">
+              <xsl:comment>mobile menubar</xsl:comment>
+            </script>-->
+            <script type="text/javascript" src="../js/mobile-settings.js">
+                <xsl:comment>mobile settings</xsl:comment>
+              </script>
             <script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js">// jquery mobile </script>
             <!-- <script type="text/javascript" src="../js/swipeupdown.js">//swipe</script>-->
-            <script type="text/javascript" src="../js/mobile-settings.js">//mobile-settings</script>
           </head>
           <body>
             <!-- Set id for toc.html as its name -->
@@ -1296,6 +1321,11 @@
               <xsl:attribute name="id">
                 <xsl:value-of select="$id_toc"/>
               </xsl:attribute>
+              
+              <script type="text/javascript" src="../js/mobile-menubar.js">
+               <xsl:comment>mobile menubar</xsl:comment>
+              </script>
+              
               <div data-role="header">
                 <h1>Table of Content</h1>
               </div>

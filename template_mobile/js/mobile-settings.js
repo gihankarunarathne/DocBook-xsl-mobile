@@ -12,23 +12,62 @@
 /**
  * When a page is loading apply the mobile-settings
  */
-$(function(){
+$("div[data-role*='page']").live('pageinit',function(){
   //apply font-size to page
   if ($.cookie('font-size') === null) {
+    //console.log($.cookie('font-size'));
+    alert("init cookie");
     setDefFontSize();
     $("html").css('font-size', $.cookie('font-size'));
+    alert(String.concat("ccccccccccc now cookie is " ,$.cookie('font-size')));
   }else{
     $("html").css('font-size', $.cookie('font-size'));
+    alert(String.concat("dddddddddddddddddddd now cookie is " ,$.cookie('font-size')));
   }
   //apply font-family to page
   if ($.cookie('font-family') === null) {
-    setDefFontSize();
+    setDefFontFamily();
     $("html").css('font-family', $.cookie('font-family'));
   }else{
     $("html").css('font-family', $.cookie('font-family'));
   }
 
 });
+/********************************************************************************
+ * Default settings for cookies.                                               **
+ * When cookie value is not set,these will be called and set there value.      **
+ * Also,user can set them later                                                **.
+ ********************************************************************************/
+// set the default expire days for cookies (in days)
+var defExpireDays = 7;
+// set default domain/path name for access cookies
+var defDomainPath = '/';
+// set default font-size
+var defFontSize = '12px';
+// set default font-family
+var defFontFamily = 'Helvetica';
+
+/**
+ * Default value for font-size
+ */
+function setDefFontSize(){
+  setDefCookie('font-size',defFontSize);
+}
+/**
+ * Default value for font-family
+ */
+function setDefFontFamily(){
+  setDefCookie('font-family' , defFontFamily);
+}
+/**
+ * Recurring method for set default values
+ */
+function setDefCookie($name,$value){
+  $.cookie($name , $value , {
+    expires: defExpireDays,
+    path: defDomainPath
+  });
+}
 
 // set the expire days for cookies (in days)
 var expireDays = 7;
@@ -184,40 +223,6 @@ function setCookie($name,$value){
 	$("test").innerHTML=$.cookie(nameVal);
 } */
 
-/********************************************************************************
- * Default settings for cookies.                                               **
- * When cookie value is not set,these will be called and set there value.      **
- * Also,user can set them later                                                **.
- ********************************************************************************/
-// set the default expire days for cookies (in days)
-var defExpireDays = 7;
-// set default domain/path name for access cookies
-var defDomainPath = '/';
-// set default font-size
-var defFontSize = '12px';
-// set default font-family
-var defFontFamily = 'Helvetica';
 
-/**
- * Default value for font-size
- */
-function setDefFontSize(){
-  setDefCookie('font-size',defFontSize);
-}
-/**
- * Default value for font-family
- */
-function setDefFontFamily(){
-  setDefCookie('font-family' , defFontFamily);
-}
-/**
- * Recurring method for set default values
- */
-function setDefCookie($name,$value){
-  $.cookie($name , $value , {
-    expires: defExpireDays,
-    path: defDomainPath
-  });
-}
 
 //-->
