@@ -15,19 +15,19 @@
     </exec>
   </target>
 
-  <target name="copy_mobile_output" description="JARs the Task">
+  <target name="copy_mobile_output" description="Copy the Mobile output to Android Project dir">
     <copy todir="${android.file.dir}/${app_output_dir}/assets/www">
       <fileset dir="${android.file.dir}/../www"/>
     </copy>
   </target>
 
-  <target name="android_unsigned_apk" depends="create-android-project , copy_mobile_output">
+  <target name="android.unsigned.apk" depends="create-android-project , copy_mobile_output">
     <exec executable="ant" dir="${android.file.dir}/${app_output_dir}">
       <arg value="release"/>
     </exec>
   </target>
 
-  <target name="android_debug_apk" depends="create-android-project , copy_mobile_output">
+  <target name="android.debug.apk" depends="create-android-project , copy_mobile_output">
     <exec executable="ant" dir="${android.file.dir}/${app_output_dir}">
       <arg value="debug"/>
     </exec>

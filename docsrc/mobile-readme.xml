@@ -45,7 +45,7 @@
       <para>This package also includes the following software written and copyrighted by others:
         <itemizedlist>
           <listitem>
-            <para>Files in <filename class="directory">template/common/jquery</filename> are
+            <para>Files in <filename class="directory">template_mobile/js</filename> are
               copyrighted by <ulink url="http://jquery.com/">JQuery</ulink> under the MIT License.
               The file <filename>jquery.cookie.js</filename> Copyright (c) 2006 Klaus Hartl under
               the MIT license.
@@ -55,7 +55,7 @@
             </indexterm>
           </listitem>
           <listitem>
-            <para>Some files in the <filename class="directory">template/content/search</filename>
+            <para>Some files in the <filename class="directory">template_mobile/content/search</filename>
               and <filename class="directory">indexer</filename> directories were originally part of
               N. Quaine's htmlsearch DITA plugin. The htmlsearch DITA plugin is available from the
               <ulink url="http://tech.groups.yahoo.com/group/dita-users/files/Demos/">files
@@ -117,12 +117,6 @@
     </author>
     <pubdate>August 2012</pubdate>
   </bookinfo>
-  <preface>
-    <title>Foreword</title>
-      <para>This is a project which is developing under GSoC-2012 and it is targeting on
-      deploy DocBook content over mobile interfaces.</para>
-  </preface>
-
   <chapter>
     <chapterinfo>
       <abstract>
@@ -233,7 +227,7 @@
         </abstract>
       </sectioninfo>
       <title>Basic overview</title>
-      <para>
+      <para role="summary">
         
       </para>
     </section>
@@ -440,7 +434,7 @@ suppress.footer.navigation=0</programlisting></para>
           </step>
         </procedure>
       </section>
-      <section>
+      <!--<section>
         <sectioninfo>
           <abstract>
             <para>Installation On Apple Mac</para>
@@ -448,7 +442,7 @@ suppress.footer.navigation=0</programlisting></para>
         </sectioninfo>
         <title>On Apple Mac</title>
         <para role="summary"> How to install dependancies to buid Mobile package. </para>
-      </section>
+      </section>-->
     </section>
     <section>
       <title>Common Mobile Output</title>
@@ -461,6 +455,242 @@ suppress.footer.navigation=0</programlisting></para>
       <para role="summary">
         How to set configurations and create a Android app.
       </para>
+      
+      <para> Before you begin building Android applications, understand that all Android
+        applications must be digitally signed before the system will install them on an emulator or
+        device. There are two ways to do this: with a debug key (for immediate testing on an
+        emulator or development device) or with a private key (for application distribution).
+        Following sections discribes how to do that with automated Mobile package</para>
+      <section>
+        <title>Build Android apps</title>
+        <para role="summary">How to build Android app using Ant</para>
+        <blockquote><para>Dependancies for build Android app</para></blockquote>
+        <procedure>
+          <title>Install and configure Android</title>
+          <step>
+            <para> Download the <ulink url="http://developer.android.com/sdk/index.html">Android
+                SDK</ulink> from developer site. </para>
+          </step>
+          <step>
+            <para>
+              Extract it into directory which you like to install it. Ex: it extracted to <filename> android-sdk-linux
+              </filename>.
+            </para>
+          </step>
+          <step>
+            <para>Execute the file :</para>
+            <substeps>
+
+              <step>
+                <para>On Windows, double-click the SDK Manager.exe file at the root of the Android
+                  SDK directory.</para>
+              </step>
+              <step>
+                <para>On Mac or Linux, open a terminal and navigate to the tools/ directory in the
+                  Android SDK, then execute android sdk</para>
+              </step>
+            </substeps>
+            <para> Ex: In Linux,execute the file android in tools directory which is inside
+              extracted folder <filename> android-sdk-linux/tools/android </filename>. Then <ulink
+                url="http://developer.android.com/sdk/installing/adding-packages.html">add Platforms
+                and Packages</ulink>. </para>
+          </step>
+          <step><para>
+            Add the directories which include "<filename>android</filename>" and "<filename>adb</filename>" into PATH variables.
+          </para></step>
+        </procedure>
+        
+        <itemizedlist>
+          <title>Basic configurations for building Android app</title>
+          <listitem>
+            <blockquote><para>Configurations on "build.properties"</para></blockquote>
+            <para>The configurations for the Ant build file locate in Android directory (Ex:<filename>mobile/android/build.properties</filename>)</para>
+            <para>
+              #path to output directory
+              <programlisting>app_output_dir=output</programlisting>
+              Set the path for output directory of Android project. 
+            </para>
+          </listitem>
+          <listitem>
+            <blockquote><para>Configurations on "android.config"</para></blockquote>
+            <para>The configurations for Android project locate in Android directory file called <filename>mobile/android/android.config</filename>.</para>
+            <para>     
+              # PhoneGap version
+              <programlisting> VERSION=1.8.1</programlisting>
+              
+              # name / path to the android project. Ex:
+              <programlisting>PROJECT_PATH=./AndroidDocBookApp</programlisting>
+              
+              # package/directory structure inside the "src" of the Android project. Ex:
+              <programlisting>PACKAGE=docbook.xsl.mobile</programlisting>
+              
+              # Name of the creating android activity class name. Also this will be the name of build .apk app. Ex:
+              <programlisting>ACTIVITY=DocBookMobileAppActivity</programlisting>
+              
+              <important><para>IMPORTANT :
+              This means the platform number of Android target vertion which is given under
+              <programlisting>$ android list targets</programlisting>
+                Please refer for more details about <ulink url="http://developer.android.com/tools/devices/managing-avds-cmdline.html#listingtargets"> Managing AVDs</ulink>.
+              <warning><para> Also check the "Type: Platform", but not "Type: Add-on".</para></warning>Example:
+              </para></important>
+              <programlisting>TARGET=1</programlisting>
+            </para>
+          </listitem>
+          
+        </itemizedlist>
+        <section>
+          <title>Build Android app in Debug Mode</title>
+        <procedure>
+          
+          <step>
+            <para>Before going to Build using Ant, you must setup
+              "xsl/mobile/android/android.config" file.</para>
+            <important>
+              <para>IMPORTANT : This means the platform number of Android target vertion which is
+                given under <programlisting>$ android list targets</programlisting> Please refer for
+                more details : http://developer.android.com/tools/devices/managing-avds-cmdline.html
+                Also check the "Type: Platform", but not "Type: Add-on".</para>
+            </important>
+          </step>
+          <step>
+            <para>Go to the directory where "build.xml" is took place for Android (
+              xsl/mobile/andriod). Then run following command from Terminal :</para>
+
+            <programlisting>$ ant android.debug.apk</programlisting>
+
+            <para>Or go to the directory where "build.xml" (main ant scripts for mobile ) is took
+              place ( xsl/mobile/ ) and run command :</para>
+
+            <programlisting>$ ant mobile.android.debug.apk</programlisting>
+
+            <note>
+              <para>NOTE: This will created an android app which is signed by debug 'keystore'. You
+                can not distribute it for end-users. But can be use for debuging purpose.For more
+                details about Expiry of the Debug Certificate, refer <ulink
+                  url="http://developer.android.com/tools/publishing/app-signing.html#debugmode"
+                  >Signing in Debug Mode</ulink> in Android Documentation and for any issue.</para>
+            </note>
+          </step>
+        </procedure>
+        </section>
+        <section>
+          <title>Build Android app in Release Mode</title>
+        <procedure>
+          
+          <important>
+            <para>It is important to note that, when you are ready to release your application for
+              end-users, you must sign it with a suitable private key. You cannot publish an
+              application that is signed with the debug key generated by the SDK tools. For more
+              details about the <ulink
+                url="http://developer.android.com/tools/publishing/app-signing.html#signing">
+                Android signing process </ulink>refer Android documentation.</para>
+          </important>
+          <itemizedlist>
+            <para>When your application is ready for release to other users, you must:</para>
+            <listitem>
+              <para>Obtain a suitable private key</para>
+            </listitem>
+            <listitem>
+              <para>Compile the application in release mode</para>
+            </listitem>
+          </itemizedlist>
+          <step>
+            <title>Obtain a suitable private key</title>
+            <para> In preparation for signing your application, you must first ensure that you have
+              a suitable private key with which to sign. A suitable private key is one that: <itemizedlist>
+                <listitem>
+                  <para>Is in your possession</para>
+                </listitem>
+                <listitem>
+                  <para>Represents the personal, corporate, or organizational entity to be
+                    identified with the application</para>
+                </listitem>
+                <listitem>
+                  <para>Has a validity period that exceeds the expected lifespan of the application
+                    or application suite. A validity period of more than 25 years is
+                    recommended.</para>
+                </listitem>
+                <listitem>
+                  <para>Is not the debug key generated by the Android SDK tools.</para>
+                </listitem>
+              </itemizedlist> The key may be self-signed. If you do not have a suitable key, you
+              must generate one using Keytool. Make sure that you have Keytool available, as
+              described in <ulink
+                url="http://developer.android.com/tools/publishing/app-signing.html#setup">Basic
+                Setup</ulink>. Here's an example of a Keytool command that generates a private key: <programlisting>$ keytool -genkey -v -keystore my-release-key.keystore</programlisting>
+              <programlisting>-alias alias_name -keyalg RSA -keysize 2048 -validity 10000</programlisting>
+              Running the example command above, Keytool prompts you to provide passwords for the
+              keystore and key, and to provide the Distinguished Name fields for your key. It then
+              generates the keystore as a file called my-release-key.keystore. For more details
+              about key generating refer to <ulink
+                url="http://developer.android.com/tools/publishing/app-signing.html#cert"> Android
+                documentaion</ulink> Or <ulink
+                url="http://docs.oracle.com/javase/6/docs/technotes/tools/windows/keytool.html"
+                >keytools documentaion</ulink>
+            </para>
+          </step>
+          <step>
+            <title>Compile the application in release mode</title>
+            <para> To specify your keystore and alias, open the project ant.properties file (found
+              in the root of the project directory Ex:<filename>mobile/android/output-dir</filename>
+              ) and add entries for key.store and key.alias. For example: <programlisting>key.store=path/to/my.keystore</programlisting>
+              <programlisting>key.alias=mykeystore</programlisting>
+            </para>
+            <substeps>
+              <step>
+                <para> Open a command-line and navigate to the root of your project directory (Ex:
+                    <filename>mobile/android/output-dir/</filename> ). </para>
+              </step>
+              <step>
+                <para> Use Ant to compile your project in release mode:
+                  <programlisting>$ ant release</programlisting>
+                </para>
+              </step>
+              <step>
+                <para>When prompted, enter you keystore and alias passwords.</para>
+              </step>
+            </substeps>
+            <para>This creates your Android application <filename>.apk</filename> file inside the
+              project bin/ directory, named <filename>your_project_name-release.apk</filename>. This
+                <filename>.apk</filename> file has been signed with the private key specified in
+                <filename>ant.properties</filename>. It's ready for installation and
+              distribution.</para>
+          </step> 
+        </procedure> 
+      </section>
+      </section>
+      <section>
+        <title>Testing Android app</title>
+        <para role="summary"/>
+        <procedure>
+          <title>Testing Android app</title>
+          <step>
+            <para>Execute following command and make an Emulator : 
+              <programlisting>$ android avd</programlisting>
+              <note>
+                <para>NOTE: When You are creating an Emulator, make sure the its platform version is
+                  compatible with your application.</para>
+              </note>
+            </para>
+          </step>
+          <step>
+            <para>After create an Emulator, then run it. To install created Android app, go to the
+              output directory of app and then also for 'bin' directory inside it.
+              <programlisting>$ android install path/to/.apk</programlisting>
+              Ex: If you are in xsl/mobile directory,
+              <programlisting>$ android install andriod/output/bin/DocBookMobileAppActivity-debug.apk</programlisting>
+            </para>
+          </step>
+          <step>
+            <para> If you already installed current app that you want to install, then you can
+              reinstall it by: 
+              <programlisting>$ android install [-r] path/to/.apk</programlisting>
+              Ex: If you are in xsl/mobile directory,
+              <programlisting>$ android install -r andriod/output/bin/DocBookMobileAppActivity-debug.apk</programlisting>
+            </para>
+          </step>
+        </procedure>
+      </section>
     </section>
     <section>
       <title>Generating iOS app</title>
@@ -554,7 +784,7 @@ suppress.footer.navigation=0</programlisting></para>
         verison is used to stem the user's input on the search form. Currently the search mechanism
         supports stemming for English and German. In addition, Java stemmers are included for the
         following languages. Therefore, to support these languages, you only need to implement the
-        stemmer in JavaScript and add it to the template. If you do undertake this task, please
+        stemmer in JavaScript and add it to the template_mobile. If you do undertake this task, please
         consider contributing the JavaScript version back to this project and to <ulink
           url="http://snowball.tartarus.org/texts/stemmersoverview.html">Martin Porter's
           project</ulink>.
@@ -798,7 +1028,7 @@ input-images-dirs=images/**,figures/**,graphics/**</programlisting></para>
             <para>Then, name the JS stemmer exactly like this:
               <filename>{$language-code}_stemmer.js</filename>. For example, for Italian(it),
               name it as, <filename>it_stemmer.js</filename>. Then, copy it to the
-              <filename>docbook-mobile/template/content/search/stemmers/</filename> folder. (I
+              <filename>docbook-mobile/template_mobile/content/search/stemmers/</filename> folder. (I
               assumed <filename>docbook-mobile</filename> is the root folder for mobile.) <note>
                 <para>Make sure you changed the <code>mobile.indexer.language</code> property in
                   <filename>build.properties</filename> to your language. </para>
