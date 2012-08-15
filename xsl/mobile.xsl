@@ -356,7 +356,11 @@
 
     <xsl:call-template name="toc.html"/>
     
-    <!--<xsl:call-template name="index.html"/>-->
+    <xsl:choose>
+      <xsl:when test="'iOS'=$mobile.device.platform">
+        <xsl:call-template name="index.html"/>
+      </xsl:when>
+    </xsl:choose>
 
     <xsl:call-template name="settings.html"/>
 
@@ -783,11 +787,13 @@
         <html>
           <head>
             <link rel="shortcut icon" href="favicon.ico"/>
-            <meta http-equiv="Refresh" content="1; URL=content/{$default.topic}"/>
             <title><xsl:value-of select="//title[1]"/>&#160; </title>
           </head>
-          <body> If not automatically redirected, click here: <a href="content/ch01.html"
-              >content/ch01.html</a>
+          <body> If not automatically redirected, click here: <a id="redir" href="content/{$mobile.start.filename}"
+              >Start Reading...</a>
+            <script type="text/javascript">
+              document.getElementById("redir").click();
+            </script>
           </body>
         </html>
       </xsl:with-param>
