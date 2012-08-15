@@ -2,7 +2,7 @@
 
   <dirname property="ant.file.dir" file="${ant.file.DocBookMobileBuild}"/>
   <loadproperties srcFile="${ant.file.dir}/build.properties"/>
-  <property name="mobile.include.search.tab" value="true"/>
+  <property name="mobile.include.search" value="true"/>
 
   <include file="${ant.file.dir}/android/build.xml" as="nested"/>
 
@@ -19,7 +19,7 @@
     <equals arg1="${validate-against-dtd}" arg2="true"/>
   </condition>
   <condition property="do-search-indexing">
-    <equals arg1="${mobile.include.search.tab}" arg2="true"/>
+    <equals arg1="${mobile.include.search}" arg2="true"/>
   </condition>
 
   <target name="validate" if="perform-validation-dtd">
@@ -32,8 +32,8 @@
 
     <xslt in="${input-xml}" out="${output-dir}/dummy.html" style="${stylesheet-path}"
       scanincludeddirectories="false" classpath="${xslt-processor-classpath}">
-      <param name="mobile.include.search.tab" expression="${mobile.include.search.tab}"
-        if="mobile.include.search.tab"/>
+      <param name="mobile.include.search" expression="${mobile.include.search}"
+        if="mobile.include.search"/>
       <param name="output_file_name" expression="${output_file_name}"/>
       <param name="mobile.base.dir" expression="${output-dir}" if="output-dir"/>
       <param name="mobile.toc.filename" expression="${mobile.toc.filename}" if="mobile.toc.filename"/>

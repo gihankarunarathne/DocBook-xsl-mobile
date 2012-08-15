@@ -328,110 +328,6 @@
               <para>The way webhelp indexer is invoked is made easier after the XSL-1.76.1 release. </para>
             </note></para>
         </step>-->
-          <step id="edit-build-properties">
-            <para>In a text editor, edit the <filename>build.properties</filename> file in the
-              mobile directory and make the changes indicated by the comments.<important>
-                <para>You must set appropriate values for <code>xslt-processor-classpath</code>,
-                    <code>xercesImpl.jar</code>, and <code>xml-apis.jar</code>.</para>
-              </important>. Note that not all DocBook parameters are passed in to the xsls by the
-                <filename>build.xml</filename> by default. You may need to modify the
-                <filename>build.xml</filename> to pass in some DocBook
-              parameters.
-              <programlisting>
-# The path (relative to the build.xml file) to your input document.
-# To use your own input document, create a build.xml file of your own
-# and import this build.xml.
-input-xml=docsrc/readme.xml
-              </programlisting>
-              <programlisting>
-# The directory in which to put the output files. 
-# This directory is created if it does not exist.
-output-dir=docs
-
-# If you are using a customization layer that imports mobile.xsl, use
-# this property to point to it. 
-stylesheet-path=${ant.file.dir}/xsl/mobile.xsl
-
-# If your document has image directories that need to be copied
-# to the output directory, you can list patterns here. 
-# See the Ant documentation for fileset for documentation
-# on patterns.
-#input-images-dirs=images/**,figures/**,graphics/**
-
-# By default, the ant script assumes your images are stored
-# in the same directory as the input-xml. If you store your
-# image directories in another directory, specify it here.
-# and uncomment this line.
-#input-images-basedir=/path/to/image/location
-
-# Modify the follosing so that they point to your local
-# copy of the jars indicated:
-# * Saxon 6.5 jar
-# * Xerces 2: xercesImpl.jar
-# * xml-commons: xml-apis.jar
-xslt-processor-classpath=/usr/share/java/saxon-6.5.5.jar 
-xercesImpl.jar=/usr/share/java/xercesImpl.jar
-xml-apis.jar=/usr/share/java/xml-apis.jar
-
-# For non-ns version only, this validates the document 
-# against a dtd.
-validate-against-dtd=true
-
-# The extension for files to be indexed (html/htm/xhtml etc.)
-html.extension=html
-
-# Set this to false if you don't need a search tab.
-mobile.include.search.tab=true
-
-# indexer-language is used to tell the search indexer which language
-# the docbook is written.  This will be used to identify the correct
-# stemmer, and punctuations that differs from language to language.
-# see the documentation for details. en=English, fr=French, de=German,
-# zh=Chinese, ja=Japanese etc.  
-mobile.indexer.language=en
-
-# Enables/Disables stemming
-# Stemming allows better querying for the search
-enable.stemming=true
-
-# Set admon.graphics to 1 to user graphics for note, tip, etc.
-admon.graphics=0
-suppress.footer.navigation=0</programlisting></para>
-          </step>
-          <step>
-            <para>Test the package by running the command <code>ant mobile
-                -Doutput-dir=test-ouput</code> at the command line in the mobile directory. It
-              should generate a copy of this documentation in the <filename class="directory"
-                >doc</filename> directory. Type <code>start test-output\index.html</code> to open
-              the output in a browser. Once you have confirmed that the process worked, you can
-              delete the <filename class="directory">test-output</filename> directory. <important>
-                <para>The Saxon 6.5 jar should <emphasis>not</emphasis> be in your
-                    <envar>CLASSPATH</envar> when you generate the mobile output. If you have any
-                  problems, try running ant with an empty <envar>CLASSPATH</envar>.</para>
-              </important></para>
-          </step>
-          <step>
-            <para>To process your own document, simply refer to this package from another
-                <filename>build.xml</filename> in arbitrary location on your system:</para>
-            <substeps>
-              <step>
-                <para>Create a new <filename>build.xml</filename> file that defines the name of your
-                  source file, the desired output directory, and imports the
-                    <filename>build.xml</filename> from this package. For example:
-                  <programlisting>&lt;project&gt;
-  &lt;property name="input-xml" value="<replaceable>path-to/yourfile.xml</replaceable>"/&gt;
-  &lt;property name="input-images-dirs" value="<replaceable>images/** figures/** graphics/**</replaceable>"/&gt;
-  &lt;property name="output-dir" value="<replaceable>path-to/desired-output-dir</replaceable>"/&gt;
-  &lt;import file="<replaceable>path-to/docbook-mobile/</replaceable>build.xml"/&gt;
-&lt;/project&gt;</programlisting></para>
-              </step>
-              <step>
-                <para>From the directory containing your newly created
-                    <filename>build.xml</filename> file, type <code>ant mobile</code> to build your
-                  document.</para>
-              </step>
-            </substeps>
-          </step>
         </procedure>
       </section>
       <!--<section>
@@ -449,6 +345,163 @@ suppress.footer.navigation=0</programlisting></para>
       <para role="summary">
         How to build Mobile output without specifying Mobile platform.
       </para>
+      <procedure>
+      <step id="edit-build-properties">
+        <para>In a text editor, edit the <filename>build.properties</filename> file in the
+          mobile directory and make the changes indicated by the comments.<important>
+            <para>You must set appropriate values for <code>xslt-processor-classpath</code>,
+              <code>xercesImpl.jar</code>, and <code>xml-apis.jar</code>.</para>
+          </important>. Note that not all DocBook parameters are passed in to the xsls by the
+          <filename>build.xml</filename> by default. You may need to modify the
+          <filename>build.xml</filename> to pass in some DocBook
+          parameters.
+        </para>
+        <itemizedlist>
+          <listitem>
+            <para>The path (relative to the build.xml file) to your input document. To use your own
+              input document, create a build.xml file of your own and import this build.xml.
+              <programlisting>input-xml=docsrc/readme.xml</programlisting>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              The directory in which to put the output files. 
+              This directory is created if it does not exist.
+              <programlisting>output-dir=www</programlisting>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              The set of files to be excluded:
+              Add excluded files separated by ","/ comma.
+              Ex: ch02.*.html,ch03.html => will be excluded all files those are started with [ch02. and .html and any thing between] files and ch03.html file.
+              <programlisting>indexer-excluded-files=menubar.html,settings.html,toc.html</programlisting>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              The file name of the menu bar of mobile application
+              <programlisting>mobile.menubar.filename=menubar.html</programlisting>
+              The file name of the settings of mobile application
+              <programlisting>mobile.settings.filename=settings.html</programlisting>
+              The file name of the table of content of mobile application
+              <programlisting>mobile.toc.filename=toc.html</programlisting>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              If you are using a customization layer that imports mobile.xsl, use
+              this property to point to it. 
+              <programlisting>stylesheet-path=${ant.file.dir}/xsl/mobile.xsl</programlisting>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              If your document has image directories that need to be copied
+              to the output directory, you can list patterns here. 
+              See the Ant documentation for fileset for documentation
+              on patterns.
+              <programlisting>input-images-dirs=images/**,figures/**,graphics/**</programlisting>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              By default, the ant script assumes your images are stored
+              in the same directory as the input-xml. If you store your
+              image directories in another directory, specify it here.
+              and uncomment this line.
+              <programlisting>input-images-basedir=/path/to/image/location</programlisting>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              Modify the follosing so that they point to your local
+              copy of the jars indicated:
+              <programlisting>
+ * Saxon 6.5 jar
+ * Xerces 2: xercesImpl.jar
+ * xml-commons: xml-apis.jar
+ 
+xslt-processor-classpath=/usr/share/java/saxon-6.5.5.jar 
+xercesImpl.jar=/usr/share/java/xercesImpl.jar
+xml-apis.jar=/usr/share/java/xml-apis.jar
+              </programlisting>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              For non-ns version only, this validates the document 
+              against a dtd.
+              <programlisting>validate-against-dtd=true</programlisting>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              The extension for files to be indexed (html/htm/xhtml etc.)
+              <programlisting>html.extension=html</programlisting>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              indexer-language is used to tell the search indexer which language
+              the docbook is written.  This will be used to identify the correct
+              stemmer, and punctuations that differs from language to language.
+              see the documentation for details. en=English, fr=French, de=German,
+              zh=Chinese, ja=Japanese etc.  
+              <programlisting>mobile.indexer.language=en</programlisting>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              Enables/Disables stemming
+              Stemming allows better querying for the search
+              <programlisting>enable.stemming=true</programlisting>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              Set admon.graphics to 1 to user graphics for note, tip, etc.
+              <programlisting>admon.graphics=0</programlisting>
+              <programlisting>suppress.footer.navigation=0</programlisting>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </step>
+      <step>
+        <para>Test the package by running the command <code>ant mobile
+          -Doutput-dir=test-ouput</code> at the command line in the mobile directory. It
+          should generate a copy of this documentation in the <filename class="directory"
+            >doc</filename> directory. Open <filename>test-output\index.html</filename> 
+          the output in a browser. Once you have confirmed that the process worked, you can
+          delete the <filename class="directory">test-output</filename> directory. <important>
+            <para>The Saxon 6.5 jar should <emphasis>not</emphasis> be in your
+              <envar>CLASSPATH</envar> when you generate the mobile output. If you have any
+              problems, try running ant with an empty <envar>CLASSPATH</envar>.</para>
+          </important></para>
+      </step>
+      <step>
+        <para>To process your own document, simply refer to this package from another
+          <filename>build.xml</filename> in arbitrary location on your system:</para>
+        <substeps>
+          <step>
+            <para>Create a new <filename>build.xml</filename> file that defines the name of your
+              source file, the desired output directory, and imports the
+              <filename>build.xml</filename> from this package. For example:
+              <programlisting>&lt;project&gt;
+  &lt;property name="input-xml" value="<replaceable>path-to/yourfile.xml</replaceable>"/&gt;
+  &lt;property name="input-images-dirs" value="<replaceable>images/** figures/** graphics/**</replaceable>"/&gt;
+  &lt;property name="output-dir" value="<replaceable>path-to/desired-output-dir</replaceable>"/&gt;
+  &lt;import file="<replaceable>path-to/docbook-mobile/</replaceable>build.xml"/&gt;
+&lt;/project&gt;</programlisting></para>
+          </step>
+          <step>
+            <para>From the directory containing your newly created
+              <filename>build.xml</filename> file, type <code>ant mobile</code> to build your
+              document.</para>
+          </step>
+        </substeps>
+      </step>
+      </procedure>
     </section>
     <section>
       <title>Generating Android app</title>
@@ -694,9 +747,79 @@ suppress.footer.navigation=0</programlisting></para>
     </section>
     <section>
       <title>Generating iOS app</title>
-      <para role="summary">
-        How to set configurations and create a iOS app for iPhones.
-      </para>
+      <para role="summary"> How to set configurations and create a iOS app for iPhones. This guide
+        describes how to set up your development environment for Apache PhoneGap and create an
+        application. </para>
+      <note>
+        <para> This instructions based on PhoneGap documentation on <ulink
+            url="http://docs.phonegap.com/en/2.0.0/guide_getting-started_ios_index.md.html#Getting%20Started%20with%20iOS"
+            >iOS</ulink> development. Refer PhoneGap documentation to more details. </para>
+      </note>
+      <procedure>
+        <step>
+          <title>Generate DocBook Mobile content</title>
+          <para>using terminal run the command
+          <programlisting>ant mobile.iOS</programlisting>.
+            This will create html content inside <filename>mobile/www</filename> directory.
+          </para>
+        </step>
+        <step><title>Requirements :</title>
+        <substeps>
+          <step>
+            <para>Xcode 4.x</para>
+          </step>
+          <step><para>Intel-based computer with Mac OS X Lion or greater (10.7+)</para></step>
+          <step><para>Necessary for installing on device:</para>
+          <itemizedlist>
+            <listitem><para>Apple iOS device (iPhone, iPad, iPod Touch)</para></listitem>
+            <listitem><para>iOS developer certificate</para></listitem>
+          </itemizedlist></step>
+        </substeps>
+        </step>
+        <step>
+          <title>Install the iOS SDK and Configure PhoneGap :</title>
+          <substeps>
+            <step><para>Install Xcode from the <ulink url="http://itunes.apple.com/us/app/xcode/id497799835?mt=12">Mac App Store</ulink></para></step>
+            <step><para>Necessary PhoneGap packages locate in <filename>mobile/iOS</filename></para></step>
+          </substeps>
+        </step>
+        <step>
+          <title>Setup New Project</title>
+          <substeps>
+            <step><para>Go to <filename>mobile/iOS</filename> directory.</para></step>
+            <step><para>Drag the copied <filename>bin</filename> folder to the <application>Terminal.app</application> icon in your Dock, it should launch a new Terminal window</para></step>
+            <step>
+              <para>Type in ./create &lt;project_folder_path&gt; &lt;bundle_id&gt;
+                &lt;project_name&gt; then press "Enter"</para>
+            </step>
+            <step><para>Locate your new project folder that you just created</para></step>
+            <step><para>Launch the <filename>.xcodeproj</filename> file in the folder</para></step>
+          </substeps>
+        </step>
+        <step>
+          <title>Set up DocBook Mobile content</title>
+          <substeps>
+            <step><para>Select the folder named <filename>www</filename> in the Xcode Project Navigator</para></step>
+            <step><para>Replace this <filename>www</filename> folder with <filename>mobile/www</filename>.</para></step>
+          </substeps>
+        </step>
+        <step>
+          <title>Deploy to Simulator :</title>
+          <substeps>
+            <step>
+              <para>Change the Target in the Scheme drop-down menu on the toolbar to your project.
+              </para>
+            </step>
+            <step>
+              <para>Change the <application>Active SDK</application> in the Scheme drop-down menu on the toolbar to <application>iOS [version] Simulator</application>.</para>
+            </step>
+            <step>
+              <para>Select the Run button in your project window's toolbar</para>
+            </step>
+          </substeps>
+        </step>
+        
+      </procedure>
     </section>
     
     <section>
@@ -905,24 +1028,6 @@ input-images-dirs=images/**,figures/**,graphics/**</programlisting></para>
         <title>Mobile Settings</title>
         <para role="summary">
           An overview about Settings page.
-        </para>
-      </section>
-    </section>
-    <section>
-      <title>Developing on Mobile platform</title>
-      <para role="summary">
-        Overview about how Mobile is working on given platforms.
-      </para>
-      <section>
-        <title>Developing on Android</title>
-        <para role="summary">
-          Basic development procedure on Android Mobile platform.
-        </para>
-      </section>
-      <section>
-        <title>Developing on iOS</title>
-        <para role="summary">
-          Basic development procedure on iOS Mobile platform.
         </para>
       </section>
     </section>

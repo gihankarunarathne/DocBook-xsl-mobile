@@ -357,6 +357,9 @@
     <xsl:call-template name="toc.html"/>
     
     <xsl:choose>
+      <xsl:when test="'none'=$mobile.device.platform">
+        <xsl:call-template name="index.html"/>
+      </xsl:when>
       <xsl:when test="'iOS'=$mobile.device.platform">
         <xsl:call-template name="index.html"/>
       </xsl:when>
