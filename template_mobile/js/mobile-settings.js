@@ -33,6 +33,26 @@ $("div[data-role*='page']").live('pageinit',function(){
   }else{
     $("html").css('font-family', $.cookie('font-family'));
   }
+  /**************************************/
+  if ($.cookie('menubardirection') === null ){
+    setDefmenubardirection();
+  }
+  if ($.cookie('tocdirection') === null ){
+    setDeftocdirection();
+  }
+  /*************************************/
+  if ($.cookie('popupmenubar') === null ){
+    setDefpopupmenubar();
+  }
+  if ($.cookie('popuptoc') === null ){
+    setDefpopuptoc();
+  }
+  if ($.cookie('prevpage') === null ){
+    setDefPrevPage();
+  }
+  if ($.cookie('nextpage') === null ){
+    setDefNextPage();
+  }
 
 });
 
@@ -49,6 +69,20 @@ var defDomainPath = '/';
 var defFontSize = '12px';
 // set default font-family
 var defFontFamily = 'Helvetica';
+// set default menubar direction
+var defmenubardirection ='swipeUp';
+// set default toc direction
+var deftocdirection = 'swipeDown';
+// set default popup menubar
+var defpopupmenubar = 'showMenuBar';
+// set default pop up toc
+var defpopuptoc = 'showtoc';
+// set defaulf Prev Page swipe direction
+var defPrevPage = 'swipeRight';
+// set defaulf Next Page swipe direction
+var defNextPage = 'swipeLeft';
+// remember-search-word
+var defremembersearchword = 'remembersearchword';
 
 /**
  * Default value for font-size
@@ -62,7 +96,51 @@ function setDefFontSize(){
 function setDefFontFamily(){
   setDefCookie('font-family' , defFontFamily);
 }
+/**********************************************
+ * Default value for menubardirection
+ */
+function setDefmenubardirection(){
+  setDefCookie('menubardirection' , defmenubardirection);
+}
 /**
+ * Default value for tocdirection
+ */
+function setDeftocdirection(){
+  setDefCookie('tocdirection' , deftocdirection);
+}
+/**********************************************
+ * Default value for popupmenubar
+ */
+function setDefpopupmenubar(){
+  setDefCookie('popupmenubar' , defpopupmenubar);
+}
+/**
+ * Default value for popuptoc
+ */
+function setDefpopuptoc(){
+  setDefCookie('popuptoc' , defpopuptoc);
+}
+/***********************************************
+ * Default value for Prev Page swipe direction
+ */
+function setDefPrevPage(){
+  setDefCookie('prevpage' , defPrevPage);
+}
+/**
+ * Default value for Next Page swipe direction
+ */
+function setDefNextPage(){
+  setDefCookie('nextpage' , defNextPage);
+}
+/************Advance settings ************/
+/**
+ * Default value for remembersearchword
+ */
+function setDefremembersearchword(){
+  setDefCookie('remembersearchword' , defremembersearchword);
+}
+
+/**********************************************
  * Recurring method for set default values
  */
 function setDefCookie($name,$value){
@@ -83,10 +161,19 @@ var domainPath = '/';
 
 $(function () {
 
-  $("#select-menu-bar-position").bind("change", function (event, ui) {
+  $("#select-menu-bar-direction").bind("change", function (event, ui) {
     try {
-      setCookie('menubarposition', $("#select-menu-bar-position").val() );
-        //alert(String.concat("cookie is created with ",$("#select-menu-bar-position").val()," and now cookie is " ,$.cookie('menubarposition')));
+      setCookie('menubardirection', $("#select-menu-bar-direction").val() );
+      if($.cookie('menubardirection')=== $.cookie('tocdirection') ){
+        if( "swipeUp"===$.cookie('menubardirection') ){
+          setCookie('tocdirection',"swipeDown");
+        }else if( "swipeDown"===$.cookie('menubardirection') ){
+          setCookie('tocdirection',"swipeUp");
+        }
+        // refresh page after reset values
+        refreshSelectMenus();
+      }
+        //alert(String.concat("cookie is created with ",$("#select-menu-bar-direction").val()," and now cookie is " ,$.cookie('menubardirection')));
     } catch (err) {
       txt = "There was an error on this page.\n\n";
       txt += "Error description: " + err.message + "\n\n";
@@ -99,10 +186,19 @@ $(function () {
   });
 
 
-  $("#select-toc-position").bind("change", function (event, ui) {
+  $("#select-toc-direction").bind("change", function (event, ui) {
     try {
-        setCookie('tocposition', $("#select-toc-position").val());
-        //alert(String.concat("cookie is created with ",$("#select-toc-position").val()," and now cookie is " ,$.cookie('tocposition')));
+      setCookie('tocdirection', $("#select-toc-direction").val());
+      if($.cookie('menubardirection')=== $.cookie('tocdirection') ){
+        if( "swipeUp"===$.cookie('tocdirection') ){
+          setCookie('menubardirection',"swipeDown");
+        }else if( "swipeDown"===$.cookie('tocdirection') ){
+          setCookie('menubardirection',"swipeUp");
+        }
+        // refresh page after reset values
+        refreshSelectMenus();
+      }  
+        //alert(String.concat("cookie is created with ",$("#select-toc-direction").val()," and now cookie is " ,$.cookie('tocdirection')));
     } catch (err) {
       txt = "There was an error on this page.\n\n";
       txt += "Error description: " + err.message + "\n\n";
@@ -112,40 +208,8 @@ $(function () {
       $('#showDialog').click();
     }
   });
-
-  //page navigation
-
-  $("#select-prev-page-direction").bind("change", function (event, ui) {
-    try {
-        setCookie('prevpage', $("#select-prev-page-direction").val());
-        //alert(String.concat("cookie is created with ",$("#select-prev-page-direction").val()," and now cookie is " ,$.cookie('prevpage')));
-    } catch (err) {
-      txt = "There was an error on this page.\n\n";
-      txt += "Error description: " + err.message + "\n\n";
-      txt += "Click OK to continue.\n\n";
-      //alert(txt);
-      $('#warningMSG').html(txt);
-      $('#showDialog').click();
-    }
-  });
-
-
-  $("#select-next-page-direction").bind("change", function (event, ui) {
-    try {
-      setCookie('nextpage', $("#select-next-page-direction").val());
-      //alert(String.concat("cookie is created with ",$("#select-next-page-direction").val()," and now cookie is " ,$.cookie('nextpage')));
-    } catch (err) {
-      txt = "There was an error on this page.\n\n";
-      txt += "Error description: " + err.message + "\n\n";
-      txt += "Click OK to continue.\n\n";
-      //alert(txt);
-      $('#warningMSG').html(txt);
-      $('#showDialog').click();
-    }
-  });
-
-
-  //pop up menus
+  
+  /************ pop up menus **************************************/
   $("#select-pop-up-menu-bar").bind("change", function (event, ui) {
     try {
       setCookie('popupmenubar', $("#select-pop-up-menu-bar").val());
@@ -175,16 +239,65 @@ $(function () {
     }
   });
 
+  /*************************** page navigation ******************************/
+
+  $("#select-prev-page-direction").bind("change", function (event, ui) {
+    try {
+        setCookie('prevpage', $("#select-prev-page-direction").val());
+        if($.cookie('nextpage')=== $.cookie('prevpage') ){
+          if( "swipeRight"===$.cookie('prevpage') ){
+            setCookie('nextpage',"swipeLeft");
+          }else if( "swipeLeft"===$.cookie('prevpage') ){
+            setCookie('nextpage',"swipeRight");
+          }
+          // refresh page after reset values
+          refreshSelectMenus();
+        }
+        //alert(String.concat("cookie is created with ",$("#select-prev-page-direction").val()," and now cookie is " ,$.cookie('prevpage')));
+    } catch (err) {
+      txt = "There was an error on this page.\n\n";
+      txt += "Error description: " + err.message + "\n\n";
+      txt += "Click OK to continue.\n\n";
+      //alert(txt);
+      $('#warningMSG').html(txt);
+      $('#showDialog').click();
+    }
+  });
+
+
+  $("#select-next-page-direction").bind("change", function (event, ui) {
+    try {
+      setCookie('nextpage', $("#select-next-page-direction").val());
+      if($.cookie('nextpage')=== $.cookie('prevpage') ){
+          if( "swipeRight"===$.cookie('nextpage') ){
+            setCookie('prevpage',"swipeLeft");
+          }else if( "swipeLeft"===$.cookie('nextpage') ){
+            setCookie('prevpage',"swipeRight");
+          }
+        // refresh page after reset values
+        refreshSelectMenus();
+        }
+      //alert(String.concat("cookie is created with ",$("#select-next-page-direction").val()," and now cookie is " ,$.cookie('nextpage')));
+    } catch (err) {
+      txt = "There was an error on this page.\n\n";
+      txt += "Error description: " + err.message + "\n\n";
+      txt += "Click OK to continue.\n\n";
+      //alert(txt);
+      $('#warningMSG').html(txt);
+      $('#showDialog').click();
+    }
+  });
+
   /*************************************************************************************
    **       Advance Settings                                                          **
    *************************************************************************************/
 
-  $("#remember-page").bind("change", function (event, ui) {
+  $("#remember-search-word").bind("change", function (event, ui) {
     //alert("lets rem page");
     try {
-      setCookie('rememberpage', $("#remember-page").val());
-      //alert(String.concat("cookie is created with ",$("#remember-page").val()," and now cookie is " ,$.cookie('rememberpage')));
-      //document.getElementById("btest").innerHTML = $.cookie('rememberpage');
+      setCookie('remembersearchword', $("#remember-search-word").val());
+      //alert(String.concat("cookie is created with ",$("#remember-search-word").val()," and now cookie is " ,$.cookie('remembersearchword')));
+      //document.getElementById("btest").innerHTML = $.cookie('remembersearchword');
     } catch (err) {
       txt = "There was an error on this page.\n\n";
       txt += "Error description: " + err.message + "\n\n";
@@ -210,6 +323,23 @@ $(function () {
       $('#showDialog').click();
     }
   });
+  
+  // reset Values to default values when click "Reset" button
+  $("#reset-settings").bind("change", function (event, ui) {
+    alert("reset");
+    setDefFontSize();
+    setDefFontFamily();
+    setDefmenubardirection();
+    setDeftocdirection();
+    setDefpopupmenubar();
+    setDefpopuptoc();
+    setDefPrevPage();
+    setDefNextPage();
+    // refresh page after reset values
+    refreshSelectMenus();
+    
+  });
+  
 });
 /**
  * Recurring methods for user settings

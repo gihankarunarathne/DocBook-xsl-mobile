@@ -552,7 +552,7 @@
 
       <!-- actions for the events happening on the phone/device -->
       <script type="text/javascript">
-        $(function() {
+        /*$(function() {
           $("<xsl:value-of select="$id_current"/>").live('swipedown', function(event) {
             $.mobile.changePage("<xsl:value-of select="$mobile.toc.filename"/>");
           });
@@ -571,6 +571,55 @@
 				 		
           $("<xsl:value-of select="$id_current"/>").live('swiperight', function(event) {
             $.mobile.changePage("<xsl:value-of select="$nav_next"/>");
+          });
+        });*/
+        
+        $(function() {
+          var $nextPage="<xsl:value-of select="$nav_prev"/>";
+          var $prevPage="<xsl:value-of select="$nav_next"/>";
+          var $toc="<xsl:value-of select="$mobile.toc.filename"/>";
+          var $menubar="<xsl:value-of select="$mobile.menubar.filename"/>";
+        
+          $("<xsl:value-of select="$id_current"/>").live('swipedown', function(event) {
+            if("showMenuBar"===$.cookie('popupmenubar') ){
+              if("swipeDown"===$.cookie('menubardirection') ){
+                $.mobile.changePage($menubar);
+              }
+            }
+            if("showtoc"===$.cookie('popuptoc') ) {
+              if("swipeDown"===$.cookie('tocdirection') ){
+                $.mobile.changePage($toc);
+              }
+            }
+          });
+				
+          $("<xsl:value-of select="$id_current"/>").live('swipeup', function(event) {
+            if("showMenuBar"===$.cookie('popupmenubar')){
+              if("swipeUp"===$.cookie('menubardirection') ){
+                $.mobile.changePage($menubar);
+              }
+            }
+            if("showtoc"===$.cookie('popuptoc')) {
+              if("swipeUp"===$.cookie('tocdirection') ){
+                $.mobile.changePage($toc);
+              }
+            }
+          });
+          
+          $("<xsl:value-of select="$id_current"/>").live('swipeleft', function(event) {
+            if("swipeLeft" === $.cookie('nextpage') ){
+              $.mobile.changePage($nextPage);
+            }else{
+              $.mobile.changePage($prevPage);
+            }
+          });
+				 		
+          $("<xsl:value-of select="$id_current"/>").live('swiperight', function(event) {
+            if("swipeRight" === $.cookie('prevpage') ){
+              $.mobile.changePage($prevPage);
+            }else{
+              $.mobile.changePage($nextPage);
+            }
           });
         });
 			</script>
@@ -788,8 +837,15 @@
           <head>
             <link rel="shortcut icon" href="favicon.ico"/>
             <title><xsl:value-of select="//title[1]"/>&#160; </title>
+            <xsl:choose>
+              <xsl:when test="'iOS'=$mobile.device.platform">
+                <script type="text/javascript" charset="utf-8" src="../js/cordova-1.8.1.js">
+                  <xsl:comment></xsl:comment>
+                </script>
+              </xsl:when>
+            </xsl:choose>
           </head>
-          <body> If not automatically redirected, click here: <a id="redir" href="content/{$mobile.start.filename}"
+          <body> If not automatically redirected, click here to: <a id="redir" href="content/{$mobile.start.filename}"
               >Start Reading...</a>
             <script type="text/javascript">
               document.getElementById("redir").click();
@@ -881,7 +937,18 @@
                     });
                     //hide the link for open Warning Dialog Box
                     $("#showDialog").hide();
+                    refreshSelectMenus();
                   });
+                  function refreshSelectMenus(){
+                    //set the select menu values
+                    $("#select-menu-bar-direction").val($.cookie('menubardirection')).selectmenu('refresh', true);
+                    $("#select-toc-direction").val($.cookie('tocdirection')).selectmenu('refresh', true);
+                    $("#select-pop-up-menu-bar").val($.cookie('popupmenubar')).selectmenu('refresh', true);
+                    $("#select-pop-up-toc").val($.cookie('popuptoc')).selectmenu('refresh', true);
+                    $("#select-prev-page-direction").val($.cookie('prevpage')).selectmenu('refresh', true);
+                    $("#select-next-page-direction").val($.cookie('nextpage')).selectmenu('refresh', true);
+                    $("#reset-settings").val("cancel").selectmenu('refresh', true);
+                  }
                 </script>
               </div>
 
@@ -917,28 +984,28 @@
                     <!-- =  Positioning ToC / Menubar          = -->
                     <!-- ======================================= -->
                     <li>
-                      <label for="select-menu-bar-position" class="select" data-mini="true">
+                      <label for="select-menu-bar-direction" class="select" data-mini="true">
                         <strong>
-                          <em> Menu Bar Tap Position </em>
+                          <em> Menu Bar Swipe Direction </em>
                         </strong>
                       </label>
-                      <select name="select-menu-bar-position" id="select-menu-bar-position"
+                      <select name="select-menu-bar-direction" id="select-menu-bar-direction"
                         data-theme="e" data-icon="arrow-d" data-native-menu="false">
-                        <option value="tapUpper">Tap Upper Screen</option>
-                        <option value="tapLower">Tap Lower Screen</option>
+                        <option value="swipeDown">Swipe Down</option>
+                        <option value="swipeUp">Swipe Up</option>
                       </select>
                     </li>
 
                     <li>
-                      <label for="select-toc-position" class="select" data-mini="true">
+                      <label for="select-toc-direction" class="select" data-mini="true">
                         <strong>
-                          <em>ToC Tap Position </em>
+                          <em>ToC Swipe Direction </em>
                         </strong>
                       </label>
-                      <select name="select-toc-position" id="select-toc-position" data-theme="e"
+                      <select name="select-toc-direction" id="select-toc-direction" data-theme="e"
                         data-icon="arrow-d" data-native-menu="false">
-                        <option value="tapUpper">Tap Upper Screen</option>
-                        <option value="tapLower">Tap Lower Screen</option>
+                        <option value="swipeDown">Swipe Down</option>
+                        <option value="swipeUp">Swipe Up</option>
                       </select>
                     </li>
 
@@ -1010,37 +1077,21 @@
                 <form>
                   <ul data-role="listview" data-inset="true" data-theme="b">
                     <li data-role="list-divider">Advance Settings</li>
-                    <!-- SETTING FOR FLIP SWITCH <li>
-                      <div class="ui-grid-a">
-                        <div class="ui-block-a">
-                          <label for="remember-page" data-mini="true">Remember Page</label>
-                        </div>
-                        <div class="ui-block-b">
-                          <div class="ui-block-a"/>
-                          <div class="ui-block-b">
-                            <select name="remember-page" id="remember-page" data-role="slider"
-                              data-mini="true" data-pos="right">
-                              <option value="off">Off</option>
-                              <option value="on">On</option>
-                            </select>
-                          </div>
-                        </div>
-                      </div>
-                    </li>-->
-
+                    
                     <li>
-                      <label for="remember-page" data-mini="true" class="select">
+                      <label for="remember-search-word" data-mini="true" class="select">
                         <strong>
-                          <em>Remember Page</em>
+                          <em>Remember Last Search Word</em>
                         </strong>
                       </label>
-                      <select name="remember-page" id="remember-page" data-icon="arrow-d"
-                        data-native-menu="false">
+                      <select name="remember-search-word" id="remember-search-word"
+                        data-icon="arrow-d" data-native-menu="false">
                         <option value="off">Off</option>
                         <option value="on">On</option>
                       </select>
                     </li>
-                    <li>
+                    
+                    <!--<li>
                       <label for="voice-search" data-mini="true" class="select">
                         <strong>
                           <em>Voice Search </em>
@@ -1051,7 +1102,7 @@
                         <option value="off">Off</option>
                         <option value="on">On</option>
                       </select>
-                    </li>
+                    </li>-->
                     <!-- ======================================= -->
                     <!-- =  Reset Settings                     = -->
                     <!-- ======================================= -->
@@ -1147,9 +1198,9 @@
             <script type="text/javascript" src="../js/jquery.cookie.min.js">
               <xsl:comment>cookies</xsl:comment>
             </script>
-            <!--<script type="text/javascript" src="../js/mobile-menubar.js">
+            <script type="text/javascript" src="../js/mobile-menubar.js">
                <xsl:comment>mobile menubar</xsl:comment>
-              </script>-->
+            </script>
             <script type="text/javascript" src="../js/mobile-settings.js">
                 <xsl:comment>mobile settings</xsl:comment>
               </script>
@@ -1194,13 +1245,8 @@
                 <xsl:value-of select="$id_menubar"/>
               </xsl:attribute>
               
-              <script type="text/javascript" src="../js/mobile-menubar.js">
-               <xsl:comment>mobile menubar</xsl:comment>
-              </script>
-
               <div data-role="header" data-theme="b">
                 <h1>Menu Bar</h1>
-                <a href="settings.html" data-icon="gear" class="ui-btn-right">Settings</a>
                 <hr/>
                 <!-- First Raw -->
                 <!--<div data-role="navbar" data-theme="b">
@@ -1283,6 +1329,20 @@
                   //hide the link for open the Dialog
                   $(function(){
                     $("#showDialogMenu").hide();
+                  });
+                  //set values from cookies
+                  $("#id_menubar_html").live('pageshow',function(){
+                   
+                    //set the select menu focused
+                    $("#font-size").val($.cookie('font-size')).selectmenu('refresh', true);
+                    $("#font-family").val($.cookie('font-family')).selectmenu('refresh', true);
+                    if($.cookie('textToSearch') !== null){
+                      if("on" === $.cookie('remembersearchword') ) {
+                        $("#textToSearch").val($.cookie('textToSearch'));
+                      }else{
+                        $("#textToSearch").val('');
+                      }
+                    }
                   });
                 </script>
               </div>
