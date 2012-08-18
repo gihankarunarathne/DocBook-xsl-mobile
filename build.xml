@@ -5,6 +5,7 @@
   <property name="mobile.include.search" value="true"/>
 
   <include file="${ant.file.dir}/android/build.xml" as="nested"/>
+  <include file="${ant.file.dir}/iOS/build.xml" as="nested"/>
 
   <property name="extensions.dir" value="${ant.file.dir}/../extensions"/>
 
@@ -139,19 +140,11 @@
   <target name="mobile" depends="validate , chunk , add_resources , index"/>
 
   <!-- Android -->
-  <target name="mobile.android.unsigned.apk">
+  <target name="mobile.android">
     <property name="mobile.device.platform" value="android"/>
     <antcall>
       <target name="mobile"/>
-      <target name="nested.android.unsigned.apk"/>
-    </antcall>
-  </target>
-
-  <target name="mobile.android.debug.apk">
-    <property name="mobile.device.platform" value="android"/>
-    <antcall>
-      <target name="mobile"/>
-      <target name="nested.android.debug.apk"/>
+      <target name="nested.android"/>
     </antcall>
   </target>
 
@@ -160,18 +153,26 @@
     <property name="mobile.device.platform" value="iOS"/>
     <antcall>
       <target name="mobile"/>
+      <target name="nested.iOS"/>
+    </antcall>
+  </target>
+
+  <!-- BlackBerry -->
+  <target name="mobile.blackberry">
+    <property name="mobile.device.platform" value="blackberry"/>
+    <antcall>
+      <target name="mobile"/>
+      <target name="nested.blackberry"/>
     </antcall>
   </target>
 
   <!-- windows phone -->
-  <target name="mobile.windows.phone" depends="mobile , index"/>
+  <target name="mobile.windows.phone" depends="mobile"/>
 
   <target name="clean">
     <delete dir="${output-dir}"/>
-
     <delete file="${prof-file}"/>
     <delete dir="${prof-dir}"/>
-
   </target>
 
   <target name="help">

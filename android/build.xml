@@ -4,33 +4,14 @@
   <dirname property="android.file.dir" file="${ant.file.AndroidBuild}"/>
   <loadproperties srcFile="${android.file.dir}/build.properties"/>
 
-  <target name="clean" description="Delete all generated files">
-    <delete dir="${android.file.dir}/${app_output_dir}"/>
+  <target name="clean" description="Delete all Mobile Output files">
+    <delete dir="${android.file.dir}/bin/templates/project/assets/www"/>
   </target>
 
-  <target name="create-android-project" depends="clean" description="Create an Android project">
-    <!-- <mkdir dir="${app_output_dir}" /> -->
-    <exec executable="bash" newenvironment="false" dir="${android.file.dir}">
-      <arg value="create"/>
-    </exec>
-  </target>
-
-  <target name="copy_mobile_output" description="Copy the Mobile output to Android Project dir">
-    <copy todir="${android.file.dir}/${app_output_dir}/assets/www">
+  <target name="android" depends="clean" description="Copy the Mobile output to Android Project dir">
+    <copy todir="${android.file.dir}/bin/templates/project/assets/www">
       <fileset dir="${android.file.dir}/../www"/>
     </copy>
-  </target>
-
-  <target name="android.unsigned.apk" depends="create-android-project , copy_mobile_output">
-    <exec executable="ant" dir="${android.file.dir}/${app_output_dir}">
-      <arg value="release"/>
-    </exec>
-  </target>
-
-  <target name="android.debug.apk" depends="create-android-project , copy_mobile_output">
-    <exec executable="ant" dir="${android.file.dir}/${app_output_dir}">
-      <arg value="debug"/>
-    </exec>
   </target>
 
   <target name="help" description="User help for Android build.">

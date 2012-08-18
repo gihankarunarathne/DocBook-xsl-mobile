@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="iOSBuild" basedir="." default="help">
+
+  <dirname property="ios.file.dir" file="${ant.file.iOSBuild}"/>
+  <loadproperties srcFile="${ios.file.dir}/build.properties"/>
+
+  <target name="clean" description="Delete all Mobile Output files">
+    <delete dir="${ios.file.dir}/bin/templates/project/www/js"/>
+    <delete dir="${ios.file.dir}/bin/templates/project/www/css"/>
+    <delete dir="${ios.file.dir}/bin/templates/project/www/content"/>
+    <delete file="${ios.file.dir}/bin/templates/project/www/index.html"/>
+  </target>
+
+  <target name="iOS" depends="clean" description="Copy the Mobile output to iOS Project dir">
+    <copy todir="${ios.file.dir}/bin/templates/project/www/content">
+      <fileset dir="${ios.file.dir}/../www/content"/>
+    </copy>
+    <copy todir="${ios.file.dir}/bin/templates/project/www/js">
+      <fileset dir="${ios.file.dir}/../www/js"/>
+    </copy>
+    <copy todir="${ios.file.dir}/bin/templates/project/www/css">
+      <fileset dir="${ios.file.dir}/../www/css"/>
+    </copy>
+    <copy file="${ios.file.dir}/../www/index.html" todir="${ios.file.dir}/bin/templates/project/www/"/>
+  </target>
+
+  <target name="help" description="User help for Android build.">
+    <echo> android_unsigned_apk : To create an unsigned .apk, it can't distribute to end-users.
+      android_debug_apk : To create an debug .apk by using debug key. create-android-project :
+      Create an android project and copy necessary packages form PhoneGap clean : Clean the output
+      directory </echo>
+  </target>
+
+</project>

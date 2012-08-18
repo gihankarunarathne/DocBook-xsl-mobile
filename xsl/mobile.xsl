@@ -30,6 +30,8 @@
   <xsl:param name="mobile.default.topic"/>
   <xsl:param name="mobile.autolabel">0</xsl:param>
   <xsl:param name="mobile.device.platform">none</xsl:param>
+  <xsl:param name="mobile.cordova.version">2.0.0</xsl:param>
+  <xsl:param name="mobile.cordova.path" select="concat('../','cordova-',$mobile.cordova.version,'.js')"/>
 
   <!-- ============================================================ -->
   <!-- =	default configuration for build mobile out put	        = -->
@@ -151,7 +153,10 @@
 
     <xsl:choose>
       <xsl:when test="'android'=$mobile.device.platform">
-        <script type="text/javascript" charset="utf-8" src="../js/cordova-1.8.1.js">
+        <script type="text/javascript" charset="utf-8">
+          <xsl:attribute name="src">
+            <xsl:value-of select="$mobile.cordova.path"/>
+          </xsl:attribute>
           <xsl:comment>
           </xsl:comment>
           </script>
@@ -840,16 +845,19 @@
           <head>
             <link rel="shortcut icon" href="favicon.ico"/>
             <title><xsl:value-of select="//title[1]"/>&#160; </title>
+          </head>
+          <body> If not automatically redirected, click here to: <a id="redir" href="content/{$mobile.start.filename}"
+              >Start Reading...</a>
             <xsl:choose>
               <xsl:when test="'iOS'=$mobile.device.platform">
-                <script type="text/javascript" charset="utf-8" src="../js/cordova-1.8.1.js">
+                <script type="text/javascript" charset="utf-8">
+                  <xsl:attribute name="src">
+                    <xsl:value-of select="$mobile.cordova.path"/>
+                  </xsl:attribute>
                   <xsl:comment></xsl:comment>
                 </script>
               </xsl:when>
             </xsl:choose>
-          </head>
-          <body> If not automatically redirected, click here to: <a id="redir" href="content/{$mobile.start.filename}"
-              >Start Reading...</a>
             <script type="text/javascript">
               document.getElementById("redir").click();
             </script>
@@ -890,7 +898,10 @@
             <!-- add resources to Android device -->
             <xsl:choose>
               <xsl:when test="'android'=$mobile.device.platform">
-                <script type="text/javascript" charset="utf-8" src="../js/cordova-1.8.1.js">
+                <script type="text/javascript" charset="utf-8">
+                  <xsl:attribute name="src">
+                    <xsl:value-of select="$mobile.cordova.path"/>
+                  </xsl:attribute>
                   <xsl:comment>
                   </xsl:comment>
                 </script>
@@ -1172,7 +1183,10 @@
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
             <xsl:choose>
               <xsl:when test="'android'=$mobile.device.platform">
-                <script type="text/javascript" charset="utf-8" src="../js/cordova-1.8.1.js">
+                <script type="text/javascript" charset="utf-8">
+                  <xsl:attribute name="src">
+                    <xsl:value-of select="$mobile.cordova.path"/>
+                  </xsl:attribute>
                   <xsl:comment>
                   </xsl:comment>
                 </script>
@@ -1402,7 +1416,10 @@
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
             <xsl:choose>
               <xsl:when test="'android'=$mobile.device.platform">
-                <script type="text/javascript" charset="utf-8" src="../js/cordova-1.8.1.js">
+                <script type="text/javascript" charset="utf-8">
+                  <xsl:attribute name="src">
+                    <xsl:value-of select="$mobile.cordova.path"/>
+                  </xsl:attribute>
                   <xsl:comment>
                   </xsl:comment>
                 </script>
