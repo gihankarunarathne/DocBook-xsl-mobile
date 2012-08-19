@@ -227,14 +227,38 @@
         </abstract>
       </sectioninfo>
       <title>Basic overview</title>
-      <para role="summary">
-        
+      <para role="summary"> DocBook Mobile package take an input DocBook XML document(Ex:
+        <filename>mobile/docsrc/mobile-readme.xml</filename>) and produce mobile application such as Android
+          application(<application>.apk</application>), iOS application, BlackBerry, Windows Phone
+        so on those can be installed in particular devices.After it is installed, it can use for
+        browsing original DocBook document including features like collapsible table of contents,
+        searchable index and full-text searching. </para>
+      <para>
+        This package is using DocBook xsl style sheets to generate html content which is used for build apps using PhoneGap from <filename>mobile/docsrc/mobile-readme.xml</filename>.First it validate the documentation, build html content, add common resources and do indexing. Then according to the user command request, output will copied into particular mobile platform directory or execute necessary command/s.
+        <important><para>Sometimes html content depends on particular mobile device platform. Currently built content can be found in <filename>mobile/www</filename> directory.</para></important>
+      </para>
+      <para>
+        Then PhoneGap replaces it's <filename>www</filename> directory with Mobile output and build app for particular application with a specific method to given platform. Currently PhoneGap is supporting for seven mobile platforms. That means, you can get the Mobile output from this package and use it to build app for any of those platforms. For a quick start,
+        <itemizedlist>
+          <listitem><para> <ulink url="http://docs.phonegap.com/en/2.0.0/guide_getting-started_android_index.md.html#Getting%20Started%20with%20Android">Getting Started with Android</ulink></para></listitem>
+          <listitem><para>
+            <ulink url="http://docs.phonegap.com/en/2.0.0/guide_getting-started_blackberry_index.md.html#Getting%20Started%20with%20Blackberry">Getting Started with Blackberry</ulink>
+          </para></listitem>
+          <listitem><para><ulink url="http://docs.phonegap.com/en/2.0.0/guide_getting-started_ios_index.md.html#Getting%20Started%20with%20iOS">Getting Started with iOS</ulink></para></listitem>
+          <listitem><para><ulink url="http://docs.phonegap.com/en/2.0.0/guide_getting-started_symbian_index.md.html#Getting%20Started%20with%20Symbian">Getting Started with Symbian</ulink></para></listitem>
+          <listitem><para><ulink url="http://docs.phonegap.com/en/2.0.0/guide_getting-started_webos_index.md.html#Getting%20Started%20with%20WebOS">Getting Started with WebOS</ulink></para></listitem>
+          <listitem><para><ulink url="http://docs.phonegap.com/en/2.0.0/guide_getting-started_windows-phone_index.md.html#Getting%20Started%20with%20Windows%20Phone">Getting Started with Windows Phone</ulink></para></listitem>
+          <listitem><para><ulink url="http://docs.phonegap.com/en/2.0.0/guide_getting-started_bada_index.md.html#Getting%20Started%20with%20Bada">Getting Started with Bada</ulink></para></listitem>
+        </itemizedlist>
+      </para>
+      <para>
+        Also it uses <ulink url="http://jquerymobile.com/">JQueryMobile</ulink> javascript framework to add more functionalities into your application. See the JQueryMobile documentation for <ulink url="http://jquerymobile.com/demos/1.1.1/docs/pages/phonegap.html">Integrage with PhoneGap</ulink>.
       </para>
     </section>
     <section>
       <title>Common Dependencies</title>
       <para role="summary">
-        Following section and sub-sections describe how to install package dependancies on Ubuntu, Windows and Apple Mac.
+        Following section and sub-sections describe how to install package dependancies on Ubuntu and Windows.
       </para>
       <section>
         <sectioninfo>
@@ -244,8 +268,74 @@
         </sectioninfo>
         <title>Installation On Ubuntu</title>
         <para role="summary"> How to install dependancies to build Mobile package. </para>
+        <procedure>
+          <title>To install the package on Ubuntu</title>
+          <note>
+            <para>The following procedure discribe the steps to install dependancies for use this package.
+            </para>
+            <para>In addition to using the ant <filename>build.xml</filename> provided, you can also
+              use the <ulink url="http://docbkx-tools.sourceforge.net/docbkx-samples/manual.html"
+                >Docbkx Maven plugin</ulink> to generate webhelp.</para>
+          </note>
+          <step>
+            <para>If necessary, install <ulink url="http://www.java.com/en/download/manual.jsp">Java
+              1.6</ulink> or higher.</para>
+            <substeps>
+              <step>
+                <para>
+                  To Install <application>java</application> using terminal (press <emphasis role="bold">
+                  Ctrl+Alt+T</emphasis> to open new Terminal) by typing command :
+                  <programlisting>sudo apt-get install openjdk-7-jdk</programlisting>
+                </para>
+              </step>
+              <step>
+                <para>Confirm that Java is installed and in your <envar>PATH</envar> by typing the
+                  following at a terminal:
+                  <programlisting>java -version</programlisting></para>
+                <note>
+                  <para>To build the indexer, you must have the JDK.</para>
+                </note>
+              </step>
+            </substeps>
+          </step>
+          <step>
+            <para>If necessary, install <ulink url="http://ant.apache.org/bindownload.cgi">Apache
+              Ant</ulink> 1.8.0 or higher. See <ulink
+                url="http://ant.apache.org/manual/install.html">Ant installation
+                instructions</ulink>.
+            </para>
+            <substeps>
+              <step>
+                <para>
+                  To Install <application>ant</application> using terminal by typing the command :
+                  <programlisting>sudo apt-get install ant</programlisting>
+                </para>
+              </step>
+              <step>
+                <para>Confirm that Ant is installed by typing the following at a terminal  :
+                  <programlisting>ant -version</programlisting>
+                </para>
+              </step>
+            </substeps>
+          </step>
+          <step>
+            <para>To install <ulink url="http://prdownloads.sourceforge.net/saxon/saxon6-5-5.zip"
+              >Saxon 6.5.x</ulink> run the command using terminal :
+              <programlisting>sudo apt-get install libsaxon-java</programlisting>
+              Also some other dependancies by using terminal:
+              <programlisting>sudo apt-get install libxml-commons-resolver1.1-java</programlisting>
+              <programlisting>sudo apt-get install libxml-commons-external-java</programlisting>
+              <programlisting>sudo apt-get install libxerces2-java</programlisting>
+              You will use the path to <filename>saxon.jar</filename> in <xref
+                linkend="edit-build-properties"/> below.<note>
+                  <para>The <filename>build.xml</filename> has only been tested with Saxon 6.5, though
+                    it could be adapted to work with other XSLT processors. However, when you generate
+                    output, the Saxon jar must <emphasis role="bold">not</emphasis> be in your
+                    <envar>CLASSPATH</envar>.</para>
+                </note></para>
+          </step>
+        </procedure>
       </section>
-      
       <section>
         <sectioninfo>
           <abstract>
@@ -320,14 +410,6 @@
                     <envar>CLASSPATH</envar>.</para>
               </note></para>
           </step>
-          <!--        <step>
-          <para>If you are using Ant 1.8.1 or higher, you may need to add
-              <filename>xercesImpl.jar</filename>, and <filename>xml-apis.jar</filename> to the
-            classpath. See <function>index</function> target in the Ant script to see how it's
-            currently added. <note>
-              <para>The way webhelp indexer is invoked is made easier after the XSL-1.76.1 release. </para>
-            </note></para>
-        </step>-->
         </procedure>
       </section>
       <!--<section>
@@ -343,7 +425,10 @@
     <section>
       <title>Common Mobile Output</title>
       <para role="summary">
-        How to build Mobile output without specifying Mobile platform.
+        How to build Mobile output without specifying Mobile platform. This section describes how to build html content without specifically build for particular mobile platform. Instead the output can view by a <application>desktop web browser</application>.
+        <note><para>
+          When you build for a particular mobile platfrom, ant script will include additional requirement for that platform such as <filename>cordova.js</filename>.
+        </para></note>
       </para>
       <procedure>
       <step id="edit-build-properties">
@@ -497,7 +582,7 @@ xml-apis.jar=/usr/share/java/xml-apis.jar
           <step>
             <para>From the directory containing your newly created
               <filename>build.xml</filename> file, type <code>ant mobile</code> to build your
-              document.</para>
+              document. This mobile output can use to view by a web browser.</para>
           </step>
         </substeps>
       </step>
@@ -755,71 +840,185 @@ xml-apis.jar=/usr/share/java/xml-apis.jar
             url="http://docs.phonegap.com/en/2.0.0/guide_getting-started_ios_index.md.html#Getting%20Started%20with%20iOS"
             >iOS</ulink> development. Refer PhoneGap documentation to more details. </para>
       </note>
-      <procedure>
-        <step>
-          <title>Generate DocBook Mobile content</title>
-          <para>using terminal run the command
-          <programlisting>ant mobile.iOS</programlisting>.
-            This will create html content inside <filename>mobile/www</filename> directory.
-          </para>
-        </step>
-        <step><title>Requirements :</title>
-        <substeps>
+      <section>
+        <title>Using GUI (Xcode IDE)</title>
+        <procedure>
           <step>
-            <para>Xcode 4.x</para>
+            <title>Generate DocBook Mobile content</title>
+            <para>using terminal run the command <programlisting>ant mobile.iOS</programlisting>.
+              This will create html content inside <filename>mobile/www</filename> directory.
+            </para>
           </step>
-          <step><para>Intel-based computer with Mac OS X Lion or greater (10.7+)</para></step>
-          <step><para>Necessary for installing on device:</para>
-          <itemizedlist>
-            <listitem><para>Apple iOS device (iPhone, iPad, iPod Touch)</para></listitem>
-            <listitem><para>iOS developer certificate</para></listitem>
-          </itemizedlist></step>
-        </substeps>
-        </step>
-        <step>
-          <title>Install the iOS SDK and Configure PhoneGap :</title>
-          <substeps>
-            <step><para>Install Xcode from the <ulink url="http://itunes.apple.com/us/app/xcode/id497799835?mt=12">Mac App Store</ulink></para></step>
-            <step><para>Necessary PhoneGap packages locate in <filename>mobile/iOS</filename></para></step>
-          </substeps>
-        </step>
-        <step>
-          <title>Setup New Project</title>
-          <substeps>
-            <step><para>Go to <filename>mobile/iOS</filename> directory.</para></step>
-            <step><para>Drag the copied <filename>bin</filename> folder to the <application>Terminal.app</application> icon in your Dock, it should launch a new Terminal window</para></step>
-            <step>
-              <para>Type in ./create &lt;project_folder_path&gt; &lt;bundle_id&gt;
-                &lt;project_name&gt; then press "Enter"</para>
-            </step>
-            <step><para>Locate your new project folder that you just created</para></step>
-            <step><para>Launch the <filename>.xcodeproj</filename> file in the folder</para></step>
-          </substeps>
-        </step>
-        <step>
-          <title>Set up DocBook Mobile content</title>
-          <substeps>
-            <step><para>Select the folder named <filename>www</filename> in the Xcode Project Navigator</para></step>
-            <step><para>Replace this <filename>www</filename> folder with <filename>mobile/www</filename>.</para></step>
-          </substeps>
-        </step>
-        <step>
-          <title>Deploy to Simulator :</title>
-          <substeps>
-            <step>
-              <para>Change the Target in the Scheme drop-down menu on the toolbar to your project.
-              </para>
-            </step>
-            <step>
-              <para>Change the <application>Active SDK</application> in the Scheme drop-down menu on the toolbar to <application>iOS [version] Simulator</application>.</para>
-            </step>
-            <step>
-              <para>Select the Run button in your project window's toolbar</para>
-            </step>
-          </substeps>
-        </step>
-        
-      </procedure>
+          <step>
+            <title>Requirements :</title>
+            <substeps>
+              <step>
+                <para>Xcode 4.x</para>
+              </step>
+              <step>
+                <para>Intel-based computer with Mac OS X Lion or greater (10.7+)</para>
+              </step>
+              <step>
+                <para>Necessary for installing on device:</para>
+                <itemizedlist>
+                  <listitem>
+                    <para>Apple iOS device (iPhone, iPad, iPod Touch)</para>
+                  </listitem>
+                  <listitem>
+                    <para>iOS developer certificate</para>
+                  </listitem>
+                </itemizedlist>
+              </step>
+            </substeps>
+          </step>
+          <step>
+            <title>Install the iOS SDK and Configure PhoneGap :</title>
+            <substeps>
+              <step>
+                <para>Install Xcode from the <ulink
+                    url="http://itunes.apple.com/us/app/xcode/id497799835?mt=12">Mac App
+                    Store</ulink></para>
+              </step>
+              <step>
+                <para>Necessary PhoneGap packages locate in <filename>mobile/iOS</filename></para>
+              </step>
+            </substeps>
+          </step>
+          <step>
+            <title>Setup New Project</title>
+            <substeps>
+              <step>
+                <para>Go to <filename>mobile/iOS</filename> directory.</para>
+              </step>
+              <step>
+                <para>Drag the copied <filename>bin</filename> folder to the
+                    <application>Terminal.app</application> icon in your Dock, it should launch a
+                  new Terminal window</para>
+              </step>
+              <step>
+                <para>Type in ./create &lt;project_folder_path&gt; &lt;bundle_id&gt;
+                  &lt;project_name&gt; then press "Enter"</para>
+              </step>
+              <step>
+                <para>Locate your new project folder that you just created</para>
+              </step>
+              <step>
+                <para>Launch the <filename>.xcodeproj</filename> file in the folder</para>
+              </step>
+            </substeps>
+          </step>
+          <step>
+            <title>Set up DocBook Mobile content</title>
+            <substeps>
+              <step>
+                <para>Select the folder named <filename>www</filename> in the Xcode Project
+                  Navigator</para>
+              </step>
+              <step>
+                <para>Replace this <filename>www</filename> folder with
+                    <filename>mobile/www</filename>.</para>
+              </step>
+            </substeps>
+          </step>
+          <step>
+            <title>Deploy to Simulator :</title>
+            <substeps>
+              <step>
+                <para>Change the Target in the Scheme drop-down menu on the toolbar to your project.
+                </para>
+              </step>
+              <step>
+                <para>Change the <application>Active SDK</application> in the Scheme drop-down menu
+                  on the toolbar to <application>iOS [version] Simulator</application>.</para>
+              </step>
+              <step>
+                <para>Select the Run button in your project window's toolbar</para>
+              </step>
+            </substeps>
+          </step>
+
+        </procedure>
+      </section>
+      <section>
+        <title>Using Command-Line</title>
+        <para>You can build, clean, and launch an emulator with a single command. The iOS
+          command-line tools are built upon shell scripts and rely on XCode command-line tools such
+          as xcode-select and xcodebuild</para>
+        <para><emphasis role="bold">Generate Mobile output for iOS</emphasis></para>
+        <itemizedlist>
+          <listitem>
+            <para> Go to <filename>mobile</filename> directory </para>
+          </listitem>
+          <listitem>
+            <para> Run the command : <programlisting>$ ant mobile.iOS</programlisting>
+            </para>
+          </listitem>
+          <listitem>
+            <para> Then locate to <filename>mobile/iOS</filename> directory. </para>
+          </listitem>
+        </itemizedlist>
+        <para><emphasis role="bold">Create a project :</emphasis></para>
+        <itemizedlist>
+          <listitem>
+            <para>Run the create command with the following parameters:</para>
+            <itemizedlist>
+              <listitem>
+                <para> Path to your new Cordova iOS project </para>
+              </listitem>
+              <listitem>
+                <para> Package name, following reverse-domain style convention </para>
+              </listitem>
+              <listitem>
+                <para> Project name </para>
+              </listitem>
+            </itemizedlist>
+            <para>
+              <programlisting>
+$ ./path/to/cordova-ios/bin/create \
+/path/to/my_new_cordova_project \
+com.example.cordova_project_name \
+CordovaProjectName</programlisting>
+            </para>
+            <para><programlisting>
+Ex: $ bin/create ~/Desktop/Mobile \
+docbook.xsl.Mobile Mobile</programlisting></para>
+          </listitem>
+        </itemizedlist>
+        <para><emphasis role="bold">Build a project :</emphasis></para>
+        <itemizedlist>
+          <para>Locate to <filename>/path/to/my_new_cordova_project</filename> directory. For above
+            example, move to <filename>~/Desktop/Mobile</filename>.</para>
+          <listitem>
+            <para>
+              <programlisting>$ /path/to/my_new_cordova_project/cordova/debug</programlisting>
+            </para>
+          </listitem>
+          <listitem>
+            <para><programlisting>Ex: $ cordova/debug</programlisting>
+            </para>
+          </listitem>
+        </itemizedlist>
+        <para><emphasis role="bold">Launch Emulator :</emphasis></para>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <programlisting>$ /path/to/my_new_cordova_project/cordova/emulate</programlisting>
+            </para>
+          </listitem>
+          <listitem>
+            <para><programlisting>Ex: $ cordova/emulate</programlisting>
+            </para>
+          </listitem>
+        </itemizedlist>
+        <para><emphasis role="bold">Logging :</emphasis></para>
+        <itemizedlist>
+          <listitem><para>
+            <programlisting>$ /path/to/my_new_cordova_project/cordova/log</programlisting>
+          </para></listitem>
+          <listitem><para><programlisting>Ex: $ cordova/log</programlisting>
+          </para></listitem>
+        </itemizedlist>
+      </section>
     </section>
     
     <section>
