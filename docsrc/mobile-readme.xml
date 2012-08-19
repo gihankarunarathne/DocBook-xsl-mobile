@@ -1230,6 +1230,36 @@ input-images-dirs=images/**,figures/**,graphics/**</programlisting></para>
       <para role="summary">
         An overview of Mobile file structure.
       </para>
+      <para>DocBook Mobile page structure is fully based on html5, javascripts and CSS. The data
+        content pages can be divided in to three main sections 
+        <itemizedlist>
+          <listitem>
+            <para>Header: Header is a separate Div with <quote>data-role='header'</quote> in
+              jquerymobile which include navigation button(prev, next etc.) and page title.</para>
+          </listitem>
+          <listitem>
+            <para>Content: This includes the content of the documentation. The processing of this
+              part is done by <ulink
+                url="http://docbook.sourceforge.net/release/xsl/current/xhtml/chunk.xsl"> DocBook
+                XSL Chunking customization</ulink>. Further css-styling applied from
+                <filename>positioning.css</filename>. Event handling and page navigation enable via
+              jquery mobile.</para>
+          </listitem>
+          <listitem><para>
+            Footer : This include navigation to prev, next , up and home locations.
+          </para></listitem>
+        </itemizedlist></para>
+        <para>Futher it seperate into static html files like Menubar, Settings and ToC. Index.html will add if it want to redirect into <filename>www/content/index.html</filename>. 
+        <itemizedlist>
+          <listitem>
+            <para>ToC : Table of content to navigate into chapters and sections.</para>
+          </listitem>
+          <listitem><para>Menu Bar : Search feature, change font-size,font-family etc...</para></listitem>
+          <listitem><para>Settings : Basic settings for Mobile app</para></listitem>
+        </itemizedlist>
+        <indexterm>
+          <primary>design</primary>
+        </indexterm></para>
       <section>
         <title>Mobile Table of Content</title>
         <para role="summary">
