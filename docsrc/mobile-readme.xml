@@ -857,7 +857,7 @@ xml-apis.jar=/usr/share/java/xml-apis.jar
         <listitem><para><command>swipe 'Right'</command> : Go to next/prev page</para></listitem>
         <listitem><para><command>swipe 'Up'</command> : Go to scroll up</para></listitem>
         <listitem><para><command>swipe 'Down'</command> : Go to scroll down</para></listitem>
-        <listitem><para><command>Tap Hold</command>long time : Pop up for view Menubar/ToC/Settings (more than 1000ms) </para></listitem>
+        <listitem><para><command>Tap Hold</command> long time : Pop up for view Menubar/ToC/Settings (more than 1000ms) </para></listitem>
       </itemizedlist>
       <section>
         <title>Using GUI (Xcode IDE)</title>
