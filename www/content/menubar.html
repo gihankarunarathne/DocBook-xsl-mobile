@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+      <script type="text/javascript">
+              //The id for tree cookie
+              var treeCookieId = "treeview-1055";
+              var language = "en";
+              var w = new Object();
+              //Localization
+              txt_filesfound = 'Results';
+              txt_enter_at_least_1_char = "You must enter at least one character.";
+              txt_browser_not_supported = "JavaScript is disabled on your browser. Please enable JavaScript to enjoy all the features of this site.";
+              txt_please_wait = "Please wait. Search in progress...";
+              txt_results_for = "Results for: ";
+            </script>
+      <link rel="stylesheet" type="text/css" href="../css/themes/default/jquery.mobile-1.1.0.min.css"/>
+      <script type="text/javascript" src="../js/browserDetect.js"><!--browserDetect--></script>
+      <script type="text/javascript" src="../js/jquery.min.js"><!--jquery--></script>
+      <script type="text/javascript" src="../js/jquery.cookie.min.js"><!--cookies--></script>
+      <script type="text/javascript" src="../js/mobile-menubar.js"><!--mobile menubar--></script>
+      <script type="text/javascript" src="../js/mobile-settings.js"><!--mobile settings--></script>
+      <script type="text/javascript" src="search/l10n.js"><!--l10n--></script>
+      <script type="text/javascript" src="search/htmlFileInfoList.js"><!--htmlFileInfoList--></script>
+      <script type="text/javascript" src="search/nwSearchFnt.js"><!--nwSearchFnt--></script>
+      <script type="text/javascript" src="search/stemmers/en_stemmer.js"><!--make scalable to other languages as well.--></script>
+      <script type="text/javascript" src="search/index-1.js"><!--index-1--></script>
+      <script type="text/javascript" src="search/index-2.js"><!--index-2--></script>
+      <script type="text/javascript" src="search/index-3.js"><!--index-3--></script>
+      <script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><!--jquerymobile--></script>
+      <script type="text/javascript" src="../js/swipeupdown.js"><!--swipe--></script>
+   </head>
+   <body>
+      <div data-role="page" id="id_menubar_html">
+         <div data-role="header" data-theme="b">
+            <h1>Menu Bar</h1>
+            <hr/>
+            <div data-role="navbar" data-theme="b">
+               <ul>
+                  <li>
+                     <div style="margin: 10px 15px;">
+                        <select name="font-size" id="font-size" data-theme="e" data-native-menu="false" data-mini="true">
+                           <option value="8px">Front size-8</option>
+                           <option value="9px">Front size-9</option>
+                           <option value="10px">Front size-10</option>
+                           <option value="12px">Front size-12</option>
+                           <option value="14px">Front size-14</option>
+                           <option value="16px">Front size-16</option>
+                        </select>
+                     </div>
+                  </li>
+                  <li>
+                     <div style="margin: 10px 15px;">
+                        <select name="font-family" id="font-family" data-theme="e" data-native-menu="false" data-mini="true">
+                           <option value="Arial">Font Arial</option>
+                           <option value="Helvetica">Font Helvetica</option>
+                           <option value="Sans-Serif">Font Sans-Serif</option>
+                        </select>
+                     </div>
+                  </li>
+               </ul>
+            </div>
+            <div id="searchDiv">
+               <div data-role="navbar" data-theme="b">
+                  <ul>
+                     <li>
+                        <form name="searchForm" onsubmit="Verifie(searchForm);return false" class="err">
+                           <div style="margin: 10px 10px;">
+                              <input type="text" name="textToSearch" id="textToSearch" data-theme="b" placeholder="Search..." data-inset="true"/>
+                              <div id="doSearch" onclick="Verifie(searchForm)" data-theme="b"/>
+                           </div>
+                        </form>
+                     </li>
+                     <li>
+                        <ul>
+                           <li>
+                              <a onclick="searchWord()" data-icon="search" data-theme="b">Search</a>
+                           </li>
+                           <li>
+                              <a onclick="goBack()" data-role="button" data-icon="back" data-theme="a">Back</a>
+                           </li>
+                        </ul>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <script type="text/javascript">
+                  function goBack(){
+                    history.back();
+                    return false;
+                  }
+                  function searchWord(){
+                    $("#searchResults").empty();
+                    $("#doSearch").click();
+                  }
+                  //hide the link for open the Dialog
+                  $(function(){
+                    $("#showDialogMenu").hide();
+                  });
+                  //set values from cookies
+                  $("#id_menubar_html").live('pageshow',function(){
+                   
+                    //set the select menu focused
+                    $("#font-size").val($.cookie('font-size')).selectmenu('refresh', true);
+                    $("#font-family").val($.cookie('font-family')).selectmenu('refresh', true);
+                    if($.cookie('textToSearch') !== null){
+                      if("on" === $.cookie('remembersearchword') ) {
+                        $("#textToSearch").val($.cookie('textToSearch'));
+                      }else{
+                        $("#textToSearch").val('');
+                      }
+                    }
+                  });
+                </script>
+         </div>
+         <div data-role="content">
+            <div id="searchResults"><!--Show search results--></div><!--Show up warning message though Dialog box by redirecting to this link-->
+            <a href="menubar.html#menubar_alert" id="showDialogMenu" data-role="button" data-inline="true" data-rel="dialog" data-transition="pop"><!--link:Dialog Box for Show Warnings--></a>
+         </div>
+      </div>
+      <div data-role="page" id="menubar_alert" data-url="menubar_alert" data-overlay-theme="e">
+         <div data-role="header" data-theme="b">
+            <h1>Warning Alert</h1>
+         </div>
+         <div data-role="content" data-theme="a">
+            <p style="color:orange;text-align:center;" id="warningMSGMenu">Warning Message</p>
+            <a href="meubar.html" data-role="button" data-rel="back" data-theme="b" data-inline="true">OK</a>
+         </div>
+      </div>
+   </body>
+</html>
