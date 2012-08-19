@@ -622,8 +622,7 @@ xml-apis.jar=/usr/share/java/xml-apis.jar
           </step>
           <step>
             <para>
-              Extract it into directory which you like to install it. Ex: it extracted to <filename> android-sdk-linux
-              </filename>.
+              Extract it into directory where you like to install it. Ex: it extracted as <filename> android-sdk-linux</filename> in linux.
             </para>
           </step>
           <step>
@@ -645,73 +644,101 @@ xml-apis.jar=/usr/share/java/xml-apis.jar
                 and Packages</ulink>. </para>
           </step>
           <step><para>
-            Add the directories which include "<filename>android</filename>" and "<filename>adb</filename>" into PATH variables.
+            Add the directories which include "<filename>android</filename>" and "<filename>adb</filename>" into PATH variables. ( those will be in <filename>android-sdk-&lt;OS&gt;/tools</filename> and <filename> android-sdk-&lt;OS&gt;/platform-tools</filename>  )
           </para></step>
         </procedure>
-        
         <itemizedlist>
-          <title>Basic configurations for building Android app</title>
+          <title>Create an Android project</title>
           <listitem>
-            <blockquote><para>Configurations on "build.properties"</para></blockquote>
-            <para>The configurations for the Ant build file locate in Android directory (Ex:<filename>mobile/android/build.properties</filename>)</para>
+            <blockquote>
+              <para>Create Mobile Output for Android</para>
+            </blockquote>
+            <para>Locate in <filename>mobile</filename> directory and run command using terminal :
+              <programlisting>$ ant mobile.android</programlisting> This will create chunk of html
+              files which can use to build Android app using PhoneGap. <warning>
+                <para> The bash scripts file <filename>mobile/android/bin/create</filename> has some
+                  modification from orginal PhoneGap package file. This is due to unexpected
+                  behaviour and some syntax errors while running on Linux. Current script is
+                  successfullly running on Ubuntu-12.04 64bit. Any changes that add to orginal
+                  script commented out in a way that user can identified those with "docbook" tag.
+                  On any error, change them into previous bash lines. </para>
+              </warning>
+            </para>
+          </listitem>
+          <listitem>
+            <important>
+              <para>IMPORTANT : The current script,always perform with newest sdk on your machine.
+                If you want to decide the version, then change the line :
+                <programlisting>
+TARGET=$($ANDROID_BIN list targets \
+| grep id: | tail -1 | cut -f 2 -d ' ' )
+</programlisting>
+                with <programlisting>TARGET=&lt;target_number&gt;</programlisting>. This means the
+                platform number of Android target vertion which is given under
+                <programlisting>$ android list targets</programlisting> Please refer for more
+                details about <ulink
+                  url="http://developer.android.com/tools/devices/managing-avds-cmdline.html#listingtargets"
+                  > Managing AVDs</ulink>. <warning>
+                  <para> Also check the "Type: Platform", but not "Type: Add-on".</para>
+                </warning></para>
+            </important>
+          </listitem>
+        </itemizedlist>
+        <itemizedlist>
+          <listitem>
+            <para>Run the create command with the following parameters:</para>
+            <itemizedlist>
+              <listitem>
+                <para> Path to your new Cordova Android project </para>
+              </listitem>
+              <listitem>
+                <para> Package name, following reverse-domain style convention </para>
+              </listitem>
+              <listitem>
+                <para> Project name </para>
+              </listitem>
+            </itemizedlist>
             <para>
-              #path to output directory
-              <programlisting>app_output_dir=output</programlisting>
-              Set the path for output directory of Android project. 
+              <programlisting>
+$ ./path/to/cordova-android/bin/create \
+/path/to/my_new_cordova_project \
+com.example.cordova_project_name \
+CordovaProjectName</programlisting>
             </para>
-          </listitem>
-          <listitem>
-            <blockquote><para>Configurations on "android.config"</para></blockquote>
-            <para>The configurations for Android project locate in Android directory file called <filename>mobile/android/android.config</filename>.</para>
-            <para>     
-              # PhoneGap version
-              <programlisting> VERSION=1.8.1</programlisting>
-              
-              # name / path to the android project. Ex:
-              <programlisting>PROJECT_PATH=./AndroidDocBookApp</programlisting>
-              
-              # package/directory structure inside the "src" of the Android project. Ex:
-              <programlisting>PACKAGE=docbook.xsl.mobile</programlisting>
-              
-              # Name of the creating android activity class name. Also this will be the name of build .apk app. Ex:
-              <programlisting>ACTIVITY=DocBookMobileAppActivity</programlisting>
-              
-              <important><para>IMPORTANT :
-              This means the platform number of Android target vertion which is given under
-              <programlisting>$ android list targets</programlisting>
-                Please refer for more details about <ulink url="http://developer.android.com/tools/devices/managing-avds-cmdline.html#listingtargets"> Managing AVDs</ulink>.
-              <warning><para> Also check the "Type: Platform", but not "Type: Add-on".</para></warning>Example:
-              </para></important>
-              <programlisting>TARGET=1</programlisting>
+            <para><programlisting>
+Ex: $ bin/create ~/Desktop/Mobile \
+docbook.xsl.Mobile Mobile</programlisting></para>
+            <para><emphasis role="bold">on windows</emphasis>
+              <programlisting>
+$ ./path/to/cordova-android/bin/create.bat \
+/path/to/my_new_cordova_project \
+com.example.cordova_project_name \
+CordovaProjectName</programlisting>
             </para>
+            <para><programlisting>
+Ex: $ bin/create.bat ~/Desktop/Mobile \
+docbook.xsl.Mobile Mobile</programlisting></para>
           </listitem>
-          
         </itemizedlist>
         <section>
           <title>Build Android app in Debug Mode</title>
         <procedure>
-          
           <step>
             <para>Before going to Build using Ant, you must setup
               "xsl/mobile/android/android.config" file.</para>
             <important>
               <para>IMPORTANT : This means the platform number of Android target vertion which is
                 given under <programlisting>$ android list targets</programlisting> Please refer for
-                more details : http://developer.android.com/tools/devices/managing-avds-cmdline.html
-                Also check the "Type: Platform", but not "Type: Add-on".</para>
+                more details <ulink url="http://developer.android.com/tools/devices/managing-avds-cmdline.html">Android Documentaion</ulink>. 
+              </para>
             </important>
           </step>
           <step>
-            <para>Go to the directory where "build.xml" is took place for Android (
-              xsl/mobile/andriod). Then run following command from Terminal :</para>
-
-            <programlisting>$ ant android.debug.apk</programlisting>
-
-            <para>Or go to the directory where "build.xml" (main ant scripts for mobile ) is took
-              place ( xsl/mobile/ ) and run command :</para>
-
-            <programlisting>$ ant mobile.android.debug.apk</programlisting>
-
+            <para>Go to the directory where your Android project located. Then run following command from Terminal :
+            <programlisting>$ /path/to/my_new_cordova_project/cordova/debug</programlisting>
+            <emphasis role="bold">on windows</emphasis>
+            <programlisting>$ /path/to/my_new_cordova_project/cordova/debug.bat</programlisting>
+            </para>
             <note>
               <para>NOTE: This will created an android app which is signed by debug 'keystore'. You
                 can not distribute it for end-users. But can be use for debuging purpose.For more
@@ -788,7 +815,7 @@ xml-apis.jar=/usr/share/java/xml-apis.jar
             <substeps>
               <step>
                 <para> Open a command-line and navigate to the root of your project directory (Ex:
-                    <filename>mobile/android/output-dir/</filename> ). </para>
+                  <filename>$ /path/to/my_new_cordova_project</filename> ). </para>
               </step>
               <step>
                 <para> Use Ant to compile your project in release mode:
@@ -815,27 +842,56 @@ xml-apis.jar=/usr/share/java/xml-apis.jar
           <title>Testing Android app</title>
           <step>
             <para>Execute following command and make an Emulator : 
+              <programlisting>$ /path/to/my_new_cordova_project/cordova/emulate</programlisting>
+              <emphasis role="bold">on windows</emphasis>
+              <programlisting>$ /path/to/my_new_cordova_project/cordova/emulate.bat</programlisting>
+              Or otherwise use :
               <programlisting>$ android avd</programlisting>
               <note>
-                <para>NOTE: When You are creating an Emulator, make sure the its platform version is
-                  compatible with your application.</para>
+                <para>Make sure you have created at least one Android Virtual Device. If you did not
+                  it will ask you to create one with the android command. If you have multiple AVDs,
+                  it will prompt you to select an AVD. When You are creating an Emulator, make sure
+                  the its platform version is compatible with your application.</para>
               </note>
             </para>
           </step>
           <step>
             <para>After create an Emulator, then run it. To install created Android app, go to the
               output directory of app and then also for 'bin' directory inside it.
+              <programlisting>$ /path/to/my_new_cordova_project/cordova launch</programlisting>
+              Or 
               <programlisting>$ android install path/to/.apk</programlisting>
               Ex: If you are in xsl/mobile directory,
-              <programlisting>$ android install andriod/output/bin/DocBookMobileAppActivity-debug.apk</programlisting>
+              <programlisting>$ android install \
+path/to/proj/bin/MobileAppActivity-debug.apk</programlisting>
             </para>
           </step>
+          <step><para>
+            <emphasis role="bold">Logging</emphasis>
+            <programlisting>$ /path/to/my_new_cordova_project/cordova/log</programlisting>
+            <emphasis>on windows</emphasis>
+            <programlisting>$ /path/to/my_new_cordova_project/cordova/log.bat</programlisting>
+          </para></step>
+          <step><para>
+            <emphasis role="bold">Cleaning</emphasis>
+            <programlisting>$ /path/to/my_new_cordova_project/cordova/clean</programlisting>
+            <emphasis>on windows</emphasis>
+            <programlisting>$ /path/to/my_new_cordova_project/cordova/clean.bat</programlisting>
+          </para></step>
+          <step><para>
+            <emphasis role="bold">Clean, build, deploy and launch</emphasis>
+            <programlisting>$ /path/to/my_new_cordova_project/cordova/BOOM</programlisting>
+            <emphasis>on windows</emphasis>
+            <programlisting>$ /path/to/my_new_cordova_project/cordova/BOOM.bat</programlisting>
+            <note><para>Make sure you have an emulator or a device connected.</para></note>
+          </para></step>
           <step>
-            <para> If you already installed current app that you want to install, then you can
+            <para>If you already installed current app that you want to install, then you can
               reinstall it by: 
               <programlisting>$ android install [-r] path/to/.apk</programlisting>
               Ex: If you are in xsl/mobile directory,
-              <programlisting>$ android install -r andriod/output/bin/DocBookMobileAppActivity-debug.apk</programlisting>
+              <programlisting>$ android install -r 
+path/to/proj/bin/MobileAppActivity-debug.apk</programlisting>
             </para>
           </step>
         </procedure>
