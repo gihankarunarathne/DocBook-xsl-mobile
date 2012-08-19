@@ -599,6 +599,17 @@ xml-apis.jar=/usr/share/java/xml-apis.jar
         device. There are two ways to do this: with a debug key (for immediate testing on an
         emulator or development device) or with a private key (for application distribution).
         Following sections discribes how to do that with automated Mobile package</para>
+      <para><emphasis role="bold">Android Gestures</emphasis></para>
+      <itemizedlist>
+        <listitem><para><command>press 'Menu button'</command> : Go to settings</para></listitem>
+        <listitem><para><command>press 'Back button'</command> : Go back</para></listitem>
+        <listitem><para><command>swipe 'Left'</command> : Go to prev/next page</para></listitem>
+        <listitem><para><command>swipe 'Right'</command> : Go to next/prev page</para></listitem>
+        <listitem><para><command>swipe 'Up'</command>short distance : Go to scroll up</para></listitem>
+        <listitem><para><command>swipe 'Down'</command>short distance : Go to scroll down</para></listitem>
+        <listitem><para><command>swipe 'Up'</command>long distance : Go to Menubar/ToC (more than 200px within 1200ms) </para></listitem>
+        <listitem><para><command>swipe 'Down'</command>long distance : Go to ToC/Menubar (more than 200px within 1200ms) </para></listitem>
+      </itemizedlist>
       <section>
         <title>Build Android apps</title>
         <para role="summary">How to build Android app using Ant</para>
@@ -836,10 +847,18 @@ xml-apis.jar=/usr/share/java/xml-apis.jar
         describes how to set up your development environment for Apache PhoneGap and create an
         application. </para>
       <note>
-        <para> This instructions based on PhoneGap documentation on <ulink
-            url="http://docs.phonegap.com/en/2.0.0/guide_getting-started_ios_index.md.html#Getting%20Started%20with%20iOS"
-            >iOS</ulink> development. Refer PhoneGap documentation to more details. </para>
+        <para> This instructions based on PhoneGap documentation on <ulink url="http://docs.phonegap.com/en/2.0.0/guide_getting-started_ios_index.md.html#Getting%20Started%20with%20iOS"
+            >iOS</ulink> development. Refer PhoneGap documentation to more details.</para>
       </note>
+      <para><emphasis role="bold">iOS Gestures</emphasis></para>
+      <itemizedlist>
+        <listitem><para><command>press 'Back button'</command> : Go back</para></listitem>
+        <listitem><para><command>swipe 'Left'</command> : Go to prev/next page</para></listitem>
+        <listitem><para><command>swipe 'Right'</command> : Go to next/prev page</para></listitem>
+        <listitem><para><command>swipe 'Up'</command> : Go to scroll up</para></listitem>
+        <listitem><para><command>swipe 'Down'</command> : Go to scroll down</para></listitem>
+        <listitem><para><command>Tap Hold</command>long time : Pop up for view Menubar/ToC/Settings (more than 1000ms) </para></listitem>
+      </itemizedlist>
       <section>
         <title>Using GUI (Xcode IDE)</title>
         <procedure>
@@ -1216,17 +1235,58 @@ input-images-dirs=images/**,figures/**,graphics/**</programlisting></para>
         <para role="summary">
           An overview about Table of Content page.
         </para>
+        <para>
+          Table of Content creates as a separate file. It includes links to chapters and sections. The ToC depth oflevels and hierarchy of chapters and sections. Following variables in <filename>mobile/xsl/mobile.xsl</filename> can use to controll the ToC structure.
+          <programlisting>
+&lt;xsl:param name="chunk.first.sections"
+  select="1"/&gt;</programlisting>
+          If non-zero, a chunk will be created for the first top-level sect1 or section elements in each component. Otherwise, that section will be part of the chunk for its parent.
+          <programlisting>
+&lt;xsl:param name="chunk.section.depth"
+  select="5"/&gt;</programlisting>
+          This parameter sets the depth of section chunking.
+          <programlisting>
+&lt;xsl:param name="toc.max.depth"&gt;
+  5&lt;/xsl:param &gt;</programlisting>
+          Specifies the maximal depth of TOC on all levels.
+          <programlisting>
+&lt;xsl:param name="toc.section.depth"&gt;
+  4&lt;/xsl:param &gt;</programlisting>
+          Specifies the depth to which recursive sections should appear in the TOC.
+          <programlisting>
+&lt;xsl:param name="generate.section.toc.level"
+  select="3"&gt;&lt;/xsl:param&gt;</programlisting>
+          If, for example, generate.section.toc.level is 3, TOCs will be generated in first, second, and third level sections, but not in fourth level sections.
+        </para>
       </section>
       <section>
         <title>Mobile Menu Bar</title>
         <para role="summary">
           An overview about Menu Bar page.
         </para>
+        <para>
+          Menubar creates as a separate file in mobile output. It includes search, change font-size, change font-famiy and a back button. When user trigger a search,the results will append to &lt;div id="searchResults"&gt;. It has an associated javascript file to handle selection menu options. The values will store with cookies. It uses jquery.cookies java script library for that purpose. When use select the option <emphasis role="bold">remember search word</emphasis> ,last search word will append when opening <filename>Menubar.html</filename>.
+        </para>
       </section>
       <section>
         <title>Mobile Settings</title>
         <para role="summary">
           An overview about Settings page.
+        </para>
+        <para>
+          Settings page also created as a separate file in mobile output. It includes some basic settings which can be change to possible predefined values. There is a associated javascript file with this html page. It is responsible for set default values when initialising the mobile app. After that user can change the values also. It has the set of settings as following :
+          <itemizedlist>
+            <listitem><para><emphasis role="bold">ToC</emphasis> : View the ToC</para></listitem>
+            <listitem><para><emphasis role="bold">Menu bar</emphasis> : View the Menubar</para></listitem>
+            <listitem><para><emphasis role="bold">Menu Bar Swipe Direction</emphasis> : Direction that trigger pop up Menu Bar (Up/Down)</para></listitem>
+            <listitem><para><emphasis role="bold">ToC Swipe Direction</emphasis> : Direction that trigger pop up ToC (Up/Down)</para></listitem>
+            <listitem><para><emphasis role="bold">Pop Up Menu Bar</emphasis> : Pop Up/not Menu Bar</para></listitem>
+            <listitem><para><emphasis role="bold">Pop Up ToC</emphasis> : Pop Up/not ToC</para></listitem>
+            <listitem><para><emphasis role="bold">Prev Page Direction</emphasis> : Swipe direction to move to Previous page</para></listitem>
+            <listitem><para><emphasis role="bold">Next Page Direction</emphasis> : Swipe direction to move to Next page</para></listitem>
+            <listitem><para><emphasis role="bold">Remember Last Search Word</emphasis> : Remember the last search word. If so, it will appear when move to menu bar</para></listitem>
+            <listitem><para><emphasis role="bold">Reset</emphasis> : Reset the settings to default values</para></listitem>
+          </itemizedlist>
         </para>
       </section>
     </section>
