@@ -27,29 +27,7 @@
 		</script><script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><!----></script><script type="text/javascript" src="../js/swipeupdown.js"><!----></script></head><body><div data-role="page" id="id_ch03s02_html"><!--KEEP THIS CODE--><div data-role="header" data-theme="b"><h4>Search</h4><!----><a accesskey="p" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="a" href="ch03s01s03.html">Prev</a>
           
           
-            <a accesskey="n" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="a" href="ch03s02s01.html">Next</a><script type="text/javascript">
-        /*$(function() {
-          $("#id_ch03s02_html").live('swipedown', function(event) {
-            $.mobile.changePage("toc.html");
-          });
-        });
-				
-        $(function() {
-          $("#id_ch03s02_html").live('swipeup', function(event) {
-            $.mobile.changePage("menubar.html");
-          });
-        });
-					
-        $(function() {
-          $("#id_ch03s02_html").live('swipeleft', function(event) {
-            $.mobile.changePage("ch03s01s03.html");
-          });
-				 		
-          $("#id_ch03s02_html").live('swiperight', function(event) {
-            $.mobile.changePage("ch03s02s01.html");
-          });
-        });*/
-        
+            <a accesskey="n" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="a" href="ch03s02s01.html">Next</a><script type="text/javascript">        
         $(function() {
           var $nextPage="ch03s01s03.html";
           var $prevPage="ch03s02s01.html";
@@ -97,8 +75,14 @@
               $.mobile.changePage($nextPage);
             }
           });
+        
+          $("#id_ch03s02_html_taphold").hide();
+          $("#id_ch03s02_html").live('taphold', function(event) {
+            $("#id_ch03s02_html_taphold").click();
+          });
+         
         });
-			</script></div><div data-role="content" id="bodyone"><div id="content"><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="d0e1743"></a>Search</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="ch03s02s01.html">New Stemmers</a></span></dt></dl></div><p class="summary">Overview design of Search mechanism.</p><p>
+			</script></div><div data-role="content" id="bodyone"><a href="tapholdDialog.html" data-role="button" data-inline="true" data-rel="dialog" data-transition="flip" id="id_ch03s02_html_taphold"></a><div id="content"><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="d0e1743"></a>Search</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="ch03s02s01.html">New Stemmers</a></span></dt></dl></div><p class="summary">Overview design of Search mechanism.</p><p>
         DocBook Mobile is currently using <code class="filename">webhelpindexer.jar</code> which is used in Mobile.
         It plans to replace <span class="application">webhelpindexer</span> storing method with <span class="database">
         <a class="ulink" href="http://docs.phonegap.com/en/2.0.0/cordova_storage_storage.md.html#Storage" target="_top"> Web SQL database 

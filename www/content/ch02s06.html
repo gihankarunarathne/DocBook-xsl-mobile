@@ -27,29 +27,7 @@
 		</script><script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><!----></script><script type="text/javascript" src="../js/swipeupdown.js"><!----></script></head><body><div data-role="page" id="id_ch02s06_html"><!--KEEP THIS CODE--><div data-role="header" data-theme="b"><h4>Search indexing</h4><!----><a accesskey="p" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="a" href="ch02s05s02.html">Prev</a>
           
           
-            <a accesskey="n" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="a" href="ch02s07.html">Next</a><script type="text/javascript">
-        /*$(function() {
-          $("#id_ch02s06_html").live('swipedown', function(event) {
-            $.mobile.changePage("toc.html");
-          });
-        });
-				
-        $(function() {
-          $("#id_ch02s06_html").live('swipeup', function(event) {
-            $.mobile.changePage("menubar.html");
-          });
-        });
-					
-        $(function() {
-          $("#id_ch02s06_html").live('swipeleft', function(event) {
-            $.mobile.changePage("ch02s05s02.html");
-          });
-				 		
-          $("#id_ch02s06_html").live('swiperight', function(event) {
-            $.mobile.changePage("ch02s07.html");
-          });
-        });*/
-        
+            <a accesskey="n" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="a" href="ch02s07.html">Next</a><script type="text/javascript">        
         $(function() {
           var $nextPage="ch02s05s02.html";
           var $prevPage="ch02s07.html";
@@ -97,8 +75,14 @@
               $.mobile.changePage($nextPage);
             }
           });
+        
+          $("#id_ch02s06_html_taphold").hide();
+          $("#id_ch02s06_html").live('taphold', function(event) {
+            $("#id_ch02s06_html_taphold").click();
+          });
+         
         });
-			</script></div><div data-role="content" id="bodyone"><div id="content"><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="d0e1396"></a>Search indexing</h2></div></div></div><p>Run <span class="command"><strong>ant index</strong></span> in the mobile directory to index the content. Running
+			</script></div><div data-role="content" id="bodyone"><a href="tapholdDialog.html" data-role="button" data-inline="true" data-rel="dialog" data-transition="flip" id="id_ch02s06_html_taphold"></a><div id="content"><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="d0e1396"></a>Search indexing</h2></div></div></div><p>Run <span class="command"><strong>ant index</strong></span> in the mobile directory to index the content. Running
           <span class="command"><strong>ant mobile</strong></span> will do the indexing as part of the process as well.</p><p>Here's some detailed information about invoking the indexer. The indexing process is
         pretty smooth, so probably you doesn't need to be concerned with following details. Mobile
         Ant script does all the needed bits.</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>Following should be in the CLASSPATH.</p><p>

@@ -27,29 +27,7 @@
 		</script><script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><!----></script><script type="text/javascript" src="../js/swipeupdown.js"><!----></script></head><body><div data-role="page" id="id_ch02s08_html"><!--KEEP THIS CODE--><div data-role="header" data-theme="b"><h4>Adding images</h4><!----><a accesskey="p" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="a" href="ch02s07.html">Prev</a>
           
           
-            <a accesskey="n" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="a" href="ch03.html">Next</a><script type="text/javascript">
-        /*$(function() {
-          $("#id_ch02s08_html").live('swipedown', function(event) {
-            $.mobile.changePage("toc.html");
-          });
-        });
-				
-        $(function() {
-          $("#id_ch02s08_html").live('swipeup', function(event) {
-            $.mobile.changePage("menubar.html");
-          });
-        });
-					
-        $(function() {
-          $("#id_ch02s08_html").live('swipeleft', function(event) {
-            $.mobile.changePage("ch02s07.html");
-          });
-				 		
-          $("#id_ch02s08_html").live('swiperight', function(event) {
-            $.mobile.changePage("ch03.html");
-          });
-        });*/
-        
+            <a accesskey="n" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="a" href="ch03.html">Next</a><script type="text/javascript">        
         $(function() {
           var $nextPage="ch02s07.html";
           var $prevPage="ch03.html";
@@ -97,8 +75,14 @@
               $.mobile.changePage($nextPage);
             }
           });
+        
+          $("#id_ch02s08_html_taphold").hide();
+          $("#id_ch02s08_html").live('taphold', function(event) {
+            $("#id_ch02s08_html_taphold").click();
+          });
+         
         });
-			</script></div><div data-role="content" id="bodyone"><div id="content"><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="d0e1549"></a>Adding images</h2></div></div></div><p>This section shows how to add images to Mobile. For that, follow the simple procedure given.</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>Put the images in a subdirectory of your source file directory. For example
+			</script></div><div data-role="content" id="bodyone"><a href="tapholdDialog.html" data-role="button" data-inline="true" data-rel="dialog" data-transition="flip" id="id_ch02s08_html_taphold"></a><div id="content"><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="d0e1549"></a>Adding images</h2></div></div></div><p>This section shows how to add images to Mobile. For that, follow the simple procedure given.</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>Put the images in a subdirectory of your source file directory. For example
                 <code class="filename">docsrc/images</code>.</p></li><li class="listitem"><p>Then refer to those images from your docbook document.</p><p>Following image is from <span class="bold"><strong>mobile/docsrs/images/sample.jpg</strong></span>. The docbook code is shown
               below.</p><p>
               </p><div class="figure"><a id="d0e1571"></a><p class="title"><strong>Figure 1. Sample Image</strong></p><div class="figure-contents"><div class="mediaobject"><img src="images/sample.jpg" alt="Sample Image" /></div></div></div><p><br class="figure-break" />

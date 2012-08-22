@@ -27,29 +27,7 @@
 		</script><script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><!----></script><script type="text/javascript" src="../js/swipeupdown.js"><!----></script></head><body><div data-role="page" id="id_ch02s02s02_html"><!--KEEP THIS CODE--><div data-role="header" data-theme="b"><h4>Installation On Windows</h4><!----><a accesskey="p" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="a" href="ch02s02s01.html">Prev</a>
           
           
-            <a accesskey="n" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="a" href="ch02s03.html">Next</a><script type="text/javascript">
-        /*$(function() {
-          $("#id_ch02s02s02_html").live('swipedown', function(event) {
-            $.mobile.changePage("toc.html");
-          });
-        });
-				
-        $(function() {
-          $("#id_ch02s02s02_html").live('swipeup', function(event) {
-            $.mobile.changePage("menubar.html");
-          });
-        });
-					
-        $(function() {
-          $("#id_ch02s02s02_html").live('swipeleft', function(event) {
-            $.mobile.changePage("ch02s02s01.html");
-          });
-				 		
-          $("#id_ch02s02s02_html").live('swiperight', function(event) {
-            $.mobile.changePage("ch02s03.html");
-          });
-        });*/
-        
+            <a accesskey="n" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="a" href="ch02s03.html">Next</a><script type="text/javascript">        
         $(function() {
           var $nextPage="ch02s02s01.html";
           var $prevPage="ch02s03.html";
@@ -97,8 +75,14 @@
               $.mobile.changePage($nextPage);
             }
           });
+        
+          $("#id_ch02s02s02_html_taphold").hide();
+          $("#id_ch02s02s02_html").live('taphold', function(event) {
+            $("#id_ch02s02s02_html_taphold").click();
+          });
+         
         });
-			</script></div><div data-role="content" id="bodyone"><div id="content"><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="d0e410"></a>Installation On Windows</h3></div><div><div class="abstract"><p class="title"><strong>Abstract</strong></p><p>Installation On Windows</p></div></div></div></div><div class="procedure"><a id="d0e417"></a><p class="title"><strong>Procedure 2. To install the package on Windows</strong></p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>The following procedure discribe the steps to install dependancies for use this package.
+			</script></div><div data-role="content" id="bodyone"><a href="tapholdDialog.html" data-role="button" data-inline="true" data-rel="dialog" data-transition="flip" id="id_ch02s02s02_html_taphold"></a><div id="content"><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="d0e410"></a>Installation On Windows</h3></div><div><div class="abstract"><p class="title"><strong>Abstract</strong></p><p>Installation On Windows</p></div></div></div></div><div class="procedure"><a id="d0e417"></a><p class="title"><strong>Procedure 2. To install the package on Windows</strong></p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>The following procedure discribe the steps to install dependancies for use this package.
             </p><p>In addition to using the ant <code class="filename">build.xml</code> provided, you can also
               use the <a class="ulink" href="http://docbkx-tools.sourceforge.net/docbkx-samples/manual.html" target="_top">Docbkx Maven plugin</a> to generate webhelp.</p></div><ol class="procedure" type="1"><li class="step"><p>If necessary, install <a class="ulink" href="http://www.java.com/en/download/manual.jsp" target="_top">Java
                 1.6</a> or higher.</p><ol type="a" class="substeps"><li class="step"><p>Confirm that Java is installed and in your <code class="envar">PATH</code> by typing the

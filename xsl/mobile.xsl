@@ -32,6 +32,13 @@
   <xsl:param name="mobile.device.platform">none</xsl:param>
   <xsl:param name="mobile.cordova.version">2.0.0</xsl:param>
   <xsl:param name="mobile.cordova.path" select="concat('../','cordova-',$mobile.cordova.version,'.js')"/>
+  <xsl:param name="mobile.jquerymobile.themeroler">none</xsl:param>
+  <xsl:param name="mobile.taphold">
+    <xsl:choose>
+      <xsl:when test="($mobile.device.platform = 'iOS')or($mobile.device.platform='none')">1</xsl:when>
+      <xsl:otherwise>0</xsl:otherwise>
+    </xsl:choose>
+  </xsl:param>
 
   <!-- ============================================================ -->
   <!-- =	default configuration for build mobile out put	        = -->
@@ -52,7 +59,7 @@
   <xsl:param name="toc.section.depth">4</xsl:param>
   <xsl:param name="generate.section.toc.level" select="3"></xsl:param>
   <xsl:param name="branding">not set</xsl:param>
-  <xsl:param name="brandname"> </xsl:param>
+  <xsl:param name="brandname">docbook</xsl:param>
   
   <xsl:param name="chapter.autolabel" select="0"/>
   <xsl:param name="section.autolabel" select="0"/>
@@ -127,7 +134,7 @@
     </l10n>
 
   </i18n>
-
+ 
   <!-- ============================================================ -->
   <!-- = system.head.content					    							          = -->
   <!-- ============================================================ -->
@@ -152,7 +159,7 @@
     <link rel="stylesheet" type="text/css" href="../css/mobile.positioning.css"/>
 
     <xsl:choose>
-      <xsl:when test="'android'=$mobile.device.platform">
+      <xsl:when test="('android'=$mobile.device.platform) or ('iOS'=$mobile.device.platform)">
         <script type="text/javascript" charset="utf-8">
           <xsl:attribute name="src">
             <xsl:value-of select="$mobile.cordova.path"/>
@@ -331,7 +338,7 @@
               </xsl:when>
               <xsl:otherwise>
                 <xsl:if
-                  test="$collect.xref.targets = 'yes' or                             $collect.xref.targets = 'only'">
+                  test="$collect.xref.targets = 'yes' or $collect.xref.targets = 'only'">
                   <xsl:apply-templates select="key('id', $rootid)" mode="collect.targets"/>
                 </xsl:if>
                 <xsl:if test="$collect.xref.targets != 'only'">
@@ -345,7 +352,7 @@
           </xsl:when>
           <xsl:otherwise>
             <xsl:if
-              test="$collect.xref.targets = 'yes' or                         $collect.xref.targets = 'only'">
+              test="$collect.xref.targets = 'yes' or $collect.xref.targets = 'only'">
               <xsl:apply-templates select="/" mode="collect.targets"/>
             </xsl:if>
             <xsl:if test="$collect.xref.targets != 'only'">
@@ -362,10 +369,7 @@
     <xsl:call-template name="toc.html"/>
     
     <xsl:choose>
-      <xsl:when test="'none'=$mobile.device.platform">
-        <xsl:call-template name="index.html"/>
-      </xsl:when>
-      <xsl:when test="'iOS'=$mobile.device.platform">
+      <xsl:when test="('none'=$mobile.device.platform) or ('iOS'=$mobile.device.platform)">
         <xsl:call-template name="index.html"/>
       </xsl:when>
     </xsl:choose>
@@ -373,6 +377,10 @@
     <xsl:call-template name="settings.html"/>
 
     <xsl:call-template name="menubar.html"/>
+    
+<!--    <xsl:if test="('1'=$mobile.taphold)">-->
+      <xsl:call-template name="tapholdDialog.html" />
+<!--    </xsl:if>-->
     
     <xsl:call-template name="l10n.js"></xsl:call-template>
 
@@ -424,6 +432,15 @@
             </xsl:call-template>
           </div>
           <div data-role="content" id="bodyone">
+            <xsl:if test="$mobile.taphold=1">
+              <a href="tapholdDialog.html" data-role="button"
+                data-inline="true" data-rel="dialog" data-transition="flip">
+                <xsl:attribute name="id">
+                  <xsl:value-of select="concat($id_current,'_taphold')"/>
+                </xsl:attribute>
+              </a>
+            </xsl:if>
+            
             <div id="content">
 
               <xsl:copy-of select="$content"/>
@@ -559,29 +576,7 @@
       <xsl:variable name="id_current" select="translate(concat('#id_',$nav_current),'.','_')"/>
 
       <!-- actions for the events happening on the phone/device -->
-      <script type="text/javascript">
-        /*$(function() {
-          $("<xsl:value-of select="$id_current"/>").live('swipedown', function(event) {
-            $.mobile.changePage("<xsl:value-of select="$mobile.toc.filename"/>");
-          });
-        });
-				
-        $(function() {
-          $("<xsl:value-of select="$id_current"/>").live('swipeup', function(event) {
-            $.mobile.changePage("<xsl:value-of select="$mobile.menubar.filename"/>");
-          });
-        });
-					
-        $(function() {
-          $("<xsl:value-of select="$id_current"/>").live('swipeleft', function(event) {
-            $.mobile.changePage("<xsl:value-of select="$nav_prev"/>");
-          });
-				 		
-          $("<xsl:value-of select="$id_current"/>").live('swiperight', function(event) {
-            $.mobile.changePage("<xsl:value-of select="$nav_next"/>");
-          });
-        });*/
-        
+      <script type="text/javascript">        
         $(function() {
           var $nextPage="<xsl:value-of select="$nav_prev"/>";
           var $prevPage="<xsl:value-of select="$nav_next"/>";
@@ -629,6 +624,12 @@
               $.mobile.changePage($nextPage);
             }
           });
+        <xsl:if test="$mobile.taphold='1'">
+          $("<xsl:value-of select="concat($id_current,'_taphold')"/>").hide();
+          $("<xsl:value-of select="$id_current"/>").live('taphold', function(event) {
+            $("<xsl:value-of select="concat($id_current,'_taphold')"/>").click();
+          });
+        </xsl:if> 
         });
 			</script>
     </xsl:if>
@@ -915,9 +916,9 @@
             </style>
             <script type="text/javascript" src="../js/jquery.min.js">// jquery </script>
             <script type="text/javascript" src="../js/jquery.cookie.min.js">// cookies </script>
-            <!--<script type="text/javascript" src="../js/mobile-menubar.js">
+            <script type="text/javascript" src="../js/mobile-menubar.js">
               <xsl:comment>mobile menubar</xsl:comment>
-            </script>-->
+            </script>
             <script type="text/javascript" src="../js/mobile-settings.js">
                 <xsl:comment>mobile settings</xsl:comment>
               </script>
@@ -933,10 +934,6 @@
               <xsl:attribute name="id">
                 <xsl:value-of select="$id_settings"/>
               </xsl:attribute>
-              
-              <script type="text/javascript" src="../js/mobile-menubar.js">
-               <xsl:comment>mobile menubar</xsl:comment>
-              </script>
 
               <div data-role="header">
                 <h1>Settings</h1>
@@ -951,6 +948,10 @@
                     });
                     //hide the link for open Warning Dialog Box
                     $("#showDialog").hide();
+                  });
+                  
+                  //refresh select menus after page create
+                  $("#id_settings_html").live('pageshow',function(event,ui){
                     refreshSelectMenus();
                   });
                   function refreshSelectMenus(){
@@ -1467,6 +1468,106 @@
     </xsl:call-template>
   </xsl:template>
   <!-- ============================================================ -->
+  <!-- = Tap Hold Dialog                                          = -->
+  <!-- ============================================================ -->
+  <xsl:template name="tapholdDialog.html">
+    <xsl:call-template name="write.chunk">
+      <xsl:with-param name="filename">
+        <!--<xsl:choose>
+          <xsl:when test="$mobile.start.filename">
+            <xsl:value-of select="concat($mobile.base.dir,'/',$mobile.start.filename)"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="'index.html'"/>
+          </xsl:otherwise>
+        </xsl:choose>-->
+        
+        <xsl:value-of select="concat($mobile.base.dir,'/content/','tapholdDialog.html')"/>
+      </xsl:with-param>
+      <xsl:with-param name="method" select="'xml'"/>
+      <xsl:with-param name="encoding" select="'utf-8'"/>
+      <xsl:with-param name="indent" select="'yes'"/>
+      <xsl:with-param name="content">
+        <html>
+          <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+            <xsl:choose>
+              <xsl:when test="('android'=$mobile.device.platform) or ('iOS'=$mobile.device.platform)">
+                <script type="text/javascript" charset="utf-8">
+                  <xsl:attribute name="src">
+                    <xsl:value-of select="$mobile.cordova.path"/>
+                  </xsl:attribute>
+                  <xsl:comment>
+                  </xsl:comment>
+                </script>
+              </xsl:when>
+            </xsl:choose>
+            <link rel="stylesheet" type="text/css"
+              href="../css/themes/default/jquery.mobile-1.1.0.min.css"/>
+            <script type="text/javascript" src="../js/browserDetect.js">
+              <xsl:comment>browserDetect</xsl:comment>
+            </script>
+            <script type="text/javascript" src="../js/jquery.min.js">
+              <xsl:comment>jquery</xsl:comment>
+            </script>
+            <script type="text/javascript" src="../js/jquery.cookie.min.js">
+              <xsl:comment>cookies</xsl:comment>
+            </script>
+            <script type="text/javascript" src="../js/mobile-menubar.js">
+              <xsl:comment>mobile menubar</xsl:comment>
+            </script>
+            <script type="text/javascript" src="../js/mobile-settings.js">
+              <xsl:comment>mobile settings</xsl:comment>
+            </script>
+            
+            <script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js">
+              <xsl:comment>jquerymobile</xsl:comment>
+            </script>
+          </head>
+          <body>
+            <div data-role="page" class="dialog-actionsheet" data-overlay-theme="b">
+              
+              <div data-role="content" data-theme="a">
+                <a id="toc_button" data-role="button" data-rel="dialog"
+                  data-transition="slidedown" data-theme="b">ToC</a>
+                <a id="menubar_button" data-role="button" data-rel="dialog"
+                  data-transition="slidedown" data-theme="b">Menu Bar</a>
+                <a id="settings_button" data-role="button" data-rel="dialog"
+                  data-transition="slidedown" data-theme="b">Settings</a>
+                <a href="index.html" data-role="button" data-rel="back" data-theme="a">Cancel</a>
+                <script type="text/javascript">
+                $(function(){
+                  $("#toc_button").live('click', function(event) {
+                    $.mobile.changePage("<xsl:value-of select="$mobile.toc.filename"/>",{
+                      transition : "slidedown" ,
+                      rel : "dialog" ,
+                      inline : "true"
+                    });
+                  });
+                  $("#menubar_button").live('click', function(event) {
+                    $.mobile.changePage("<xsl:value-of select="$mobile.menubar.filename"/>",{
+                      transition : "slideup" ,
+                      rel : "dialog" ,
+                      inline : "true"
+                    });
+                  });
+                  $("#settings_button").live('click', function(event) {
+                    $.mobile.changePage("<xsl:value-of select="$mobile.setting.filename"/>",{
+                      transition : "pop" ,
+                      rel : "dialog"
+                    });
+                  });
+                });
+                </script>
+              </div>
+            </div>
+          </body>
+        </html>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:template>
+  <!-- ============================================================ -->
   <!-- = l10n.js                                                  = -->
   <!-- ============================================================ -->
   <xsl:template name="l10n.js">
@@ -1476,7 +1577,7 @@
       </xsl:with-param>
       <xsl:with-param name="method" select="'text'"/>
       <xsl:with-param name="encoding" select="'utf-8'"/>
-      <xsl:with-param name="indent" select="'no'"/>
+      <xsl:with-param name="indent" select="'yes'"/>
       <xsl:with-param name="content">
         //Resource strings for localization
         var localeresource = new Object;
