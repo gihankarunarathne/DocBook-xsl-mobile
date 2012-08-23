@@ -3,7 +3,7 @@
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 	<meta http-equiv="X-UA-Compatible" content="IE=7" />
-	<title>Adding images</title><meta name="generator" content="Bluefish 2.2.2" /><link rel="home" href="index.html" title="Mobile docBook Help" /><link rel="up" href="ch02.html" title="User guide" /><link rel="prev" href="ch02s07.html" title="Adding support for other (non-CJKV) languages" /><link rel="next" href="ch03.html" title="Developer guide" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="stylesheet" type="text/css" href="../css/themes/default/jquery.mobile-1.1.0.min.css" /><link rel="stylesheet" type="text/css" href="../css/mobile.positioning.css" /><script type="text/javascript" charset="utf-8" src="../cordova-2.0.0.js"><!----></script><script type="text/javascript">
+	<title>Adding images</title><meta name="generator" content="Bluefish 2.2.2" /><link rel="home" href="index.html" title="Mobile docBook Help" /><link rel="up" href="ch02.html" title="User guide" /><link rel="prev" href="ch02s07.html" title="Adding support for other (non-CJKV) languages" /><link rel="next" href="ch03.html" title="Developer guide" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="stylesheet" type="text/css" href="../css/themes/default/jquery.mobile-1.1.0.min.css" /><link rel="stylesheet" type="text/css" href="../css/mobile.positioning.css" /><script type="text/javascript">
               //The id for tree cookie
               var treeCookieId = "treeview-1055";
               var language = "en";
@@ -77,9 +77,15 @@
               $.mobile.changePage($nextPage);
             }
           });
+        
+          //if taphold feature enabled
+          $("#id_ch02s08_html_taphold").hide();
+          $("#id_ch02s08_html").live('taphold', function(event) {
+            $("#id_ch02s08_html_taphold").click();
+          });
          
         });
-			</script></div><div data-role="content" id="bodyone"><div id="content"><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="d0e1549"></a>Adding images</h2></div></div></div><p>This section shows how to add images to Mobile. For that, follow the simple procedure given.</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>Put the images in a subdirectory of your source file directory. For example
+			</script></div><div data-role="content" id="bodyone"><a href="tapholdDialog.html" data-role="button" data-inline="true" data-rel="dialog" data-transition="flip" id="id_ch02s08_html_taphold"></a><div id="content"><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="d0e1549"></a>Adding images</h2></div></div></div><p>This section shows how to add images to Mobile. For that, follow the simple procedure given.</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>Put the images in a subdirectory of your source file directory. For example
                 <code class="filename">docsrc/images</code>.</p></li><li class="listitem"><p>Then refer to those images from your docbook document.</p><p>Following image is from <span class="bold"><strong>mobile/docsrs/images/sample.jpg</strong></span>. The docbook code is shown
               below.</p><p>
               </p><div class="figure"><a id="d0e1571"></a><p class="title"><strong>Figure 1. Sample Image</strong></p><div class="figure-contents"><div class="mediaobject"><img src="images/sample.jpg" alt="Sample Image" /></div></div></div><p><br class="figure-break" />
