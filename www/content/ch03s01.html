@@ -3,7 +3,7 @@
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 	<meta http-equiv="X-UA-Compatible" content="IE=7" />
-	<title>Design of Mobile Content</title><meta name="generator" content="Bluefish 2.2.2" /><link rel="home" href="index.html" title="Mobile docBook Help" /><link rel="up" href="ch03.html" title="Developer guide" /><link rel="prev" href="ch03.html" title="Developer guide" /><link rel="next" href="ch03s01s01.html" title="Mobile Table of Content" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="stylesheet" type="text/css" href="../css/themes/default/jquery.mobile-1.1.0.min.css" /><link rel="stylesheet" type="text/css" href="../css/mobile.positioning.css" /><script type="text/javascript">
+	<title>Design of Mobile Content</title><meta name="generator" content="Bluefish 2.2.2" /><link rel="home" href="index.html" title="Mobile docBook Help" /><link rel="up" href="ch03.html" title="Developer guide" /><link rel="prev" href="ch03.html" title="Developer guide" /><link rel="next" href="ch03s01s01.html" title="Mobile Table of Content" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="stylesheet" type="text/css" href="../css/themes/default/jquery.mobile-1.1.0.min.css" /><link rel="stylesheet" type="text/css" href="../css/mobile.positioning.css" /><script type="text/javascript" charset="utf-8" src="../cordova-2.0.0.js"><!----></script><script type="text/javascript">
               //The id for tree cookie
               var treeCookieId = "treeview-1055";
               var language = "en";
@@ -31,9 +31,10 @@
         $(function() {
           var $nextPage="ch03.html";
           var $prevPage="ch03s01s01.html";
+        
           var $toc="toc.html";
           var $menubar="menubar.html";
-        
+          //when swipe down event happens
           $("#id_ch03s01_html").live('swipedown', function(event) {
             if("showMenuBar"===$.cookie('popupmenubar') ){
               if("swipeDown"===$.cookie('menubardirection') ){
@@ -46,7 +47,7 @@
               }
             }
           });
-				
+				  //when swipe up event happens
           $("#id_ch03s01_html").live('swipeup', function(event) {
             if("showMenuBar"===$.cookie('popupmenubar')){
               if("swipeUp"===$.cookie('menubardirection') ){
@@ -59,7 +60,8 @@
               }
             }
           });
-          
+        
+          //when swipe left event happens
           $("#id_ch03s01_html").live('swipeleft', function(event) {
             if("swipeLeft" === $.cookie('nextpage') ){
               $.mobile.changePage($nextPage);
@@ -67,7 +69,7 @@
               $.mobile.changePage($prevPage);
             }
           });
-				 		
+				 	//when swipe right event happens
           $("#id_ch03s01_html").live('swiperight', function(event) {
             if("swipeRight" === $.cookie('prevpage') ){
               $.mobile.changePage($prevPage);
@@ -75,14 +77,9 @@
               $.mobile.changePage($nextPage);
             }
           });
-        
-          $("#id_ch03s01_html_taphold").hide();
-          $("#id_ch03s01_html").live('taphold', function(event) {
-            $("#id_ch03s01_html_taphold").click();
-          });
          
         });
-			</script></div><div data-role="content" id="bodyone"><a href="tapholdDialog.html" data-role="button" data-inline="true" data-rel="dialog" data-transition="flip" id="id_ch03s01_html_taphold"></a><div id="content"><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="d0e1601"></a>Design of Mobile Content</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="ch03s01s01.html">Mobile Table of Content</a></span></dt><dt><span class="section"><a href="ch03s01s02.html">Mobile Menu Bar</a></span></dt><dt><span class="section"><a href="ch03s01s03.html">Mobile Settings</a></span></dt></dl></div><p class="summary">
+			</script></div><div data-role="content" id="bodyone"><div id="content"><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="d0e1601"></a>Design of Mobile Content</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="ch03s01s01.html">Mobile Table of Content</a></span></dt><dt><span class="section"><a href="ch03s01s02.html">Mobile Menu Bar</a></span></dt><dt><span class="section"><a href="ch03s01s03.html">Mobile Settings</a></span></dt></dl></div><p class="summary">
         An overview of Mobile file structure.
       </p><p>DocBook Mobile page structure is fully based on html5, javascripts and CSS. The data
         content pages can be divided in to three main sections 

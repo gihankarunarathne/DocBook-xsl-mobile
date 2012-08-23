@@ -7,6 +7,7 @@
       <title>Settings</title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+      <script type="text/javascript" charset="utf-8" src="../cordova-2.0.0.js"><!----></script>
       <link rel="stylesheet" type="text/css" href="../css/themes/default/jquery.mobile-1.1.0.min.css"/>
       <style type="text/css">
               .containing-element .ui-slider-switch { width: 100% }
@@ -21,7 +22,8 @@
    <body>
       <div data-role="page" id="id_settings_html">
          <div data-role="header">
-            <h1>Settings</h1>
+            <p style="text-align:center;">Settings</p>
+            <a href="index.html" data-role="button" data-rel="back" data-theme="a" data-icon="back" class="ui-btn-right"> Back </a>
             <script type="text/javascript">
                   $(function(){
                     $("#viewtoc").live('tap',function(event ,ui){
@@ -41,10 +43,12 @@
                   });
                   function refreshSelectMenus(){
                     //set the select menu values
+                  
                     $("#select-menu-bar-direction").val($.cookie('menubardirection')).selectmenu('refresh', true);
                     $("#select-toc-direction").val($.cookie('tocdirection')).selectmenu('refresh', true);
                     $("#select-pop-up-menu-bar").val($.cookie('popupmenubar')).selectmenu('refresh', true);
                     $("#select-pop-up-toc").val($.cookie('popuptoc')).selectmenu('refresh', true);
+                  
                     $("#select-prev-page-direction").val($.cookie('prevpage')).selectmenu('refresh', true);
                     $("#select-next-page-direction").val($.cookie('nextpage')).selectmenu('refresh', true);
                     $("#reset-settings").val("cancel").selectmenu('refresh', true);

@@ -33,6 +33,12 @@
   <xsl:param name="mobile.cordova.version">2.0.0</xsl:param>
   <xsl:param name="mobile.cordova.path" select="concat('../','cordova-',$mobile.cordova.version,'.js')"/>
   <xsl:param name="mobile.jquerymobile.themeroler">none</xsl:param>
+  <xsl:param name="mobile.swipeupdown">
+    <xsl:choose>
+      <xsl:when test="($mobile.device.platform='android')or($mobile.device.platform='none')">1</xsl:when>
+      <xsl:otherwise>0</xsl:otherwise>
+    </xsl:choose>
+  </xsl:param>
   <xsl:param name="mobile.taphold">
     <xsl:choose>
       <xsl:when test="($mobile.device.platform = 'iOS')or($mobile.device.platform='none')">1</xsl:when>
@@ -580,9 +586,10 @@
         $(function() {
           var $nextPage="<xsl:value-of select="$nav_prev"/>";
           var $prevPage="<xsl:value-of select="$nav_next"/>";
+        <xsl:if test="$mobile.swipeupdown=1">
           var $toc="<xsl:value-of select="$mobile.toc.filename"/>";
           var $menubar="<xsl:value-of select="$mobile.menubar.filename"/>";
-        
+          //when swipe down event happens
           $("<xsl:value-of select="$id_current"/>").live('swipedown', function(event) {
             if("showMenuBar"===$.cookie('popupmenubar') ){
               if("swipeDown"===$.cookie('menubardirection') ){
@@ -595,7 +602,7 @@
               }
             }
           });
-				
+				  //when swipe up event happens
           $("<xsl:value-of select="$id_current"/>").live('swipeup', function(event) {
             if("showMenuBar"===$.cookie('popupmenubar')){
               if("swipeUp"===$.cookie('menubardirection') ){
@@ -608,7 +615,8 @@
               }
             }
           });
-          
+        </xsl:if>
+          //when swipe left event happens
           $("<xsl:value-of select="$id_current"/>").live('swipeleft', function(event) {
             if("swipeLeft" === $.cookie('nextpage') ){
               $.mobile.changePage($nextPage);
@@ -616,7 +624,7 @@
               $.mobile.changePage($prevPage);
             }
           });
-				 		
+				 	//when swipe right event happens
           $("<xsl:value-of select="$id_current"/>").live('swiperight', function(event) {
             if("swipeRight" === $.cookie('prevpage') ){
               $.mobile.changePage($prevPage);
@@ -625,6 +633,7 @@
             }
           });
         <xsl:if test="$mobile.taphold='1'">
+          //if taphold feature enabled
           $("<xsl:value-of select="concat($id_current,'_taphold')"/>").hide();
           $("<xsl:value-of select="$id_current"/>").live('taphold', function(event) {
             $("<xsl:value-of select="concat($id_current,'_taphold')"/>").click();
@@ -896,9 +905,9 @@
             <title>Settings</title>
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-            <!-- add resources to Android device -->
+            <!-- Add resources to Android device -->
             <xsl:choose>
-              <xsl:when test="'android'=$mobile.device.platform">
+              <xsl:when test="('android'=$mobile.device.platform)or('iOS'=$mobile.device.platform)">
                 <script type="text/javascript" charset="utf-8">
                   <xsl:attribute name="src">
                     <xsl:value-of select="$mobile.cordova.path"/>
@@ -936,7 +945,9 @@
               </xsl:attribute>
 
               <div data-role="header">
-                <h1>Settings</h1>
+                <p style="text-align:center;">Settings</p>
+                <a href="index.html" data-role="button" data-rel="back" data-theme="a"
+                  data-icon="back" class="ui-btn-right"> Back </a>
                 <script type="text/javascript">
                   $(function(){
                     $("#viewtoc").live('tap',function(event ,ui){
@@ -956,10 +967,12 @@
                   });
                   function refreshSelectMenus(){
                     //set the select menu values
+                  <xsl:if test="'1'=$mobile.swipeupdown">
                     $("#select-menu-bar-direction").val($.cookie('menubardirection')).selectmenu('refresh', true);
                     $("#select-toc-direction").val($.cookie('tocdirection')).selectmenu('refresh', true);
                     $("#select-pop-up-menu-bar").val($.cookie('popupmenubar')).selectmenu('refresh', true);
                     $("#select-pop-up-toc").val($.cookie('popuptoc')).selectmenu('refresh', true);
+                  </xsl:if>
                     $("#select-prev-page-direction").val($.cookie('prevpage')).selectmenu('refresh', true);
                     $("#select-next-page-direction").val($.cookie('nextpage')).selectmenu('refresh', true);
                     $("#reset-settings").val("cancel").selectmenu('refresh', true);
@@ -995,6 +1008,7 @@
                       </select>
                     </li>-->
 
+                  <xsl:if test="'1'=$mobile.swipeupdown">
                     <!-- ======================================= -->
                     <!-- =  Positioning ToC / Menubar          = -->
                     <!-- ======================================= -->
@@ -1053,6 +1067,7 @@
                         <option value="hidetoc">Hide ToC</option>
                       </select>
                     </li>
+                  </xsl:if><!-- End of page swipe up down integration -->
 
                     <!-- ======================================= -->
                     <!-- =  Page Navigation directions         = -->
@@ -1183,7 +1198,7 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
             <xsl:choose>
-              <xsl:when test="'android'=$mobile.device.platform">
+              <xsl:when test="('android'=$mobile.device.platform)or('iOS'=$mobile.device.platform)">
                 <script type="text/javascript" charset="utf-8">
                   <xsl:attribute name="src">
                     <xsl:value-of select="$mobile.cordova.path"/>
@@ -1264,7 +1279,9 @@
               </xsl:attribute>
               
               <div data-role="header" data-theme="b">
-                <h1>Menu Bar</h1>
+                <p style="text-align:center;">Menu Bar</p>
+                <a href="index.html" data-role="button" data-rel="back" data-theme="a"
+                  data-icon="back" class="ui-btn-right"> Back </a>
                 <hr/>
                 <!-- First Raw -->
                 <!--<div data-role="navbar" data-theme="b">
@@ -1454,7 +1471,9 @@
                 });
             </script>
               <div data-role="header">
-                <h1>Table of Content</h1>
+                <p style="text-align:center;">Table of Content</p>
+                <a href="index.html" data-role="button" data-rel="back" data-theme="a"
+                  data-icon="back" class="ui-btn-right"> Back </a>
               </div>
               <div data-role="content" data-theme="a">
                 <xsl:call-template name="mobiletoc">
