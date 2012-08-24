@@ -1,5 +1,4 @@
-
-	How to Use it ?
+===	How to Use it ? ===
 
 1. First you have to download the docbook xsl-1.77.1 version from http://sourceforge.net/projects/docbook/files/docbook-xsl/1.77.1/
 2. Also download the Mobile package as zip from here.
@@ -10,59 +9,35 @@ Now, you finished with settings up the package to use.
 
 Follow the instructions in document https://github.com/gihankarunarathne/DocBook-xsl-mobile/tree/master/www.
 
-	Support Platforms
+===	Support Platforms ===
 	
-* === List of Available mobile platforms ===
-      	|
-      	|_Android             :$ant android-help *
-      	|__Apple iOS          :$ant iOS-help
-      	|___Blackberry        :$ant blackberry-help
-      	|____Palm webOS
-      	|_____Samsung Bada
-      	|______Windows Phone	:$ant windows-phone-help
-    
+  List of Available mobile platforms ::
+<pre><code>  |
+  |_Android             :$ant android-help *
+  |__Apple iOS          :$ant iOS-help *
+  |___Blackberry        :$ant blackberry-help
+  |____Palm webOS
+  |_____Samsung Bada
+  |______Windows Phone	:$ant windows-phone-help </code></pre>
+  
     key: " * " - currently implemented
 
-=== HTMLs for all platforms ===================================
+=== HTMLs for all platforms ===
 
 To create chunked htmls which can be used in "www" folder of PhoneGap:
 
 	$ ant mobile
 
 
-=== Android  ==================================================
+=== Android  ===
 
-Go and Edit  xsl/mobile/android/android.config with your data.
+To create Android .apk app with using chunked htmls :
 
-Then execute to create a .apk which is signed by debug key :
+  $ ant mobile.android
+  
+=== iOS ===
 
-	$ ant mobile_android_debug_apk
+To create Apple iOS app with using chunked htmls :
 
-( debug .apk can use to debug the application ) The output will be build in "xsl/mobile/android/$output-dir/bin/Activitynam-debug.apk".
-
-How to test output ? ----------------------------------------------------
-
-
-Execute following command and make an Emulator :
-
-	$ android avd
-
-NOTE: When You are creating an Emulator, make sure the its platform version is compatible with your application.
-
-After create an Emulator, then run it.
-To install created Android app, go to the output directory of app and then also for 'bin' directory inside it.
-
-	$ adb install path/to/.apk
-
-Ex: If you are in xsl/mobile directory,
-
-	$ adb install andriod/output/bin/DocBookMobileAppActivity-debug.apk
-
-If you already installed current app that you want to install, then you can reinstall it by:
-
-	$ adb install [-r] path/to/.apk
-
-Ex: If you are in xsl/mobile directory,
-
-	$ adb install -r andriod/output/bin/DocBookMobileAppActivity-debug.apk
-
+  $ ant mobile.iOS
+  
