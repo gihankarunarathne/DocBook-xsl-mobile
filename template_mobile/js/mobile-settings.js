@@ -159,7 +159,7 @@ var expireDays = 7;
 // set domain/path name for access cookies
 var domainPath = '/';
 
-$(function () {
+$(document).bind('pageinit',function () {
 
   $("#select-menu-bar-direction").bind("change", function (event, ui) {
     try {

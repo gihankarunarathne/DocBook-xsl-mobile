@@ -41,7 +41,9 @@
   </xsl:param>
   <xsl:param name="mobile.taphold">
     <xsl:choose>
-      <xsl:when test="($mobile.device.platform = 'iOS')or($mobile.device.platform='none')">1</xsl:when>
+      <xsl:when
+        test="($mobile.device.platform = 'android')or($mobile.device.platform = 'iOS')or($mobile.device.platform='none')"
+        >1</xsl:when>
       <xsl:otherwise>0</xsl:otherwise>
     </xsl:choose>
   </xsl:param>
