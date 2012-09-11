@@ -707,17 +707,16 @@ CordovaProjectName</programlisting>
             </para>
             <para><programlisting>
 Ex: $ bin/create ~/Desktop/Mobile \
-docbook.xsl.Mobile Mobile</programlisting></para>
+docbook.xsl.Mobile Mobile</programlisting>This command creates Android apps called "Mobile" in<filename> ~/Desktop/Mobile </filename>directory with "docbook/xsl/Mobile.java" class in Android project's <filename> src </filename>directory.</para>
             <para><emphasis role="bold">on windows</emphasis>
               <programlisting>
-$ ./path/to/cordova-android/bin/create.bat \
-/path/to/my_new_cordova_project \
-com.example.cordova_project_name \
+$ path\to\cordova-android\bin\create.bat 
+ path\to\my_new_cordova_project 
+com.example.cordova_project_name 
 CordovaProjectName</programlisting>
             </para>
             <para><programlisting>
-Ex: $ bin/create.bat ~/Desktop/Mobile \
-docbook.xsl.Mobile Mobile</programlisting></para>
+Ex: $ bin/create.bat Android xsl.Mobile DocBook</programlisting>This command creates Android apps called "DocBook" in<filename> Android </filename>directory(in the current directory) with "xsl/Mobile.java" class in Android project's <filename> src </filename>directory.</para>
           </listitem>
         </itemizedlist>
         <section>
@@ -737,7 +736,7 @@ docbook.xsl.Mobile Mobile</programlisting></para>
             <para>Go to the directory where your Android project located. Then run following command from Terminal :
             <programlisting>$ /path/to/my_new_cordova_project/cordova/debug</programlisting>
             <emphasis role="bold">on windows</emphasis>
-            <programlisting>$ /path/to/my_new_cordova_project/cordova/debug.bat</programlisting>
+            <programlisting>$ path\to\my_new_cordova_project\cordova\debug.bat</programlisting>
             </para>
             <note>
               <para>NOTE: This will created an android app which is signed by debug 'keystore'. You
@@ -844,7 +843,7 @@ docbook.xsl.Mobile Mobile</programlisting></para>
             <para>Execute following command and make an Emulator : 
               <programlisting>$ /path/to/my_new_cordova_project/cordova/emulate</programlisting>
               <emphasis role="bold">on windows</emphasis>
-              <programlisting>$ /path/to/my_new_cordova_project/cordova/emulate.bat</programlisting>
+              <programlisting>$ path\to\my_new_cordova_project\cordova\emulate.bat</programlisting>
               Or otherwise use :
               <programlisting>$ android avd</programlisting>
               <note>
@@ -869,20 +868,20 @@ path/to/proj/bin/MobileAppActivity-debug.apk</programlisting>
           <step><para>
             <emphasis role="bold">Logging</emphasis>
             <programlisting>$ /path/to/my_new_cordova_project/cordova/log</programlisting>
-            <emphasis>on windows</emphasis>
-            <programlisting>$ /path/to/my_new_cordova_project/cordova/log.bat</programlisting>
+            <emphasis role="bold">on windows</emphasis>
+            <programlisting>$ path\to\my_new_cordova_project\cordova\log.bat</programlisting>
           </para></step>
           <step><para>
             <emphasis role="bold">Cleaning</emphasis>
             <programlisting>$ /path/to/my_new_cordova_project/cordova/clean</programlisting>
-            <emphasis>on windows</emphasis>
-            <programlisting>$ /path/to/my_new_cordova_project/cordova/clean.bat</programlisting>
+            <emphasis role="bold">on windows</emphasis>
+            <programlisting>$ path\to\my_new_cordova_project\cordova\clean.bat</programlisting>
           </para></step>
           <step><para>
             <emphasis role="bold">Clean, build, deploy and launch</emphasis>
             <programlisting>$ /path/to/my_new_cordova_project/cordova/BOOM</programlisting>
-            <emphasis>on windows</emphasis>
-            <programlisting>$ /path/to/my_new_cordova_project/cordova/BOOM.bat</programlisting>
+            <emphasis role="bold">on windows</emphasis>
+            <programlisting>$ path\to\my_new_cordova_project\cordova\BOOM.bat</programlisting>
             <note><para>Make sure you have an emulator or a device connected.</para></note>
           </para></step>
           <step>
