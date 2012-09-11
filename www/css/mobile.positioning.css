@@ -1,0 +1,265 @@
+/**
+ * @author : Gihan Karunarathne
+ * @email : gckarunarathne@gmail.com
+ * @created date : 04 August 2012
+ * @last modified :
+ */
+
+/***********************
+ * Common styling
+ ***********************/
+
+/**
+ * Chapter defaults
+ */
+div.chapter p {
+  margin : 5px 0px ;
+}
+div.section p {
+  margin : 5px 0px ;
+}
+h3.title {
+  margin  : 5px 0px ;
+  font-size : 100% !important;
+}
+.ui-header .ui-title, .ui-footer .ui-title{
+  /*font-size : 12px;*/
+  margin : 0.6em 30% 0.1em;
+}
+/***********************
+ * DocBook Specific
+ ***********************/
+
+/**Abbrev
+ */
+
+/**
+ * Abstract
+ */
+div.abstract p {
+  margin : 5px 0px ;
+}
+
+**
+ * Address
+ *
+ * Affiliation
+ *
+ * ArtPageNums
+ */
+/**
+ * Author
+ */
+div.author {
+  margin : 5px 0px ;
+}
+h3.author {
+  margin : 5px 0px ;
+  font-size : 110% ;
+}
+
+/**
+ * AuthorBlurb
+ *
+ * AuthorGroup
+ *
+ * AuthorInitials
+ *
+ * BiblioMisc
+ *
+ * BiblioSet
+ *
+ * CiteTitle
+ *
+ * Collab
+ *
+ * ConfGroup
+ *
+ * ContractNum
+ *
+ * ContractSponsor
+ *
+ * Contrib
+ */
+
+/**
+ * Copyright
+ */
+div p.copyright {
+  margin : 8px 0px ;
+}
+
+/**
+ * CorpAuthor
+ *
+ * CorpName
+ *
+ * Date
+ *
+ * Edition
+ *
+ * Editor
+ *
+ * FirstName
+ *
+ * Graphic
+ *
+ * Honorific
+ */
+
+/**
+ * Important
+ */
+div.important {
+  margin : 0px 0px 0px 10px !important;
+}
+
+/**
+ * ISBN
+ *
+ * ISSN
+ *
+ * ITermSet
+ *
+ * IndexTerm
+ *
+ * InvPartNumber
+ *
+ * IssueNum
+ *
+ * KeywordSet
+ */
+
+/**
+ * LegalNotice
+ */
+div.legalnotice p {
+  margin : 6px 0px ;
+}
+ul.itemizedlist {
+  margin : 5px 0px ;
+  padding : 0px 0px 0px 20px ;
+}
+li.listitem p {
+  margin : 0px ;
+}
+
+/**
+ * Lineage
+ *
+ * MediaObject
+ *
+ * NodeSpec
+ */
+
+/**
+ * Note
+ */
+div.note {
+  margin : 0px 0px 0px 10px !important;
+}
+
+/**
+ * OrgName
+ *
+ * OtherCredit
+ *
+ * OtherName
+ *
+ * PageNums
+ *
+ * PrintHistory
+ */
+
+
+/* *
+ *Procedure
+ */
+div.procedure p {
+  margin : 5px 0px ;
+}
+ol.procedure {
+  margin : 5px 0px ;
+  padding : 0px 0px 0px 15px ;
+}
+ol.substeps {
+  padding : 0px 0px 0px 15px ;
+}
+
+/**
+ * ProductName
+ *
+ * ProductNumber
+ */
+
+/**
+ * PubDate
+ */
+p.pubdate {
+  margin : 10px 0px ;
+}
+
+/**
+ * Publisher
+ *
+ * PublisherName
+ *
+ * PubsNumber
+ *
+ * ReleaseInfo
+ *
+ * RevHistory
+ *
+ * SeriesVolNums
+ *
+ * SubjectSet
+ *
+ * Subtitle
+ *
+ * Surname
+ */
+
+/**
+ *Tip
+ */
+div.tip {
+  margin : 0px 0px 0px 10px !important;
+}
+div.tip p {
+  margin : 5px 0px ;
+}
+
+/**
+ * Title
+ */
+h1 {
+  font-size : 110% ;
+  margin : 5px 5px ;
+  text-align : center ;
+}
+h2.title {
+  font-size : 110% ;
+  text-align : center ;
+}
+
+/**
+ * TitleAbbrev
+ */
+
+
+/**
+ * ToC
+ */
+div.toc p {
+  margin : 5px 0px ;
+}
+div.toc dl {
+  margin : 5px 0px ;
+}
+div.toc dl dd {
+  margin : 5px 0px 5px 10px ;
+}
+/**
+ * VolumeNum
+ *
+ */
