@@ -49,7 +49,7 @@
   </xsl:param>
 
   <!-- ============================================================ -->
-  <!-- =	default configuration for build mobile out put	        = -->
+  <!-- =	default configuration for build mobile output	          = -->
   <!-- ============================================================ -->
   <xsl:param name="chunker.output.indent">no</xsl:param>
   <xsl:param name="navig.showtitles">0</xsl:param>
@@ -71,6 +71,13 @@
   
   <xsl:param name="chapter.autolabel" select="0"/>
   <xsl:param name="section.autolabel" select="0"/>
+  
+  <!-- ============================================================ -->
+  <!-- =	configurations for third party softwares      	        = -->
+  <!-- ============================================================ -->
+  <xsl:param name="jquery.js">../js/jquery-1.7.1.min.js</xsl:param>
+  <xsl:param name="jquery.mobile.css">../css/themes/default/jquery.mobile-1.1.1.min.css</xsl:param>
+  <xsl:param name="jquery.mobile.js">../js/jquery.mobile-1.1.1.min.js</xsl:param>
 
   <i18n xmlns="http://docbook.sourceforge.net/xmlns/l10n/1.0">
     <l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="en">
@@ -163,7 +170,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    <link rel="stylesheet" type="text/css" href="../css/themes/default/jquery.mobile-1.1.0.min.css"/>
+    <link rel="stylesheet" type="text/css">
+      <xsl:attribute name="href">
+        <xsl:value-of select="$jquery.mobile.css"/>
+      </xsl:attribute>
+    </link>
     <link rel="stylesheet" type="text/css" href="../css/mobile.positioning.css"/>
 
     <xsl:choose>
@@ -195,6 +206,9 @@
       <xsl:comment>//jQuery</xsl:comment>
     </script>
     <script type="text/javascript" src="../js/jquery.min.js">
+      <xsl:attribute name="src">
+        <xsl:value-of select="$jquery.js"/>
+      </xsl:attribute>
       <xsl:comment>//jQuery</xsl:comment>
     </script>
     <script type="text/javascript" src="../js/jquery.cookie.min.js">
@@ -244,6 +258,9 @@
         }
 		</script>
     <script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js">
+      <xsl:attribute name="src">
+        <xsl:value-of select="$jquery.mobile.js"/>
+      </xsl:attribute>
       <xsl:comment>
       </xsl:comment>
     </script>
@@ -920,12 +937,20 @@
               </xsl:when>
             </xsl:choose>
 
-            <link rel="stylesheet" type="text/css"
-              href="../css/themes/default/jquery.mobile-1.1.0.min.css"/>
+            <link rel="stylesheet" type="text/css">
+              <xsl:attribute name="href">
+                <xsl:value-of select="$jquery.mobile.css"/>
+              </xsl:attribute>
+            </link>
             <style type="text/css">
               .containing-element .ui-slider-switch { width: 100% }
             </style>
-            <script type="text/javascript" src="../js/jquery.min.js">// jquery </script>
+            <script type="text/javascript"> 
+            <xsl:attribute name="src">
+              <xsl:value-of select="$jquery.js"/>
+            </xsl:attribute>
+              <xsl:comment>jquery</xsl:comment>
+            </script>
             <script type="text/javascript" src="../js/jquery.cookie.min.js">// cookies </script>
             <script type="text/javascript" src="../js/mobile-menubar.js">
               <xsl:comment>mobile menubar</xsl:comment>
@@ -933,7 +958,11 @@
             <script type="text/javascript" src="../js/mobile-settings.js">
                 <xsl:comment>mobile settings</xsl:comment>
               </script>
-            <script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js">// jquery mobile </script>
+            <script type="text/javascript"> 
+            <xsl:attribute name="src">
+              <xsl:value-of select="$jquery.mobile.js"/>
+            </xsl:attribute>
+            <xsl:comment>jquery mobile</xsl:comment></script>
             <script type="text/javascript" src="../js/swipeupdown.js">//swipe</script>
           </head>
           <body>
@@ -1222,12 +1251,18 @@
               txt_please_wait = "Please wait. Search in progress...";
               txt_results_for = "Results for: ";
             </script>
-            <link rel="stylesheet" type="text/css"
-              href="../css/themes/default/jquery.mobile-1.1.0.min.css"/>
+            <link rel="stylesheet" type="text/css">
+              <xsl:attribute name="href">
+                <xsl:value-of select="$jquery.mobile.css"/>
+              </xsl:attribute>
+            </link>
             <script type="text/javascript" src="../js/browserDetect.js">
               <xsl:comment>browserDetect</xsl:comment>
             </script>
-            <script type="text/javascript" src="../js/jquery.min.js">
+            <script type="text/javascript">
+              <xsl:attribute name="src">
+                <xsl:value-of select="$jquery.js"/>
+              </xsl:attribute>
               <xsl:comment>jquery</xsl:comment>
             </script>
             <script type="text/javascript" src="../js/jquery.cookie.min.js">
@@ -1264,7 +1299,10 @@
               <xsl:comment>index-3</xsl:comment>
             </script>
             <!-- End of index js -->
-            <script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js">
+            <script type="text/javascript">
+              <xsl:attribute name="src">
+                <xsl:value-of select="$jquery.mobile.js"/>
+              </xsl:attribute>
               <xsl:comment>jquerymobile</xsl:comment>
             </script>
             <script type="text/javascript" src="../js/swipeupdown.js">
@@ -1445,17 +1483,32 @@
                 </script>
               </xsl:when>
             </xsl:choose>
-            <link rel="stylesheet" type="text/css"
-              href="../css/themes/default/jquery.mobile-1.1.0.min.css"/>
-            <script type="text/javascript" src="../js/jquery.min.js">// jquery </script>
-            <script type="text/javascript" src="../js/jquery.cookie.min.js">// cookies </script>
+            <link rel="stylesheet" type="text/css">
+              <xsl:attribute name="href">
+                <xsl:value-of select="$jquery.mobile.css"/>
+              </xsl:attribute>
+            </link>
+            <script type="text/javascript">
+              <xsl:attribute name="src">
+                <xsl:value-of select="$jquery.js"/>
+              </xsl:attribute>
+              <xsl:comment>jquery</xsl:comment>
+            </script>
+            <script type="text/javascript" src="../js/jquery.cookie.min.js">
+              <xsl:comment>jquery cookie</xsl:comment>
+            </script>
             <script type="text/javascript" src="../js/mobile-menubar.js">
               <xsl:comment>mobile menubar</xsl:comment>
             </script>
             <script type="text/javascript" src="../js/mobile-settings.js">
                 <xsl:comment>mobile settings</xsl:comment>
               </script>
-            <script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js">// jquery mobile </script>
+            <script type="text/javascript">
+              <xsl:attribute name="src">
+                <xsl:value-of select="$jquery.mobile.js"/>
+              </xsl:attribute>
+              <xsl:comment>jquery mobile</xsl:comment>
+            </script>
             <!-- <script type="text/javascript" src="../js/swipeupdown.js">//swipe</script>-->
           </head>
           <body>
@@ -1524,12 +1577,18 @@
                 </script>
               </xsl:when>
             </xsl:choose>
-            <link rel="stylesheet" type="text/css"
-              href="../css/themes/default/jquery.mobile-1.1.0.min.css"/>
+            <link rel="stylesheet" type="text/css">
+              <xsl:attribute name="href">
+                <xsl:value-of select="$jquery.mobile.css"/>
+              </xsl:attribute>
+            </link>
             <script type="text/javascript" src="../js/browserDetect.js">
               <xsl:comment>browserDetect</xsl:comment>
             </script>
-            <script type="text/javascript" src="../js/jquery.min.js">
+            <script type="text/javascript">
+              <xsl:attribute name="src">
+                <xsl:value-of select="$jquery.js"/>
+              </xsl:attribute>
               <xsl:comment>jquery</xsl:comment>
             </script>
             <script type="text/javascript" src="../js/jquery.cookie.min.js">
@@ -1542,7 +1601,10 @@
               <xsl:comment>mobile settings</xsl:comment>
             </script>
             
-            <script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js">
+            <script type="text/javascript">
+              <xsl:attribute name="src">
+                <xsl:value-of select="$jquery.mobile.js"/>
+              </xsl:attribute>
               <xsl:comment>jquerymobile</xsl:comment>
             </script>
           </head>
