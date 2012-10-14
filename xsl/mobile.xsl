@@ -76,8 +76,8 @@
   <!-- =	configurations for third party softwares      	        = -->
   <!-- ============================================================ -->
   <xsl:param name="jquery.js">../js/jquery-1.7.1.min.js</xsl:param>
-  <xsl:param name="jquery.mobile.css">../css/themes/default/jquery.mobile-1.1.1.min.css</xsl:param>
-  <xsl:param name="jquery.mobile.js">../js/jquery.mobile-1.1.1.min.js</xsl:param>
+  <xsl:param name="jquery.mobile.css">../css/themes/default/jquery.mobile-1.1.0.min.css</xsl:param>
+  <xsl:param name="jquery.mobile.js">../js/jquery.mobile-1.1.0.min.js</xsl:param>
 
   <i18n xmlns="http://docbook.sourceforge.net/xmlns/l10n/1.0">
     <l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="en">
