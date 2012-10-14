@@ -24,42 +24,13 @@
         function onMenuKeyDown() {
           $.mobile.changePage("settings.html");
         }
-		</script><script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><!----></script><script type="text/javascript" src="../js/swipeupdown.js"><!----></script></head><body><div data-role="page" id="id_ch03s01s03_html"><!--KEEP THIS CODE--><div data-role="header" data-theme="b"><h4>Mobile Settings</h4><!----><a accesskey="p" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="a" href="ch03s01s02.html">Prev</a>
+		</script><script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><!----></script></head><body><div data-role="page" id="id_ch03s01s03_html"><!--KEEP THIS CODE--><div data-role="header" data-theme="b"><h4>Mobile Settings</h4><!----><a accesskey="p" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="a" href="ch03s01s02.html">Prev</a>
           
           
             <a accesskey="n" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="a" href="ch03s02.html">Next</a><script type="text/javascript">        
         $(function() {
           var $nextPage="ch03s01s02.html";
           var $prevPage="ch03s02.html";
-        
-          var $toc="toc.html";
-          var $menubar="menubar.html";
-          //when swipe down event happens
-          $("#id_ch03s01s03_html").live('swipedown', function(event) {
-            if("showMenuBar"===$.cookie('popupmenubar') ){
-              if("swipeDown"===$.cookie('menubardirection') ){
-                $.mobile.changePage($menubar);
-              }
-            }
-            if("showtoc"===$.cookie('popuptoc') ) {
-              if("swipeDown"===$.cookie('tocdirection') ){
-                $.mobile.changePage($toc);
-              }
-            }
-          });
-				  //when swipe up event happens
-          $("#id_ch03s01s03_html").live('swipeup', function(event) {
-            if("showMenuBar"===$.cookie('popupmenubar')){
-              if("swipeUp"===$.cookie('menubardirection') ){
-                $.mobile.changePage($menubar);
-              }
-            }
-            if("showtoc"===$.cookie('popuptoc')) {
-              if("swipeUp"===$.cookie('tocdirection') ){
-                $.mobile.changePage($toc);
-              }
-            }
-          });
         
           //when swipe left event happens
           $("#id_ch03s01s03_html").live('swipeleft', function(event) {
@@ -85,7 +56,7 @@
           });
          
         });
-			</script></div><div data-role="content" id="bodyone"><a href="tapholdDialog.html" data-role="button" data-inline="true" data-rel="dialog" data-transition="flip" id="id_ch03s01s03_html_taphold"></a><div id="content"><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="d0e1698"></a>Mobile Settings</h3></div></div></div><p class="summary">
+			</script></div><div data-role="content" id="bodyone"><a href="tapholdDialog.html" data-role="button" data-inline="true" data-rel="dialog" data-transition="flip" id="id_ch03s01s03_html_taphold"></a><div id="content"><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="d0e1694"></a>Mobile Settings</h3></div></div></div><p class="summary">
           An overview about Settings page.
         </p><p>
           Settings page also created as a separate file in mobile output. It includes some basic settings which can be change to possible predefined values. There is a associated javascript file with this html page. It is responsible for set default values when initialising the mobile app. After that user can change the values also. It has the set of settings as following :

@@ -24,42 +24,13 @@
         function onMenuKeyDown() {
           $.mobile.changePage("settings.html");
         }
-		</script><script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><!----></script><script type="text/javascript" src="../js/swipeupdown.js"><!----></script></head><body><div data-role="page" id="id_ch03s01_html"><!--KEEP THIS CODE--><div data-role="header" data-theme="b"><h4>Design of Mobile Content</h4><!----><a accesskey="p" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="a" href="ch03.html">Prev</a>
+		</script><script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><!----></script></head><body><div data-role="page" id="id_ch03s01_html"><!--KEEP THIS CODE--><div data-role="header" data-theme="b"><h4>Design of Mobile Content</h4><!----><a accesskey="p" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="a" href="ch03.html">Prev</a>
           
           
             <a accesskey="n" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="a" href="ch03s01s01.html">Next</a><script type="text/javascript">        
         $(function() {
           var $nextPage="ch03.html";
           var $prevPage="ch03s01s01.html";
-        
-          var $toc="toc.html";
-          var $menubar="menubar.html";
-          //when swipe down event happens
-          $("#id_ch03s01_html").live('swipedown', function(event) {
-            if("showMenuBar"===$.cookie('popupmenubar') ){
-              if("swipeDown"===$.cookie('menubardirection') ){
-                $.mobile.changePage($menubar);
-              }
-            }
-            if("showtoc"===$.cookie('popuptoc') ) {
-              if("swipeDown"===$.cookie('tocdirection') ){
-                $.mobile.changePage($toc);
-              }
-            }
-          });
-				  //when swipe up event happens
-          $("#id_ch03s01_html").live('swipeup', function(event) {
-            if("showMenuBar"===$.cookie('popupmenubar')){
-              if("swipeUp"===$.cookie('menubardirection') ){
-                $.mobile.changePage($menubar);
-              }
-            }
-            if("showtoc"===$.cookie('popuptoc')) {
-              if("swipeUp"===$.cookie('tocdirection') ){
-                $.mobile.changePage($toc);
-              }
-            }
-          });
         
           //when swipe left event happens
           $("#id_ch03s01_html").live('swipeleft', function(event) {
@@ -85,7 +56,7 @@
           });
          
         });
-			</script></div><div data-role="content" id="bodyone"><a href="tapholdDialog.html" data-role="button" data-inline="true" data-rel="dialog" data-transition="flip" id="id_ch03s01_html_taphold"></a><div id="content"><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="d0e1615"></a>Design of Mobile Content</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="ch03s01s01.html">Mobile Table of Content</a></span></dt><dt><span class="section"><a href="ch03s01s02.html">Mobile Menu Bar</a></span></dt><dt><span class="section"><a href="ch03s01s03.html">Mobile Settings</a></span></dt></dl></div><p class="summary">
+			</script></div><div data-role="content" id="bodyone"><a href="tapholdDialog.html" data-role="button" data-inline="true" data-rel="dialog" data-transition="flip" id="id_ch03s01_html_taphold"></a><div id="content"><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="d0e1611"></a>Design of Mobile Content</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="ch03s01s01.html">Mobile Table of Content</a></span></dt><dt><span class="section"><a href="ch03s01s02.html">Mobile Menu Bar</a></span></dt><dt><span class="section"><a href="ch03s01s03.html">Mobile Settings</a></span></dt></dl></div><p class="summary">
         An overview of Mobile file structure.
       </p><p>DocBook Mobile page structure is fully based on html5, javascripts and CSS. The data
         content pages can be divided in to three main sections 
@@ -98,4 +69,4 @@
             Footer : This include navigation to prev, next , up and home locations.
           </p></li></ul></div><p>Futher it seperate into static html files like Menubar, Settings and ToC. Index.html will add if it want to redirect into <code class="filename">www/content/index.html</code>. 
         </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>ToC : Table of content to navigate into chapters and sections.</p></li><li class="listitem"><p>Menu Bar : Search feature, change font-size,font-family etc...</p></li><li class="listitem"><p>Settings : Basic settings for Mobile app</p></li></ul></div><p>
-        <a id="d0e1657" class="indexterm"></a></p></div><!----><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch03.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch03s01s01.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></div></div></div></body></html>
+        <a id="d0e1653" class="indexterm"></a></p></div><!----><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch03.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch03s01s01.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></div></div></div></body></html>

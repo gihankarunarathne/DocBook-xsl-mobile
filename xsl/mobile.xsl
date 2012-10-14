@@ -257,7 +257,7 @@
           $.mobile.changePage("<xsl:value-of select="$mobile.setting.filename"/>");
         }
 		</script>
-    <script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js">
+    <script type="text/javascript">
       <xsl:attribute name="src">
         <xsl:value-of select="$jquery.mobile.js"/>
       </xsl:attribute>

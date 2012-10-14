@@ -607,8 +607,9 @@ xml-apis.jar=/usr/share/java/xml-apis.jar
         <listitem><para><command>swipe 'Right'</command> : Go to next/prev page</para></listitem>
         <listitem><para><command>swipe 'Up'</command>short distance : Go to scroll up</para></listitem>
         <listitem><para><command>swipe 'Down'</command>short distance : Go to scroll down</para></listitem>
-        <listitem><para><command>swipe 'Up'</command>long distance : Go to Menubar/ToC (more than 200px within 1200ms) </para></listitem>
-        <listitem><para><command>swipe 'Down'</command>long distance : Go to ToC/Menubar (more than 200px within 1200ms) </para></listitem>
+        <!--<listitem><para><command>swipe 'Up'</command>long distance : Go to Menubar/ToC (more than 200px within 1200ms) </para></listitem>
+        <listitem><para><command>swipe 'Down'</command>long distance : Go to ToC/Menubar (more than 200px within 1200ms) </para></listitem>-->
+        <listitem><para><command>Tap Hold</command> long time : Pop up for view Menubar/ToC/Settings (more than 1000ms) </para></listitem>
       </itemizedlist>
       <section>
         <title>Build Android apps</title>

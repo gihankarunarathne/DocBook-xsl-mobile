@@ -24,42 +24,13 @@
         function onMenuKeyDown() {
           $.mobile.changePage("settings.html");
         }
-		</script><script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><!----></script><script type="text/javascript" src="../js/swipeupdown.js"><!----></script></head><body><div data-role="page" id="id_ch02s05s02_html"><!--KEEP THIS CODE--><div data-role="header" data-theme="b"><h4>Using Command-Line</h4><!----><a accesskey="p" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="a" href="ch02s05s01.html">Prev</a>
+		</script><script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><!----></script></head><body><div data-role="page" id="id_ch02s05s02_html"><!--KEEP THIS CODE--><div data-role="header" data-theme="b"><h4>Using Command-Line</h4><!----><a accesskey="p" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="a" href="ch02s05s01.html">Prev</a>
           
           
             <a accesskey="n" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="a" href="ch02s06.html">Next</a><script type="text/javascript">        
         $(function() {
           var $nextPage="ch02s05s01.html";
           var $prevPage="ch02s06.html";
-        
-          var $toc="toc.html";
-          var $menubar="menubar.html";
-          //when swipe down event happens
-          $("#id_ch02s05s02_html").live('swipedown', function(event) {
-            if("showMenuBar"===$.cookie('popupmenubar') ){
-              if("swipeDown"===$.cookie('menubardirection') ){
-                $.mobile.changePage($menubar);
-              }
-            }
-            if("showtoc"===$.cookie('popuptoc') ) {
-              if("swipeDown"===$.cookie('tocdirection') ){
-                $.mobile.changePage($toc);
-              }
-            }
-          });
-				  //when swipe up event happens
-          $("#id_ch02s05s02_html").live('swipeup', function(event) {
-            if("showMenuBar"===$.cookie('popupmenubar')){
-              if("swipeUp"===$.cookie('menubardirection') ){
-                $.mobile.changePage($menubar);
-              }
-            }
-            if("showtoc"===$.cookie('popuptoc')) {
-              if("swipeUp"===$.cookie('tocdirection') ){
-                $.mobile.changePage($toc);
-              }
-            }
-          });
         
           //when swipe left event happens
           $("#id_ch02s05s02_html").live('swipeleft', function(event) {
@@ -85,7 +56,7 @@
           });
          
         });
-			</script></div><div data-role="content" id="bodyone"><a href="tapholdDialog.html" data-role="button" data-inline="true" data-rel="dialog" data-transition="flip" id="id_ch02s05s02_html_taphold"></a><div id="content"><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="d0e1305"></a>Using Command-Line</h3></div></div></div><p>You can build, clean, and launch an emulator with a single command. The iOS
+			</script></div><div data-role="content" id="bodyone"><a href="tapholdDialog.html" data-role="button" data-inline="true" data-rel="dialog" data-transition="flip" id="id_ch02s05s02_html_taphold"></a><div id="content"><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="d0e1301"></a>Using Command-Line</h3></div></div></div><p>You can build, clean, and launch an emulator with a single command. The iOS
           command-line tools are built upon shell scripts and rely on XCode command-line tools such
           as xcode-select and xcodebuild</p><p><span class="bold"><strong>Generate Mobile output for iOS</strong></span></p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> Go to <code class="filename">mobile</code> directory </p></li><li class="listitem"><p> Run the command : </p><pre class="programlisting">$ ant mobile.iOS</pre><p>
             </p></li><li class="listitem"><p> Then locate to <code class="filename">mobile/iOS</code> directory. </p></li></ul></div><p><span class="bold"><strong>Create a project :</strong></span></p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>Run the create command with the following parameters:</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: circle; "><li class="listitem"><p> Path to your new Cordova iOS project </p></li><li class="listitem"><p> Package name, following reverse-domain style convention </p></li><li class="listitem"><p> Project name </p></li></ul></div><p>

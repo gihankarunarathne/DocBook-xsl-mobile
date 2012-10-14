@@ -24,42 +24,13 @@
         function onMenuKeyDown() {
           $.mobile.changePage("settings.html");
         }
-		</script><script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><!----></script><script type="text/javascript" src="../js/swipeupdown.js"><!----></script></head><body><div data-role="page" id="id_ch02s05_html"><!--KEEP THIS CODE--><div data-role="header" data-theme="b"><h4>Generating iOS app</h4><!----><a accesskey="p" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="a" href="ch02s04s02.html">Prev</a>
+		</script><script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><!----></script></head><body><div data-role="page" id="id_ch02s05_html"><!--KEEP THIS CODE--><div data-role="header" data-theme="b"><h4>Generating iOS app</h4><!----><a accesskey="p" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="a" href="ch02s04s02.html">Prev</a>
           
           
             <a accesskey="n" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="a" href="ch02s05s01.html">Next</a><script type="text/javascript">        
         $(function() {
           var $nextPage="ch02s04s02.html";
           var $prevPage="ch02s05s01.html";
-        
-          var $toc="toc.html";
-          var $menubar="menubar.html";
-          //when swipe down event happens
-          $("#id_ch02s05_html").live('swipedown', function(event) {
-            if("showMenuBar"===$.cookie('popupmenubar') ){
-              if("swipeDown"===$.cookie('menubardirection') ){
-                $.mobile.changePage($menubar);
-              }
-            }
-            if("showtoc"===$.cookie('popuptoc') ) {
-              if("swipeDown"===$.cookie('tocdirection') ){
-                $.mobile.changePage($toc);
-              }
-            }
-          });
-				  //when swipe up event happens
-          $("#id_ch02s05_html").live('swipeup', function(event) {
-            if("showMenuBar"===$.cookie('popupmenubar')){
-              if("swipeUp"===$.cookie('menubardirection') ){
-                $.mobile.changePage($menubar);
-              }
-            }
-            if("showtoc"===$.cookie('popuptoc')) {
-              if("swipeUp"===$.cookie('tocdirection') ){
-                $.mobile.changePage($toc);
-              }
-            }
-          });
         
           //when swipe left event happens
           $("#id_ch02s05_html").live('swipeleft', function(event) {
@@ -85,6 +56,6 @@
           });
          
         });
-			</script></div><div data-role="content" id="bodyone"><a href="tapholdDialog.html" data-role="button" data-inline="true" data-rel="dialog" data-transition="flip" id="id_ch02s05_html_taphold"></a><div id="content"><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="d0e1142"></a>Generating iOS app</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="ch02s05s01.html">Using GUI (Xcode IDE)</a></span></dt><dt><span class="section"><a href="ch02s05s02.html">Using Command-Line</a></span></dt></dl></div><p class="summary"> How to set configurations and create a iOS app for iPhones. This guide
+			</script></div><div data-role="content" id="bodyone"><a href="tapholdDialog.html" data-role="button" data-inline="true" data-rel="dialog" data-transition="flip" id="id_ch02s05_html_taphold"></a><div id="content"><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="d0e1138"></a>Generating iOS app</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="ch02s05s01.html">Using GUI (Xcode IDE)</a></span></dt><dt><span class="section"><a href="ch02s05s02.html">Using Command-Line</a></span></dt></dl></div><p class="summary"> How to set configurations and create a iOS app for iPhones. This guide
         describes how to set up your development environment for Apache PhoneGap and create an
         application. </p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p> This instructions based on PhoneGap documentation on <a class="ulink" href="http://docs.phonegap.com/en/2.0.0/guide_getting-started_ios_index.md.html#Getting%20Started%20with%20iOS" target="_top">iOS</a> development. Refer PhoneGap documentation to more details.</p></div><p><span class="bold"><strong>iOS Gestures</strong></span></p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p><span class="command"><strong>press 'Back button'</strong></span> : Go back</p></li><li class="listitem"><p><span class="command"><strong>swipe 'Left'</strong></span> : Go to prev/next page</p></li><li class="listitem"><p><span class="command"><strong>swipe 'Right'</strong></span> : Go to next/prev page</p></li><li class="listitem"><p><span class="command"><strong>swipe 'Up'</strong></span> : Go to scroll up</p></li><li class="listitem"><p><span class="command"><strong>swipe 'Down'</strong></span> : Go to scroll down</p></li><li class="listitem"><p><span class="command"><strong>Tap Hold</strong></span> long time : Pop up for view Menubar/ToC/Settings (more than 1000ms) </p></li></ul></div></div><!----><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch02s04s02.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch02.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch02s05s01.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></div></div></div></body></html>
