@@ -17,7 +17,7 @@ $("div[data-role*='page']").live('pageinit',function(){
   if ($.cookie('font-size') === null) {
     //console.log($.cookie('font-size'));
     //alert("init cookie");
-    setDefFontSize();
+    mobile.setDefFontSize();
     $("html").css('font-size', $.cookie('font-size'));
     $(".ui-header .ui-title, .ui-footer .ui-title").css('font-size',$.cookie('font-size'));
     //alert(String.concat("ccccccccccc now cookie is " ,$.cookie('font-size')));
@@ -28,30 +28,30 @@ $("div[data-role*='page']").live('pageinit',function(){
   }
   //apply font-family to page
   if ($.cookie('font-family') === null) {
-    setDefFontFamily();
+    mobile.setDefFontFamily();
     $("html").css('font-family', $.cookie('font-family'));
   }else{
     $("html").css('font-family', $.cookie('font-family'));
   }
   /**************************************/
   if ($.cookie('menubardirection') === null ){
-    setDefmenubardirection();
+    mobile.setDefmenubardirection();
   }
   if ($.cookie('tocdirection') === null ){
-    setDeftocdirection();
+    mobile.setDeftocdirection();
   }
   /*************************************/
   if ($.cookie('popupmenubar') === null ){
-    setDefpopupmenubar();
+    mobile.setDefpopupmenubar();
   }
   if ($.cookie('popuptoc') === null ){
-    setDefpopuptoc();
+    mobile.setDefpopuptoc();
   }
   if ($.cookie('prevpage') === null ){
-    setDefPrevPage();
+    mobile.setDefPrevPage();
   }
   if ($.cookie('nextpage') === null ){
-    setDefNextPage();
+    mobile.setDefNextPage();
   }
 
 });
@@ -61,114 +61,129 @@ $("div[data-role*='page']").live('pageinit',function(){
  * When cookie value is not set,these will be called and set there value.      **
  * Also,user can set them later                                                **.
  ********************************************************************************/
-// set the default expire days for cookies (in days)
-var defExpireDays = 7;
-// set default domain/path name for access cookies
-var defDomainPath = '/';
-// set default font-size
-var defFontSize = '12px';
-// set default font-family
-var defFontFamily = 'Helvetica';
-// set default menubar direction
-var defmenubardirection ='swipeUp';
-// set default toc direction
-var deftocdirection = 'swipeDown';
+var mobile = new function(){
+  // set the default expire days for cookies (in days)
+  this.defExpireDays = 7;
+  // set default domain/path name for access cookies
+  this.defDomainPath = '/';
+  // set default font-size
+  this.defFontSize = '12px';
+  // set default font-family
+  this.defFontFamily = 'Helvetica';
+  // set default menubar direction
+  this.defmenubardirection ='swipeUp';
+  // set default toc direction
+  this.deftocdirection = 'swipeDown';
 // set default popup menubar
-var defpopupmenubar = 'showMenuBar';
+  this.defpopupmenubar = 'showMenuBar';
 // set default pop up toc
-var defpopuptoc = 'showtoc';
+  this.defpopuptoc = 'showtoc';
 // set defaulf Prev Page swipe direction
-var defPrevPage = 'swipeRight';
+  this.defPrevPage = 'swipeRight';
 // set defaulf Next Page swipe direction
-var defNextPage = 'swipeLeft';
+  this.defNextPage = 'swipeLeft';
 // remember-search-word
-var defremembersearchword = 'remembersearchword';
+  this.defremembersearchword = 'remembersearchword';
+  
+  /**
+   * For user defined settings
+   */
+   
+  // set the expire days for cookies (in days)
+  this.expireDays = 7;
+  // set domain/path name for access cookies
+  this.domainPath = '/';
 
 /**
  * Default value for font-size
  */
-function setDefFontSize(){
-  setDefCookie('font-size',defFontSize);
+  this.setDefFontSize = function(){
+    this.setDefCookie('font-size',mobile.defFontSize);
 }
 /**
  * Default value for font-family
  */
-function setDefFontFamily(){
-  setDefCookie('font-family' , defFontFamily);
+  this.setDefFontFamily = function(){
+    this.setDefCookie('font-family' , mobile.defFontFamily);
 }
 /**********************************************
  * Default value for menubardirection
  */
-function setDefmenubardirection(){
-  setDefCookie('menubardirection' , defmenubardirection);
+ this.setDefmenubardirection = function(){
+  this.setDefCookie('menubardirection' , mobile.defmenubardirection);
 }
 /**
  * Default value for tocdirection
  */
-function setDeftocdirection(){
-  setDefCookie('tocdirection' , deftocdirection);
+  this.setDeftocdirection = function(){
+  this.setDefCookie('tocdirection' , mobile.deftocdirection);
 }
 /**********************************************
  * Default value for popupmenubar
  */
-function setDefpopupmenubar(){
-  setDefCookie('popupmenubar' , defpopupmenubar);
+  this.setDefpopupmenubar = function(){
+  this.setDefCookie('popupmenubar' , mobile.defpopupmenubar);
 }
 /**
  * Default value for popuptoc
  */
-function setDefpopuptoc(){
-  setDefCookie('popuptoc' , defpopuptoc);
+  this.setDefpopuptoc = function(){
+  this.setDefCookie('popuptoc' , mobile.defpopuptoc);
 }
 /***********************************************
  * Default value for Prev Page swipe direction
  */
-function setDefPrevPage(){
-  setDefCookie('prevpage' , defPrevPage);
+  this.setDefPrevPage = function(){
+  this.setDefCookie('prevpage' , mobile.defPrevPage);
 }
 /**
  * Default value for Next Page swipe direction
  */
-function setDefNextPage(){
-  setDefCookie('nextpage' , defNextPage);
+this.setDefNextPage = function(){
+  this.setDefCookie('nextpage' , mobile.defNextPage);
 }
 /************Advance settings ************/
 /**
  * Default value for remembersearchword
  */
-function setDefremembersearchword(){
-  setDefCookie('remembersearchword' , defremembersearchword);
+this.setDefremembersearchword = function(){
+  this.setDefCookie('remembersearchword' , mobile.defremembersearchword);
 }
 
 /**********************************************
  * Recurring method for set default values
- */
-function setDefCookie($name,$value){
+ **********************************************/
+this.setDefCookie = function($name,$value){
   $.cookie($name , $value , {
-    expires: defExpireDays,
-    path: defDomainPath
+    expires: this.defExpireDays,
+    path: this.defDomainPath
   });
 }
 
+/**
+ * Recurring methods for user settings (below)
+ */
+this.setCookie = function($name,$value){
+  $.cookie( $name , $value , {
+    expires: this.expireDays,
+    path: this.domainPath
+  });
+}
+}
 /************************************************************************
  * Set the User defined values to the Cookies                         ***
  ***********************************************************************/
- 
-// set the expire days for cookies (in days)
-var expireDays = 7;
-// set domain/path name for access cookies
-var domainPath = '/';
 
 $(document).bind('pageinit',function () {
 
   $("#select-menu-bar-direction").bind("change", function (event, ui) {
     try {
-      setCookie('menubardirection', $("#select-menu-bar-direction").val() );
+      mobile.setCookie('menubardirection', $("#select-menu-bar-direction").val() );
       if($.cookie('menubardirection')=== $.cookie('tocdirection') ){
         if( "swipeUp"===$.cookie('menubardirection') ){
-          setCookie('tocdirection',"swipeDown");
+          mobile.setCookie('tocdirection',"swipeDown");
         }else if( "swipeDown"===$.cookie('menubardirection') ){
-          setCookie('tocdirection',"swipeUp");
+          mobile.setCookie('tocdirection',"swipeUp");
         }
         // refresh page after reset values
         refreshSelectMenus();
@@ -188,12 +203,12 @@ $(document).bind('pageinit',function () {
 
   $("#select-toc-direction").bind("change", function (event, ui) {
     try {
-      setCookie('tocdirection', $("#select-toc-direction").val());
+      mobile.setCookie('tocdirection', $("#select-toc-direction").val());
       if($.cookie('menubardirection')=== $.cookie('tocdirection') ){
         if( "swipeUp"===$.cookie('tocdirection') ){
-          setCookie('menubardirection',"swipeDown");
+          mobile.setCookie('menubardirection',"swipeDown");
         }else if( "swipeDown"===$.cookie('tocdirection') ){
-          setCookie('menubardirection',"swipeUp");
+          mobile.setCookie('menubardirection',"swipeUp");
         }
         // refresh page after reset values
         refreshSelectMenus();
@@ -212,7 +227,7 @@ $(document).bind('pageinit',function () {
   /************ pop up menus **************************************/
   $("#select-pop-up-menu-bar").bind("change", function (event, ui) {
     try {
-      setCookie('popupmenubar', $("#select-pop-up-menu-bar").val());
+      mobile.setCookie('popupmenubar', $("#select-pop-up-menu-bar").val());
       //alert(String.concat("cookie is created with ",$("#select-pop-up-menu-bar").val()," and now cookie is " ,$.cookie('popupmenubar')));
     } catch (err) {
       txt = "There was an error on this page.\n\n";
@@ -227,7 +242,7 @@ $(document).bind('pageinit',function () {
 
   $("#select-pop-up-toc").bind("change", function (event, ui) {
     try {
-      setCookie('popuptoc', $("#select-pop-up-toc").val());
+      mobile.setCookie('popuptoc', $("#select-pop-up-toc").val());
       //alert(String.concat("cookie is created with ",$("#select-pop-up-toc").val()," and now cookie is " ,$.cookie('popuptoc')));
     } catch (err) {
       txt = "There was an error on this page.\n\n";
@@ -243,12 +258,12 @@ $(document).bind('pageinit',function () {
 
   $("#select-prev-page-direction").bind("change", function (event, ui) {
     try {
-        setCookie('prevpage', $("#select-prev-page-direction").val());
+        mobile.setCookie('prevpage', $("#select-prev-page-direction").val());
         if($.cookie('nextpage')=== $.cookie('prevpage') ){
           if( "swipeRight"===$.cookie('prevpage') ){
             setCookie('nextpage',"swipeLeft");
           }else if( "swipeLeft"===$.cookie('prevpage') ){
-            setCookie('nextpage',"swipeRight");
+            mobile.setCookie('nextpage',"swipeRight");
           }
           // refresh page after reset values
           refreshSelectMenus();
@@ -267,12 +282,12 @@ $(document).bind('pageinit',function () {
 
   $("#select-next-page-direction").bind("change", function (event, ui) {
     try {
-      setCookie('nextpage', $("#select-next-page-direction").val());
+      mobile.setCookie('nextpage', $("#select-next-page-direction").val());
       if($.cookie('nextpage')=== $.cookie('prevpage') ){
           if( "swipeRight"===$.cookie('nextpage') ){
             setCookie('prevpage',"swipeLeft");
           }else if( "swipeLeft"===$.cookie('nextpage') ){
-            setCookie('prevpage',"swipeRight");
+            mobile.setCookie('prevpage',"swipeRight");
           }
         // refresh page after reset values
         refreshSelectMenus();
@@ -295,7 +310,7 @@ $(document).bind('pageinit',function () {
   $("#remember-search-word").bind("change", function (event, ui) {
     //alert("lets rem page");
     try {
-      setCookie('remembersearchword', $("#remember-search-word").val());
+      mobile.setCookie('remembersearchword', $("#remember-search-word").val());
       //alert(String.concat("cookie is created with ",$("#remember-search-word").val()," and now cookie is " ,$.cookie('remembersearchword')));
       //document.getElementById("btest").innerHTML = $.cookie('remembersearchword');
     } catch (err) {
@@ -311,7 +326,7 @@ $(document).bind('pageinit',function () {
   $("#voice-search").bind("change", function (event, ui) {
     //alert("lets do voice search");
     try {
-      setCookie('voicesearch', $("#voice-search").val());
+      mobile.setCookie('voicesearch', $("#voice-search").val());
       //alert(String.concat("cookie is created with ",$("#voice-search").val()," and now cookie is " ,$.cookie('voicesearch')));
       //document.getElementById("btest").innerHTML = $.cookie('voicesearch');
     } catch (err) {
@@ -327,29 +342,20 @@ $(document).bind('pageinit',function () {
   // reset Values to default values when click "Reset" button
   $("#reset-settings").bind("change", function (event, ui) {
     alert("reset");
-    setDefFontSize();
-    setDefFontFamily();
-    setDefmenubardirection();
-    setDeftocdirection();
-    setDefpopupmenubar();
-    setDefpopuptoc();
-    setDefPrevPage();
-    setDefNextPage();
+    mobile.setDefFontSize();
+    mobile.setDefFontFamily();
+    mobile.setDefmenubardirection();
+    mobile.setDeftocdirection();
+    mobile.setDefpopupmenubar();
+    mobile.setDefpopuptoc();
+    mobile.setDefPrevPage();
+    mobile.setDefNextPage();
     // refresh page after reset values
     refreshSelectMenus();
     
   });
   
 });
-/**
- * Recurring methods for user settings
- */
-function setCookie($name,$value){
-  $.cookie( $name , $value , {
-    expires: expireDays,
-    path: domainPath
-  });
-}
 
 
 // for testing purposes of cookies

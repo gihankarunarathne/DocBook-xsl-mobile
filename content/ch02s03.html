@@ -14,7 +14,7 @@
               txt_browser_not_supported = "JavaScript is disabled on your browser. Please enable JavaScript to enjoy all the features of this site.";
               txt_please_wait = "Please wait. Search in progress...";
               txt_results_for = "Results for: ";
-            </script><script type="text/javascript" src="../js/browserDetect.js"><!--//jQuery--></script><script type="text/javascript" src="../js/jquery.min.js"><!--//jQuery--></script><script type="text/javascript" src="../js/jquery.cookie.min.js"><!--include mobile menubar js--></script><script type="text/javascript" src="../js/mobile-menubar.js"><!--mobile-menubar--></script><script type="text/javascript" src="../js/mobile-settings.js"><!--include mobile settings js--></script><script type="text/javascript" src="search/l10n.js"><!--l10n--></script><script type="text/javascript" src="search/htmlFileInfoList.js"><!--htmlFileInfoList--></script><script type="text/javascript" src="search/nwSearchFnt.js"><!--nwSearchFnt--></script><script type="text/javascript" src="search/stemmers/en_stemmer.js"><!--make scalable to other languages as well.--></script><script type="text/javascript" src="search/index-1.js"><!--index-1--></script><script type="text/javascript" src="search/index-2.js"><!--index-2--></script><script type="text/javascript" src="search/index-3.js"><!--index-3--></script><script type="text/javascript" charset="utf-8">
+            </script><script type="text/javascript" src="../js/browserDetect.js"><!--//jQuery--></script><script type="text/javascript" src="../js/jquery-1.7.1.min.js"><!--//jQuery--></script><script type="text/javascript" src="../js/jquery.cookie.min.js"><!--include mobile menubar js--></script><script type="text/javascript" src="../js/mobile-menubar.js"><!--mobile-menubar--></script><script type="text/javascript" src="../js/mobile-settings.js"><!--include mobile settings js--></script><script type="text/javascript" src="search/l10n.js"><!--l10n--></script><script type="text/javascript" src="search/htmlFileInfoList.js"><!--htmlFileInfoList--></script><script type="text/javascript" src="search/nwSearchFnt.js"><!--nwSearchFnt--></script><script type="text/javascript" src="search/stemmers/en_stemmer.js"><!--make scalable to other languages as well.--></script><script type="text/javascript" src="search/index-1.js"><!--index-1--></script><script type="text/javascript" src="search/index-2.js"><!--index-2--></script><script type="text/javascript" src="search/index-3.js"><!--index-3--></script><script type="text/javascript" charset="utf-8">
         document.addEventListener("deviceready", onDeviceReady, false);
 
         function onDeviceReady() {
@@ -24,42 +24,13 @@
         function onMenuKeyDown() {
           $.mobile.changePage("settings.html");
         }
-		</script><script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><!----></script><script type="text/javascript" src="../js/swipeupdown.js"><!----></script></head><body><div data-role="page" id="id_ch02s03_html"><!--KEEP THIS CODE--><div data-role="header" data-theme="b"><h4>Common Mobile Output</h4><!----><a accesskey="p" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="a" href="ch02s02s02.html">Prev</a>
+		</script><script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><!----></script></head><body><div data-role="page" id="id_ch02s03_html"><!--KEEP THIS CODE--><div data-role="header" data-theme="b"><h4>Common Mobile Output</h4><!----><a accesskey="p" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="a" href="ch02s02s02.html">Prev</a>
           
           
             <a accesskey="n" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="a" href="ch02s04.html">Next</a><script type="text/javascript">        
         $(function() {
           var $nextPage="ch02s02s02.html";
           var $prevPage="ch02s04.html";
-        
-          var $toc="toc.html";
-          var $menubar="menubar.html";
-          //when swipe down event happens
-          $("#id_ch02s03_html").live('swipedown', function(event) {
-            if("showMenuBar"===$.cookie('popupmenubar') ){
-              if("swipeDown"===$.cookie('menubardirection') ){
-                $.mobile.changePage($menubar);
-              }
-            }
-            if("showtoc"===$.cookie('popuptoc') ) {
-              if("swipeDown"===$.cookie('tocdirection') ){
-                $.mobile.changePage($toc);
-              }
-            }
-          });
-				  //when swipe up event happens
-          $("#id_ch02s03_html").live('swipeup', function(event) {
-            if("showMenuBar"===$.cookie('popupmenubar')){
-              if("swipeUp"===$.cookie('menubardirection') ){
-                $.mobile.changePage($menubar);
-              }
-            }
-            if("showtoc"===$.cookie('popuptoc')) {
-              if("swipeUp"===$.cookie('tocdirection') ){
-                $.mobile.changePage($toc);
-              }
-            }
-          });
         
           //when swipe left event happens
           $("#id_ch02s03_html").live('swipeleft', function(event) {
