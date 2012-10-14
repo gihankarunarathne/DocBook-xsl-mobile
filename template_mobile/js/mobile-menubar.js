@@ -10,11 +10,12 @@
 * Description:
 * Basic settings for menubar.html
 */
-
-// set the expire days for cookies (in days)
-var expireDaysMenu = 7;
-// set domain/path name for access cookies
-var domainPathMenu = '/';
+var mobileMenu = new function(){
+  // set the expire days for cookies (in days)
+  this.expireDaysMenu = 7;
+  // set domain/path name for access cookies
+  this.domainPathMenu = '/';
+}
 
 $(document).bind('pageinit',function () {
 
@@ -22,8 +23,8 @@ $(document).bind('pageinit',function () {
   //alert("yy");
     try {
       $.cookie('font-size', $("#font-size").val(), {
-        expires: expireDaysMenu,
-        path: domainPathMenu
+        expires: mobileMenu.expireDaysMenu,
+        path: mobileMenu.domainPathMenu
       });
       $("html").css('font-size', $.cookie('font-size'));
       //alert(String.concat("cookie is created with ",$("#font-size").val()," and now cookie is " ,$.cookie('font-size')));
@@ -41,8 +42,8 @@ $(document).bind('pageinit',function () {
   $("#font-family").bind("change", function (event, ui) {
     try {
         $.cookie('font-family', $("#font-family").val(), {
-          expires: expireDaysMenu,
-          path: domainPathMenu
+          expires: mobileMenu.expireDaysMenu,
+          path: mobileMenu.domainPathMenu
         });
         //alert(String.concat("cookie is created with ",$("#font-family").val()," and now cookie is " ,$.cookie('font-family')));
         $('div').css('font-family', $.cookie('font-family'));

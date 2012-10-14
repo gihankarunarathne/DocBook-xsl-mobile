@@ -35,7 +35,7 @@
   <xsl:param name="mobile.jquerymobile.themeroler">none</xsl:param>
   <xsl:param name="mobile.swipeupdown">
     <xsl:choose>
-      <xsl:when test="($mobile.device.platform='android')or($mobile.device.platform='none')">1</xsl:when>
+      <xsl:when test="($mobile.device.platform='android')or($mobile.device.platform='none')">0</xsl:when>
       <xsl:otherwise>0</xsl:otherwise>
     </xsl:choose>
   </xsl:param>
@@ -264,10 +264,10 @@
       <xsl:comment>
       </xsl:comment>
     </script>
-    <script type="text/javascript" src="../js/swipeupdown.js">
+    <!--<script type="text/javascript" src="../js/swipeupdown.js">
       <xsl:comment>
       </xsl:comment>
-    </script>
+    </script>-->
   </xsl:template>
 
   <!-- ============================================================ -->
@@ -963,7 +963,9 @@
               <xsl:value-of select="$jquery.mobile.js"/>
             </xsl:attribute>
             <xsl:comment>jquery mobile</xsl:comment></script>
-            <script type="text/javascript" src="../js/swipeupdown.js">//swipe</script>
+            <!--<script type="text/javascript" src="../js/swipeupdown.js">
+              <xsl:comment>swipeupdown</xsl:comment>
+            </script>-->
           </head>
           <body>
 
@@ -1305,9 +1307,9 @@
               </xsl:attribute>
               <xsl:comment>jquerymobile</xsl:comment>
             </script>
-            <script type="text/javascript" src="../js/swipeupdown.js">
+            <!--<script type="text/javascript" src="../js/swipeupdown.js">
               <xsl:comment>swipe</xsl:comment>
-            </script>
+            </script>-->
           </head>
           <body>
             <!-- Set id for menubar.html as its name -->
@@ -1509,7 +1511,9 @@
               </xsl:attribute>
               <xsl:comment>jquery mobile</xsl:comment>
             </script>
-            <!-- <script type="text/javascript" src="../js/swipeupdown.js">//swipe</script>-->
+             <!--<script type="text/javascript" src="../js/swipeupdown.js">
+               <xsl:comment>swipeupdown</xsl:comment>
+             </script>-->
           </head>
           <body>
             <!-- Set id for toc.html as its name -->
