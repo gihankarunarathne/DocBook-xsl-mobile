@@ -29,24 +29,6 @@
   <xsl:param name="mobile.indexer.language">en</xsl:param>
   <xsl:param name="mobile.default.topic"/>
   <xsl:param name="mobile.autolabel">0</xsl:param>
-  <xsl:param name="mobile.device.platform">none</xsl:param>
-  <xsl:param name="mobile.cordova.version">2.0.0</xsl:param>
-  <xsl:param name="mobile.cordova.path" select="concat('../','cordova-',$mobile.cordova.version,'.js')"/>
-  <xsl:param name="mobile.jquerymobile.themeroler">none</xsl:param>
-  <xsl:param name="mobile.swipeupdown">
-    <xsl:choose>
-      <xsl:when test="($mobile.device.platform='android')or($mobile.device.platform='none')">0</xsl:when>
-      <xsl:otherwise>0</xsl:otherwise>
-    </xsl:choose>
-  </xsl:param>
-  <xsl:param name="mobile.taphold">
-    <xsl:choose>
-      <xsl:when
-        test="($mobile.device.platform = 'android')or($mobile.device.platform = 'iOS')or($mobile.device.platform='none')"
-        >1</xsl:when>
-      <xsl:otherwise>0</xsl:otherwise>
-    </xsl:choose>
-  </xsl:param>
 
   <!-- ============================================================ -->
   <!-- =	default configuration for build mobile output	          = -->
@@ -75,9 +57,27 @@
   <!-- ============================================================ -->
   <!-- =	configurations for third party softwares      	        = -->
   <!-- ============================================================ -->
-  <xsl:param name="jquery.js">../js/jquery-1.7.1.min.js</xsl:param>
+  <xsl:param name="mobile.jquerymobile.themeroler">none</xsl:param>
   <xsl:param name="jquery.mobile.css">../css/themes/default/jquery.mobile-1.1.0.min.css</xsl:param>
+  <xsl:param name="jquery.js">../js/jquery-1.7.1.min.js</xsl:param>
   <xsl:param name="jquery.mobile.js">../js/jquery.mobile-1.1.0.min.js</xsl:param>
+  <xsl:param name="mobile.device.platform">none</xsl:param>
+  <xsl:param name="mobile.cordova.version">2.0.0</xsl:param>
+  <xsl:param name="mobile.cordova.path" select="concat('../','cordova-',$mobile.cordova.version,'.js')"/>
+  <xsl:param name="mobile.swipeupdown">
+    <xsl:choose>
+      <xsl:when test="($mobile.device.platform='android')or($mobile.device.platform='none')">0</xsl:when>
+      <xsl:otherwise>0</xsl:otherwise>
+    </xsl:choose>
+  </xsl:param>
+  <xsl:param name="mobile.taphold">
+    <xsl:choose>
+      <xsl:when
+        test="($mobile.device.platform = 'android')or($mobile.device.platform = 'iOS')or($mobile.device.platform='none')"
+        >1</xsl:when>
+      <xsl:otherwise>0</xsl:otherwise>
+    </xsl:choose>
+  </xsl:param>
 
   <i18n xmlns="http://docbook.sourceforge.net/xmlns/l10n/1.0">
     <l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="en">

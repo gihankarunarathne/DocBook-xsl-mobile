@@ -326,13 +326,12 @@
               <programlisting>sudo apt-get install libxml-commons-resolver1.1-java</programlisting>
               <programlisting>sudo apt-get install libxml-commons-external-java</programlisting>
               <programlisting>sudo apt-get install libxerces2-java</programlisting>
-              You will use the path to <filename>saxon.jar</filename> in <xref
-                linkend="edit-build-properties"/> below.<note>
-                  <para>The <filename>build.xml</filename> has only been tested with Saxon 6.5, though
-                    it could be adapted to work with other XSLT processors. However, when you generate
-                    output, the Saxon jar must <emphasis role="bold">not</emphasis> be in your
+              You will use the path to <filename>saxon.jar</filename> in <filename>build.properties</filename> file.              <note>
+                <para>The <filename>build.xml</filename> has only been tested with Saxon 6.5, though
+                  it could be adapted to work with other XSLT processors. However, when you generate
+                  output, the Saxon jar must <emphasis role="bold">not</emphasis> be in your
                     <envar>CLASSPATH</envar>.</para>
-                </note></para>
+              </note></para>
           </step>
         </procedure>
       </section>
@@ -402,8 +401,9 @@
           <step>
             <para>Download <ulink url="http://prdownloads.sourceforge.net/saxon/saxon6-5-5.zip"
                 >Saxon 6.5.x</ulink> and unzip the distribution to a convenient location on your
-              file system. You will use the path to <filename>saxon.jar</filename> in <xref
-                linkend="edit-build-properties"/> below.<note>
+              file system. You will use the path to <filename>saxon.jar</filename> in
+                <filename>build.properties</filename> file. 
+              <note>
                 <para>The <filename>build.xml</filename> has only been tested with Saxon 6.5, though
                   it could be adapted to work with other XSLT processors. However, when you generate
                   output, the Saxon jar must <emphasis role="bold">not</emphasis> be in your
@@ -605,8 +605,8 @@ xml-apis.jar=/usr/share/java/xml-apis.jar
         <listitem><para><command>press 'Back button'</command> : Go back</para></listitem>
         <listitem><para><command>swipe 'Left'</command> : Go to prev/next page</para></listitem>
         <listitem><para><command>swipe 'Right'</command> : Go to next/prev page</para></listitem>
-        <listitem><para><command>swipe 'Up'</command>short distance : Go to scroll up</para></listitem>
-        <listitem><para><command>swipe 'Down'</command>short distance : Go to scroll down</para></listitem>
+        <listitem><para><command>swipe 'Up'</command> short distance : Go to scroll up</para></listitem>
+        <listitem><para><command>swipe 'Down'</command> short distance : Go to scroll down</para></listitem>
         <!--<listitem><para><command>swipe 'Up'</command>long distance : Go to Menubar/ToC (more than 200px within 1200ms) </para></listitem>
         <listitem><para><command>swipe 'Down'</command>long distance : Go to ToC/Menubar (more than 200px within 1200ms) </para></listitem>-->
         <listitem><para><command>Tap Hold</command> long time : Pop up for view Menubar/ToC/Settings (more than 1000ms) </para></listitem>
@@ -711,9 +711,9 @@ Ex: $ bin/create ~/Desktop/Mobile \
 docbook.xsl.Mobile Mobile</programlisting>This command creates Android apps called "Mobile" in<filename> ~/Desktop/Mobile </filename>directory with "docbook/xsl/Mobile.java" class in Android project's <filename> src </filename>directory.</para>
             <para><emphasis role="bold">on windows</emphasis>
               <programlisting>
-$ path\to\cordova-android\bin\create.bat 
- path\to\my_new_cordova_project 
-com.example.cordova_project_name 
+$ path\to\cordova-android\bin\create.bat ^
+ path\to\my_new_cordova_project ^
+com.example.cordova_project_name ^
 CordovaProjectName</programlisting>
             </para>
             <para><programlisting>
