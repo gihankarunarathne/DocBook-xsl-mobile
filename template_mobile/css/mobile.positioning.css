@@ -24,7 +24,8 @@ h3.title {
 }
 .ui-header .ui-title, .ui-footer .ui-title{
   /*font-size : 12px;*/
-  margin : 0.6em 30% 0.1em;
+  /*margin : 0.6em 30% 0.1em;*/
+  white-space: normal; /* Remove displaying dots in small screens*/
 }
 /***********************
  * DocBook Specific

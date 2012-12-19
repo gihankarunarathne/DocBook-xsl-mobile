@@ -1,4 +1,4 @@
-var doStem = true;
+var doStem = false;
 //List of indexed files.
 fl = new Array();
 fl["0"]= "ch03s02s01.html";
@@ -33,7 +33,7 @@ fil["0"]= "ch03s02s01.html@@@New Stemmers@@@Adding new Stemmers is very simple..
 fil["1"]= "ch02s02.html@@@Common Dependencies@@@Following section and sub-sections describe how to install package dependancies on Ubuntu and Windows...";
 fil["2"]= "ch01.html@@@Introduction@@@Overview of the package...";
 fil["3"]= "index.html@@@Mobile docBook Help@@@null";
-fil["4"]= "ch02s05s02.html@@@@@@null";
+fil["4"]= "ch02s05s02.html@@@Using Command-Line@@@null";
 fil["5"]= "ch02s04.html@@@Generating Android app@@@How to set configurations and create a Android app...";
 fil["6"]= "ch03s01s01.html@@@Mobile Table of Content@@@An overview about Table of Content page...";
 fil["7"]= "ch02s04s01s02.html@@@Build Android app in Release Mode@@@null";
