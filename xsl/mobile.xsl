@@ -728,7 +728,7 @@
             <!-- "Next" navigator genarate -->
             <xsl:if test="count($next)>0">
               <!-- Had an issue on last navigation link of footer. To align it with others change the  margin. -->
-              <li style="margin-top: -19px;">
+              <li style="margin-top: -16px;">
                 <a>
                   <xsl:attribute name="href">
                     <xsl:call-template name="href.target">
@@ -1426,12 +1426,12 @@
                       <div style="margin: 10px 15px;">
                         <select name="font-size" id="font-size" data-theme="e"
                           data-native-menu="false" data-mini="true">
-                          <option value="8px">Front size-8</option>
-                          <option value="9px">Front size-9</option>
-                          <option value="10px">Front size-10</option>
-                          <option value="12px">Front size-12</option>
-                          <option value="14px">Front size-14</option>
-                          <option value="16px">Front size-16</option>
+                          <option value="8px">Font size-8</option>
+                          <option value="9px">Font size-9</option>
+                          <option value="10px">Font size-10</option>
+                          <option value="12px">Font size-12</option>
+                          <option value="14px">Font size-14</option>
+                          <option value="16px">Font size-16</option>
                         </select>
                       </div>
                     </li>
