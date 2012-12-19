@@ -3,7 +3,7 @@
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 	<meta http-equiv="X-UA-Compatible" content="IE=7" />
-	<title>Testing Android app</title><meta name="generator" content="DocBook XSL Stylesheets V1.77.1" /><link rel="home" href="index.html" title="Mobile docBook Help" /><link rel="up" href="ch02s04.html" title="Generating Android app" /><link rel="prev" href="ch02s04s01s02.html" title="Build Android app in Release Mode" /><link rel="next" href="ch02s05.html" title="Generating iOS app" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="stylesheet" type="text/css" href="../css/themes/default/jquery.mobile-1.1.0.min.css" /><link rel="stylesheet" type="text/css" href="../css/mobile.positioning.css" /><script type="text/javascript" charset="utf-8" src="../cordova-2.0.0.js"><!----></script><script type="text/javascript">
+	<title>Testing Android app</title><meta name="generator" content="DocBook XSL Stylesheets V1.77.1" /><link rel="home" href="index.html" title="Mobile docBook Help" /><link rel="up" href="ch02s04.html" title="Generating Android app" /><link rel="prev" href="ch02s04s01s02.html" title="Build Android app in Release Mode" /><link rel="next" href="ch02s05.html" title="Generating iOS app" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="stylesheet" type="text/css" href="../css/themes/default/jquery.mobile-1.1.0.min.css" /><link rel="stylesheet" type="text/css" href="../css/mobile.positioning.css" /><script type="text/javascript">
               //The id for tree cookie
               var treeCookieId = "treeview-1055";
               var language = "en";
@@ -45,15 +45,9 @@
               $.mobile.changePage($nextPage);
             }
           });
-        
-          //if taphold feature enabled
-          $("#id_ch02s04s02_html_taphold").hide();
-          $("#id_ch02s04s02_html").live('taphold', function(event) {
-            $("#id_ch02s04s02_html_taphold").click();
-          });
          
         });
-			</script></div><div data-role="content" id="bodyone"><a href="tapholdDialog.html" data-role="button" data-inline="true" data-rel="dialog" data-transition="flip" id="id_ch02s04s02_html_taphold"></a><div id="content"><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="d0e1044"></a>Testing Android app</h3></div></div></div><p class="summary"></p><div class="procedure"><a id="d0e1048"></a><p class="title"><strong>Procedure 4. Testing Android app</strong></p><ol class="procedure" type="1"><li class="step"><p>Execute following command and make an Emulator : 
+			</script></div><div data-role="content" id="bodyone"><div id="content"><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="d0e1044"></a>Testing Android app</h3></div></div></div><p class="summary"></p><div class="procedure"><a id="d0e1048"></a><p class="title"><strong>Procedure 4. Testing Android app</strong></p><ol class="procedure" type="1"><li class="step"><p>Execute following command and make an Emulator : 
               </p><pre class="programlisting">$ /path/to/my_new_cordova_project/cordova/emulate</pre><p>
               <span class="bold"><strong>on windows</strong></span>
               </p><pre class="programlisting">$ path\to\my_new_cordova_project\cordova\emulate.bat</pre><p>

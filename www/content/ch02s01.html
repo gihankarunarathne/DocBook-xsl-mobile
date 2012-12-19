@@ -3,7 +3,7 @@
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 	<meta http-equiv="X-UA-Compatible" content="IE=7" />
-	<title>Basic overview</title><meta name="generator" content="DocBook XSL Stylesheets V1.77.1" /><meta name="description" content="Basic overview for architecture of the package" /><link rel="home" href="index.html" title="Mobile docBook Help" /><link rel="up" href="ch02.html" title="User guide" /><link rel="prev" href="ch02.html" title="User guide" /><link rel="next" href="ch02s02.html" title="Common Dependencies" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="stylesheet" type="text/css" href="../css/themes/default/jquery.mobile-1.1.0.min.css" /><link rel="stylesheet" type="text/css" href="../css/mobile.positioning.css" /><script type="text/javascript" charset="utf-8" src="../cordova-2.0.0.js"><!----></script><script type="text/javascript">
+	<title>Basic overview</title><meta name="generator" content="DocBook XSL Stylesheets V1.77.1" /><meta name="description" content="Basic overview for architecture of the package" /><link rel="home" href="index.html" title="Mobile docBook Help" /><link rel="up" href="ch02.html" title="User guide" /><link rel="prev" href="ch02.html" title="User guide" /><link rel="next" href="ch02s02.html" title="Common Dependencies" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="stylesheet" type="text/css" href="../css/themes/default/jquery.mobile-1.1.0.min.css" /><link rel="stylesheet" type="text/css" href="../css/mobile.positioning.css" /><script type="text/javascript">
               //The id for tree cookie
               var treeCookieId = "treeview-1055";
               var language = "en";
@@ -45,15 +45,9 @@
               $.mobile.changePage($nextPage);
             }
           });
-        
-          //if taphold feature enabled
-          $("#id_ch02s01_html_taphold").hide();
-          $("#id_ch02s01_html").live('taphold', function(event) {
-            $("#id_ch02s01_html_taphold").click();
-          });
          
         });
-			</script></div><div data-role="content" id="bodyone"><a href="tapholdDialog.html" data-role="button" data-inline="true" data-rel="dialog" data-transition="flip" id="id_ch02s01_html_taphold"></a><div id="content"><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="d0e219"></a>Basic overview</h2></div><div><div class="abstract"><p class="title"><strong>Abstract</strong></p><p>Basic overview for architecture of the package</p></div></div></div></div><p class="summary"> DocBook Mobile package take an input DocBook XML document(Ex:
+			</script></div><div data-role="content" id="bodyone"><div id="content"><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="d0e219"></a>Basic overview</h2></div><div><div class="abstract"><p class="title"><strong>Abstract</strong></p><p>Basic overview for architecture of the package</p></div></div></div></div><p class="summary"> DocBook Mobile package take an input DocBook XML document(Ex:
         <code class="filename">mobile/docsrc/mobile-readme.xml</code>) and produce mobile application such as Android
           application(<span class="application">.apk</span>), iOS application, BlackBerry, Windows Phone
         so on those can be installed in particular devices.After it is installed, it can use for
