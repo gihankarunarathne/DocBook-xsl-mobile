@@ -3,7 +3,7 @@
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 	<meta http-equiv="X-UA-Compatible" content="IE=7" />
-	<title>Adding support for other (non-CJKV) languages</title><meta name="generator" content="Bluefish 2.2.2" /><link rel="home" href="index.html" title="Mobile docBook Help" /><link rel="up" href="ch02.html" title="User guide" /><link rel="prev" href="ch02s06.html" title="Search indexing" /><link rel="next" href="ch02s08.html" title="Adding images" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="stylesheet" type="text/css" href="../css/themes/default/jquery.mobile-1.1.0.min.css" /><link rel="stylesheet" type="text/css" href="../css/mobile.positioning.css" /><script type="text/javascript">
+	<title>Adding support for other (non-CJKV) languages</title><meta name="generator" content="DocBook XSL Stylesheets V1.77.1" /><link rel="home" href="index.html" title="Mobile docBook Help" /><link rel="up" href="ch02.html" title="User guide" /><link rel="prev" href="ch02s06.html" title="Search indexing" /><link rel="next" href="ch02s08.html" title="Adding images" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="stylesheet" type="text/css" href="../css/themes/default/jquery.mobile-1.1.0.min.css" /><link rel="stylesheet" type="text/css" href="../css/mobile.positioning.css" /><script type="text/javascript">
               //The id for tree cookie
               var treeCookieId = "treeview-1055";
               var language = "en";
@@ -24,22 +24,13 @@
         function onMenuKeyDown() {
           $.mobile.changePage("settings.html");
         }
-		</script><script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><!----></script></head><body><div data-role="page" id="id_ch02s07_html"><!--KEEP THIS CODE--><div data-role="header" data-theme="b"><h4>Adding support for other (non-CJKV) languages</h4><!----><a accesskey="p" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="a" href="ch02s06.html">Prev</a>
-          
-          
-            <a accesskey="n" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="a" href="ch02s08.html">Next</a><script type="text/javascript">
+		</script><script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><!----></script></head><body><div data-role="page" id="id_ch02s07_html"><!--KEEP THIS CODE--><div data-role="header" data-theme="b" data-position="fixed"><h4>Adding support for other (non-CJKV) languages</h4><!----><a accesskey="n" data-role="button" data-icon="grid" class="ui-btn-right" data-iconpos="notext" data-theme="a" href="tapholdDialog.html" data-inline="true" data-rel="dialog" data-transition="flip">Options</a><script type="text/javascript">        
         $(function() {
-          $.fn.liveAndLetDie = function(event, callback) {
-          var sel = this.selector;
-          function unbind() { $(sel).die(event, callback).die(event, unbind); }
-          return this.live(event, callback).live(event, unbind);
-        };
-        
           var $nextPage="ch02s06.html";
           var $prevPage="ch02s08.html";
         
           //when swipe left event happens
-          $("#id_ch02s07_html").liveAndLetDie('swipeleft', function(event) {
+          $("#id_ch02s07_html").live('swipeleft', function(event) {
             if("swipeLeft" === $.cookie('nextpage') ){
               $.mobile.changePage($nextPage);
             }else{
@@ -47,22 +38,16 @@
             }
           });
 				 	//when swipe right event happens
-				 	$("#id_ch02s07_html").liveAndLetDie('swiperight', function(event) {
+          $("#id_ch02s07_html").live('swiperight', function(event) {
             if("swipeRight" === $.cookie('prevpage') ){
               $.mobile.changePage($prevPage);
             }else{
               $.mobile.changePage($nextPage);
             }
           });
-        
-          //if taphold feature enabled
-          $("#id_ch02s07_html_taphold").hide();
-          $("#id_ch02s07_html").liveAndLetDie('taphold', function(event) {
-            $("#id_ch02s07_html_taphold").click();
-          });
          
         });
-			</script></div><div data-role="content" id="bodyone"><a href="tapholdDialog.html" data-role="button" data-inline="true" data-rel="dialog" data-transition="flip" id="id_ch02s07_html_taphold"></a><div id="content"><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="d0e1510"></a>Adding support for other (non-CJKV) languages</h2></div></div></div><p>To support stemming for a language, the search mechanism requires a stemmer implemented
+			</script></div><div data-role="content" id="bodyone"><div id="content"><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="d0e1512"></a>Adding support for other (non-CJKV) languages</h2></div></div></div><p>To support stemming for a language, the search mechanism requires a stemmer implemented
         in both Java and JavaScript. The Java version is used by the indexer and the JavaScript
         verison is used to stem the user's input on the search form. Currently the search mechanism
         supports stemming for English and German. In addition, Java stemmers are included for the
@@ -70,5 +55,5 @@
         stemmer in JavaScript and add it to the template_mobile. If you do undertake this task, please
         consider contributing the JavaScript version back to this project and to <a class="ulink" href="http://snowball.tartarus.org/texts/stemmersoverview.html" target="_top">Martin Porter's
           project</a>.
-        </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>Danish</p></li><li class="listitem"><p>Dutch</p></li><li class="listitem"><p>Finnish</p></li><li class="listitem"><p>Hungarian</p></li><li class="listitem"><p>Italian</p></li><li class="listitem"><p>Norwegian</p></li><li class="listitem"><p>Portuguese</p></li><li class="listitem"><p>Romanian</p></li><li class="listitem"><p>Russian</p></li><li class="listitem"><p>Spanish</p></li><li class="listitem"><p>Swedish</p></li><li class="listitem"><p>Turkish</p></li></ul></div><p><a id="d0e1555" class="indexterm"></a>
-      </p></div><!----><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch02s06.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch02.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch02s08.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></div></div></div></body></html>
+        </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>Danish</p></li><li class="listitem"><p>Dutch</p></li><li class="listitem"><p>Finnish</p></li><li class="listitem"><p>Hungarian</p></li><li class="listitem"><p>Italian</p></li><li class="listitem"><p>Norwegian</p></li><li class="listitem"><p>Portuguese</p></li><li class="listitem"><p>Romanian</p></li><li class="listitem"><p>Russian</p></li><li class="listitem"><p>Spanish</p></li><li class="listitem"><p>Swedish</p></li><li class="listitem"><p>Turkish</p></li></ul></div><p><a id="d0e1557" class="indexterm"></a>
+      </p></div></div></div><div data-role="footer" data-position="fixed"><div data-role="navbar"><ul><li><a href="ch02s06.html">Prev</a></li><li><a href="ch02.html">Up</a></li>   <li><a href="index.html">Home</a></li>   <li style="margin-top: -19px;"><a href="ch02s08.html">Next</a></li></ul></div></div></div></body></html>
