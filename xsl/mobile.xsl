@@ -297,9 +297,14 @@
   <!-- =	user.footer.navigation						                      = -->
   <!-- ============================================================ -->
   <xsl:template name="user.footer.navigation">
-    <!--<xsl:call-template name="mobiletoc">
-      <xsl:with-param name="currentid" select="generate-id(.)"/>
-    </xsl:call-template>-->
+    <xsl:param name="prev"/>
+    <xsl:param name="next"/>
+    <xsl:param name="nav.context"/>
+    <xsl:call-template name="mobilefooter">
+      <xsl:with-param name="prev" select="$prev"/>
+      <xsl:with-param name="next" select="$next"/>
+      <xsl:with-param name="nav.context" select="$nav.context"/>
+    </xsl:call-template>
   </xsl:template>
 
   <xsl:template match="/">
@@ -470,14 +475,16 @@
 
               <xsl:copy-of select="$content"/>
 
-              <xsl:call-template name="user.footer.content"/>
-
-              <xsl:call-template name="footer.navigation">
-                <xsl:with-param name="prev" select="$prev"/>
-                <xsl:with-param name="next" select="$next"/>
-                <xsl:with-param name="nav.context" select="$nav.context"/>
-              </xsl:call-template>
             </div>
+          </div>
+          <div id="mobile_footer">
+            <xsl:call-template name="user.footer.content"/>
+
+            <xsl:call-template name="user.footer.navigation">
+              <xsl:with-param name="prev" select="$prev"/>
+              <xsl:with-param name="next" select="$next"/>
+              <xsl:with-param name="nav.context" select="$nav.context"/>
+            </xsl:call-template>
           </div>
         </div>
       </body>
@@ -662,6 +669,101 @@
 			</script>
     </xsl:if>
 
+  </xsl:template>
+
+  <!-- ============================================================ -->
+  <!-- = Mobile Footer = -->
+  <!-- ============================================================ -->
+  <xsl:template name="mobilefooter">
+    <xsl:param name="prev"/>
+    <xsl:param name="next"/>
+    <xsl:param name="nav.context"/>
+    
+    <xsl:variable name="home" select="/*[1]"/>
+    <xsl:variable name="up" select="parent::*"/>
+    
+    <xsl:if
+      test="count($prev) &gt; 0
+      or (count($up) &gt; 0
+      and generate-id($up) != generate-id($home)
+      and $navig.showtitles != 0)
+      or count($next) &gt; 0">
+      
+      <div data-role="footer" data-position="fixed">
+        <div data-role="navbar">
+          <ul>
+            
+            <!-- "Previous" navigator genarate -->
+            <xsl:if test="count($prev)>0">
+              <li>
+                <a>
+                  <xsl:attribute name="href">
+                    <xsl:call-template name="href.target">
+                      <xsl:with-param name="object" select="$prev"/>
+                    </xsl:call-template>
+                  </xsl:attribute>
+                  <xsl:call-template name="navig.content">
+                    <xsl:with-param name="direction" select="'prev'"/>
+                  </xsl:call-template>
+                </a>
+              </li>
+            </xsl:if>
+            
+            <!-- "Up" link-->
+            <xsl:choose>
+              <xsl:when test="count($up)&gt;0
+                and generate-id($up) != generate-id($home)">
+                <li>
+                  <a>
+                    <xsl:attribute name="href">
+                      <xsl:call-template name="href.target">
+                        <xsl:with-param name="object" select="$up"/>
+                      </xsl:call-template>
+                    </xsl:attribute>
+                    <xsl:call-template name="navig.content">
+                      <xsl:with-param name="direction" select="'up'"/>
+                    </xsl:call-template>
+                  </a></li> &#160; </xsl:when>
+              <xsl:otherwise>&#160;</xsl:otherwise>
+            </xsl:choose>
+            
+            <!-- "Home" link-->
+            <xsl:choose>
+              <xsl:when test="generate-id($up) != generate-id($home)">
+                <li>
+                  <a>
+                    <xsl:attribute name="href">
+                      <xsl:call-template name="href.target">
+                        <xsl:with-param name="object" select="$home"/>
+                      </xsl:call-template>
+                    </xsl:attribute>
+                    <xsl:call-template name="navig.content">
+                      <xsl:with-param name="direction" select="'home'"/>
+                    </xsl:call-template>
+                  </a></li> &#160; </xsl:when>
+              <xsl:otherwise>&#160;</xsl:otherwise>
+            </xsl:choose>
+            
+            <!-- "Next" navigator genarate -->
+            <xsl:if test="count($next)>0">
+              <!-- Had an issue on last navigation link of footer. To align it with others change the margin. -->
+              <li style="margin-top: -16px;">
+                <a>
+                  <xsl:attribute name="href">
+                    <xsl:call-template name="href.target">
+                      <xsl:with-param name="object" select="$next"/>
+                    </xsl:call-template>
+                  </xsl:attribute>
+                  <xsl:call-template name="navig.content">
+                    <xsl:with-param name="direction" select="'next'"/>
+                  </xsl:call-template>
+                </a>
+              </li>
+            </xsl:if>
+          </ul>
+        </div>
+      </div>
+    </xsl:if>
   </xsl:template>
 
   <!-- ============================================================ -->
