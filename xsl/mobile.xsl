@@ -474,13 +474,15 @@
 
             </div>
           </div>
-          <xsl:call-template name="user.footer.content"/>
+          <div id="mobile_footer">
+            <xsl:call-template name="user.footer.content"/>
 
-          <xsl:call-template name="user.footer.navigation">
-            <xsl:with-param name="prev" select="$prev"/>
-            <xsl:with-param name="next" select="$next"/>
-            <xsl:with-param name="nav.context" select="$nav.context"/>
-          </xsl:call-template>
+            <xsl:call-template name="user.footer.navigation">
+              <xsl:with-param name="prev" select="$prev"/>
+              <xsl:with-param name="next" select="$next"/>
+              <xsl:with-param name="nav.context" select="$nav.context"/>
+            </xsl:call-template>
+          </div>
         </div>
       </body>
     </html>
@@ -653,7 +655,7 @@
   </xsl:template>
 
   <!-- ============================================================ -->
-  <!-- =	Mobile Footer					                                  = -->
+  <!-- = Mobile Footer = -->
   <!-- ============================================================ -->
   <xsl:template name="mobilefooter">
     <xsl:param name="prev"/>
@@ -669,11 +671,11 @@
       and generate-id($up) != generate-id($home)
       and $navig.showtitles != 0)
       or count($next) &gt; 0">
-
+      
       <div data-role="footer" data-position="fixed">
         <div data-role="navbar">
           <ul>
-
+            
             <!-- "Previous" navigator genarate -->
             <xsl:if test="count($prev)>0">
               <li>
@@ -689,11 +691,11 @@
                 </a>
               </li>
             </xsl:if>
-
+            
             <!-- "Up" link-->
             <xsl:choose>
               <xsl:when test="count($up)&gt;0
-          and generate-id($up) != generate-id($home)">
+                and generate-id($up) != generate-id($home)">
                 <li>
                   <a>
                     <xsl:attribute name="href">
@@ -724,10 +726,10 @@
                   </a></li> &#160; </xsl:when>
               <xsl:otherwise>&#160;</xsl:otherwise>
             </xsl:choose>
-
+            
             <!-- "Next" navigator genarate -->
             <xsl:if test="count($next)>0">
-              <!-- Had an issue on last navigation link of footer. To align it with others change the  margin. -->
+              <!-- Had an issue on last navigation link of footer. To align it with others change the margin. -->
               <li style="margin-top: -16px;">
                 <a>
                   <xsl:attribute name="href">
@@ -746,7 +748,7 @@
       </div>
     </xsl:if>
   </xsl:template>
-  
+
   <!-- ============================================================ -->
   <!-- =	Mobile ToC								                              = -->
   <!-- ============================================================ -->
