@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+	<meta http-equiv="X-UA-Compatible" content="IE=7" />
+	<title>User guide</title><meta name="generator" content="DocBook XSL Stylesheets V1.77.1" /><link rel="home" href="index.html" title="Mobile docBook Help" /><link rel="up" href="index.html" title="Mobile docBook Help" /><link rel="prev" href="ch01.html" title="Introduction" /><link rel="next" href="ch02s01.html" title="Basic overview" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="stylesheet" type="text/css" href="../css/themes/default/jquery.mobile-1.1.0.min.css" /><link rel="stylesheet" type="text/css" href="../css/mobile.positioning.css" /><script type="text/javascript">
+              //The id for tree cookie
+              var treeCookieId = "treeview-1055";
+              var language = "en";
+              var w = new Object();
+              //Localization
+              txt_filesfound = 'Results';
+              txt_enter_at_least_1_char = "You must enter at least one character.";
+              txt_browser_not_supported = "JavaScript is disabled on your browser. Please enable JavaScript to enjoy all the features of this site.";
+              txt_please_wait = "Please wait. Search in progress...";
+              txt_results_for = "Results for: ";
+            </script><script type="text/javascript" src="../js/browserDetect.js"><!--//jQuery--></script><script type="text/javascript" src="../js/jquery-1.7.1.min.js"><!--//jQuery--></script><script type="text/javascript" src="../js/jquery.cookie.min.js"><!--include mobile menubar js--></script><script type="text/javascript" src="../js/mobile-menubar.js"><!--mobile-menubar--></script><script type="text/javascript" src="../js/mobile-settings.js"><!--include mobile settings js--></script><script type="text/javascript" src="search/l10n.js"><!--l10n--></script><script type="text/javascript" src="search/htmlFileInfoList.js"><!--htmlFileInfoList--></script><script type="text/javascript" src="search/nwSearchFnt.js"><!--nwSearchFnt--></script><script type="text/javascript" src="search/stemmers/en_stemmer.js"><!--make scalable to other languages as well.--></script><script type="text/javascript" src="search/index-1.js"><!--index-1--></script><script type="text/javascript" src="search/index-2.js"><!--index-2--></script><script type="text/javascript" src="search/index-3.js"><!--index-3--></script><script type="text/javascript" charset="utf-8">
+        document.addEventListener("deviceready", onDeviceReady, false);
+
+        function onDeviceReady() {
+          document.addEventListener("menubutton", onMenuKeyDown, false);
+        }
+
+        function onMenuKeyDown() {
+          $.mobile.changePage("settings.html");
+        }
+		</script><script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><!----></script></head><body><div data-role="page" id="id_ch02_html"><!--KEEP THIS CODE--><div data-role="header" data-theme="b"><h4>User guide</h4><!----><a accesskey="p" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="a" href="ch01.html">Prev</a> <a accesskey="n" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="a" href="ch02s01.html">Next</a><script type="text/javascript">        
+        $(function() {
+          var $nextPage="ch01.html";
+          var $prevPage="ch02s01.html";
+        
+          //when swipe left event happens
+          $("#id_ch02_html").live('swipeleft', function(event) {
+            if("swipeLeft" === $.cookie('nextpage') ){
+              $.mobile.changePage($nextPage);
+            }else{
+              $.mobile.changePage($prevPage);
+            }
+          });
+				 	//when swipe right event happens
+          $("#id_ch02_html").live('swiperight', function(event) {
+            if("swipeRight" === $.cookie('prevpage') ){
+              $.mobile.changePage($prevPage);
+            }else{
+              $.mobile.changePage($nextPage);
+            }
+          });
+        
+          //if taphold feature enabled
+          $("#id_ch02_html_taphold").hide();
+          $("#id_ch02_html").live('taphold', function(event) {
+            $("#id_ch02_html_taphold").click();
+          });
+         
+        });
+			</script></div><div data-role="content" id="bodyone"><a href="tapholdDialog.html" data-role="button" data-inline="true" data-rel="dialog" data-transition="flip" id="id_ch02_html_taphold"></a><div id="content"><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="d0e214"></a>User guide</h1></div></div></div><div class="toc"><p><strong>Contents</strong></p><dl><dt><span class="section"><a href="ch02s01.html">Basic overview</a></span></dt><dt><span class="section"><a href="ch02s02.html">Common Dependencies</a></span></dt><dd><dl><dt><span class="section"><a href="ch02s02s01.html">Installation On Ubuntu</a></span></dt><dt><span class="section"><a href="ch02s02s02.html">Installation On Windows</a></span></dt></dl></dd><dt><span class="section"><a href="ch02s03.html">Common Mobile Output</a></span></dt><dt><span class="section"><a href="ch02s04.html">Generating Android app</a></span></dt><dd><dl><dt><span class="section"><a href="ch02s04s01.html">Build Android apps</a></span></dt><dd><dl><dt><span class="section"><a href="ch02s04s01s01.html">Build Android app in Debug Mode</a></span></dt><dt><span class="section"><a href="ch02s04s01s02.html">Build Android app in Release Mode</a></span></dt></dl></dd><dt><span class="section"><a href="ch02s04s02.html">Testing Android app</a></span></dt></dl></dd><dt><span class="section"><a href="ch02s05.html">Generating iOS app</a></span></dt><dd><dl><dt><span class="section"><a href="ch02s05s01.html">Using GUI (Xcode IDE)</a></span></dt><dt><span class="section"><a href="ch02s05s02.html">Using Command-Line</a></span></dt></dl></dd><dt><span class="section"><a href="ch02s06.html">Search indexing</a></span></dt><dt><span class="section"><a href="ch02s07.html">Adding support for other (non-CJKV) languages</a></span></dt><dt><span class="section"><a href="ch02s08.html">Adding images</a></span></dt></dl></div><p class="summary">
+      The following sections describe how to install and use the package on Ubuntu, Windows and MacOS.
+    </p></div><!----><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch01.html">Prev</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="ch02s01.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></div></div></div></body></html>

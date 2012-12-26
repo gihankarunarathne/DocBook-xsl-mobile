@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+	<meta http-equiv="X-UA-Compatible" content="IE=7" />
+	<title>Common Mobile Output</title><meta name="generator" content="DocBook XSL Stylesheets V1.77.1" /><link rel="home" href="index.html" title="Mobile docBook Help" /><link rel="up" href="ch02.html" title="User guide" /><link rel="prev" href="ch02s02s02.html" title="Installation On Windows" /><link rel="next" href="ch02s04.html" title="Generating Android app" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="stylesheet" type="text/css" href="../css/themes/default/jquery.mobile-1.1.0.min.css" /><link rel="stylesheet" type="text/css" href="../css/mobile.positioning.css" /><script type="text/javascript">
+              //The id for tree cookie
+              var treeCookieId = "treeview-1055";
+              var language = "en";
+              var w = new Object();
+              //Localization
+              txt_filesfound = 'Results';
+              txt_enter_at_least_1_char = "You must enter at least one character.";
+              txt_browser_not_supported = "JavaScript is disabled on your browser. Please enable JavaScript to enjoy all the features of this site.";
+              txt_please_wait = "Please wait. Search in progress...";
+              txt_results_for = "Results for: ";
+            </script><script type="text/javascript" src="../js/browserDetect.js"><!--//jQuery--></script><script type="text/javascript" src="../js/jquery-1.7.1.min.js"><!--//jQuery--></script><script type="text/javascript" src="../js/jquery.cookie.min.js"><!--include mobile menubar js--></script><script type="text/javascript" src="../js/mobile-menubar.js"><!--mobile-menubar--></script><script type="text/javascript" src="../js/mobile-settings.js"><!--include mobile settings js--></script><script type="text/javascript" src="search/l10n.js"><!--l10n--></script><script type="text/javascript" src="search/htmlFileInfoList.js"><!--htmlFileInfoList--></script><script type="text/javascript" src="search/nwSearchFnt.js"><!--nwSearchFnt--></script><script type="text/javascript" src="search/stemmers/en_stemmer.js"><!--make scalable to other languages as well.--></script><script type="text/javascript" src="search/index-1.js"><!--index-1--></script><script type="text/javascript" src="search/index-2.js"><!--index-2--></script><script type="text/javascript" src="search/index-3.js"><!--index-3--></script><script type="text/javascript" charset="utf-8">
+        document.addEventListener("deviceready", onDeviceReady, false);
+
+        function onDeviceReady() {
+          document.addEventListener("menubutton", onMenuKeyDown, false);
+        }
+
+        function onMenuKeyDown() {
+          $.mobile.changePage("settings.html");
+        }
+		</script><script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><!----></script></head><body><div data-role="page" id="id_ch02s03_html"><!--KEEP THIS CODE--><div data-role="header" data-theme="b"><h4>Common Mobile Output</h4><!----><a accesskey="p" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="a" href="ch02s02s02.html">Prev</a>
+          
+          
+            <a accesskey="n" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="a" href="ch02s04.html">Next</a><script type="text/javascript">        
+        $(function() {
+          var $nextPage="ch02s02s02.html";
+          var $prevPage="ch02s04.html";
+        
+          //when swipe left event happens
+          $("#id_ch02s03_html").live('swipeleft', function(event) {
+            if("swipeLeft" === $.cookie('nextpage') ){
+              $.mobile.changePage($nextPage);
+            }else{
+              $.mobile.changePage($prevPage);
+            }
+          });
+				 	//when swipe right event happens
+          $("#id_ch02s03_html").live('swiperight', function(event) {
+            if("swipeRight" === $.cookie('prevpage') ){
+              $.mobile.changePage($prevPage);
+            }else{
+              $.mobile.changePage($nextPage);
+            }
+          });
+        
+          //if taphold feature enabled
+          $("#id_ch02s03_html_taphold").hide();
+          $("#id_ch02s03_html").live('taphold', function(event) {
+            $("#id_ch02s03_html_taphold").click();
+          });
+         
+        });
+			</script></div><div data-role="content" id="bodyone"><a href="tapholdDialog.html" data-role="button" data-inline="true" data-rel="dialog" data-transition="flip" id="id_ch02s03_html_taphold"></a><div id="content"><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="d0e528"></a>Common Mobile Output</h2></div></div></div><p class="summary">
+        How to build Mobile output without specifying Mobile platform. This section describes how to build html content without specifically build for particular mobile platform. Instead the output can view by a <span class="application">desktop web browser</span>.
+        </p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+          When you build for a particular mobile platfrom, ant script will include additional requirement for that platform such as <code class="filename">cordova.js</code>.
+        </p></div><p class="summary">
+      </p><div class="procedure"><ol class="procedure" type="1"><li class="step"><a id="edit-build-properties"></a><p>In a text editor, edit the <code class="filename">build.properties</code> file in the
+          mobile directory and make the changes indicated by the comments.</p><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3><p>You must set appropriate values for <code class="code">xslt-processor-classpath</code>,
+              <code class="code">xercesImpl.jar</code>, and <code class="code">xml-apis.jar</code>.</p></div><p>. Note that not all DocBook parameters are passed in to the xsls by the
+          <code class="filename">build.xml</code> by default. You may need to modify the
+          <code class="filename">build.xml</code> to pass in some DocBook
+          parameters.
+        </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>The path (relative to the build.xml file) to your input document. To use your own
+              input document, create a build.xml file of your own and import this build.xml.
+              </p><pre class="programlisting">input-xml=docsrc/readme.xml</pre><p>
+            </p></li><li class="listitem"><p>
+              The directory in which to put the output files. 
+              This directory is created if it does not exist.
+              </p><pre class="programlisting">output-dir=www</pre><p>
+            </p></li><li class="listitem"><p>
+              The set of files to be excluded:
+              Add excluded files separated by ","/ comma.
+              Ex: ch02.*.html,ch03.html =&gt; will be excluded all files those are started with [ch02. and .html and any thing between] files and ch03.html file.
+              </p><pre class="programlisting">indexer-excluded-files=menubar.html,settings.html,toc.html</pre><p>
+            </p></li><li class="listitem"><p>
+              The file name of the menu bar of mobile application
+              </p><pre class="programlisting">mobile.menubar.filename=menubar.html</pre><p>
+              The file name of the settings of mobile application
+              </p><pre class="programlisting">mobile.settings.filename=settings.html</pre><p>
+              The file name of the table of content of mobile application
+              </p><pre class="programlisting">mobile.toc.filename=toc.html</pre><p>
+            </p></li><li class="listitem"><p>
+              If you are using a customization layer that imports mobile.xsl, use
+              this property to point to it. 
+              </p><pre class="programlisting">stylesheet-path=${ant.file.dir}/xsl/mobile.xsl</pre><p>
+            </p></li><li class="listitem"><p>
+              If your document has image directories that need to be copied
+              to the output directory, you can list patterns here. 
+              See the Ant documentation for fileset for documentation
+              on patterns.
+              </p><pre class="programlisting">input-images-dirs=images/**,figures/**,graphics/**</pre><p>
+            </p></li><li class="listitem"><p>
+              By default, the ant script assumes your images are stored
+              in the same directory as the input-xml. If you store your
+              image directories in another directory, specify it here.
+              and uncomment this line.
+              </p><pre class="programlisting">input-images-basedir=/path/to/image/location</pre><p>
+            </p></li><li class="listitem"><p>
+              Modify the follosing so that they point to your local
+              copy of the jars indicated:
+              </p><pre class="programlisting">
+ * Saxon 6.5 jar
+ * Xerces 2: xercesImpl.jar
+ * xml-commons: xml-apis.jar
+ 
+xslt-processor-classpath=/usr/share/java/saxon-6.5.5.jar 
+xercesImpl.jar=/usr/share/java/xercesImpl.jar
+xml-apis.jar=/usr/share/java/xml-apis.jar
+              </pre><p>
+            </p></li><li class="listitem"><p>
+              For non-ns version only, this validates the document 
+              against a dtd.
+              </p><pre class="programlisting">validate-against-dtd=true</pre><p>
+            </p></li><li class="listitem"><p>
+              The extension for files to be indexed (html/htm/xhtml etc.)
+              </p><pre class="programlisting">html.extension=html</pre><p>
+            </p></li><li class="listitem"><p>
+              indexer-language is used to tell the search indexer which language
+              the docbook is written.  This will be used to identify the correct
+              stemmer, and punctuations that differs from language to language.
+              see the documentation for details. en=English, fr=French, de=German,
+              zh=Chinese, ja=Japanese etc.  
+              </p><pre class="programlisting">mobile.indexer.language=en</pre><p>
+            </p></li><li class="listitem"><p>
+              Enables/Disables stemming
+              Stemming allows better querying for the search
+              </p><pre class="programlisting">enable.stemming=true</pre><p>
+            </p></li><li class="listitem"><p>
+              Set admon.graphics to 1 to user graphics for note, tip, etc.
+              </p><pre class="programlisting">admon.graphics=0</pre><p>
+              </p><pre class="programlisting">suppress.footer.navigation=0</pre><p>
+            </p></li></ul></div></li><li class="step"><p>Test the package by running the command <code class="code">ant mobile
+          -Doutput-dir=test-ouput</code> at the command line in the mobile directory. It
+          should generate a copy of this documentation in the <code class="filename">doc</code> directory. Open <code class="filename">test-output\index.html</code> 
+          the output in a browser. Once you have confirmed that the process worked, you can
+          delete the <code class="filename">test-output</code> directory. </p><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3><p>The Saxon 6.5 jar should <span class="emphasis"><em>not</em></span> be in your
+              <code class="envar">CLASSPATH</code> when you generate the mobile output. If you have any
+              problems, try running ant with an empty <code class="envar">CLASSPATH</code>.</p></div></li><li class="step"><p>To process your own document, simply refer to this package from another
+          <code class="filename">build.xml</code> in arbitrary location on your system:</p><ol type="a" class="substeps"><li class="step"><p>Create a new <code class="filename">build.xml</code> file that defines the name of your
+              source file, the desired output directory, and imports the
+              <code class="filename">build.xml</code> from this package. For example:
+              </p><pre class="programlisting">&lt;project&gt;
+  &lt;property name="input-xml" value="<em class="replaceable"><code>path-to/yourfile.xml</code></em>"/&gt;
+  &lt;property name="input-images-dirs" value="<em class="replaceable"><code>images/** figures/** graphics/**</code></em>"/&gt;
+  &lt;property name="output-dir" value="<em class="replaceable"><code>path-to/desired-output-dir</code></em>"/&gt;
+  &lt;import file="<em class="replaceable"><code>path-to/docbook-mobile/</code></em>build.xml"/&gt;
+&lt;/project&gt;</pre></li><li class="step"><p>From the directory containing your newly created
+              <code class="filename">build.xml</code> file, type <code class="code">ant mobile</code> to build your
+              document. This mobile output can use to view by a web browser.</p></li></ol></li></ol></div></div><!----><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch02s02s02.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch02.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch02s04.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top"> </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> </td></tr></table></div></div></div></div></body></html>
