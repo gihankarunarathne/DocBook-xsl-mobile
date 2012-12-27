@@ -1,4 +1,4 @@
-var doStem = false;
+var doStem = true;
 //List of indexed files.
 fl = new Array();
 fl["0"]= "ch03s02s01.html";

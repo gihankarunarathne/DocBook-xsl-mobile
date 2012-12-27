@@ -24,7 +24,10 @@
         function onMenuKeyDown() {
           $.mobile.changePage("settings.html");
         }
-		</script><script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><!----></script></head><body><div data-role="page" id="id_ch02s07_html"><!--KEEP THIS CODE--><div data-role="header" data-theme="b" data-position="fixed"><h4>Adding support for other (non-CJKV) languages</h4><!----><a accesskey="n" data-role="button" data-icon="grid" class="ui-btn-right" data-iconpos="notext" data-theme="a" href="tapholdDialog.html" data-inline="true" data-rel="dialog" data-transition="flip">Options</a><script type="text/javascript">        
+		</script><script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><!----></script></head><body><div data-role="page" id="id_ch02s07_html"><!--KEEP THIS CODE--><div data-role="header" data-theme="b"><h4>Adding support for other (non-CJKV) languages</h4><!---->
+          
+          
+            <a accesskey="n" data-role="button" data-icon="grid" class="ui-btn-right" data-iconpos="notext" data-theme="a" href="tapholdDialog.html" data-inline="true" data-rel="dialog" data-transition="flip">Options</a><script type="text/javascript">        
         $(function() {
           var $nextPage="ch02s06.html";
           var $prevPage="ch02s08.html";
@@ -45,9 +48,15 @@
               $.mobile.changePage($nextPage);
             }
           });
+        
+          //if taphold feature enabled
+          $("#id_ch02s07_html_taphold").hide();
+          $("#id_ch02s07_html").live('taphold', function(event) {
+            $("#id_ch02s07_html_taphold").click();
+          });
          
         });
-			</script></div><div data-role="content" id="bodyone"><div id="content"><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="d0e1512"></a>Adding support for other (non-CJKV) languages</h2></div></div></div><p>To support stemming for a language, the search mechanism requires a stemmer implemented
+			</script></div><div data-role="content" id="bodyone"><a href="tapholdDialog.html" data-role="button" data-inline="true" data-rel="dialog" data-transition="flip" id="id_ch02s07_html_taphold"></a><div id="content"><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="d0e1512"></a>Adding support for other (non-CJKV) languages</h2></div></div></div><p>To support stemming for a language, the search mechanism requires a stemmer implemented
         in both Java and JavaScript. The Java version is used by the indexer and the JavaScript
         verison is used to stem the user's input on the search form. Currently the search mechanism
         supports stemming for English and German. In addition, Java stemmers are included for the
@@ -56,4 +65,4 @@
         consider contributing the JavaScript version back to this project and to <a class="ulink" href="http://snowball.tartarus.org/texts/stemmersoverview.html" target="_top">Martin Porter's
           project</a>.
         </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>Danish</p></li><li class="listitem"><p>Dutch</p></li><li class="listitem"><p>Finnish</p></li><li class="listitem"><p>Hungarian</p></li><li class="listitem"><p>Italian</p></li><li class="listitem"><p>Norwegian</p></li><li class="listitem"><p>Portuguese</p></li><li class="listitem"><p>Romanian</p></li><li class="listitem"><p>Russian</p></li><li class="listitem"><p>Spanish</p></li><li class="listitem"><p>Swedish</p></li><li class="listitem"><p>Turkish</p></li></ul></div><p><a id="d0e1557" class="indexterm"></a>
-      </p></div></div></div><div data-role="footer" data-position="fixed"><div data-role="navbar"><ul><li><a href="ch02s06.html">Prev</a></li><li><a href="ch02.html">Up</a></li>   <li><a href="index.html">Home</a></li>   <li style="margin-top: -19px;"><a href="ch02s08.html">Next</a></li></ul></div></div></div></body></html>
+      </p></div></div></div><div id="mobile_footer"><!----><div data-role="footer" data-position="fixed"><div data-role="navbar"><ul><li><a href="ch02s06.html">Prev</a></li><li><a href="ch02.html">Up   </a></li><li><a href="index.html">Home   </a></li><li><a href="ch02s08.html">Next</a></li></ul></div></div></div></div></body></html>

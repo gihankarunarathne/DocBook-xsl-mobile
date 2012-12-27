@@ -24,7 +24,10 @@
         function onMenuKeyDown() {
           $.mobile.changePage("settings.html");
         }
-		</script><script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><!----></script></head><body><div data-role="page" id="id_ch03s01s02_html"><!--KEEP THIS CODE--><div data-role="header" data-theme="b" data-position="fixed"><h4>Mobile Menu Bar</h4><!----><a accesskey="n" data-role="button" data-icon="grid" class="ui-btn-right" data-iconpos="notext" data-theme="a" href="tapholdDialog.html" data-inline="true" data-rel="dialog" data-transition="flip">Options</a><script type="text/javascript">        
+		</script><script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><!----></script></head><body><div data-role="page" id="id_ch03s01s02_html"><!--KEEP THIS CODE--><div data-role="header" data-theme="b"><h4>Mobile Menu Bar</h4><!---->
+          
+          
+            <a accesskey="n" data-role="button" data-icon="grid" class="ui-btn-right" data-iconpos="notext" data-theme="a" href="tapholdDialog.html" data-inline="true" data-rel="dialog" data-transition="flip">Options</a><script type="text/javascript">        
         $(function() {
           var $nextPage="ch03s01s01.html";
           var $prevPage="ch03s01s03.html";
@@ -45,10 +48,16 @@
               $.mobile.changePage($nextPage);
             }
           });
+        
+          //if taphold feature enabled
+          $("#id_ch03s01s02_html_taphold").hide();
+          $("#id_ch03s01s02_html").live('taphold', function(event) {
+            $("#id_ch03s01s02_html_taphold").click();
+          });
          
         });
-			</script></div><div data-role="content" id="bodyone"><div id="content"><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="d0e1683"></a>Mobile Menu Bar</h3></div></div></div><p class="summary">
+			</script></div><div data-role="content" id="bodyone"><a href="tapholdDialog.html" data-role="button" data-inline="true" data-rel="dialog" data-transition="flip" id="id_ch03s01s02_html_taphold"></a><div id="content"><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="d0e1683"></a>Mobile Menu Bar</h3></div></div></div><p class="summary">
           An overview about Menu Bar page.
         </p><p>
           Menubar creates as a separate file in mobile output. It includes search, change font-size, change font-famiy and a back button. When user trigger a search,the results will append to &lt;div id="searchResults"&gt;. It has an associated javascript file to handle selection menu options. The values will store with cookies. It uses jquery.cookies java script library for that purpose. When use select the option <span class="bold"><strong>remember search word</strong></span> ,last search word will append when opening <code class="filename">Menubar.html</code>.
-        </p></div></div></div><div data-role="footer" data-position="fixed"><div data-role="navbar"><ul><li><a href="ch03s01s01.html">Prev</a></li><li><a href="ch03s01.html">Up</a></li>   <li><a href="index.html">Home</a></li>   <li style="margin-top: -19px;"><a href="ch03s01s03.html">Next</a></li></ul></div></div></div></body></html>
+        </p></div></div></div><div id="mobile_footer"><!----><div data-role="footer" data-position="fixed"><div data-role="navbar"><ul><li><a href="ch03s01s01.html">Prev</a></li><li><a href="ch03s01.html">Up   </a></li><li><a href="index.html">Home   </a></li><li><a href="ch03s01s03.html">Next</a></li></ul></div></div></div></div></body></html>

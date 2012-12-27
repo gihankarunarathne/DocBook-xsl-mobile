@@ -24,7 +24,10 @@
         function onMenuKeyDown() {
           $.mobile.changePage("settings.html");
         }
-		</script><script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><!----></script></head><body><div data-role="page" id="id_ch02s04s02_html"><!--KEEP THIS CODE--><div data-role="header" data-theme="b" data-position="fixed"><h4>Testing Android app</h4><!----><a accesskey="n" data-role="button" data-icon="grid" class="ui-btn-right" data-iconpos="notext" data-theme="a" href="tapholdDialog.html" data-inline="true" data-rel="dialog" data-transition="flip">Options</a><script type="text/javascript">        
+		</script><script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><!----></script></head><body><div data-role="page" id="id_ch02s04s02_html"><!--KEEP THIS CODE--><div data-role="header" data-theme="b"><h4>Testing Android app</h4><!---->
+          
+          
+            <a accesskey="n" data-role="button" data-icon="grid" class="ui-btn-right" data-iconpos="notext" data-theme="a" href="tapholdDialog.html" data-inline="true" data-rel="dialog" data-transition="flip">Options</a><script type="text/javascript">        
         $(function() {
           var $nextPage="ch02s04s01s02.html";
           var $prevPage="ch02s05.html";
@@ -45,9 +48,15 @@
               $.mobile.changePage($nextPage);
             }
           });
+        
+          //if taphold feature enabled
+          $("#id_ch02s04s02_html_taphold").hide();
+          $("#id_ch02s04s02_html").live('taphold', function(event) {
+            $("#id_ch02s04s02_html_taphold").click();
+          });
          
         });
-			</script></div><div data-role="content" id="bodyone"><div id="content"><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="d0e1044"></a>Testing Android app</h3></div></div></div><p class="summary"></p><div class="procedure"><a id="d0e1048"></a><p class="title"><strong>Procedure 4. Testing Android app</strong></p><ol class="procedure" type="1"><li class="step"><p>Execute following command and make an Emulator : 
+			</script></div><div data-role="content" id="bodyone"><a href="tapholdDialog.html" data-role="button" data-inline="true" data-rel="dialog" data-transition="flip" id="id_ch02s04s02_html_taphold"></a><div id="content"><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="d0e1044"></a>Testing Android app</h3></div></div></div><p class="summary"></p><div class="procedure"><a id="d0e1048"></a><p class="title"><strong>Procedure 4. Testing Android app</strong></p><ol class="procedure" type="1"><li class="step"><p>Execute following command and make an Emulator : 
               </p><pre class="programlisting">$ /path/to/my_new_cordova_project/cordova/emulate</pre><p>
               <span class="bold"><strong>on windows</strong></span>
               </p><pre class="programlisting">$ path\to\my_new_cordova_project\cordova\emulate.bat</pre><p>
@@ -87,4 +96,4 @@ path/to/proj/bin/MobileAppActivity-debug.apk</pre><p>
               Ex: If you are in xsl/mobile directory,
               </p><pre class="programlisting">$ android install -r 
 path/to/proj/bin/MobileAppActivity-debug.apk</pre><p>
-            </p></li></ol></div></div></div></div><div data-role="footer" data-position="fixed"><div data-role="navbar"><ul><li><a href="ch02s04s01s02.html">Prev</a></li><li><a href="ch02s04.html">Up</a></li>   <li><a href="index.html">Home</a></li>   <li style="margin-top: -19px;"><a href="ch02s05.html">Next</a></li></ul></div></div></div></body></html>
+            </p></li></ol></div></div></div></div><div id="mobile_footer"><!----><div data-role="footer" data-position="fixed"><div data-role="navbar"><ul><li><a href="ch02s04s01s02.html">Prev</a></li><li><a href="ch02s04.html">Up   </a></li><li><a href="index.html">Home   </a></li><li><a href="ch02s05.html">Next</a></li></ul></div></div></div></div></body></html>

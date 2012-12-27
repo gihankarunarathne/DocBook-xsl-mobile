@@ -24,7 +24,10 @@
         function onMenuKeyDown() {
           $.mobile.changePage("settings.html");
         }
-		</script><script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><!----></script></head><body><div data-role="page" id="id_ch02s05s01_html"><!--KEEP THIS CODE--><div data-role="header" data-theme="b" data-position="fixed"><h4>Using GUI (Xcode IDE)</h4><!----><a accesskey="n" data-role="button" data-icon="grid" class="ui-btn-right" data-iconpos="notext" data-theme="a" href="tapholdDialog.html" data-inline="true" data-rel="dialog" data-transition="flip">Options</a><script type="text/javascript">        
+		</script><script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><!----></script></head><body><div data-role="page" id="id_ch02s05s01_html"><!--KEEP THIS CODE--><div data-role="header" data-theme="b"><h4>Using GUI (Xcode IDE)</h4><!---->
+          
+          
+            <a accesskey="n" data-role="button" data-icon="grid" class="ui-btn-right" data-iconpos="notext" data-theme="a" href="tapholdDialog.html" data-inline="true" data-rel="dialog" data-transition="flip">Options</a><script type="text/javascript">        
         $(function() {
           var $nextPage="ch02s05.html";
           var $prevPage="ch02s05s02.html";
@@ -45,9 +48,15 @@
               $.mobile.changePage($nextPage);
             }
           });
+        
+          //if taphold feature enabled
+          $("#id_ch02s05s01_html_taphold").hide();
+          $("#id_ch02s05s01_html").live('taphold', function(event) {
+            $("#id_ch02s05s01_html_taphold").click();
+          });
          
         });
-			</script></div><div data-role="content" id="bodyone"><div id="content"><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="d0e1185"></a>Using GUI (Xcode IDE)</h3></div></div></div><div class="procedure"><ol class="procedure" type="1"><li class="step"><p class="title"><strong>Generate DocBook Mobile content</strong></p><p>using terminal run the command </p><pre class="programlisting">ant mobile.iOS</pre><p>.
+			</script></div><div data-role="content" id="bodyone"><a href="tapholdDialog.html" data-role="button" data-inline="true" data-rel="dialog" data-transition="flip" id="id_ch02s05s01_html_taphold"></a><div id="content"><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="d0e1185"></a>Using GUI (Xcode IDE)</h3></div></div></div><div class="procedure"><ol class="procedure" type="1"><li class="step"><p class="title"><strong>Generate DocBook Mobile content</strong></p><p>using terminal run the command </p><pre class="programlisting">ant mobile.iOS</pre><p>.
               This will create html content inside <code class="filename">mobile/www</code> directory.
             </p></li><li class="step"><p class="title"><strong>Requirements :</strong></p><ol type="a" class="substeps"><li class="step"><p>Xcode 4.x</p></li><li class="step"><p>Intel-based computer with Mac OS X Lion or greater (10.7+)</p></li><li class="step"><p>Necessary for installing on device:</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>Apple iOS device (iPhone, iPad, iPod Touch)</p></li><li class="listitem"><p>iOS developer certificate</p></li></ul></div></li></ol></li><li class="step"><p class="title"><strong>Install the iOS SDK and Configure PhoneGap :</strong></p><ol type="a" class="substeps"><li class="step"><p>Install Xcode from the <a class="ulink" href="http://itunes.apple.com/us/app/xcode/id497799835?mt=12" target="_top">Mac App
                     Store</a></p></li><li class="step"><p>Necessary PhoneGap packages locate in <code class="filename">mobile/iOS</code></p></li></ol></li><li class="step"><p class="title"><strong>Setup New Project</strong></p><ol type="a" class="substeps"><li class="step"><p>Go to <code class="filename">mobile/iOS</code> directory.</p></li><li class="step"><p>Drag the copied <code class="filename">bin</code> folder to the
@@ -57,4 +66,4 @@
                   Navigator</p></li><li class="step"><p>Replace this <code class="filename">www</code> folder with
                     <code class="filename">mobile/www</code>.</p></li></ol></li><li class="step"><p class="title"><strong>Deploy to Simulator :</strong></p><ol type="a" class="substeps"><li class="step"><p>Change the Target in the Scheme drop-down menu on the toolbar to your project.
                 </p></li><li class="step"><p>Change the <span class="application">Active SDK</span> in the Scheme drop-down menu
-                  on the toolbar to <span class="application">iOS [version] Simulator</span>.</p></li><li class="step"><p>Select the Run button in your project window's toolbar</p></li></ol></li></ol></div></div></div></div><div data-role="footer" data-position="fixed"><div data-role="navbar"><ul><li><a href="ch02s05.html">Prev</a></li><li><a href="ch02s05.html">Up</a></li>   <li><a href="index.html">Home</a></li>   <li style="margin-top: -19px;"><a href="ch02s05s02.html">Next</a></li></ul></div></div></div></body></html>
+                  on the toolbar to <span class="application">iOS [version] Simulator</span>.</p></li><li class="step"><p>Select the Run button in your project window's toolbar</p></li></ol></li></ol></div></div></div></div><div id="mobile_footer"><!----><div data-role="footer" data-position="fixed"><div data-role="navbar"><ul><li><a href="ch02s05.html">Prev</a></li><li><a href="ch02s05.html">Up   </a></li><li><a href="index.html">Home   </a></li><li><a href="ch02s05s02.html">Next</a></li></ul></div></div></div></div></body></html>
