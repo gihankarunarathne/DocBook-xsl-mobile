@@ -452,7 +452,7 @@
           
           <xsl:call-template name="user.header.content"/>
           
-          <div data-role="header" data-theme="b">
+          <div data-role="header" data-theme="b" data-position="fixed">
             <xsl:call-template name="body.attributes"/>
 
             <xsl:call-template name="user.header.navigation">
