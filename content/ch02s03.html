@@ -3,7 +3,7 @@
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 	<meta http-equiv="X-UA-Compatible" content="IE=7" />
-	<title>Common Mobile Output</title><meta name="generator" content="DocBook XSL Stylesheets V1.77.1" /><link rel="home" href="index.html" title="Mobile docBook Help" /><link rel="up" href="ch02.html" title="User guide" /><link rel="prev" href="ch02s02s02.html" title="Installation On Windows" /><link rel="next" href="ch02s04.html" title="Generating Android app" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="stylesheet" type="text/css" href="../css/themes/default/jquery.mobile-1.1.0.min.css" /><link rel="stylesheet" type="text/css" href="../css/mobile.positioning.css" /><script type="text/javascript">
+	<title>Common Mobile Output</title><meta name="generator" content="DocBook XSL Stylesheets V1.77.1" /><link rel="home" href="index.html" title="Mobile docBook Help" /><link rel="up" href="ch02.html" title="User guide" /><link rel="prev" href="ch02s02s02.html" title="Installation On Windows" /><link rel="next" href="ch02s04.html" title="Generating Apps using &#34;PhoneGap Build&#34;" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="stylesheet" type="text/css" href="../css/themes/default/jquery.mobile-1.1.0.min.css" /><link rel="stylesheet" type="text/css" href="../css/mobile.positioning.css" /><script type="text/javascript">
               //The id for tree cookie
               var treeCookieId = "treeview-1055";
               var language = "en";
@@ -24,7 +24,7 @@
         function onMenuKeyDown() {
           $.mobile.changePage("settings.html");
         }
-		</script><script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><!----></script></head><body><div data-role="page" id="id_ch02s03_html"><!--KEEP THIS CODE--><div data-role="header" data-theme="b"><h4>Common Mobile Output</h4><!---->
+		</script><script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><!----></script></head><body><div data-role="page" id="id_ch02s03_html"><!--KEEP THIS CODE--><div data-role="header" data-theme="b" data-position="fixed"><h4>Common Mobile Output</h4><!---->
           
           
             <a accesskey="n" data-role="button" data-icon="grid" class="ui-btn-right" data-iconpos="notext" data-theme="a" href="tapholdDialog.html" data-inline="true" data-rel="dialog" data-transition="flip">Options</a><script type="text/javascript">        
@@ -59,7 +59,7 @@
 			</script></div><div data-role="content" id="bodyone"><a href="tapholdDialog.html" data-role="button" data-inline="true" data-rel="dialog" data-transition="flip" id="id_ch02s03_html_taphold"></a><div id="content"><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="d0e528"></a>Common Mobile Output</h2></div></div></div><p class="summary">
         How to build Mobile output without specifying Mobile platform. This section describes how to build html content without specifically build for particular mobile platform. Instead the output can view by a <span class="application">desktop web browser</span>.
         </p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
-          When you build for a particular mobile platfrom, ant script will include additional requirement for that platform such as <code class="filename">cordova.js</code>.
+          When you build for a particular mobile platfrom, ant script will include additional requirement for that platform such as <code class="filename">cordova-version.js</code>.
         </p></div><p class="summary">
       </p><div class="procedure"><ol class="procedure" type="1"><li class="step"><a id="edit-build-properties"></a><p>In a text editor, edit the <code class="filename">build.properties</code> file in the
           mobile directory and make the changes indicated by the comments.</p><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3><p>You must set appropriate values for <code class="code">xslt-processor-classpath</code>,
@@ -152,5 +152,7 @@ xml-apis.jar=/usr/share/java/xml-apis.jar
   &lt;property name="output-dir" value="<em class="replaceable"><code>path-to/desired-output-dir</code></em>"/&gt;
   &lt;import file="<em class="replaceable"><code>path-to/docbook-mobile/</code></em>build.xml"/&gt;
 &lt;/project&gt;</pre></li><li class="step"><p>From the directory containing your newly created
-              <code class="filename">build.xml</code> file, type <code class="code">ant mobile</code> to build your
-              document. This mobile output can use to view by a web browser.</p></li></ol></li></ol></div></div></div></div><div id="mobile_footer"><!----><div data-role="footer" data-position="fixed"><div data-role="navbar"><ul><li><a href="ch02s02s02.html">Prev</a></li><li><a href="ch02.html">Up   </a></li><li><a href="index.html">Home   </a></li><li><a href="ch02s04.html">Next</a></li></ul></div></div></div></div></body></html>
+              <code class="filename">build.xml</code> file, type <code class="code">$ ant mobile.web</code> to build your
+              document. This mobile output can use to view by a web browser.</p><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3><p>
+                The command <code class="code">$ ant mobile.web</code> will create html output with out importing PhoneGap libraries. It can use to host our documentation on the web.
+              </p></div></li></ol></li></ol></div></div></div></div><div id="mobile_footer"><!----><div data-role="footer" data-position="fixed"><div data-role="navbar"><ul><li><a href="ch02s02s02.html">Prev</a></li><li><a href="ch02.html">Up   </a></li><li><a href="index.html">Home   </a></li><li><a href="ch02s04.html">Next</a></li></ul></div></div></div></div></body></html>

@@ -3,7 +3,7 @@
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 	<meta http-equiv="X-UA-Compatible" content="IE=7" />
-	<title>Build Android app in Debug Mode</title><meta name="generator" content="DocBook XSL Stylesheets V1.77.1" /><link rel="home" href="index.html" title="Mobile docBook Help" /><link rel="up" href="ch02s04s01.html" title="Build Android apps" /><link rel="prev" href="ch02s04s01.html" title="Build Android apps" /><link rel="next" href="ch02s04s01s02.html" title="Build Android app in Release Mode" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="stylesheet" type="text/css" href="../css/themes/default/jquery.mobile-1.1.0.min.css" /><link rel="stylesheet" type="text/css" href="../css/mobile.positioning.css" /><script type="text/javascript">
+	<title>Build Android app in Debug Mode</title><meta name="generator" content="DocBook XSL Stylesheets V1.77.1" /><link rel="home" href="index.html" title="Mobile docBook Help" /><link rel="up" href="ch02s06s01.html" title="Build Android apps(Locally)" /><link rel="prev" href="ch02s06s01.html" title="Build Android apps(Locally)" /><link rel="next" href="ch02s06s01s02.html" title="Build Android app in Release Mode" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="stylesheet" type="text/css" href="../css/themes/default/jquery.mobile-1.1.0.min.css" /><link rel="stylesheet" type="text/css" href="../css/mobile.positioning.css" /><script type="text/javascript">
               //The id for tree cookie
               var treeCookieId = "treeview-1055";
               var language = "en";
@@ -24,16 +24,16 @@
         function onMenuKeyDown() {
           $.mobile.changePage("settings.html");
         }
-		</script><script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><!----></script></head><body><div data-role="page" id="id_ch02s04s01s01_html"><!--KEEP THIS CODE--><div data-role="header" data-theme="b"><h4>Build Android app in Debug Mode</h4><!---->
+		</script><script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><!----></script></head><body><div data-role="page" id="id_ch02s06s01s01_html"><!--KEEP THIS CODE--><div data-role="header" data-theme="b" data-position="fixed"><h4>Build Android app in Debug Mode</h4><!---->
           
           
             <a accesskey="n" data-role="button" data-icon="grid" class="ui-btn-right" data-iconpos="notext" data-theme="a" href="tapholdDialog.html" data-inline="true" data-rel="dialog" data-transition="flip">Options</a><script type="text/javascript">        
         $(function() {
-          var $nextPage="ch02s04s01.html";
-          var $prevPage="ch02s04s01s02.html";
+          var $nextPage="ch02s06s01.html";
+          var $prevPage="ch02s06s01s02.html";
         
           //when swipe left event happens
-          $("#id_ch02s04s01s01_html").live('swipeleft', function(event) {
+          $("#id_ch02s06s01s01_html").live('swipeleft', function(event) {
             if("swipeLeft" === $.cookie('nextpage') ){
               $.mobile.changePage($nextPage);
             }else{
@@ -41,7 +41,7 @@
             }
           });
 				 	//when swipe right event happens
-          $("#id_ch02s04s01s01_html").live('swiperight', function(event) {
+          $("#id_ch02s06s01s01_html").live('swiperight', function(event) {
             if("swipeRight" === $.cookie('prevpage') ){
               $.mobile.changePage($prevPage);
             }else{
@@ -50,13 +50,13 @@
           });
         
           //if taphold feature enabled
-          $("#id_ch02s04s01s01_html_taphold").hide();
-          $("#id_ch02s04s01s01_html").live('taphold', function(event) {
-            $("#id_ch02s04s01s01_html_taphold").click();
+          $("#id_ch02s06s01s01_html_taphold").hide();
+          $("#id_ch02s06s01s01_html").live('taphold', function(event) {
+            $("#id_ch02s06s01s01_html_taphold").click();
           });
          
         });
-			</script></div><div data-role="content" id="bodyone"><a href="tapholdDialog.html" data-role="button" data-inline="true" data-rel="dialog" data-transition="flip" id="id_ch02s04s01s01_html_taphold"></a><div id="content"><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="d0e913"></a>Build Android app in Debug Mode</h4></div></div></div><div class="procedure"><ol class="procedure" type="1"><li class="step"><p>Before going to Build using Ant, you must setup
+			</script></div><div data-role="content" id="bodyone"><a href="tapholdDialog.html" data-role="button" data-inline="true" data-rel="dialog" data-transition="flip" id="id_ch02s06s01s01_html_taphold"></a><div id="content"><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="d0e1074"></a>Build Android app in Debug Mode</h4></div></div></div><div class="procedure"><ol class="procedure" type="1"><li class="step"><p>Before going to Build using Ant, you must setup
               "xsl/mobile/android/android.config" file.</p><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3><p>IMPORTANT : This means the platform number of Android target vertion which is
                 given under </p><pre class="programlisting">$ android list targets</pre><p> Please refer for
                 more details <a class="ulink" href="http://developer.android.com/tools/devices/managing-avds-cmdline.html" target="_top">Android Documentaion</a>. 
@@ -66,4 +66,4 @@
             </p><pre class="programlisting">$ path\to\my_new_cordova_project\cordova\debug.bat</pre><p>
             </p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>NOTE: This will created an android app which is signed by debug 'keystore'. You
                 can not distribute it for end-users. But can be use for debuging purpose.For more
-                details about Expiry of the Debug Certificate, refer <a class="ulink" href="http://developer.android.com/tools/publishing/app-signing.html#debugmode" target="_top">Signing in Debug Mode</a> in Android Documentation and for any issue.</p></div></li></ol></div></div></div></div><div id="mobile_footer"><!----><div data-role="footer" data-position="fixed"><div data-role="navbar"><ul><li><a href="ch02s04s01.html">Prev</a></li><li><a href="ch02s04s01.html">Up   </a></li><li><a href="index.html">Home   </a></li><li><a href="ch02s04s01s02.html">Next</a></li></ul></div></div></div></div></body></html>
+                details about Expiry of the Debug Certificate, refer <a class="ulink" href="http://developer.android.com/tools/publishing/app-signing.html#debugmode" target="_top">Signing in Debug Mode</a> in Android Documentation and for any issue.</p></div></li></ol></div></div></div></div><div id="mobile_footer"><!----><div data-role="footer" data-position="fixed"><div data-role="navbar"><ul><li><a href="ch02s06s01.html">Prev</a></li><li><a href="ch02s06s01.html">Up   </a></li><li><a href="index.html">Home   </a></li><li><a href="ch02s06s01s02.html">Next</a></li></ul></div></div></div></div></body></html>

@@ -3,7 +3,7 @@
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 	<meta http-equiv="X-UA-Compatible" content="IE=7" />
-	<title>Adding images</title><meta name="generator" content="DocBook XSL Stylesheets V1.77.1" /><link rel="home" href="index.html" title="Mobile docBook Help" /><link rel="up" href="ch02.html" title="User guide" /><link rel="prev" href="ch02s07.html" title="Adding support for other (non-CJKV) languages" /><link rel="next" href="ch03.html" title="Developer guide" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="stylesheet" type="text/css" href="../css/themes/default/jquery.mobile-1.1.0.min.css" /><link rel="stylesheet" type="text/css" href="../css/mobile.positioning.css" /><script type="text/javascript">
+	<title>Search indexing</title><meta name="generator" content="DocBook XSL Stylesheets V1.77.1" /><link rel="home" href="index.html" title="Mobile docBook Help" /><link rel="up" href="ch02.html" title="User guide" /><link rel="prev" href="ch02s07s02.html" title="Using Command-Line" /><link rel="next" href="ch02s09.html" title="Adding support for other (non-CJKV) languages" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="stylesheet" type="text/css" href="../css/themes/default/jquery.mobile-1.1.0.min.css" /><link rel="stylesheet" type="text/css" href="../css/mobile.positioning.css" /><script type="text/javascript">
               //The id for tree cookie
               var treeCookieId = "treeview-1055";
               var language = "en";
@@ -24,13 +24,13 @@
         function onMenuKeyDown() {
           $.mobile.changePage("settings.html");
         }
-		</script><script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><!----></script></head><body><div data-role="page" id="id_ch02s08_html"><!--KEEP THIS CODE--><div data-role="header" data-theme="b"><h4>Adding images</h4><!---->
+		</script><script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><!----></script></head><body><div data-role="page" id="id_ch02s08_html"><!--KEEP THIS CODE--><div data-role="header" data-theme="b" data-position="fixed"><h4>Search indexing</h4><!---->
           
           
             <a accesskey="n" data-role="button" data-icon="grid" class="ui-btn-right" data-iconpos="notext" data-theme="a" href="tapholdDialog.html" data-inline="true" data-rel="dialog" data-transition="flip">Options</a><script type="text/javascript">        
         $(function() {
-          var $nextPage="ch02s07.html";
-          var $prevPage="ch03.html";
+          var $nextPage="ch02s07s02.html";
+          var $prevPage="ch02s09.html";
         
           //when swipe left event happens
           $("#id_ch02s08_html").live('swipeleft', function(event) {
@@ -56,21 +56,29 @@
           });
          
         });
-			</script></div><div data-role="content" id="bodyone"><a href="tapholdDialog.html" data-role="button" data-inline="true" data-rel="dialog" data-transition="flip" id="id_ch02s08_html_taphold"></a><div id="content"><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="d0e1561"></a>Adding images</h2></div></div></div><p>This section shows how to add images to Mobile. For that, follow the simple procedure given.</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>Put the images in a subdirectory of your source file directory. For example
-                <code class="filename">docsrc/images</code>.</p></li><li class="listitem"><p>Then refer to those images from your docbook document.</p><p>Following image is from <span class="bold"><strong>mobile/docsrs/images/sample.jpg</strong></span>. The docbook code is shown
-              below.</p><p>
-              </p><div class="figure"><a id="d0e1583"></a><p class="title"><strong>Figure 1. Sample Image</strong></p><div class="figure-contents"><div class="mediaobject"><img src="images/sample.jpg" alt="Sample Image" /></div></div></div><p><br class="figure-break" />
-            </p><div class="example"><a id="d0e1590"></a><p class="title"><strong>Example 1. Example code for adding images. Note down the relative path used</strong></p><div class="example-contents"><pre class="programlisting">&lt;figure&gt;
-  &lt;title&gt;Sample&lt;/title&gt;
-  &lt;mediaobject&gt;
-    &lt;imageobject&gt;
-      &lt;imagedata fileref="<span class="bold"><strong>images/sample.jpg</strong></span>" format="JPG"/&gt;
-    &lt;/imageobject&gt;
-  &lt;/mediaobject&gt;
-&lt;/figure&gt;</pre></div></div><br class="example-break" /></li><li class="listitem"><p> The <code class="filename">build.properties</code> file controls what directories are
-              copied over from the source tree to the output
-              tree:</p><pre class="programlisting"># If your document has image directories that need to be copied
-# to the output directory, you can list patterns here. 
-# See the Ant documentation for fileset for documentation
-# on patterns.
-input-images-dirs=images/**,figures/**,graphics/**</pre></li></ul></div></div></div></div><div id="mobile_footer"><!----><div data-role="footer" data-position="fixed"><div data-role="navbar"><ul><li><a href="ch02s07.html">Prev</a></li><li><a href="ch02.html">Up   </a></li><li><a href="index.html">Home   </a></li><li><a href="ch03.html">Next</a></li></ul></div></div></div></div></body></html>
+			</script></div><div data-role="content" id="bodyone"><a href="tapholdDialog.html" data-role="button" data-inline="true" data-rel="dialog" data-transition="flip" id="id_ch02s08_html_taphold"></a><div id="content"><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="d0e1584"></a>Search indexing</h2></div></div></div><p>Run <span class="command"><strong>ant index</strong></span> in the mobile directory to index the content. Running
+          <span class="command"><strong>ant mobile</strong></span> will do the indexing as part of the process as well.</p><p>Here's some detailed information about invoking the indexer. The indexing process is
+        pretty smooth, so probably you doesn't need to be concerned with following details. Mobile
+        Ant script does all the needed bits.</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>Following should be in the CLASSPATH.</p><p>
+            </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: circle; "><li class="listitem"><p><code class="filename">webhelpindexer.jar</code>,
+                    <code class="filename">lucene-analyzers-3.0.0.jar</code>,
+                    <code class="filename">lucene-core-3.0.0.jar</code> - These three are available in the
+                  extensions/ directory of docsbook-xsl-1.76.1, and is automatically fetched to the
+                  mobile's Ant script. Go for a XSL snapshot if you can which contains the latest
+                  version http://docbook.sourceforge.net/snapshot/</p></li><li class="listitem"><p><code class="filename">xercesImpl.jar</code>, <code class="filename"> xml-apis.jar</code> -
+                  These two comes by default with Ant 1.8.0 or prior versions. These are available
+                  under /usr/share/java directory of Linux distributions as well. Else, you may have
+                  to download, and put them to <code class="filename">jre/lib/endorsed</code>.</p></li></ul></div><p>
+          </p></li><li class="listitem"><p>The main class is <code class="classname">com.nexwave.nquindexer.IndexerMain</code> for the
+            version 1.76.1+. It's <code class="classname">com.nexwave.nquindexer.IndexerTask</code> for the
+            versions 1.76.0 and 1.76.1.</p><p>
+            </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: circle; "><li class="listitem"><p>Needs two parameters as command-line arguments:</p><p>
+                  </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: square; "><li class="listitem"><p>The folder where the files to be indexed reside</p></li></ul></div><p>
+                  </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: square; "><li class="listitem"><p>(Optional) language. defaults to "en". See build.properties for
+                        details</p></li></ul></div><p>
+                </p></li></ul></div><p>
+            </p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>We have changed the way we invoke the webhelp indexer from the Ant Task to
+                  <code class="code">indexertask</code> to direct invocation. This seems to have remove the
+                  <code class="envar">CLASSPATH</code> issue some people were having.</p></div><p>
+          </p></li></ul></div><a id="d0e1665" class="indexterm"></a><a id="d0e1670" class="indexterm"></a><p class="summary">To build the indexer, you must have installed the JDK version 1.5 or
+        higher and set the <code class="envar">ANT_HOME</code> environment variable. </p><a id="d0e1680" class="indexterm"></a><a id="d0e1683" class="indexterm"></a></div></div></div><div id="mobile_footer"><!----><div data-role="footer" data-position="fixed"><div data-role="navbar"><ul><li><a href="ch02s07s02.html">Prev</a></li><li><a href="ch02.html">Up   </a></li><li><a href="index.html">Home   </a></li><li><a href="ch02s09.html">Next</a></li></ul></div></div></div></div></body></html>

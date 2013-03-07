@@ -24,7 +24,7 @@
         function onMenuKeyDown() {
           $.mobile.changePage("settings.html");
         }
-		</script><script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><!----></script></head><body><div data-role="page" id="id_ch03s02s01_html"><!--KEEP THIS CODE--><div data-role="header" data-theme="b"><h4>New Stemmers</h4><!---->
+		</script><script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><!----></script></head><body><div data-role="page" id="id_ch03s02s01_html"><!--KEEP THIS CODE--><div data-role="header" data-theme="b" data-position="fixed"><h4>New Stemmers</h4><!---->
           
           
             <a accesskey="n" data-role="button" data-icon="grid" class="ui-btn-right" data-iconpos="notext" data-theme="a" href="tapholdDialog.html" data-inline="true" data-rel="dialog" data-transition="flip">Options</a><script type="text/javascript">        
@@ -56,7 +56,7 @@
           });
          
         });
-			</script></div><div data-role="content" id="bodyone"><a href="tapholdDialog.html" data-role="button" data-inline="true" data-rel="dialog" data-transition="flip" id="id_ch03s02s01_html_taphold"></a><div id="content"><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="d0e1857"></a>New Stemmers</h3></div></div></div><p class="summary">Adding new Stemmers is very simple.</p><p>Currently, only English, French, and German stemmers are integrated in to Mobile. But
+			</script></div><div data-role="content" id="bodyone"><a href="tapholdDialog.html" data-role="button" data-inline="true" data-rel="dialog" data-transition="flip" id="id_ch03s02s01_html_taphold"></a><div id="content"><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="d0e2033"></a>New Stemmers</h3></div></div></div><p class="summary">Adding new Stemmers is very simple.</p><p>Currently, only English, French, and German stemmers are integrated in to Mobile. But
           the code is extensible such that you can add new stemmers easily by few steps.</p><p>What you need: </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>You'll need two versions of the stemmer; One written in JavaScript, and another
               in Java. But fortunately, Snowball contains Java stemmers for number of popular
               languages, and are already included with the package. You can see the full list in
@@ -74,7 +74,7 @@
             </p></li><li class="listitem"><p>Now two easy changes needed for the indexer.</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: circle; "><li class="listitem"><p>Open
                   <code class="filename">docbook-webhelp/indexer/src/com/nexwave/nquindexer/IndexerTask.java</code>
                   in a text editor and add your language code to the
-                  <code class="code">supportedLanguages</code> String Array. </p><div class="example"><a id="d0e1917"></a><p class="title"><strong>Example 2. Add new language to supportedLanguages array</strong></p><div class="example-contents"><p> change the Array from,
+                  <code class="code">supportedLanguages</code> String Array. </p><div class="example"><a id="d0e2093"></a><p class="title"><strong>Example 2. Add new language to supportedLanguages array</strong></p><div class="example-contents"><p> change the Array from,
                     </p><pre class="programlisting">
 private String[] supportedLanguages= {"en", "de", "fr", "cn", "ja", "ko"}; 
     //currently extended support available for
@@ -90,7 +90,7 @@ private String[] supportedLanguages= {"en", "de", "fr", "cn", "ja", "ko", <span 
                   for <code class="code">SnowballStemmer stemmer;</code>). Then add code to initialize the
                   stemmer Object in your language. It's self understandable. See the example. The
                   class names are at:
-                  <code class="filename">docbook-webhelp/indexer/src/com/nexwave/stemmer/snowball/ext/</code>. </p><div class="example"><a id="d0e1942"></a><p class="title"><strong>Example 3. Initialize correct stemmer based on the
+                  <code class="filename">docbook-webhelp/indexer/src/com/nexwave/stemmer/snowball/ext/</code>. </p><div class="example"><a id="d0e2118"></a><p class="title"><strong>Example 3. Initialize correct stemmer based on the
                     <code class="code">mobile.indexer.language</code> specified</strong></p><div class="example-contents"><pre class="programlisting">
       SnowballStemmer stemmer;
       if(indexerLanguage.equalsIgnoreCase("en")){
@@ -110,4 +110,4 @@ private String[] supportedLanguages= {"en", "de", "fr", "cn", "ja", "ko", <span 
         </p><p>That's all. Now run <code class="code">ant build-indexer</code> to compile and build the java code.
           Then, run <code class="code">ant mobile</code> to generate the output from your docbook file. For any
           questions, contact us or email to the docbook mailing list
-          <code class="email">&lt;<a class="email" href="mailto:docbook-apps@lists.oasis-open.org">docbook-apps@lists.oasis-open.org</a>&gt;</code>.</p><a id="d0e1968" class="indexterm"></a></div></div></div><div id="mobile_footer"><!----><div data-role="footer" data-position="fixed"><div data-role="navbar"><ul><li><a href="ch03s02.html">Prev</a></li><li><a href="ch03s02.html">Up   </a></li><li><a href="index.html">Home   </a></li><li><a class="ui-disabled">Next   </a></li></ul></div></div></div></div></body></html>
+          <code class="email">&lt;<a class="email" href="mailto:docbook-apps@lists.oasis-open.org">docbook-apps@lists.oasis-open.org</a>&gt;</code>.</p><a id="d0e2144" class="indexterm"></a></div></div></div><div id="mobile_footer"><!----><div data-role="footer" data-position="fixed"><div data-role="navbar"><ul><li><a href="ch03s02.html">Prev</a></li><li><a href="ch03s02.html">Up   </a></li><li><a href="index.html">Home   </a></li><li><a class="ui-disabled">Next   </a></li></ul></div></div></div></div></body></html>
