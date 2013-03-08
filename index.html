@@ -62,28 +62,32 @@
 </li>
 <li>Also download the Mobile package as zip from here.</li>
 <li>Then add Mobile directory into docbook-xsl like docbook-xsl-1.77.1/mobile.</li>
-<li>Then replace old docbook-xsl-1.77.1/extensions/webhelpIndexer.jar with the 
-<a href="https://github.com/gihankarunarathne/DocBook-xsl-mobile/blob/master/webhelpindexer.jar">webhelpindexer.jar</a>.
+<li>(Optional) Then replace old <a href="https://github.com/gihankarunarathne/DocBook-xsl-mobile/blob/master/webhelpindexer.jar">docbook-xsl-1.77.1/extensions/webhelpindexer.jar</a>.
 Now, you finished with settings up the package to use.</li>
+<p>To see how to use the this package please read the <a href="http://gihankarunarathne.github.com/DocBook-xsl-mobile/content/index.html">documentation</a>.</p>
 </ol><h3>Support Platforms</h3>
 
 <h5>List of Available mobile platforms ::</h5>
 
 <pre><code>  |
-  |_Android             :$ant android-help *
-  |__Apple iOS          :$ant iOS-help *
-  |___Blackberry        :$ant blackberry-help
+  |_Android             
+  |__Apple iOS          
+  |___Blackberry        
   |____Palm webOS
   |_____Samsung Bada
   |______Windows Phone
 </code></pre>
 
-<pre><code>    key: " * " - currently implemented
+<h3>HTMLs for web view</h3>
+
+<p>To create HTML for web view:</p>
+
+<pre><code>    $ ant mobile.web
 </code></pre>
 
-<h3>HTMLs for all platforms</h3>
-
-<p>To create chunked htmls which can be used in "www" folder of PhoneGap:</p>
+<h3>Build using PhoneGap Build</h3>
+<p>To create asserts zip file for build using PhoneGap cloud service at <a href="https://build.phonegap.com/">PhoneGap Build</a>
+Note: Don't need to install any tool or SDK</p>
 
 <pre><code>    $ ant mobile
 </code></pre>
