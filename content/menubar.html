@@ -6,6 +6,7 @@
    <head>
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+      <script type="text/javascript" charset="utf-8" src="../cordova-2.0.0.js"><!----></script>
       <script type="text/javascript">
               //The id for tree cookie
               var treeCookieId = "treeview-1055";
@@ -19,7 +20,7 @@
               txt_results_for = "Results for: ";
             </script>
       <link rel="stylesheet" type="text/css" href="../css/themes/default/jquery.mobile-1.1.0.min.css"/>
-      <script type="text/javascript" src="../js/browserDetect.js"><!--browserDetect--></script>
+      <script type="text/javascript" src="../js/browserDetect.min.js"><!--browserDetect--></script>
       <script type="text/javascript" src="../js/jquery-1.7.1.min.js"><!--jquery--></script>
       <script type="text/javascript" src="../js/jquery.cookie.min.js"><!--cookies--></script>
       <script type="text/javascript" src="../js/mobile-menubar.js"><!--mobile menubar--></script>
@@ -105,11 +106,11 @@
                   $("#id_menubar_html").live('pageshow',function(){
                    
                     //set the select menu focused
-                    $("#font-size").val($.cookie('font-size')).selectmenu('refresh', true);
-                    $("#font-family").val($.cookie('font-family')).selectmenu('refresh', true);
-                    if($.cookie('textToSearch') !== null){
-                      if("on" === $.cookie('remembersearchword') ) {
-                        $("#textToSearch").val($.cookie('textToSearch'));
+                    $("#font-size").val(mobile.getMobileValue('font-size')).selectmenu('refresh', true);
+                    $("#font-family").val(mobile.getMobileValue('font-family')).selectmenu('refresh', true);
+                    if(mobile.getMobileValue('textToSearch') !== null){
+                    if("on" === mobile.getMobileValue('remembersearchword') ) {
+                    $("#textToSearch").val(mobile.getMobileValue('textToSearch'));
                       }else{
                         $("#textToSearch").val('');
                       }

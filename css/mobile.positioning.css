@@ -26,6 +26,15 @@ h3.title {
   /*font-size : 12px;*/
   margin : 0.6em 30% 0.1em;
 }
+
+/************************
+ * Mobile ToC, Settings customize
+ ************************/
+ a.taphold{
+   margin-top: 16px; margin-bottom: 24px;
+   font-size: 18px;
+ }
+ 
 /***********************
  * DocBook Specific
  ***********************/

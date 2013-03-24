@@ -6,20 +6,21 @@
    <head>
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+      <script type="text/javascript" charset="utf-8" src="../cordova-2.0.0.js"><!--//cordova js--></script>
       <link rel="stylesheet" type="text/css" href="../css/themes/default/jquery.mobile-1.1.0.min.css"/>
-      <script type="text/javascript" src="../js/browserDetect.js"><!--browserDetect--></script>
-      <script type="text/javascript" src="../js/jquery-1.7.1.min.js"><!--jquery--></script>
-      <script type="text/javascript" src="../js/jquery.cookie.min.js"><!--cookies--></script>
-      <script type="text/javascript" src="../js/mobile-menubar.js"><!--mobile menubar--></script>
-      <script type="text/javascript" src="../js/mobile-settings.js"><!--mobile settings--></script>
-      <script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><!--jquerymobile--></script>
+      <script type="text/javascript" src="../js/browserDetect.min.js"><!--//browserDetect--></script>
+      <script type="text/javascript" src="../js/jquery-1.7.1.min.js"><!--//jquery--></script>
+      <script type="text/javascript" src="../js/jquery.cookie.min.js"><!--//cookies--></script>
+      <script type="text/javascript" src="../js/mobile-menubar.js"><!--//mobile menubar--></script>
+      <script type="text/javascript" src="../js/mobile-settings.js"><!--//mobile settings--></script>
+      <script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><!--//jquerymobile--></script>
    </head>
    <body>
       <div data-role="page" class="dialog-actionsheet" data-overlay-theme="b">
          <div data-role="content" data-theme="a">
-            <a id="toc_button" data-role="button" data-rel="dialog" data-transition="slidedown" data-theme="b">ToC</a>
-            <a id="menubar_button" data-role="button" data-rel="dialog" data-transition="slidedown" data-theme="b">Menu Bar</a>
-            <a id="settings_button" data-role="button" data-rel="dialog" data-transition="slidedown" data-theme="b">Settings</a>
+            <a id="toc_button" class="taphold" data-role="button" data-rel="dialog" data-transition="slidedown" data-theme="b">ToC</a>
+            <a id="menubar_button" class="taphold" data-role="button" data-rel="dialog" data-transition="slidedown" data-theme="b">Menu Bar</a>
+            <a id="settings_button" class="taphold" data-role="button" data-rel="dialog" data-transition="slidedown" data-theme="b">Settings</a>
             <a href="index.html" data-role="button" data-rel="back" data-theme="a">Cancel</a>
             <script type="text/javascript">
                 $(function(){

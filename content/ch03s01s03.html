@@ -3,7 +3,7 @@
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 	<meta http-equiv="X-UA-Compatible" content="IE=7" />
-	<title>Mobile Settings</title><meta name="generator" content="DocBook XSL Stylesheets V1.77.1" /><link rel="home" href="index.html" title="Mobile docBook Help" /><link rel="up" href="ch03s01.html" title="Design of Mobile Content" /><link rel="prev" href="ch03s01s02.html" title="Mobile Menu Bar" /><link rel="next" href="ch03s02.html" title="Search" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="stylesheet" type="text/css" href="../css/themes/default/jquery.mobile-1.1.0.min.css" /><link rel="stylesheet" type="text/css" href="../css/mobile.positioning.css" /><script type="text/javascript">
+	<title>Mobile Settings</title><meta name="generator" content="DocBook XSL Stylesheets V1.77.1" /><link rel="home" href="index.html" title="Mobile docBook Help" /><link rel="up" href="ch03s01.html" title="Design of Mobile Content" /><link rel="prev" href="ch03s01s02.html" title="Mobile Menu Bar" /><link rel="next" href="ch03s02.html" title="Search" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="stylesheet" type="text/css" href="../css/themes/default/jquery.mobile-1.1.0.min.css" /><link rel="stylesheet" type="text/css" href="../css/mobile.positioning.css" /><script type="text/javascript" charset="utf-8" src="../cordova-2.0.0.js"><!----></script><script type="text/javascript">
               //The id for tree cookie
               var treeCookieId = "treeview-1055";
               var language = "en";
@@ -14,40 +14,36 @@
               txt_browser_not_supported = "JavaScript is disabled on your browser. Please enable JavaScript to enjoy all the features of this site.";
               txt_please_wait = "Please wait. Search in progress...";
               txt_results_for = "Results for: ";
-            </script><script type="text/javascript" src="../js/browserDetect.js"><!--//jQuery--></script><script type="text/javascript" src="../js/jquery-1.7.1.min.js"><!--//jQuery--></script><script type="text/javascript" src="../js/jquery.cookie.min.js"><!--include mobile menubar js--></script><script type="text/javascript" src="../js/mobile-menubar.js"><!--mobile-menubar--></script><script type="text/javascript" src="../js/mobile-settings.js"><!--include mobile settings js--></script><script type="text/javascript" src="search/l10n.js"><!--l10n--></script><script type="text/javascript" src="search/htmlFileInfoList.js"><!--htmlFileInfoList--></script><script type="text/javascript" src="search/nwSearchFnt.js"><!--nwSearchFnt--></script><script type="text/javascript" src="search/stemmers/en_stemmer.js"><!--make scalable to other languages as well.--></script><script type="text/javascript" src="search/index-1.js"><!--index-1--></script><script type="text/javascript" src="search/index-2.js"><!--index-2--></script><script type="text/javascript" src="search/index-3.js"><!--index-3--></script><script type="text/javascript" charset="utf-8">
-        document.addEventListener("deviceready", onDeviceReady, false);
-
-        function onDeviceReady() {
-          document.addEventListener("menubutton", onMenuKeyDown, false);
-        }
-
-        function onMenuKeyDown() {
-          $.mobile.changePage("settings.html");
-        }
-		</script><script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><!----></script></head><body><div data-role="page" id="id_ch03s01s03_html"><!--KEEP THIS CODE--><div data-role="header" data-theme="b" data-position="fixed"><h4>Mobile Settings</h4><!---->
+            </script><script type="text/javascript" src="../js/browserDetect.min.js"><!--//jQuery--></script><script type="text/javascript" src="../js/jquery-1.7.1.min.js"><!--//jQuery--></script><script type="text/javascript" src="../js/jquery.mobile-1.1.0.min.js"><!--//jQuery-Mobile--></script><script type="text/javascript" src="../js/jquery.cookie.min.js"><!--//include mobile menubar js--></script><script type="text/javascript" src="../js/mobile-menubar.js"><!--//mobile-menubar--></script><script type="text/javascript" src="../js/mobile-settings.js"><!--//include mobile settings js--></script><script type="text/javascript" src="search/l10n.js"><!--//l10n--></script><script type="text/javascript" src="search/htmlFileInfoList.js"><!--//htmlFileInfoList--></script><script type="text/javascript" src="search/nwSearchFnt.js"><!--//nwSearchFnt--></script><script type="text/javascript" src="search/stemmers/en_stemmer.js"><!--//make scalable to other languages as well.--></script><script type="text/javascript" src="search/index-1.js"><!--//index-1--></script><script type="text/javascript" src="search/index-2.js"><!--//index-2--></script><script type="text/javascript" src="search/index-3.js"><!--//index-3--></script></head><body><div data-role="page" id="id_ch03s01s03_html"><!--KEEP THIS CODE--><div data-role="header" data-theme="b" data-position="fixed"><h4>Mobile Settings</h4><!---->
           
           
             <a accesskey="n" data-role="button" data-icon="grid" class="ui-btn-right" data-iconpos="notext" data-theme="a" href="tapholdDialog.html" data-inline="true" data-rel="dialog" data-transition="flip">Options</a><script type="text/javascript">        
         $(function() {
-          var $nextPage="ch03s01s02.html";
-          var $prevPage="ch03s02.html";
+          var $nextPage='ch03s01s02.html';
+          var $prevPage='ch03s02.html';
         
-          //when swipe left event happens
-          $("#id_ch03s01s03_html").live('swipeleft', function(event) {
-            if("swipeLeft" === $.cookie('nextpage') ){
-              $.mobile.changePage($nextPage);
-            }else{
-              $.mobile.changePage($prevPage);
+          
+          // Bind the swiperightHandler callback function to the swipe event
+          $("#id_ch03s01s03_html").on('swipeleft', swipeleftHandler );
+          // Bind the swiperightHandler callback function to the swipe event
+          $("#id_ch03s01s03_html").on('swiperight', swiperightHandler );
+        
+          function swipeleftHandler( event ){
+            if("swipeLeft" === mobile.getMobileValue('prevpage') ){
+              $.mobile.changePage($nextPage, { transition: "flow", reverse: false });
+            }else if("swipeLeft" == mobile.getMobileValue('nextpage') ){
+              $.mobile.changePage($prevPage, { transition: "flow", reverse: false});
             }
-          });
-				 	//when swipe right event happens
-          $("#id_ch03s01s03_html").live('swiperight', function(event) {
-            if("swipeRight" === $.cookie('prevpage') ){
-              $.mobile.changePage($prevPage);
-            }else{
-              $.mobile.changePage($nextPage);
+          }
+        
+          function swiperightHandler( event ){
+            if("swipeRight" === mobile.getMobileValue('nextpage') ){
+              $.mobile.changePage($prevPage, { transition: "turn", reverse: false });
+            }else if("swipeRight" === mobile.getMobileValue('prevpage') ){
+              $.mobile.changePage($nextPage, { transition: "turn", reverse: false });
             }
-          });
+        }
+          
         
           //if taphold feature enabled
           $("#id_ch03s01s03_html_taphold").hide();
@@ -56,9 +52,9 @@
           });
          
         });
-			</script></div><div data-role="content" id="bodyone"><a href="tapholdDialog.html" data-role="button" data-inline="true" data-rel="dialog" data-transition="flip" id="id_ch03s01s03_html_taphold"></a><div id="content"><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="d0e1872"></a>Mobile Settings</h3></div></div></div><p class="summary">
+			</script></div><div data-role="content" id="bodyone"><a href="tapholdDialog.html" data-role="button" data-inline="true" data-rel="dialog" data-transition="flip" id="id_ch03s01s03_html_taphold"></a><div id="content"><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="d0e1898"></a>Mobile Settings</h3></div></div></div><p class="summary">
           An overview about Settings page.
         </p><p>
           Settings page also created as a separate file in mobile output. It includes some basic settings which can be change to possible predefined values. There is a associated javascript file with this html page. It is responsible for set default values when initialising the mobile app. After that user can change the values also. It has the set of settings as following :
           </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p><span class="bold"><strong>ToC</strong></span> : View the ToC</p></li><li class="listitem"><p><span class="bold"><strong>Menu bar</strong></span> : View the Menubar</p></li><li class="listitem"><p><span class="bold"><strong>Menu Bar Swipe Direction</strong></span> : Direction that trigger pop up Menu Bar (Up/Down)</p></li><li class="listitem"><p><span class="bold"><strong>ToC Swipe Direction</strong></span> : Direction that trigger pop up ToC (Up/Down)</p></li><li class="listitem"><p><span class="bold"><strong>Pop Up Menu Bar</strong></span> : Pop Up/not Menu Bar</p></li><li class="listitem"><p><span class="bold"><strong>Pop Up ToC</strong></span> : Pop Up/not ToC</p></li><li class="listitem"><p><span class="bold"><strong>Prev Page Direction</strong></span> : Swipe direction to move to Previous page</p></li><li class="listitem"><p><span class="bold"><strong>Next Page Direction</strong></span> : Swipe direction to move to Next page</p></li><li class="listitem"><p><span class="bold"><strong>Remember Last Search Word</strong></span> : Remember the last search word. If so, it will appear when move to menu bar</p></li><li class="listitem"><p><span class="bold"><strong>Reset</strong></span> : Reset the settings to default values</p></li></ul></div><p>
-        </p></div></div></div><div id="mobile_footer"><!----><div data-role="footer" data-position="fixed"><div data-role="navbar"><ul><li><a href="ch03s01s02.html">Prev</a></li><li><a href="ch03s01.html">Up   </a></li><li><a href="index.html">Home   </a></li><li><a href="ch03s02.html">Next</a></li></ul></div></div></div></div></body></html>
+        </p></div></div></div><div id="mobile_footer"><!----><div data-role="footer" data-position="fixed"><div data-role="navbar"><ul><li><a data-prefetch="" href="ch03s01s02.html">Prev</a></li><li><a href="ch03s01.html">Up   </a></li><li><a href="index.html">Home   </a></li><li><a data-prefetch="" href="ch03s02.html">Next</a></li></ul></div></div></div></div></body></html>
