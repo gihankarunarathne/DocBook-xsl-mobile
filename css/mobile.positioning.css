@@ -26,6 +26,10 @@ h3.title {
   /*font-size : 12px;*/
   margin : 0.6em 30% 0.1em;
 }
+.ui-page {
+  /*Bug issue on http://jquerymobile.com/demos/1.2.0/docs/pages/page-transitions.html*/
+  -webkit-backface-visibility: hidden;
+}
 
 /************************
  * Mobile ToC, Settings customize
@@ -49,7 +53,7 @@ div.abstract p {
   margin : 5px 0px ;
 }
 
-**
+/**
  * Address
  *
  * Affiliation

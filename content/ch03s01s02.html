@@ -3,7 +3,7 @@
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 	<meta http-equiv="X-UA-Compatible" content="IE=7" />
-	<title>Mobile Menu Bar</title><meta name="generator" content="DocBook XSL Stylesheets V1.77.1" /><link rel="home" href="index.html" title="Mobile docBook Help" /><link rel="up" href="ch03s01.html" title="Design of Mobile Content" /><link rel="prev" href="ch03s01s01.html" title="Mobile Table of Content" /><link rel="next" href="ch03s01s03.html" title="Mobile Settings" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="stylesheet" type="text/css" href="../css/themes/default/jquery.mobile-1.1.0.min.css" /><link rel="stylesheet" type="text/css" href="../css/mobile.positioning.css" /><script type="text/javascript" charset="utf-8" src="../cordova-2.0.0.js"><!----></script><script type="text/javascript">
+	<title>Mobile Menu Bar</title><meta name="generator" content="DocBook XSL Stylesheets V1.77.1" /><link rel="home" href="index.html" title="Mobile docBook Help" /><link rel="up" href="ch03s01.html" title="Design of Mobile Content" /><link rel="prev" href="ch03s01s01.html" title="Mobile Table of Content" /><link rel="next" href="ch03s01s03.html" title="Mobile Settings" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="stylesheet" type="text/css" href="../css/themes/default/jquery.mobile-1.1.0.min.css" /><link rel="stylesheet" type="text/css" href="../css/mobile.positioning.css" /><script type="text/javascript">
               //The id for tree cookie
               var treeCookieId = "treeview-1055";
               var language = "en";
@@ -30,17 +30,17 @@
         
           function swipeleftHandler( event ){
             if("swipeLeft" === mobile.getMobileValue('prevpage') ){
-              $.mobile.changePage($nextPage, { transition: "flow", reverse: false });
+              $.mobile.changePage($nextPage, { transition: "pop", reverse: false });
             }else if("swipeLeft" == mobile.getMobileValue('nextpage') ){
-              $.mobile.changePage($prevPage, { transition: "flow", reverse: false});
+              $.mobile.changePage($prevPage, { transition: "slidefade", reverse: false});
             }
           }
         
           function swiperightHandler( event ){
             if("swipeRight" === mobile.getMobileValue('nextpage') ){
-              $.mobile.changePage($prevPage, { transition: "turn", reverse: false });
+              $.mobile.changePage($prevPage, { transition: "slidefade", reverse: false });
             }else if("swipeRight" === mobile.getMobileValue('prevpage') ){
-              $.mobile.changePage($nextPage, { transition: "turn", reverse: false });
+              $.mobile.changePage($nextPage, { transition: "pop", reverse: false });
             }
         }
           
